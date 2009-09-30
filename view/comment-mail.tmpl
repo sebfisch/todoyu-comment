@@ -1,0 +1,27 @@
+<p>{Label comment.newcommentstored}.</p>
+<table width="600" border="0" cellspacing="0" cellpadding="5">
+  <tr>
+    <td width="70"><strong>{Label comment.project}</strong></td>
+    <td width="510">{htmlencode $project.title}</td>
+  </tr>
+  <tr>
+    <td><strong>Task</strong></td>
+    <td><a href="{$tasklink}">{htmlencode $task.title} ({$task.id_project}.{$task.tasknumber})</a></td>
+  </tr>
+</table>
+<p>Kommentar in der Projektansicht anzeigen: <a href="{$commentlink}">Zum Kommentar</a></p>
+<p>Kommantar von {$user.firstname} {$user.lastname} <a href="mailto:{$user.firstname} {$user.lastname}<{$user.email}>">&lt;{$user.email}&gt;</a></p>
+<p>{$comment.comment}</p>
+<table width="600" border="0" cellspacing="0" cellpadding="5">
+  <tr>
+    <td width="150" valign="top"><strong>Feeback erwartet</strong></td>
+    <td width="430">
+    {}
+    Dummy User, Snowflake Productions &lt;info@snowflake.ch&gt;
+    </td>
+  </tr>
+  <tr>
+    <td valign="top"><strong>Task Beschreibung</strong></td>
+    <td>{htmlencode $task.description}</td>
+  </tr>
+</table>

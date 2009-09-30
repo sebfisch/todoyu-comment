@@ -1,0 +1,47 @@
+<li id="task-comment-{$id}" class="tabBlock comment contextmenucomment{if $is_public} isPublic{/if}">
+	<a name="tasl-comment-{$id}"></a>
+	<div class="comment-properties">
+{if $currentUserHasSeen == false}
+			<a href="javascript:void(0)" id="comment-{$id}-seenstatus" onclick="Todoyu.Ext.comment.toggleSeenStatus({$id});" class="comment-userapproval hasicon"></a>
+{/if}
+		<span id="task-comment-{$id}-crdate" class="comment-crdate hasicon">{date_format $date_create "%d.%m.%y %R"}</span>
+		<span id="task-comment-{$id}-user" class="comment-user hasicon">
+			<a href="javascript:void(0)" onclick="Todoyu.Ext.user.showUserPopup({$user_create.id})">{$user_create.lastname} {$user_create.firstname}</a>
+		</span>
+		<span id="task-comment-{$id}-id" class="comment-id" title="{Label comment.commentid}">K{$id}</span>
+		<span id="task-comment-{$id}-options" class="comment-options">
+{if $isInternal}
+			<a href="javascript:void(0)" onclick="Todoyu.Ext.comment.togglePublicStatus({$id})" class="icon public-trigger {if $is_public}comment-public{/if}" title="{Label comment.icon.toggleCustomerVisibility}" id="public-trigger-{$id}">
+				<span class="hidden">{Label comment.icon.toggleCustomerVisibility}</span>
+			</a>
+{/if}
+{if isUserId($id_user_create)}
+			<a href="javascript:void(0)" onclick="Todoyu.Ext.comment.remove({$id})" class="icon comment-remove" title="{Label comment.icon.remove}">
+				<span class="hidden">{Label comment.icon.remove}</span>
+			</a>
+			<a href="javascript:void(0)" onclick="Todoyu.Ext.comment.edit({$id_task}, {$id})" class="icon comment-edit" title="{Label comment.icon.edit}">
+				<span class="hidden">{Label comment.icon.edit}</span>
+			</a>
+{/if}
+		</span>
+	</div>
+	<div id="task-comment-{$id}-text" class="comment-details">
+		<div class="left comment">{$comment}</div>
+		<div class="right users">
+{foreach $users_feedback user name=users}
+			<dl>
+	{if $dwoo.foreach.users.first == false}
+				<dt>&nbsp;</dt>
+	{else}
+				<dt>{Label LLL:comment.comment.feedbackusers}</dt>
+	{/if}
+				<dd>
+					<span id="feedbackuser-{$user.id}-{$id}" {if $user.has_seen == false}class="commentuser-unapproved"{/if}>{$user.lastname}, {$user.firstname}</span>
+				</dd>
+				</dl>
+			{else}
+{/foreach}
+		</div>
+	</div>
+	<div class="clear"><!-- clear --></div>
+</li>

@@ -1,0 +1,227 @@
+.tasktabs .comment span {
+	background: url(../img/icons.png) no-repeat 0 2px;
+}
+
+.task .tabContent .commentButtons {
+}
+
+.task .tabContent .commentButtons button span.addCommentButton {
+	background: url(../img/icons.png) no-repeat 5px 4px;
+}
+
+.task .tabContent .commentButtons button span.sortChronoAsc {
+	background: url(../../../../core/assets/img/bg_button_sprite.png) no-repeat 5px -419px;
+}
+
+.task .tabContent .commentButtons button span.sortChronoDesc {
+	background: url(../../../../core/assets/img/bg_button_sprite.png) no-repeat 5px -448px;
+}
+
+.task-comments {
+	display:block;
+}
+
+.task-comments .comment-properties {
+	position: relative;
+	margin: 0 0 5px 0;
+	padding: 7px 5px;
+	background: #E5E8DA url(../../../../core/assets/img/bg_tab_header.png) repeat-x 0 top;
+}
+
+
+/* Search */
+.searchmode-comment {
+	background:url(../img/icons.png) no-repeat 3px -117px !important;
+}
+
+
+/* Single comment */
+.task-comments .comment {
+}
+
+.task-comments .comment-details {
+	padding:2px;
+}
+
+.task-comments .comment-details .left {
+	float: left;
+	width: 300px !important;
+}
+
+.task-comments .comment-details .comment,
+.task-comments .comment-details .users {
+	padding: 5px !important;
+}
+
+.task-comments .comment-details .right {
+	float: left;
+	width: 285px;
+}
+
+.task-comments .comment-details .users dt,
+.task-comments .comment-details .users dd,
+.task-comments .comment-details .users dd a {
+	color: #666;
+	line-height: 18px;
+}
+
+.task-comments .comment-details .users dt {
+	float: left;
+	width: 130px;
+}
+
+.task-comments .comment-details .users dd span {
+	padding-left: 13px;
+}
+
+.task-comments .comment-details .users dd span.commentuser-unapproved {
+	background: transparent url('../img/icons.png') no-repeat 0 -330px;
+}
+
+.task-comments li.isPublic {
+	border: solid #FF0000 !important;
+	border-width: 1px 2px !important;
+}
+
+.task-comments .hasicon {
+	padding:3px 0px;
+}
+
+.task-comments .comment-crdate {
+	padding-left:22px;
+	background: url(../img/icons.png) no-repeat 0 -116px;
+}
+
+.task-comments .comment-userapproval {
+	display: block;
+	float: left;
+	margin-right: 10px;
+	height: 16px;
+	width: 16px;
+	background: url(../img/icons.png) no-repeat 0 -300px;
+}
+
+.task-comments .comment-user {
+	padding-left:25px;
+	background: url(../img/icons.png) no-repeat 0 -90px;
+}
+
+.task-comments .comment-id {
+	float:right;
+	margin:-15px 5px 0 -12px;
+	font-size:9px !important;
+	letter-spacing:1px;
+}
+
+.task-comments .comment-options {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	margin: 0px 82px 0px -82px
+}
+
+.task-comments .comment-options a {
+	float: left;
+	margin-left: 10px;
+	width:18px;
+}
+
+.task-comments .public-trigger {
+	background: url(../img/icons.png) no-repeat 0 -238px;
+	width:22px !important;
+}
+
+.task-comments .comment-public {
+	background-position: 0 -268px;
+}
+
+.task-comments .comment-remove {
+	background: url(../img/icons.png) no-repeat 0 -28px;
+}
+
+.task-comments .comment-edit {
+	background: url(../img/icons.png) no-repeat 0 -60px;
+}
+
+.task-comments li .comment-properties span.commentOptions .feedbackRequestedFromMe {
+	background: transparent;
+	cursor: pointer;
+}
+
+.task-comments li.taskOptionBlock {
+	border: 1px solid #0065A6;
+	margin: 0 20px 5px;
+	padding: 5px;
+	background-color: #fff;
+}
+
+/* Comment form */
+.commentform {
+	padding: 10px 20px 10px 10px;
+}
+
+.commentform .formLabel {
+	width: 20%;
+}
+
+.commentform .formField {
+	width: 78%;
+}
+
+.commentform .fieldDefTextarea {
+	display: block;
+	position: absolute;
+	top: 65px;
+	right: 76%;
+	width: 24%;
+	text-align: right;
+}
+
+/* Send as email */
+
+.commentMailBox {
+	clear: both;
+	background-color: #fafafa;
+	border: 1px dotted #ccc;
+	margin: 18px 0 8px 12px;
+	padding: 6px 0 10px 4px;
+	width: 564px;
+}
+
+select.customerRecipientsSelectorSingle {
+	width: 320px;
+	height: 18px;
+	margin:0 4px 0 30px;
+}
+
+select.customerRecipientsSelectorMulti {
+	width: 320px;
+	height: 78px;
+	margin:0 4px 0 30px;
+}
+
+td.custSelectorOptions {
+	padding: 0 0 0 4px;
+}
+
+td.custSelectorOptions input.toggleCustSel {
+	margin: 0 0 0 0;
+}
+
+input.ccommentMail {
+	margin: 0 0 -2px 8px;
+}
+
+input.emsTmsButMarg { /* email-send & task message send buttons */
+	margin: 8px 0 2px 0;
+}
+
+input.deleteButtonOwnComment {
+	margin: 0 0 2px 500px;
+}
+
+/* Contextmenu Task */
+#contextmenu .task-add-comment {
+	background-image:url(../img/icons.png);
+	background-position:3px 1px;
+}
