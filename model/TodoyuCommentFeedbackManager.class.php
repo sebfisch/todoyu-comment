@@ -68,7 +68,7 @@ class TodoyuCommentFeedbackManager {
 	 */
 	public static function addFeedbacks($idComment, array $feedbackUserIDs) {
 		$idComment	= intval($idComment);
-		$userIDs	= TodoyuDiv::intvalArray($feedbackUserIDs, true, true);
+		$userIDs	= TodoyuArray::intval($feedbackUserIDs, true, true);
 
 		foreach($userIDs as $idUser) {
 			self::addFeedback($idComment, $idUser);

@@ -313,8 +313,8 @@ class TodoyuCommentManager {
 		$idTask			= intval($data['id_task']);
 		$comment		= trim($data['comment']);
 		$isPublic		= intval($data['is_public']) === 1;
-		$feedbackUsers	= is_array($data['feedback']) ? TodoyuDiv::intvalArray($data['feedback'], true, true) : array();
-		$emailUsers		= is_array($data['emailinfo']) ? TodoyuDiv::intvalArray($data['emailinfo'], true, true) : array();
+		$feedbackUsers	= is_array($data['feedback']) ? TodoyuArray::intval($data['feedback'], true, true) : array();
+		$emailUsers		= is_array($data['emailinfo']) ? TodoyuArray::intval($data['emailinfo'], true, true) : array();
 		
 			// Add or update comment
 		if( $idComment === 0 ) {
