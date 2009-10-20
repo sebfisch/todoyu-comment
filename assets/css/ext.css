@@ -28,14 +28,18 @@
 	background: #E5E8DA url(../../../../core/assets/img/bg_tab_header.png) repeat-x 0 top;
 }
 
+/* --------------
+	search
+   -------------- */
 
-/* Search */
 .searchmode-comment {
 	background:url(../img/icons.png) no-repeat 3px -117px !important;
 }
 
+/* -------------------
+	single comment
+   ------------------- */
 
-/* Single comment */
 .task-comments .comment {
 }
 
@@ -155,7 +159,9 @@
 	background-color: #fff;
 }
 
-/* Comment form */
+/* --------------------
+	comment form
+   -------------------- */
 .commentform {
 	padding: 10px 20px 10px 10px;
 }
@@ -177,7 +183,9 @@
 	text-align: right;
 }
 
-/* Send as email */
+/* ------------------
+	send as email
+   ------------------ */
 
 .commentMailBox {
 	clear: both;
@@ -220,7 +228,10 @@ input.deleteButtonOwnComment {
 	margin: 0 0 2px 500px;
 }
 
-/* Contextmenu Task */
+/* ------------------------
+	contextmenu task
+   ------------------------ */
+
 #contextmenu .task-add-comment {
 	background-image:url(../img/icons.png);
 	background-position:3px 1px;
