@@ -265,9 +265,9 @@ class TodoyuCommentManager {
 
 		return $options;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Get users which could receive a comment email
 	 *
@@ -315,7 +315,7 @@ class TodoyuCommentManager {
 		$isPublic		= intval($data['is_public']) === 1;
 		$feedbackUsers	= is_array($data['feedback']) ? TodoyuArray::intval($data['feedback'], true, true) : array();
 		$emailUsers		= is_array($data['emailinfo']) ? TodoyuArray::intval($data['emailinfo'], true, true) : array();
-		
+
 			// Add or update comment
 		if( $idComment === 0 ) {
 			$idComment = self::addComment($idTask, $comment, $isPublic);
@@ -332,7 +332,7 @@ class TodoyuCommentManager {
 		if( sizeof($feedbackUsers) > 0 ) {
 			TodoyuCommentFeedbackManager::addFeedbacks($idComment, $feedbackUsers);
 		}
-		
+
 		if( sizeof($emailUsers) > 0 ) {
 			TodoyuCommentMailer::sendEmails($idComment, $emailUsers);
 		}
@@ -365,15 +365,18 @@ class TodoyuCommentManager {
 	 */
 	public static function getTaskContextMenuItems($idTask, array $items) {
 		$idTask	= intval($idTask);
-
 		$task	= TodoyuTaskManager::getTask($idTask);
+		$allowed= array();
 
 		if( $task->isTask() ) {
-			$ownItems	= $GLOBALS['CONFIG']['EXT']['comment']['ContextMenu']['Task'];
-			$items		= array_merge_recursive($items, $ownItems);
+			$ownItems	=& $GLOBALS['CONFIG']['EXT']['comment']['ContextMenu']['Task'];
+
+			if( true ) {
+				$allowed['add']['submenu']['add-comment'] = $ownItems['add']['submenu']['add-comment'];
+			}
 		}
 
-		return $items;
+		return array_merge_recursive($items, $allowed);
 	}
 
 }
