@@ -112,13 +112,12 @@ class TodoyuCommentManager {
 		}
 
 		$data	= TodoyuFormHook::callSaveData($xmlPath, $data, $idComment);
+		$data	= self::saveCommentForeignRecords($data, $idComment);
 
 		self::updateComment($idComment, $data);
 
 		return $idComment;
 	}
-
-
 
 
 	/**
@@ -182,6 +181,15 @@ class TodoyuCommentManager {
 	 */
 	public static function deleteComment($idComment) {
 		TodoyuRecordManager::deleteRecord(self::TABLE, $idComment);
+	}
+
+
+
+	public static function saveCommentForeignRecords(array $data, $idComment) {
+		TodoyuDebug::printInFirebug($data);
+
+
+		return $data;
 	}
 
 
