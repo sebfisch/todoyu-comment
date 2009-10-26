@@ -37,20 +37,10 @@ class TodoyuCommentManager {
 	 * Get a comment
 	 *
 	 * @param	Integer		$idComment
-	 * @return	Comment
+	 * @return	TodoyuComment
 	 */
 	public static function getComment($idComment) {
-		$idComment	= intval($idComment);
-		$idCache	= 'comment:' . $idComment;
-
-		if( TodoyuCache::isIn($idCache) ) {
-			$comment = TodoyuCache::get($idCache);
-		} else {
-			$comment = new TodoyuComment($idComment);
-			TodoyuCache::set($idCache, $comment);
-		}
-
-		return $comment;
+		return TodoyuCache::getRecord('TodoyuComment', $idComment);
 	}
 
 
@@ -68,31 +58,105 @@ class TodoyuCommentManager {
 
 
 	/**
-	 * Delete a comment
+	 * Save a comment. If the comment already exists, update else create a new one.
+	 * Automaticly adds feedback request and sends emails for the selected users
 	 *
 	 * @param	Integer		$idComment
+	 * @param	Integer		$idTask
+	 * @param	String		$commentText
+	 * @param	Boolean		$isPublic
+	 * @param	Array		$feedbackUsers
+	 * @param	Array		$emailUsers
+	 * @return	Integer		Comment ID
 	 */
-	public static function deleteComment($idComment) {
+//	public static function saveComment($idComment, $idTask, $commentText, $isPublic = false, array $feedbackUsers = array(), array $emailUsers = array()) {
+	public static function saveCommentXXX($idComment, array $data) {
+		$idComment		= intval($idComment);
+		$idTask			= intval($data['id_task']);
+		$comment		= trim($data['comment']);
+		$isPublic		= intval($data['is_public']) === 1;
+		$feedbackUsers	= is_array($data['feedback']) ? TodoyuArray::intval($data['feedback'], true, true) : array();
+		$emailUsers		= is_array($data['emailinfo']) ? TodoyuArray::intval($data['emailinfo'], true, true) : array();
+
+			// Add or update comment
+		if( $idComment === 0 ) {
+			$idComment = self::addComment($idTask, $comment, $isPublic);
+		} else {
+			$data = array(
+				'comment'	=> $comment,
+				'is_public'	=> $isPublic
+			);
+
+			self::updateComment($idComment, $data);
+		}
+
+			// Register feedbacks if requested
+		if( sizeof($feedbackUsers) > 0 ) {
+			TodoyuCommentFeedbackManager::addFeedbacks($idComment, $feedbackUsers);
+		}
+
+		if( sizeof($emailUsers) > 0 ) {
+			TodoyuCommentMailer::sendEmails($idComment, $emailUsers);
+		}
+
+		return $idComment;
+	}
+
+
+	public static function saveComment(array $data) {
 		$idComment	= intval($idComment);
-		$data		= array('deleted' => 1);
+		$xmlPath	= 'ext/comment/config/form/comment.xml';
+
+		if( $idComment === 0 ) {
+			$idComment = self::addComment();
+		}
+
+		$data	= TodoyuFormHook::callSaveData($xmlPath, $data, $idComment);
 
 		self::updateComment($idComment, $data);
+
+		return $idComment;
+	}
+
+
+
+
+	/**
+	 * Add a new comment
+	 *
+	 * @param	Integer		$idTask
+	 * @param	String		$comment
+	 * @param	Boolean		$isPublic
+	 * @return	Integer
+	 */
+	public static function addCommentX($idTask, $comment, $isPublic = false) {
+		$idTask		= intval($idTask);
+		$isPublic 	= $isPublic ? 1 : 0;
+
+		$table	= self::TABLE;
+		$data	= array(
+			'date_create'		=> NOW,
+			'date_update'		=> NOW,
+			'deleted'			=> 0,
+			'id_user_create'	=> userid(),
+			'id_task'			=> $idTask,
+			'comment'			=> $comment,
+			'is_public' 		=> $isPublic
+		);
+
+		return Todoyu::db()->addRecord($table, $data);
 	}
 
 
 
 	/**
-	 * Change comment visibility for customers
+	 * Add comment
 	 *
-	 * @param	Integer		$idComment
-	 * @param	Boolean		$visible
-	 * @return	Boolean
+	 * @param	Array		$data
+	 * @return	Integer
 	 */
-	public static function setVisibilityForCustomer($idComment, $visible = true) {
-		$idComment	= intval($idComment);
-		$data		= array('is_public' => ($visible ? 1 : 0));
-
-		return self::updateComment($idComment, $data);
+	public static function addComment(array $data) {
+		return TodoyuRecordManager::addRecord(self::TABLE, $data);
 	}
 
 
@@ -105,14 +169,21 @@ class TodoyuCommentManager {
 	 * @return	Boolean
 	 */
 	public static function updateComment($idComment, array $data) {
-		$table		= self::TABLE;
-		$idComment	= intval($idComment);
-		$where		= 'id = ' . $idComment;
-
-		$data['date_update'] = NOW;
-
-		return Todoyu::db()->doUpdate($table, $where, $data) === 1;
+		return TodoyuRecordManager::updateRecord(self::TABLE, $idComment, $data);
 	}
+
+
+
+
+	/**
+	 * Delete a comment
+	 *
+	 * @param	Integer		$idComment
+	 */
+	public static function deleteComment($idComment) {
+		TodoyuRecordManager::deleteRecord(self::TABLE, $idComment);
+	}
+
 
 
 
@@ -175,30 +246,21 @@ class TodoyuCommentManager {
 
 
 	/**
-	 * Add a new comment
+	 * Change comment visibility for customers
 	 *
-	 * @param	Integer		$idTask
-	 * @param	String		$comment
-	 * @param	Boolean		$isPublic
-	 * @return	Integer
+	 * @param	Integer		$idComment
+	 * @param	Boolean		$public
+	 * @return	Boolean
 	 */
-	public static function addComment($idTask, $comment, $isPublic = false) {
-		$idTask		= intval($idTask);
-		$isPublic 	= $isPublic ? 1 : 0;
-
-		$table	= self::TABLE;
-		$data	= array(
-			'date_create'		=> NOW,
-			'date_update'		=> NOW,
-			'deleted'			=> 0,
-			'id_user_create'	=> userid(),
-			'id_task'			=> $idTask,
-			'comment'			=> $comment,
-			'is_public' 		=> $isPublic
+	public static function setPublic($idComment, $public = true) {
+		$idComment	= intval($idComment);
+		$data		= array(
+			'is_public' => ($public ? 1 : 0)
 		);
 
-		return Todoyu::db()->addRecord($table, $data);
+		return self::updateComment($idComment, $data);
 	}
+
 
 
 
@@ -291,53 +353,6 @@ class TodoyuCommentManager {
 		}
 
 		return $users;
-	}
-
-
-
-	/**
-	 * Save a comment. If the comment already exists, update else create a new one.
-	 * Automaticly adds feedback request and sends emails for the selected users
-	 *
-	 * @param	Integer		$idComment
-	 * @param	Integer		$idTask
-	 * @param	String		$commentText
-	 * @param	Boolean		$isPublic
-	 * @param	Array		$feedbackUsers
-	 * @param	Array		$emailUsers
-	 * @return	Integer		Comment ID
-	 */
-//	public static function saveComment($idComment, $idTask, $commentText, $isPublic = false, array $feedbackUsers = array(), array $emailUsers = array()) {
-	public static function saveComment($idComment, array $data) {
-		$idComment		= intval($idComment);
-		$idTask			= intval($data['id_task']);
-		$comment		= trim($data['comment']);
-		$isPublic		= intval($data['is_public']) === 1;
-		$feedbackUsers	= is_array($data['feedback']) ? TodoyuArray::intval($data['feedback'], true, true) : array();
-		$emailUsers		= is_array($data['emailinfo']) ? TodoyuArray::intval($data['emailinfo'], true, true) : array();
-
-			// Add or update comment
-		if( $idComment === 0 ) {
-			$idComment = self::addComment($idTask, $comment, $isPublic);
-		} else {
-			$data = array(
-				'comment'	=> $comment,
-				'is_public'	=> $isPublic
-			);
-
-			self::updateComment($idComment, $data);
-		}
-
-			// Register feedbacks if requested
-		if( sizeof($feedbackUsers) > 0 ) {
-			TodoyuCommentFeedbackManager::addFeedbacks($idComment, $feedbackUsers);
-		}
-
-		if( sizeof($emailUsers) > 0 ) {
-			TodoyuCommentMailer::sendEmails($idComment, $emailUsers);
-		}
-
-		return $idComment;
 	}
 
 

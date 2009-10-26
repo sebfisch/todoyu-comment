@@ -38,6 +38,8 @@ class TodoyuCommentRenderer {
 	public static function renderComment($idComment) {
 		$idComment	= intval($idComment);
 
+		TodoyuDebug::printInFirebug('ddd');
+
 		$comment	= TodoyuCommentManager::getComment($idComment);
 
 		$data		= $comment->getTemplateData();
@@ -89,7 +91,7 @@ class TodoyuCommentRenderer {
 		$idComment	= intval($idComment);
 
 			// Construct form object
-		$formXml	= 'ext/comment/config/form/edit.xml';
+		$formXml	= 'ext/comment/config/form/comment.xml';
 		$form		= new TodoyuForm($formXml);
 		$form		= TodoyuFormHook::callBuildForm($xmlPath, $form, $idComment);
 
@@ -134,7 +136,7 @@ class TodoyuCommentRenderer {
 		$idTask		= intval($idTask);
 		$idComment	= intval($idComment);
 
-		$xmlPath	= 'ext/comment/config/form/edit.xml';
+		$xmlPath	= 'ext/comment/config/form/comment.xml';
 
 			// Construct form object
 		$form		= new TodoyuForm( $xmlPath );
