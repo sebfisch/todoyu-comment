@@ -33,6 +33,8 @@ class TodoyuCommentManager {
 	 */
 	const TABLE = 'ext_comment_comment';
 
+
+
 	/**
 	 * Get a comment
 	 *
@@ -40,7 +42,7 @@ class TodoyuCommentManager {
 	 * @return	TodoyuComment
 	 */
 	public static function getComment($idComment) {
-		return TodoyuCache::getRecord('TodoyuComment', $idComment);
+		return TodoyuRecordManager::getRecord('TodoyuComment', $idComment);
 	}
 
 
@@ -51,58 +53,18 @@ class TodoyuCommentManager {
 	 * @param	Integer		$idComment
 	 * @return	Array
 	 */
-	public static function getCommentArray($idComment) {
-		return Todoyu::db()->getRecord(self::TABLE, $idComment);
+	public static function getCommentData($idComment) {
+		return TodoyuRecordManager::getRecordData(self::TABLE, $idComment);
 	}
 
 
 
 	/**
-	 * Save a comment. If the comment already exists, update else create a new one.
-	 * Automaticly adds feedback request and sends emails for the selected users
+	 * Save comment
 	 *
-	 * @param	Integer		$idComment
-	 * @param	Integer		$idTask
-	 * @param	String		$commentText
-	 * @param	Boolean		$isPublic
-	 * @param	Array		$feedbackUsers
-	 * @param	Array		$emailUsers
-	 * @return	Integer		Comment ID
+	 * @param	Array		$data
+	 * @return	Integer
 	 */
-//	public static function saveComment($idComment, $idTask, $commentText, $isPublic = false, array $feedbackUsers = array(), array $emailUsers = array()) {
-	public static function saveCommentXXX($idComment, array $data) {
-		$idComment		= intval($idComment);
-		$idTask			= intval($data['id_task']);
-		$comment		= trim($data['comment']);
-		$isPublic		= intval($data['is_public']) === 1;
-		$feedbackUsers	= is_array($data['feedback']) ? TodoyuArray::intval($data['feedback'], true, true) : array();
-		$emailUsers		= is_array($data['emailinfo']) ? TodoyuArray::intval($data['emailinfo'], true, true) : array();
-
-			// Add or update comment
-		if( $idComment === 0 ) {
-			$idComment = self::addComment($idTask, $comment, $isPublic);
-		} else {
-			$data = array(
-				'comment'	=> $comment,
-				'is_public'	=> $isPublic
-			);
-
-			self::updateComment($idComment, $data);
-		}
-
-			// Register feedbacks if requested
-		if( sizeof($feedbackUsers) > 0 ) {
-			TodoyuCommentFeedbackManager::addFeedbacks($idComment, $feedbackUsers);
-		}
-
-		if( sizeof($emailUsers) > 0 ) {
-			TodoyuCommentMailer::sendEmails($idComment, $emailUsers);
-		}
-
-		return $idComment;
-	}
-
-
 	public static function saveComment(array $data) {
 		$idComment	= intval($idComment);
 		$xmlPath	= 'ext/comment/config/form/comment.xml';
@@ -110,6 +72,8 @@ class TodoyuCommentManager {
 		if( $idComment === 0 ) {
 			$idComment = self::addComment();
 		}
+
+		TodoyuDebug::printInFirebug($data);
 
 		$data	= TodoyuFormHook::callSaveData($xmlPath, $data, $idComment);
 		$data	= self::saveCommentForeignRecords($data, $idComment);
@@ -120,33 +84,6 @@ class TodoyuCommentManager {
 	}
 
 
-	/**
-	 * Add a new comment
-	 *
-	 * @param	Integer		$idTask
-	 * @param	String		$comment
-	 * @param	Boolean		$isPublic
-	 * @return	Integer
-	 */
-	public static function addCommentX($idTask, $comment, $isPublic = false) {
-		$idTask		= intval($idTask);
-		$isPublic 	= $isPublic ? 1 : 0;
-
-		$table	= self::TABLE;
-		$data	= array(
-			'date_create'		=> NOW,
-			'date_update'		=> NOW,
-			'deleted'			=> 0,
-			'id_user_create'	=> userid(),
-			'id_task'			=> $idTask,
-			'comment'			=> $comment,
-			'is_public' 		=> $isPublic
-		);
-
-		return Todoyu::db()->addRecord($table, $data);
-	}
-
-
 
 	/**
 	 * Add comment
@@ -154,7 +91,7 @@ class TodoyuCommentManager {
 	 * @param	Array		$data
 	 * @return	Integer
 	 */
-	public static function addComment(array $data) {
+	public static function addComment(array $data = array()) {
 		return TodoyuRecordManager::addRecord(self::TABLE, $data);
 	}
 
@@ -173,7 +110,6 @@ class TodoyuCommentManager {
 
 
 
-
 	/**
 	 * Delete a comment
 	 *
@@ -185,9 +121,32 @@ class TodoyuCommentManager {
 
 
 
+	/**
+	 * Save extra comment data (feedback and email)
+	 *
+	 * @param	Array		$data
+	 * @param	Integer		$idComment
+	 * @return	Array
+	 */
 	public static function saveCommentForeignRecords(array $data, $idComment) {
-		TodoyuDebug::printInFirebug($data);
+		$sendAsEmail	= intval($data['sendasemail']) === 1;
+		$usersEmail		= TodoyuDiv::intExplode(',', $data['emailreceivers'], true, true);
+		$usersFeedback	= TodoyuDiv::intExplode(',', $data['feedback'], true, true);
 
+			// Send emails
+		if( $sendAsEmail && sizeof($usersEmail) > 0 ) {
+			TodoyuCommentMailer::sendEmails($idComment, $usersEmail);
+		}
+
+			// Register feedback
+		if( sizeof($usersFeedback) > 0 ) {
+			TodoyuDebug::printInFirebug($usersFeedback);
+			TodoyuCommentFeedbackManager::addFeedbacks($idComment, $usersFeedback);
+		}
+
+		unset($data['sendasemail']);
+		unset($data['emailreceivers']);
+		unset($data['feedback']);
 
 		return $data;
 	}
@@ -209,11 +168,9 @@ class TodoyuCommentManager {
 		$fields	= '*';
 		$table	= self::TABLE;
 		$where	= 'id_task = ' . $idTask . ' AND deleted = 0';
-		$group	= '';
 		$order	= 'date_create ' . $sortDir;
-		$limit	= '';
 
-		return Todoyu::db()->getArray($fields, $table, $where, $group, $order, $limit);
+		return Todoyu::db()->getArray($fields, $table, $where, '', $order);
 	}
 
 
@@ -232,11 +189,9 @@ class TodoyuCommentManager {
 		$fields	= 'id';
 		$table	= self::TABLE;
 		$where	= 'id_task = ' . $idTask . ' AND deleted = 0';
-		$group	= '';
 		$order	= 'date_create ' . $sortDir;
-		$limit	= '';
 
-		return Todoyu::db()->getColumn($fields, $table, $where, $group, $order, $limit);
+		return Todoyu::db()->getColumn($fields, $table, $where, '', $order);
 	}
 
 
@@ -290,51 +245,6 @@ class TodoyuCommentManager {
 		return Todoyu::db()->hasResult($fields, $table, $where);
 	}
 
-
-
-	/**
-	 * Get option array for feedback select in comment edit form
-	 * The options are grouped in main groups with contain the options for
-	 * the users
-	 *
-	 * @param	Array		$formData
-	 * @return	Array
-	 */
-	public static function getFeedbackUsersGroupedOptions(array $formData) {
-		$idTask		= intval($formData['id_task']);
-		$idProject	= TodoyuTaskManager::getProjectID($idTask);
-		$options	= array();
-
-			// Task users
-		$users	= TodoyuTaskManager::getTaskUsers($idTask);
-
-		$group	= Label('comment.group.taskmembers');
-		foreach($users as $user) {
-			$options[$group][] = array(	'value'	=> $user['id'],
-										'label'	=> $user['lastname'] . ' ' . $user['firstname']
-										);
-		}
-
-			// Get project users
-		$users	= TodoyuProjectManager::getProjectUsers($idProject);
-		$group	= Label('comment.group.projectmembers');
-		foreach($users as $user) {
-			$options[$group][] = array(	'value'	=> $user['id'],
-										'label'	=> $user['lastname'] . ' ' . $user['firstname']
-										);
-		}
-
-			// Get staff users
-		$users	= TodoyuUserManager::getInternalUsers();
-		$group	= Label('comment.group.employee');
-		foreach($users as $user) {
-			$options[$group][] = array(	'value'	=> $user['id'],
-										'label'	=> $user['lastname'] . ' ' . $user['firstname']
-										);
-		}
-
-		return $options;
-	}
 
 
 
@@ -394,7 +304,7 @@ class TodoyuCommentManager {
 		if( $task->isTask() ) {
 			$ownItems	=& $GLOBALS['CONFIG']['EXT']['comment']['ContextMenu']['Task'];
 
-			if( true ) {
+			if( allowed('comment', 'task:addcomment') ) {
 				$allowed['add']['submenu']['add-comment'] = $ownItems['add']['submenu']['add-comment'];
 			}
 		}

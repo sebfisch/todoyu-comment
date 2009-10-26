@@ -27,29 +27,54 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 
 
 	public function saveAction(array $params) {
-		$formData	= $params['comment'];
-		$idComment	= intval($formData['id']);
-		$idTask		= intval($formData['id_task']);
+		$xmlPath	= 'ext/comment/config/form/comment.xml';
+		$data		= $params['comment'];
+		$idComment	= intval($data['id']);
 
-		$formXml	= 'ext/comment/config/form/comment.xml';
-		$form		= new TodoyuForm($formXml);
-		$form		= TodoyuFormHook::callBuildForm($formXml, $form, $idComment);
-		$form->setFormData($formData);
+		$form		= TodoyuFormManager::getForm($xmlPath, $idComment);
+
+		$form->setFormData($data);
 
 		if( $form->isValid() ) {
-			$storageData	= $formData; //$form->getStorageData();
-			// Fix problem here: external email select element is not yet part of the form struct
-			$formData		= TodoyuFormHook::callSaveData($formXml, $storageData, $idComment);
+			$data	= $form->getStorageData();
 
-			$idComment		= TodoyuCommentManager::saveComment($idComment, $formData);
-
-			return TodoyuCommentRenderer::renderCommentList($idTask);
+			TodoyuCommentManager::saveComment($data);
 		} else {
-			TodoyuHeader::sendTodoyuHeader('error', 1);
+			TodoyuHeader::sendTodoyuErrorHeader();
 			TodoyuHeader::sendTodoyuHeader('idComment', $idComment);
 
 			return $form->render();
 		}
+
+
+
+
+
+//
+//
+//		$formData	= $params['comment'];
+//		$idComment	= intval($formData['id']);
+//		$idTask		= intval($formData['id_task']);
+//
+//		$formXml	= 'ext/comment/config/form/comment.xml';
+//		$form		= new TodoyuForm($formXml);
+//		$form		= TodoyuFormHook::callBuildForm($formXml, $form, $idComment);
+//		$form->setFormData($formData);
+//
+//		if( $form->isValid() ) {
+//			$storageData	= $formData; //$form->getStorageData();
+//			// Fix problem here: external email select element is not yet part of the form struct
+//			$formData		= TodoyuFormHook::callSaveData($formXml, $storageData, $idComment);
+//
+//			$idComment		= TodoyuCommentManager::saveComment($idComment, $formData);
+//
+//			return TodoyuCommentRenderer::renderCommentList($idTask);
+//		} else {
+//			TodoyuHeader::sendTodoyuHeader('error', 1);
+//			TodoyuHeader::sendTodoyuHeader('idComment', $idComment);
+//
+//			return $form->render();
+//		}
 	}
 
 }

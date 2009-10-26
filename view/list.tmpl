@@ -1,7 +1,7 @@
 <div class="tabBlock overflow commentButtons" id="task-{$idTask}-comment-commands">
 	<button onclick="Todoyu.Ext.comment.edit({$idTask}, 0)" type="submit" class="button"><span class="hasIcon addCommentButton">{Label comment.button.addComment}</span><span class="rgt"><!-- right --></span></button>
 	<button id="toggleCommentsSorting-{$idTask}" onclick="Todoyu.Ext.comment.toggleSorting({$idTask})" type="submit" class="button"><span class="hasIcon sortChrono{if $desc == true}Desc{else}Asc{/if}">{Label comment.button.reverseOrder}</span><span class="rgt"><!-- right --></span></button>
-	<a class="icon timing toggle" onclick="Todoyu.Ext.comment.toggleList({$idTask})" href="javascript:void(0)" title="{Label comment.tab.toggle}">
+	<a class="icon timing toggle" onclick="Todoyu.Ext.comment.List.toggle({$idTask})" href="javascript:void(0)" title="{Label comment.tab.toggle}">
 		<span class="hidden">{Label comment.tab.toggle}</span>
 	</a>
 </div>

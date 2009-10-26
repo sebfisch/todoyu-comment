@@ -39,14 +39,60 @@ class TodoyuCommentViewHelper {
 		$users		= TodoyuCommentManager::getEmailReceivers($idTask);
 
 		foreach($users as $user) {
-			$contactInfos = TodoyuUserManager::getContactInfos($user['id'], 'email');
-			if( sizeof($contactInfos) > 0 ) {
-				$contactInfo = $contactInfos[0];
-				$options[] 	= array(
-					'value'	=> $user['id'],
-					'label'	=> $user['lastname'] . ' ' . $user['firstname'] . ' &nbsp; ( ' . $contactInfo['info'] . ' )'
-				);
-			}
+			$options[] 	= array(
+				'value'	=> $user['id'],
+				'label'	=> $user['lastname'] . ' ' . $user['firstname'] . ' (' . $user['email'] . ')'
+			);
+		}
+
+		return $options;
+	}
+
+
+
+	/**
+	 * Get option array for feedback select in comment edit form
+	 * The options are grouped in main groups with contain the options for
+	 * the users
+	 *
+	 * @param	Array		$formData
+	 * @return	Array
+	 */
+	public static function getFeedbackUsersGroupedOptions(TodoyuFormElement $field) {
+		$formData	= $field->getForm()->getFormData();
+		$idTask		= intval($formData['id_task']);
+		$idProject	= TodoyuTaskManager::getProjectID($idTask);
+		$options	= array();
+
+			// Task users
+		$users	= TodoyuTaskManager::getTaskUsers($idTask);
+
+		$group	= Label('comment.group.taskmembers');
+		foreach($users as $user) {
+			$options[$group][] = array(
+				'value'	=> $user['id'],
+				'label'	=> $user['lastname'] . ' ' . $user['firstname']
+			);
+		}
+
+			// Get project users
+		$users	= TodoyuProjectManager::getProjectUsers($idProject);
+		$group	= Label('comment.group.projectmembers');
+		foreach($users as $user) {
+			$options[$group][] = array(
+				'value'	=> $user['id'],
+				'label'	=> $user['lastname'] . ' ' . $user['firstname']
+			);
+		}
+
+			// Get staff users
+		$users	= TodoyuUserManager::getInternalUsers();
+		$group	= Label('comment.group.employee');
+		foreach($users as $user) {
+			$options[$group][] = array(
+				'value'	=> $user['id'],
+				'label'	=> $user['lastname'] . ' ' . $user['firstname']
+			);
 		}
 
 		return $options;

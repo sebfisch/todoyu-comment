@@ -147,6 +147,14 @@ Todoyu.Ext.comment = {
 			};
 
 			Todoyu.Ui.update(target, url, options);
+		},
+		
+		
+		/**
+		 * Toggle comments list visibility
+		 */
+		toggle: function(idTask) {
+			Todoyu.Ui.toggle('task-' + idTask + '-comments');
 		}
 
 	},
@@ -219,19 +227,6 @@ Todoyu.Ext.comment = {
 	},
 
 
-
-	/**
-	 *	Cancel comment editing (close comment edit box)
-	 *
-	 *	@param	Integer	idTask
-	 *	@param	Integer	idComment
-	 */
-	cancelEdit: function(idTask, idComment) {
-		$('task-' + idTask + '-commentform-' + idComment).remove();
-	},
-
-
-
 	/**
 	 *	Comment editing methods
 	 *	Note:	there is the method 'edit' and the sub object 'Edit' (case-sensitive) with its own methods
@@ -245,11 +240,14 @@ Todoyu.Ext.comment = {
 		 *	@param	Integer	idTask
 		 *	@param	Integer	idComment
 		 */
-		onChangeEmail: function(field, idTask, idComment){
-			if( field.checked ) {
-				Todoyu.Ext.comment.Email.showBox(idTask, idComment);
+		onChangeEmail: function(idTask, idComment) {
+			var checkbox= $('comment-' + idTask + '-' + idComment + '-field-sendasemail');
+			var emailEl	= $('formElement-comment-' + idTask + '-' + idComment + '-field-emailreceivers'); 
+			
+			if( checkbox.checked ) {
+				emailEl.show();
 			} else {
-				Todoyu.Ext.comment.Email.hideBox(idTask, idComment);
+				emailEl.hide();
 			}
 		},
 
@@ -276,95 +274,24 @@ Todoyu.Ext.comment = {
 		},
 		
 		onSaved: function(idTask, response) {
-			var error	= response.getTodoyuHeader('error');
 			var idComment=response.getTodoyuHeader('idComment');
 			
-			if( error == 1 ) {
+			if( response.hasTodoyuError() ) {
 				$('comment-' + idTask + '-' + idComment + '-form').replace(response.responseText);
 			} else {
-				$('task-' + idTask + '-tabcontent-comment').update(response.responseText);
+				Todoyu.Ext.comment.List.refresh(idTask);
 			}
+		},
+		
+		/**
+		 *	Cancel comment editing (close comment edit box)
+		 *
+		 *	@param	Integer	idTask
+		 *	@param	Integer	idComment
+		 */
+		cancel: function(idTask, idComment) {
+			$('task-' + idTask + '-commentform-' + idComment).remove();
 		}
-
-	},
-
-
-
-	/**
-	 * Email comment object
-	 */
-	Email: {
-		/**
-		 *	Get email box ID
-		 *
-		 *	@param	Integer	idTask
-		 *	@param	Integer	idComment
-		 */
-		getEmailBoxID: function(idTask, idComment) {
-			return 'formElement-comment-' + idComment + '-field-emailinfo';
-		},
-
-
-
-		/**
-		 *	Hide email box
-		 *
-		 *	@param	Integer	idTask
-		 *	@param	Integer	idComment
-		 */
-		hideBox: function(idTask, idComment) {
-			var id = this.getEmailBoxID(idTask, idComment);
-
-			Todoyu.Ui.hide(id);
-		},
-
-
-
-		/**
-		 *	Show email box
-		 *
-		 *	@param	Integer	idTask
-		 *	@param	Integer	idComment
-		 */
-		showBox: function(idTask, idComment) {
-			var id = this.getEmailBoxID(idTask, idComment);
-
-			if( ! Todoyu.exists(id) ) {
-				this.loadBox(idTask, idComment);
-			}
-
-			Todoyu.Ui.show(id);
-		},
-
-
-
-		/**
-		 *	Load email box to given comment of given task
-		 *
-		 *	@param	Integer	idTask
-		 *	@param	Integer	idComment
-		 */
-		loadBox: function(idTask, idComment) {
-			var url		= Todoyu.getUrl('comment', 'emailbox');
-			var options	= {
-				'parameters': {
-					'task': idTask,
-					'comment': idComment
-				},
-				'asynchronous': false,
-				'insertion': 'after'
-			};
-			var target	= 'formElement-comment-' + idTask + '-' + idComment + '-field-sendasemail';
-
-			Todoyu.Ui.update(target, url, options);
-		}
-	},
-
-	/**
-	 * Toggle comments list visibility
-	 */
-	toggleList: function(idTask) {
-		Todoyu.Ui.toggle('task-' + idTask + '-comments');
 	}
 
 };

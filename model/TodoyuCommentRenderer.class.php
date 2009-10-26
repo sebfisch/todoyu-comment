@@ -61,7 +61,6 @@ class TodoyuCommentRenderer {
 		$idTask		= intval($idTask);
 		$desc		= $desc ? true : false;
 
-//		TodoyuPage::loadExtAssets('comment');
 		$data	= array(
 			'idTask'	=> $idTask,
 			'desc'		=> $desc,
@@ -89,39 +88,38 @@ class TodoyuCommentRenderer {
 	public static function renderEdit($idTask, $idComment = 0) {
 		$idTask		= intval($idTask);
 		$idComment	= intval($idComment);
+		$xmlPath	= 'ext/comment/config/form/comment.xml';
 
-			// Construct form object
-		$formXml	= 'ext/comment/config/form/comment.xml';
-		$form		= new TodoyuForm($formXml);
-		$form		= TodoyuFormHook::callBuildForm($xmlPath, $form, $idComment);
+		$form		= TodoyuFormManager::getForm($xmlPath, $idComment);
+		$data		= array();
 
-			// Prepare/ load form data
-		if( $idComment === 0 ) {
-				// Creating a new comment
-			$formData		= array(
-				'id'		=> 0,
-				'id_task' 	=> $idTask
-			);
+		if( $idComment !== 0 ) {
+			$data		= TodoyuCommentManager::getComment($idComment)->getTemplateData();
 		} else {
-				// Editing an existing comment record
-			$comment	= TodoyuCommentManager::getComment($idComment);
-			$formData	= $comment->getTemplateData();
+			$data['id_task']= $idTask;
+			$data['id']		= $idComment;
 		}
 
-		$formData	= TodoyuFormHook::callLoadData($xmlPath, $formData, $idComment);
+		$form->setFormData($data);
 
-			// Set form data
-		$form->setFormData($formData);
-		$form->setRecordID( $idTask . '-' . $idComment );
 
+//
+//
+//		$formData	= TodoyuFormHook::callLoadData($xmlPath, $formData, $idComment);
+//
+//			// Set form data
+//		$form->setFormData($formData);
+		$form->setRecordID($idTask . '-' . $idComment);
+//
 			// Render (edit-form wrapped inside the edit-template)
+		$tmpl	= 'ext/comment/view/edit.tmpl';
 		$data	= array(
 			'idTask'	=> $idTask,
 			'idComment'	=> $idComment,
 			'formhtml'	=> $form->render()
 		);
 
-		return render('ext/comment/view/edit.tmpl', $data);
+		return render($tmpl, $data);
 	}
 
 

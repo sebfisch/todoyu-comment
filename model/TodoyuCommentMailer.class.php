@@ -19,19 +19,15 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+
+require_once( PATH_LIB . '/php/phpmailer/class.phpmailer.php' );
+
 /**
  * Send comment mails
  *
  * @package		Todoyu
  * @subpackage	Comment
  */
-
-require_once( PATH_LIB . '/php/phpmailer/class.phpmailer.php' );
-
-
-TodoyuExtensions::loadConfigIfAvailable('comment', 'email');
-
-
 class TodoyuCommentMailer {
 
 	/**
@@ -41,7 +37,9 @@ class TodoyuCommentMailer {
 	 * @param	Array		$userIDs
 	 */
 	public static function sendEmails($idComment, array $userIDs) {
-		foreach( $userIDs as $idUser ) {
+		$userIDs	= TodoyuArray::intval($userIDs, true, true);
+
+		foreach($userIDs as $idUser) {
 			$result = self::sendCommentEmail($idComment, $idUser);
 		}
 	}
@@ -74,7 +72,7 @@ class TodoyuCommentMailer {
 		$mail->MsgHTML($bodyText, PATH_EXT_COMMENT);
 
 		$mail->AddAddress($user->getEmail(), $user->getFullName());
-		
+
 		return $mail->Send();
 	}
 
