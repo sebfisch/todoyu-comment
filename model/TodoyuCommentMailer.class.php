@@ -93,6 +93,10 @@ class TodoyuCommentMailer {
 		$project	= $comment->getProject();
 		$user		= TodoyuUserManager::getUser($idUser);
 
+		TodoyuDebug::printPlain($comment);
+		TodoyuDebug::printPlain($task);
+		TodoyuDebug::printPlain($project);
+
 
 		$tmpl	= 'ext/comment/view/comment-mail.tmpl';
 		$data	= array(

@@ -73,12 +73,32 @@ class TodoyuCommentManager {
 			$idComment = self::addComment();
 		}
 
-		TodoyuDebug::printInFirebug($data);
-
 		$data	= TodoyuFormHook::callSaveData($xmlPath, $data, $idComment);
 		$data	= self::saveCommentForeignRecords($data, $idComment);
 
+
+			// Extract feedback and email data
+		$sendAsEmail	= intval($data['sendasemail']) === 1;
+		$usersEmail		= TodoyuDiv::intExplode(',', $data['emailreceivers'], true, true);
+		$usersFeedback	= TodoyuDiv::intExplode(',', $data['feedback'], true, true);
+
+		unset($data['sendasemail']);
+		unset($data['emailreceivers']);
+		unset($data['feedback']);
+
+			// Update comment in database
 		self::updateComment($idComment, $data);
+
+
+			// Send emails
+		if( $sendAsEmail && sizeof($usersEmail) > 0 ) {
+			TodoyuCommentMailer::sendEmails($idComment, $usersEmail);
+		}
+
+			// Register feedback
+		if( sizeof($usersFeedback) > 0 ) {
+			TodoyuCommentFeedbackManager::addFeedbacks($idComment, $usersFeedback);
+		}
 
 		return $idComment;
 	}
@@ -263,11 +283,18 @@ class TodoyuCommentManager {
 
 		$users = array();
 
+			// Add task users
 		foreach($taskUsers as $user) {
-			$users[$user['id']] = $user;
+			if( ! empty($user['email']) ) {
+				$users[$user['id']] = $user;
+			}
 		}
+
+			// Add project users
 		foreach($projectUsers as $user) {
-			$users[$user['id']] = $user;
+			if( ! empty($user['email']) ) {
+				$users[$user['id']] = $user;
+			}
 		}
 
 		return $users;

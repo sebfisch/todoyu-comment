@@ -56,10 +56,10 @@ class TodoyuComment extends TodoyuBaseObject {
 	/**
 	 * Get task the comment is added to
 	 *
-	 * @return	Task
+	 * @return	TodoyuTask
 	 */
 	public function getTask() {
-		return new TodoyuTask($this->getTaskID());
+		return TodoyuTaskManager::getTask($this->getTaskID());
 	}
 
 
@@ -78,7 +78,7 @@ class TodoyuComment extends TodoyuBaseObject {
 	/**
 	 * Get project of the task the comment is added to
 	 *
-	 * @return	Project
+	 * @return	TodoyuProject
 	 */
 	public function getProject() {
 		return $this->getTask()->getProject();
