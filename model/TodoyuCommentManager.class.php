@@ -66,7 +66,7 @@ class TodoyuCommentManager {
 	 * @return	Integer
 	 */
 	public static function saveComment(array $data) {
-		$idComment	= intval($idComment);
+		$idComment	= intval($data['id']);
 		$xmlPath	= 'ext/comment/config/form/comment.xml';
 
 		if( $idComment === 0 ) {
@@ -75,6 +75,7 @@ class TodoyuCommentManager {
 
 		$data	= TodoyuFormHook::callSaveData($xmlPath, $data, $idComment);
 		$data	= self::saveCommentForeignRecords($data, $idComment);
+
 
 
 			// Extract feedback and email data
