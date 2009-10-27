@@ -101,6 +101,14 @@ class TodoyuCommentManager {
 			TodoyuCommentFeedbackManager::addFeedbacks($idComment, $usersFeedback);
 		}
 
+			// Set all comments in task as seend
+		TodoyuCommentFeedbackManager::setTaskCommentsAsSeen($data['id_task']);
+
+		TodoyuDebug::printLastQueryInFirebug();
+
+			// Call saved hook
+		TodoyuHookManager::callHook('comment', 'saved', array($idComment));
+
 		return $idComment;
 	}
 
@@ -142,32 +150,15 @@ class TodoyuCommentManager {
 
 
 
+
 	/**
-	 * Save extra comment data (feedback and email)
+	 * Save extra comment data
 	 *
 	 * @param	Array		$data
 	 * @param	Integer		$idComment
 	 * @return	Array
 	 */
 	public static function saveCommentForeignRecords(array $data, $idComment) {
-		$sendAsEmail	= intval($data['sendasemail']) === 1;
-		$usersEmail		= TodoyuDiv::intExplode(',', $data['emailreceivers'], true, true);
-		$usersFeedback	= TodoyuDiv::intExplode(',', $data['feedback'], true, true);
-
-			// Send emails
-		if( $sendAsEmail && sizeof($usersEmail) > 0 ) {
-			TodoyuCommentMailer::sendEmails($idComment, $usersEmail);
-		}
-
-			// Register feedback
-		if( sizeof($usersFeedback) > 0 ) {
-//			TodoyuDebug::printInFirebug($usersFeedback);
-			TodoyuCommentFeedbackManager::addFeedbacks($idComment, $usersFeedback);
-		}
-
-		unset($data['sendasemail']);
-		unset($data['emailreceivers']);
-		unset($data['feedback']);
 
 		return $data;
 	}

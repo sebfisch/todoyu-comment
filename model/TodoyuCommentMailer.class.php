@@ -93,22 +93,27 @@ class TodoyuCommentMailer {
 		$project	= $comment->getProject();
 		$user		= TodoyuUserManager::getUser($idUser);
 
-		TodoyuDebug::printPlain($comment);
-		TodoyuDebug::printPlain($task);
-		TodoyuDebug::printPlain($project);
-
-
 		$tmpl	= 'ext/comment/view/comment-mail.tmpl';
 		$data	= array(
-			'comment'	=> $comment->getTemplateData(),
-			'project' 	=> $project->getTemplateData(),
-			'task'		=> $task->getTemplateData(0),
-			'user'		=> $user->getTemplateData(),
-			'fbusers'	=> $comment->getFeedbackUsers()
+			'comment'		=> $comment->getTemplateData(),
+			'project' 		=> $project->getTemplateData(),
+			'task'			=> $task->getTemplateData(0),
+			'user'			=> $user->getTemplateData(),
+			'feedback_users'=> $comment->getFeedbackUsers()
 		);
 
-		$data['tasklink']	= SERVER_URL . '/?ext=project&project=' . $project->getID() . '&amp;task=' . $task->getID();
-		$data['commentlink']= SERVER_URL . '/?ext=project&project=' . $project->getID() . '&amp;task=' . $task->getID() . '&amp;tab=comment#task-comment-' . $comment->getID();
+		$data['tasklink'] = TodoyuDiv::buildUrl(array(
+			'ext'		=> 'project',
+			'project'	=> $project->getID(),
+			'task'		=> $task->getID()
+		), '', true);
+
+		$data['commentlink'] = TodoyuDiv::buildUrl(array(
+			'ext'		=> 'project',
+			'project'	=> $project->getID(),
+			'task'		=> $task->getID(),
+			'tab'		=> 'comment'
+		), 'task-comment-' . $comment->getID(), true);
 
 		return render($tmpl, $data);
 	}

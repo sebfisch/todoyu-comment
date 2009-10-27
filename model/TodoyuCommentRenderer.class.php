@@ -40,7 +40,7 @@ class TodoyuCommentRenderer {
 
 		$comment	= TodoyuCommentManager::getComment($idComment);
 
-		$data		= $comment->getTemplateData();
+		$data		= $comment->getTemplateData(true);
 		$data['isInternal'] =  Todoyu::user()->isInternal();
 
 		return render('ext/comment/view/comment.tmpl', $data);

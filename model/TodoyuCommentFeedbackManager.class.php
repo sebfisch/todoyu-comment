@@ -152,10 +152,31 @@ class TodoyuCommentFeedbackManager {
 		$idUser		= userid($idUser);
 
 		$table	= self::TABLE;
-		$where	= 'id_comment = ' . $idComment. ' AND id_user_feedback = '.$idUser;
-		$values	= array('is_seen' => 1);
+		$where	= '	id_comment = ' . $idComment. ' AND
+					id_user_feedback = '.$idUser;
+		$values	= array(
+			'is_seen' => 1
+		);
 
 		return Todoyu::db()->doUpdate($table, $where, $values) === 1;
+	}
+
+
+	public static function setTaskCommentsAsSeen($idTask, $idUser = 0) {
+		$idTask	= intval($idTask);
+		$idUser	= userid($idUser);
+
+		$tables	= 	self::TABLE . ' f,
+					ext_comment_comment c';
+		$where	= '	f.id_comment 		= c.id AND
+					f.id_user_feedback	= ' . $idUser . ' AND
+					c.id_task			= ' . $idTask ;
+		$data	= array(
+			'f.is_seen'		=> 1,
+			'f.date_update'	=> NOW
+		);
+
+		return Todoyu::db()->doUpdate($tables, $where, $data);
 	}
 
 
@@ -174,11 +195,11 @@ class TodoyuCommentFeedbackManager {
 					u.email,
 					u.firstname,
 					u.lastname,
-					cf.is_seen';
+					f.is_seen';
 		$tables	= '	ext_user_user u,
-					ext_comment_feedback cf';
-		$where	= '	cf.id_comment 		= ' . $idComment . ' AND
-					cf.id_user_feedback = u.id AND
+					ext_comment_feedback f';
+		$where	= '	f.id_comment 		= ' . $idComment . ' AND
+					f.id_user_feedback	= u.id AND
 					u.deleted			= 0 AND
 					u.active			= 1';
 		$group	= '	u.id';
@@ -191,24 +212,23 @@ class TodoyuCommentFeedbackManager {
 
 
 	/**
-	 * Returns the seen status of the current user.
+	 * Check if the comment has a feedback request which is not "seen" yet
 	 *
-	 * @param	Integer	$idComment
-	 * @return	Boolean
+	 * @param	Integer		$idComment
+	 * @return	Boolean		Open feedback request found
 	 */
-	public static function getSeenStatusOfCurrentUser($idComment)	{
+	public static function isCommentUnapproved($idComment)	{
 		$idComment	= intval($idComment);
 		$idUser		= userid();
 
-		$field	= 'cf.is_seen';
-		$tables	= 'ext_comment_feedback cf';
-		$where	= 'cf.id_comment	= ' . $idComment . ' AND
-				   cf.id_user_feedback	= ' . $idUser;
-		$group	= 'cf.id_user_feedback';
+		$field	= 'is_seen';
+		$table	= self::TABLE;
+		$where	= 'id_comment		= ' . $idComment . ' AND
+				   id_user_feedback	= ' . $idUser;
 
-		$isSeen =  Todoyu::db()->getColumn($field, $tables, $where, $group);
+		$isSeen =  Todoyu::db()->getColumn($field, $table, $where);
 
-		return intval($isSeen[0]) === 1;
+		return sizeof($isSeen) !== 0 && intval($isSeen[0]) === 0;
 	}
 }
 

@@ -100,7 +100,7 @@ class TodoyuComment extends TodoyuBaseObject {
 	/**
 	 * Get the user which added the comment
 	 *
-	 * @return	User
+	 * @return	TodoyuUser
 	 */
 	public function getCreateUser() {
 		return TodoyuUserManager::getUser($this->getCreateUserID());
@@ -118,26 +118,36 @@ class TodoyuComment extends TodoyuBaseObject {
 	}
 
 
+	protected function loadForeignData() {
+		$this->data['user_create']		= $this->getCreateUser()->getTemplateData(false);
+		$this->data['users_feedback']	= TodoyuCommentFeedbackManager::getFeedbackUsers($this->id);
+		$this->data['unapproved']		= TodoyuCommentFeedbackManager::isCommentUnapproved($this->id);
+
+
+//		if( TodoyuCommentFeedbackManager::hasFeedbackRequest($this->id) ) {
+//			$data['currentUserHasSeen']	= TodoyuCommentFeedbackManager::getSeenStatusOfCurrentUser($data['id']);
+//		} else{
+//			$data['currentUserHasSeen']	= true;
+//		}
+//
+
+
+	}
+
+
 
 	/**
 	 * Prepare comments rendering template data (creation user, having been seen status, feedback users)
 	 *
 	 * @return Array
 	 */
-	public function getTemplateData() {
-		$data = parent::getTemplateData();
-
-		$data['user_create'] = TodoyuUserManager::getUserArray($data['id_user_create']);
-
-		if( TodoyuCommentFeedbackManager::hasFeedbackRequest($data['id']) ) {
-			$data['currentUserHasSeen']	= TodoyuCommentFeedbackManager::getSeenStatusOfCurrentUser($data['id']);
-		} else{
-			$data['currentUserHasSeen']	= true;
+	public function getTemplateData($loadForeignRecords = false) {
+		if( $loadForeignRecords ) {
+			$this->loadForeignData();
 		}
 
-		$data['users_feedback'] = TodoyuCommentFeedbackManager::getFeedbackUsers($data['id']);
 
-		return $data;
+		return parent::getTemplateData();;
 	}
 }
 
