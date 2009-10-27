@@ -160,7 +160,7 @@ class TodoyuCommentManager {
 
 			// Register feedback
 		if( sizeof($usersFeedback) > 0 ) {
-			TodoyuDebug::printInFirebug($usersFeedback);
+//			TodoyuDebug::printInFirebug($usersFeedback);
 			TodoyuCommentFeedbackManager::addFeedbacks($idComment, $usersFeedback);
 		}
 

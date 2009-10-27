@@ -38,8 +38,6 @@ class TodoyuCommentRenderer {
 	public static function renderComment($idComment) {
 		$idComment	= intval($idComment);
 
-		TodoyuDebug::printInFirebug('ddd');
-
 		$comment	= TodoyuCommentManager::getComment($idComment);
 
 		$data		= $comment->getTemplateData();
