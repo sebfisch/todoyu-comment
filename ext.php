@@ -26,19 +26,19 @@
  * @subpackage	Comment
  */
 
-
 if( ! defined('TODOYU') ) die('NO ACCESS');
 
 
-	// declare ext ID, path
+
+	// Declare ext ID, path
 define('EXTID_COMMENT', 105);
 define('PATH_EXT_COMMENT', PATH_EXT . '/comment');
 
-	// request configurations
+	// Register module locales
+TodoyuLocale::register('comment', PATH_EXT_COMMENT . '/locale/ext.xml');
+
+	// Request configurations
 require_once( PATH_EXT_COMMENT . '/config/extension.php' );
 require_once( PATH_EXT_COMMENT . '/config/search.php' );
-
-		// add menu entry
-TodoyuLocale::register('comment', PATH_EXT_COMMENT . '/locale/ext.xml');
 
 ?>
