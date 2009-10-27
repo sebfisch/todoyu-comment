@@ -114,7 +114,7 @@ class TodoyuComment extends TodoyuBaseObject {
 	 * @return	Array
 	 */
 	public function getFeedbackUsers() {
-		return TodoyuCommentFeedbackManager::getFeedbackUsers($this->getID());
+		return TodoyuCommentFeedbackManager::getFeedbackUsers($this->id);
 	}
 
 
