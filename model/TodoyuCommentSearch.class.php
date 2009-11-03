@@ -29,7 +29,7 @@ class TodoyuCommentSearch implements TodoyuSearchEngineIf {
 	 * @param	Integer		$limit
 	 * @return	Array		Project IDs
 	 */
-	public static function searchComments(array $find, array $ignore = array(), $limit = 200) {
+	public static function searchComments(array $find, array $ignore = array(), $limit = 100) {
 		$table	= 'ext_comment_comment';
 		$fields	= array('comment');
 
