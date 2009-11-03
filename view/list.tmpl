@@ -5,6 +5,6 @@
 		<span class="hidden">{Label comment.tab.toggle}</span>
 	</a>
 </div>
-<ul class="task-comments {if $desc == true}desc{else}asc{/if}" id="task-{$idTask}-comments">
+<ul class="task-comments {if $desc}desc{else}asc{/if}" id="task-{$idTask}-comments">
 	{$comments}
 </ul>

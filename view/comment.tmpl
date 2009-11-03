@@ -2,7 +2,7 @@
 	<a name="task-comment-{$id}"></a>
 	<div class="comment-properties">
 	{if $unapproved}
-		<a href="javascript:void(0)" id="comment-{$id}-seenstatus" onclick="Todoyu.Ext.comment.toggleSeenStatus({$id});" class="comment-userapproval hasicon"></a>
+		<a href="javascript:void(0)" id="comment-{$id}-seenstatus" onclick="Todoyu.Ext.comment.setSeenStatus({$id})" class="comment-userapproval hasicon"></a>
 	{/if}
 		<span id="task-comment-{$id}-crdate" class="comment-crdate hasicon">{date_format $date_create "%d.%m.%y %R"}</span>
 		<span id="task-comment-{$id}-user" class="comment-user hasicon">
@@ -36,7 +36,7 @@
 				<dt>&nbsp;</dt>
 	{/if}
 				<dd>
-					<span id="feedbackuser-{$user.id}-{$id}" {if !$user.is_seen}class="commentuser-unapproved"{/if}>{$user.lastname}, {$user.firstname}</span>
+					<span id="task-comment-{$id}-feedbackuser-{$user.id}" {if !$user.is_seen}class="commentuser-unapproved"{/if}>{$user.lastname}, {$user.firstname}</span>
 				</dd>
 				</dl>
 			{else}

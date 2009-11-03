@@ -34,7 +34,7 @@ Todoyu.Ext.comment = {
 	 *	@param	Integer	idComment
 	 */
 	togglePublicStatus: function(idComment) {
-		var url		= Todoyu.getUrl('comment', 'ext');
+		var url		= Todoyu.getUrl('comment', 'task');
 		var options	= {
 			'parameters': {
 				'cmd': 'togglecustomervisibility',
@@ -55,14 +55,14 @@ Todoyu.Ext.comment = {
 	 *
 	 *	@param	Integer	idComment
 	 */
-	toggleSeenStatus: function(idComment)	{
-		var url		= Todoyu.getUrl('comment', 'ext');
+	setSeenStatus: function(idComment)	{
+		var url		= Todoyu.getUrl('comment', 'task');
 		var options	= {
 			'parameters': {
-				'cmd': 'toggleseenstatus',
+				'cmd': 'seen',
 				'comment': idComment
 			},
-			'onComplete': this.onToggleSeenStatus.bind(this)
+			'onComplete': this.onSeenStatusSet.bind(this, idComment)
 		};
 
 		Todoyu.send(url, options);
@@ -75,12 +75,13 @@ Todoyu.Ext.comment = {
 	 *
 	 *	@param	Object	response
 	 */
-	onToggleSeenStatus: function(response)	{
-		var idUser		= response.getHeader('Todoyu-idUser');
-		var idComment	= response.getHeader('Todoyu-idComment');
+	onSeenStatusSet: function(idComment, response)	{
+		var idUser		= response.getTodoyuHeader('idUser');
 
-		$('comment-' + idComment + '-seenstatus').fade();
-		$('feedbackuser-' + idUser + '-' + idComment).toggleClassName('commentuser-unapproved');
+			// Remove unseen icon
+		$('comment-' + idComment + '-seenstatus').remove();
+			// Remove class which marks the name unseen
+		$('task-comment-' + idComment + '-feedbackuser-' + idUser).removeClassName('commentuser-unapproved');
 	},
 
 
@@ -135,7 +136,7 @@ Todoyu.Ext.comment = {
 		 *	@param	Integer	desc	(0 or 1)
 		 */
 		refresh: function(idTask, desc) {
-			var url				= Todoyu.getUrl('comment', 'ext');
+			var url				= Todoyu.getUrl('comment', 'task');
 			var target			= 'task-' + idTask + '-tabcontent-comment';
 
 			var options	= {
@@ -148,8 +149,8 @@ Todoyu.Ext.comment = {
 
 			Todoyu.Ui.update(target, url, options);
 		},
-		
-		
+
+
 		/**
 		 * Toggle comments list visibility
 		 */
@@ -242,8 +243,8 @@ Todoyu.Ext.comment = {
 		 */
 		onChangeEmail: function(idTask, idComment) {
 			var checkbox= $('comment-' + idTask + '-' + idComment + '-field-sendasemail');
-			var emailEl	= $('formElement-comment-' + idTask + '-' + idComment + '-field-emailreceivers'); 
-			
+			var emailEl	= $('formElement-comment-' + idTask + '-' + idComment + '-field-emailreceivers');
+
 			if( checkbox.checked ) {
 				emailEl.show();
 			} else {
@@ -272,17 +273,17 @@ Todoyu.Ext.comment = {
 
 			return false;
 		},
-		
+
 		onSaved: function(idTask, response) {
 			var idComment=response.getTodoyuHeader('idComment');
-			
+
 			if( response.hasTodoyuError() ) {
 				$('comment-' + idTask + '-' + idComment + '-form').replace(response.responseText);
 			} else {
 				Todoyu.Ext.comment.List.refresh(idTask);
 			}
 		},
-		
+
 		/**
 		 *	Cancel comment editing (close comment edit box)
 		 *
