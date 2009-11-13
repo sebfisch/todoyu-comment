@@ -29,16 +29,20 @@
 	background: #E5E8DA url(../../../../core/assets/img/bg_tab_header.png) repeat-x 0 top;
 }
 
+
+
 /* --------------
-	search
+	Search
    -------------- */
 
 .searchmode-comment {
 	background:url(../img/icons.png) no-repeat 3px -117px !important;
 }
 
+
+
 /* -------------------
-	single comment
+	Single comment
    ------------------- */
 
 .task-comments .comment {
@@ -160,8 +164,10 @@
 	background-color: #fff;
 }
 
+
+
 /* --------------------
-	comment form
+	Comment form
    -------------------- */
 .commentform {
 	padding: 10px 20px 10px 10px;
@@ -184,8 +190,10 @@
 	text-align: right;
 }
 
+
+
 /* ------------------
-	send as email
+	Send as email
    ------------------ */
 
 .commentMailBox {
@@ -229,8 +237,10 @@ input.deleteButtonOwnComment {
 	margin: 0 0 2px 500px;
 }
 
+
+
 /* ------------------------
-	contextmenu task
+	Contextmenu task
    ------------------------ */
 
 #contextmenu .task-add-comment {
