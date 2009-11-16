@@ -7,7 +7,7 @@
 *
 *  This script is part of the todoyu project.
 *  The todoyu project is free software; you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License, version 2, 
+*  it under the terms of the GNU General Public License, version 2,
 *  (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html) as published by
 *  the Free Software Foundation;
 *
@@ -19,7 +19,7 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-$CONFIG['FILTERS']['TASK']['config']['filterWidgets']['unseenFeedbackCurrentUser'] = array(
+$CONFIG['FILTERS']['TASK']['widgets']['unseenFeedbackCurrentUser'] = array(
 	'funcRef'	=> 'TodoyuCommentTaskFilter::Filter_unseenFeedbackCurrentUser',
 	'label'		=> 'LLL:comment.filter.unseenFeedbackCurrentUser.label',
 	'optgroup'	=> 'LLL:task.search.label',
@@ -29,7 +29,7 @@ $CONFIG['FILTERS']['TASK']['config']['filterWidgets']['unseenFeedbackCurrentUser
 	)
 );
 
-$CONFIG['FILTERS']['TASK']['config']['filterWidgets']['unseenFeedbackUser'] = array(
+$CONFIG['FILTERS']['TASK']['widgets']['unseenFeedbackUser'] = array(
 	'funcRef'	=> 'TodoyuCommentTaskFilter::Filter_unseenFeedbackUser',
 	'label'		=> 'LLL:comment.filter.unseenFeedbackUser.label',
 	'optgroup'	=> 'LLL:task.search.label',
@@ -46,7 +46,7 @@ $CONFIG['FILTERS']['TASK']['config']['filterWidgets']['unseenFeedbackUser'] = ar
 	)
 );
 
-$CONFIG['FILTERS']['TASK']['config']['filterWidgets']['feedbackFulltext'] = array(
+$CONFIG['FILTERS']['TASK']['widgets']['feedbackFulltext'] = array(
 	'funcRef'	=> 'TodoyuCommentTaskFilter::Filter_fulltext',
 	'label'		=> 'LLL:comment.filter.fulltext.label',
 	'optgroup'	=> 'LLL:task.search.label',
