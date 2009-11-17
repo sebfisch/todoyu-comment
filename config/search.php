@@ -19,7 +19,7 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-TodoyuSearchManager::addSearchEngine('comment', 'TodoyuCommentSearch::getResults', 'TodoyuCommentSearch::getSuggestions', 'comment.search.label', 'Kommentare durchsuchen', 50);
+TodoyuSearchManager::addSearchEngine('comment', 'TodoyuCommentSearch::getResults', 'TodoyuCommentSearch::getSuggestions', 'comment.search.label', 'comment.search.mode.label', 50);
 
 //$CONFIG['EXT']['search']['engines']['comment'] = array(
 //	'search'	=> 'TodoyuCommentSearch::getResults',

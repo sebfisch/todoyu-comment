@@ -20,6 +20,7 @@
 		<label index="project">Project</label>
 		<label index="contextmenu.task.addcomment">Comment</label>
 		<label index="search.label">Comments</label>
+		<label index="search.mode.label">Search comments</label>
 		<label index="filter.unseenFeedbackCurrentUser.label">My unseen feedback</label>
 		<label index="filter.unseenFeedbackUser.label">Unseen feedback</label>
 		<label index="filter.fulltext.label">Feedback fulltext</label>
