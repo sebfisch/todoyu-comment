@@ -24,12 +24,12 @@ body {
     <td><a href="{$tasklink}">{htmlencode $task.title} ({$task.id_project}.{$task.tasknumber})</a></td>
   </tr>
 </table>
-<p>Kommentar in der Projektansicht anzeigen: <a href="{$commentlink}">Zum Kommentar</a></p>
-<p>Kommantar von {$user.firstname} {$user.lastname} <a href="mailto:{$user.firstname} {$user.lastname}<{$user.email}>">&lt;{$user.email}&gt;</a></p>
+<p>{Label comment.mail.showcommentinprojectview}: <a href="{$commentlink}">{Label comment.mail.commentlink}</a></p>
+<p>{Label comment.mail.commentfrom} {$user.firstname} {$user.lastname} <a href="mailto:{$user.firstname} {$user.lastname}<{$user.email}>">&lt;{$user.email}&gt;</a></p>
 <p>{$comment.comment}</p>
 <table width="600" border="0" cellspacing="0" cellpadding="5">
   <tr>
-    <td width="150" valign="top"><strong>Feeback erwartet</strong></td>
+    <td width="150" valign="top"><strong>{Label comment.mail.feedbackexpected}</strong></td>
     <td width="430">
     {foreach $feedback_users feedbackUser}
     	{$feedbackUser.firstname} {$feedbackUser.lastname}<br>
@@ -37,7 +37,7 @@ body {
     </td>
   </tr>
   <tr>
-    <td valign="top"><strong>Task Beschreibung</strong></td>
+    <td valign="top"><strong>{Label comment.mail.taskdescription}</strong></td>
     <td>{htmlencode $task.description}</td>
   </tr>
 </table>

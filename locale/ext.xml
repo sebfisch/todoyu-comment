@@ -30,6 +30,11 @@
 		<label index="icon.edit">Edit Comment</label>
 		<label index="icon.toggleCustomerVisibility">Visibility of this commentary for customers to switch</label>
 		<label index="comment.feedbackusers">Feedback requested</label>
+		<label index="mail.commentlink">Open comment</label>
+		<label index="mail.showcommentinprojectview">Show comment in Project view</label>
+		<label index="mail.commentfrom">Comment from</label>
+		<label index="mail.feedbackexpected">Feedback expected</label>
+		<label index="mail.taskdescription">Task description</label>
 	</labels>
 	<labels lang="de">
 		<label index="commentid">Kommentar-Id</label>
@@ -60,5 +65,10 @@
 		<label index="icon.edit">Kommentar editieren</label>
 		<label index="icon.toggleCustomerVisibility">Sichtbarkeit dieses Kommentars für Kunden umschalten</label>
 		<label index="comment.feedbackusers">Feedback erwartet von</label>
+		<label index="mail.commentlink">Zum Kommentar</label>
+		<label index="mail.showcommentinprojectview">Kommentar in der Projektansicht anzeigen</label>
+		<label index="mail.commentfrom">Kommentar von</label>
+		<label index="mail.feedbackexpected">Feedback erwartet</label>
+		<label index="mail.taskdescription">Taskbeschreibung</label>
 	</labels>
 </locallang>
