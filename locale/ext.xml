@@ -36,39 +36,5 @@
 		<label index="mail.feedbackexpected">Feedback expected</label>
 		<label index="mail.taskdescription">Task description</label>
 	</labels>
-	<labels lang="de">
-		<label index="commentid">Kommentar-Id</label>
-		<label index="tab.comment">Kommentar</label>
-		<label index="tab.comments">Kommentare</label>
-		<label index="tab.noComments">Kommentar hinzufügen</label>
-		<label index="tab.toggle">Kommentare ein/ausklappen</label>
-		<label index="edit.comment">Kommentar</label>
-		<label index="edit.feedback">Feedback erwartet</label>
-		<label index="edit.is_public">Öffentlich?</label>
-		<label index="edit.sendasemail">Als E-Mail versenden</label>
-		<label index="edit.sentEmailTo">An</label>
-		<label index="group.employee">Mitarbeiter</label>
-		<label index="group.projectmembers">Projektmitglieder</label>
-		<label index="group.taskmembers">Task</label>
-		<label index="infomail.subject">Neuer Kommentar</label>
-		<label index="js.deleteComment">Wollen Sie diesen Kommentar wirklich löschen?</label>
-		<label index="newcommentstored">Es wurde ein neuer Kommentar im Todoyu erfasst</label>
-		<label index="project">Projekt</label>
-		<label index="contextmenu.task.addcomment">Kommentar</label>
-		<label index="search.label">Kommentare</label>
-		<label index="filter.unseenFeedbackCurrentUser.label">Meine ungesehenen Feedbacks</label>
-		<label index="filter.unseenFeedbackUser.label">Ungesehene Feedbacks</label>
-		<label index="filter.fulltext.label">Feedback Volltext</label>
-		<label index="button.addComment">Neuen Kommentar hinzufügen</label>
-		<label index="button.reverseOrder">Sortierung umkehren</label>
-		<label index="icon.remove">Kommentar löschen</label>
-		<label index="icon.edit">Kommentar editieren</label>
-		<label index="icon.toggleCustomerVisibility">Sichtbarkeit dieses Kommentars für Kunden umschalten</label>
-		<label index="comment.feedbackusers">Feedback erwartet von</label>
-		<label index="mail.commentlink">Zum Kommentar</label>
-		<label index="mail.showcommentinprojectview">Kommentar in der Projektansicht anzeigen</label>
-		<label index="mail.commentfrom">Kommentar von</label>
-		<label index="mail.feedbackexpected">Feedback erwartet</label>
-		<label index="mail.taskdescription">Taskbeschreibung</label>
-	</labels>
+	<labels lang="de"></labels>
 </locallang>
