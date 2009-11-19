@@ -2,7 +2,7 @@
 <locallang>
 	<labels lang="en">
 		<label index="ext.title">Task Comments</label>
-		<label index="commentid">Comment-Id</label>
+		<label index="commentid">Comment-ID</label>
 		<label index="tab.comment">comment</label>
 		<label index="tab.comments">comments</label>
 		<label index="tab.noComments">Add comment</label>
