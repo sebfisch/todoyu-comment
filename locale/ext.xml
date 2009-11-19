@@ -17,7 +17,6 @@
 		<label index="infomail.subject">New comment</label>
 		<label index="js.deleteComment">Do you realy want to delete this comment?</label>
 		<label index="newcommentstored">A new comment was stored in todoyu</label>
-		<label index="project">Project</label>
 		<label index="contextmenu.task.addcomment">Comment</label>
 		<label index="search.label">Comments</label>
 		<label index="search.mode.label">Search comments</label>
@@ -34,7 +33,6 @@
 		<label index="mail.showcommentinprojectview">Show comment in Project view</label>
 		<label index="mail.commentfrom">Comment from</label>
 		<label index="mail.feedbackexpected">Feedback expected</label>
-		<label index="mail.taskdescription">Task description</label>
 	</labels>
 	<labels lang="de"></labels>
 </locallang>
