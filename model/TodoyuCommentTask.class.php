@@ -7,7 +7,7 @@
 *
 *  This script is part of the todoyu project.
 *  The todoyu project is free software; you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License, version 2, 
+*  it under the terms of the GNU General Public License, version 2,
 *  (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html) as published by
 *  the Free Software Foundation;
 *
@@ -25,7 +25,6 @@
  * @package		Todoyu
  * @subpackage	Comment
  */
-
 class TodoyuCommentTask {
 
 	/**
@@ -59,9 +58,8 @@ class TodoyuCommentTask {
 	 * @return	String
 	 */
 	public static function getContent($idTask) {
-		$idTask	= intval($idTask);
-
-		$numComments = TodoyuCommentManager::getNumberOfTaskComments($idTask);
+		$idTask		= intval($idTask);
+		$numComments= TodoyuCommentManager::getNumberOfTaskComments($idTask);
 
 		if( $numComments === 0 ) {
 			return TodoyuCommentRenderer::renderEdit($idTask, 0);

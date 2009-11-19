@@ -99,16 +99,8 @@ class TodoyuCommentRenderer {
 		}
 
 		$form->setFormData($data);
-
-
-//
-//
-//		$formData	= TodoyuFormHook::callLoadData($xmlPath, $formData, $idComment);
-//
-//			// Set form data
-//		$form->setFormData($formData);
 		$form->setRecordID($idTask . '-' . $idComment);
-//
+
 			// Render (edit-form wrapped inside the edit-template)
 		$tmpl	= 'ext/comment/view/edit.tmpl';
 		$data	= array(
@@ -135,8 +127,7 @@ class TodoyuCommentRenderer {
 		$xmlPath	= 'ext/comment/config/form/comment.xml';
 
 			// Construct form object
-		$form		= new TodoyuForm( $xmlPath );
-		$form		= TodoyuFormHook::callBuildForm($xmlPath, $form, $idComment);
+		$form		= TodoyuFormManager::getForm($xmlPath, $idComment);
 
 			// Prepare/ Load (preset e.g) form data
 		$formData	= array(
