@@ -8,7 +8,7 @@
 		<span id="task-comment-{$id}-user" class="comment-user hasicon">
 			<a href="javascript:void(0)" onclick="Todoyu.Ext.user.showUserPopup({$user_create.id})">{$user_create.lastname} {$user_create.firstname}</a>
 		</span>
-		<span id="task-comment-{$id}-id" class="comment-id" title="{Label comment.commentid}">K{$id}</span>
+		<span id="task-comment-{$id}-id" class="comment-id" title="{Label comment.id}">K{$id}</span>
 		<span id="task-comment-{$id}-options" class="comment-options">
 {if $isInternal}
 			<a href="javascript:void(0)" onclick="Todoyu.Ext.comment.togglePublicStatus({$id})" class="icon public-trigger {if $is_public}comment-public{/if}" title="{Label comment.icon.toggleCustomerVisibility}" id="public-trigger-{$id}">

@@ -2,7 +2,7 @@
 <locallang>
 	<labels lang="en">
 		<label index="ext.title">Task Comments</label>
-		<label index="commentid">Comment-ID</label>
+		<label index="id">Comment-ID</label>
 		<label index="tab.comment">comment</label>
 		<label index="tab.comments">comments</label>
 		<label index="tab.noComments">Add comment</label>
@@ -15,9 +15,7 @@
 		<label index="group.employee">Employee</label>
 		<label index="group.projectmembers">Project members</label>
 		<label index="group.taskmembers">Task members</label>
-		<label index="infomail.subject">New comment</label>
-		<label index="js.deleteComment">Do you realy want to delete this comment?</label>
-		<label index="newcommentstored">A new comment was stored in todoyu</label>
+		<label index="delete.confirm">Do you realy want to delete this comment?</label>
 		<label index="contextmenu.task.addcomment">Comment</label>
 		<label index="search.label">Comments</label>
 		<label index="search.mode.label">Search comments</label>
@@ -30,6 +28,8 @@
 		<label index="icon.edit">Edit Comment</label>
 		<label index="icon.toggleCustomerVisibility">Visibility of this commentary for customers to switch</label>
 		<label index="comment.feedbackusers">Feedback requested</label>
+		<label index="mail.subject">New comment</label>
+		<label index="mail.newcomment">A new comment was stored in todoyu</label>
 		<label index="mail.commentlink">Open comment</label>
 		<label index="mail.showcommentinprojectview">Show comment in Project view</label>
 		<label index="mail.commentfrom">Comment from</label>

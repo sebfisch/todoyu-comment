@@ -66,7 +66,7 @@ class TodoyuCommentMailer {
 		$mail->CharSet	= 'utf-8';
 		$mail->From		= $GLOBALS['CONFIG']['EXT']['comment']['infomail']['email'];
 		$mail->FromName	= $GLOBALS['CONFIG']['EXT']['comment']['infomail']['fromname'];
-		$mail->Subject	= Label('comment.infomail.subject') . ': ' . $comment->getTask()->getTitle();
+		$mail->Subject	= Label('comment.mail.subject') . ': ' . $comment->getTask()->getTitle();
 		$mail->AltBody	= "To view the message, please use an HTML compatible email viewer!";
 
 		$mail->MsgHTML($bodyText, PATH_EXT_COMMENT);
