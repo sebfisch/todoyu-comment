@@ -37,8 +37,8 @@ Todoyu.Ext.comment = {
 		var url		= Todoyu.getUrl('comment', 'task');
 		var options	= {
 			'parameters': {
-				'action': 'togglecustomervisibility',
-				'comment': idComment
+				'action':	'togglecustomervisibility',
+				'comment':	idComment
 			}
 		};
 
@@ -59,8 +59,8 @@ Todoyu.Ext.comment = {
 		var url		= Todoyu.getUrl('comment', 'task');
 		var options	= {
 			'parameters': {
-				'action': 'seen',
-				'comment': idComment
+				'action':	'seen',
+				'comment':	idComment
 			},
 			'onComplete': this.onSeenStatusSet.bind(this, idComment)
 		};
@@ -98,17 +98,17 @@ Todoyu.Ext.comment = {
 		var url		= Todoyu.getUrl('comment', 'comment');
 		var options	= {
 			'parameters': {
-				'action': 'delete',
-				'comment': idComment
+				'action':	'delete',
+				'comment':	idComment
 			}
 		};
 
 		Todoyu.send(url, options);
 
 		Effect.Fade($('task-comment-' + idComment), {
-			'duration': 0.5,
-			'from': 1,
-			'to': 0
+			'duration':	0.5,
+			'from':		1,
+			'to':		0
 		});
 	},
 
@@ -142,8 +142,8 @@ Todoyu.Ext.comment = {
 			var options	= {
 				'parameters': {
 					'action':	'list',
-					'task': idTask,
-					'desc':	desc
+					'task':		idTask,
+					'desc':		desc
 				}
 			};
 
@@ -204,7 +204,7 @@ Todoyu.Ext.comment = {
 		var url		= Todoyu.getUrl('comment', 'comment');
 		var options = {
 			'parameters': {
-				'action': 		'edit',
+				'action': 	'edit',
 				'task':		idTask,
 				'comment':	idComment
 			}
@@ -266,7 +266,7 @@ Todoyu.Ext.comment = {
 
 			$(form).request({
 				'parameters': {
-					'action': 'save'
+					'action':	'save'
 				},
 				'onComplete': this.onSaved.bind(this, idTask)
 			});
