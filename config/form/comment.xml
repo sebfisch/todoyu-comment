@@ -3,7 +3,7 @@
 	<attributes>
 		<attribute name="action">?ext=comment&amp;controller=comment</attribute>
 		<attribute name="name">comment</attribute>
-		<attribute name="onsubmit">return Todoyu.Ext.comment.Edit.save(this);</attribute>
+		<attribute name="onsubmit">return false</attribute>
 		<attribute name="class">formComment</attribute>
 	</attributes>
 	<hiddenFields>
@@ -18,7 +18,7 @@
 			<elements>
 
 				<field type="RTE" name="comment">
-					<label>LLL:comment.edit.comment</label>
+					<label>comment.edit.comment</label>
 					<tinymce>
 						<theme>simple</theme>
 						<width>100%</width>
@@ -28,7 +28,7 @@
 				</field>
 
 				<field type="selectgrouped" name="feedback">
-					<label>LLL:comment.edit.feedback</label>
+					<label>comment.edit.feedback</label>
 					<source type="function">
 						<function>TodoyuCommentViewHelper::getFeedbackUsersGroupedOptions</function>
 						<lazyInit/>
@@ -39,16 +39,16 @@
 				</field>
 
 				<field type="checkbox" name="is_public">
-					<label>LLL:comment.edit.is_public</label>
+					<label>comment.edit.is_public</label>
 				</field>
 
 				<field type="checkbox" name="sendasemail">
-					<label>LLL:comment.edit.sendasemail</label>
+					<label>comment.edit.sendasemail</label>
 					<onchange>Todoyu.Ext.comment.Edit.onChangeEmail(#id_task#, #id#)</onchange>
 				</field>
 
 				<field type="select" name="emailreceivers">
-					<label>LLL:comment.edit.sentEmailTo</label>
+					<label>comment.edit.sentEmailTo</label>
 					<source type="function">
 						<function>TodoyuCommentViewHelper::getEmailReceiverOptions</function>
 						<lazyInit/>
@@ -65,23 +65,12 @@
 			<legend>Actions</legend>
 			<class>buttons</class>
 			<elements>
-
-				<field type="button" name="save">
-					<label/>
-					<type>submit</type>
-					<text>LLL:form.field.save</text>
-					<class>buttonSave</class>
-					<hasIcon />
+				<field type="saveButton" name="save">
+					<onclick>Todoyu.Ext.comment.Edit.save(this.form)</onclick>
 				</field>
-
-				<field type="button" name="cancel">
-					<label/>
-					<text>LLL:form.field.cancel</text>
-					<class>buttonCancel</class>
-					<hasIcon>1</hasIcon>
-					<onclick>Todoyu.Ext.comment.Edit.cancel(#id_task#, #id#);</onclick>
+				<field type="cancelButton" name="cancel">
+					<onclick>Todoyu.Ext.comment.Edit.cancel(#id_task#, #id#)</onclick>
 				</field>
-
 			</elements>
 		</fieldset>
 
