@@ -6,16 +6,16 @@
 .task .tabContent .commentButtons {
 }
 
-.task .tabContent .commentButtons button span.addCommentButton {
-	background: url(../img/icons.png) no-repeat 5px 4px;
+.task .tabContent .commentButtons button.addComment .icon {
+	background:url(../img/icons.png) no-repeat 0 2px;
 }
 
-.task .tabContent .commentButtons button span.sortChronoAsc {
-	background: url(../../../../core/assets/img/bg_button_sprite.png) no-repeat 5px -419px;
+.task .tabContent .commentButtons button.reverseOrder.asc .icon {
+	background:url(../../../../core/assets/img/icons.png) no-repeat 0 -476px;
 }
 
-.task .tabContent .commentButtons button span.sortChronoDesc {
-	background: url(../../../../core/assets/img/bg_button_sprite.png) no-repeat 5px -448px;
+.task .tabContent .commentButtons button.reverseOrder.desc .icon {
+	background:url(../../../../core/assets/img/icons.png) no-repeat 0 -506px;
 }
 
 .task-comments {
