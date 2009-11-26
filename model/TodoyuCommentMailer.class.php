@@ -91,14 +91,16 @@ class TodoyuCommentMailer {
 		$comment	= TodoyuCommentManager::getComment($idComment);
 		$task		= $comment->getTask();
 		$project	= $comment->getProject();
-		$user		= TodoyuUserManager::getUser($idUser);
+		$userReceive= TodoyuUserManager::getUser($idUser);
+		$userWrite	= TodoyuAuth::getUser();
 
 		$tmpl	= 'ext/comment/view/comment-mail.tmpl';
 		$data	= array(
 			'comment'		=> $comment->getTemplateData(),
 			'project' 		=> $project->getTemplateData(),
 			'task'			=> $task->getTemplateData(0),
-			'user'			=> $user->getTemplateData(),
+			'userReceive'	=> $userReceive->getTemplateData(),
+			'userWrite'		=> $userWrite->getTemplateData(),
 			'feedback_users'=> $comment->getFeedbackUsers()
 		);
 
@@ -106,7 +108,7 @@ class TodoyuCommentMailer {
 			'ext'		=> 'project',
 			'project'	=> $project->getID(),
 			'task'		=> $task->getID()
-		), '', true);
+		), 'task-' . $task->getID(), true);
 
 		$data['commentlink'] = TodoyuDiv::buildUrl(array(
 			'ext'		=> 'project',

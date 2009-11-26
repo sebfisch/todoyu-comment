@@ -25,20 +25,22 @@ body {
   </tr>
 </table>
 <p>{Label comment.mail.showcommentinprojectview}: <a href="{$commentlink}">{Label comment.mail.commentlink}</a></p>
-<p>{Label comment.mail.commentfrom} {$user.firstname} {$user.lastname} <a href="mailto:{$user.firstname} {$user.lastname}<{$user.email}>">&lt;{$user.email}&gt;</a></p>
+<p>{Label comment.mail.commentfrom} {$userWrite.firstname} {$userWrite.lastname} <a href="mailto:{$userWrite.firstname} {$userWrite.lastname}<{$userWrite.email}>">&lt;{$userWrite.email}&gt;</a></p>
 <p>{$comment.comment}</p>
 <table width="600" border="0" cellspacing="0" cellpadding="5">
+	{if sizeof($feedback_users) > 0}
 	<tr>
 		<td width="150" valign="top"><strong>{Label comment.mail.feedbackexpected}</strong></td>
 		<td width="430">
-    {foreach $feedback_users feedbackUser}
-    	{$feedbackUser.firstname} {$feedbackUser.lastname}<br>
-    {/foreach}
-    </td>
-  </tr>
+	    {foreach $feedback_users feedbackUser}
+	    	{$feedbackUser.firstname} {$feedbackUser.lastname}<br>
+	    {/foreach}
+	    </td>
+  	</tr>
+ 	{/if}
   <tr>
     <td valign="top"><strong>{Label task.description}</strong></td>
-    <td>{htmlencode $task.description}</td>
+    <td>{$task.description}</td>
   </tr>
 </table>
 </body>
