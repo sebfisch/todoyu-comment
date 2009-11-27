@@ -85,6 +85,7 @@ Todoyu.Ext.comment = {
 	},
 
 
+
 	/**
 	 *	Remove given comment
 	 *
@@ -151,6 +152,7 @@ Todoyu.Ext.comment = {
 		},
 
 
+
 		/**
 		 * Toggle comments list visibility
 		 */
@@ -178,6 +180,8 @@ Todoyu.Ext.comment = {
 
 		return isDesc;
 	},
+
+
 
 	/**
 	 *	Toggle sorting of comments of given task
@@ -228,6 +232,7 @@ Todoyu.Ext.comment = {
 	},
 
 
+
 	/**
 	 *	Comment editing methods
 	 *	Note:	there is the method 'edit' and the sub object 'Edit' (case-sensitive) with its own methods
@@ -274,6 +279,14 @@ Todoyu.Ext.comment = {
 			return false;
 		},
 
+
+
+		/**
+		 * Evoked after clompetion of saving comment
+		 * 
+		 * 	@param	Integer	idTask 
+		 * 	@param	Object	response 
+		 */
 		onSaved: function(idTask, response) {
 			var idComment=response.getTodoyuHeader('idComment');
 
@@ -284,14 +297,17 @@ Todoyu.Ext.comment = {
 			}
 		},
 
+
+
 		/**
-		 *	Cancel comment editing (close comment edit box)
+		 *	Cancel editing of comment (close comment edit box)
 		 *
 		 *	@param	Integer	idTask
 		 *	@param	Integer	idComment
 		 */
 		cancel: function(idTask, idComment) {
 			$('task-' + idTask + '-commentform-' + idComment).remove();
+			Todoyu.Ext.comment.List.refresh(idTask, true);
 		}
 	}
 
