@@ -19,17 +19,13 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
+/**
+ * Comment action controller
+ *
+ * @package		Todoyu
+ * @subpackage	Comment
+ */
 class TodoyuCommentCommentActionController extends TodoyuActionController {
-
-	public function updateAction(array $params) {
-		$time	= intval($params['time']);
-		$tab	= $params['tab'];
-
-		PanelWidgetCalendar::saveDate($time);
-		TodoyuCalendarPreferences::saveActiveTab($tab);
-
-		return TodoyuCalendarRenderer::renderCalendar($time, $tab);
-	}
 
 	public function editAction(array $params) {
 		$idTask		= intval($params['task']);
@@ -45,6 +41,13 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 	}
 
 
+
+	/**
+	 * Save (update) comment
+	 *
+	 * @param	Array		$params
+	 * @return	String
+	 */
 	public function saveAction(array $params) {
 		$xmlPath	= 'ext/comment/config/form/comment.xml';
 		$data		= $params['comment'];

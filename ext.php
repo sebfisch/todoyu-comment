@@ -26,7 +26,7 @@
  * @subpackage	Comment
  */
 
-if( ! defined('TODOYU') ) die('NO ACCESS');
+
 
 
 
