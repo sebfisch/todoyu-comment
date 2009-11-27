@@ -48,8 +48,8 @@
 		<label index="edit.sendasemail">Als Email senden</label>
 		<label index="edit.sentEmailTo">Email senden an</label>
 		<label index="group.employee">Arbeitnehmer</label>
-		<label index="group.projectmembers">Projekt Mitarbeiter</label>
-		<label index="group.taskmembers">Aufgaben Mitarbeiter</label>
+		<label index="group.projectmembers">Projektbeteiligte</label>
+		<label index="group.taskmembers">Zugewiesene Mitarbeiter</label>
 		<label index="delete.confirm">Wollen Sie diesen Kommentar wirklich löschen?</label>
 		<label index="contextmenu.task.addcomment">Kommentar</label>
 		<label index="search.label">Kommentare</label>
