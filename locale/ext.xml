@@ -36,7 +36,7 @@
 		<label index="mail.feedbackexpected">Feedback expected</label>
 	</labels>
 	<labels lang="de">
-		<label index="ext.title">Aufgaben Kommentar</label>
+		<label index="ext.title">Aufgaben-Kommentar</label>
 		<label index="id">Kommentar-ID</label>
 		<label index="tab.comment">Kommentar</label>
 		<label index="tab.comments">Kommentare</label>
@@ -45,18 +45,18 @@
 		<label index="edit.comment">Kommentar</label>
 		<label index="edit.feedback">Feedback verlangt</label>
 		<label index="edit.is_public">ist öffentlich</label>
-		<label index="edit.sendasemail">Als Email senden</label>
+		<label index="edit.sendasemail">Als Email versenden</label>
 		<label index="edit.sentEmailTo">Email senden an</label>
-		<label index="group.employee">Arbeitnehmer</label>
+		<label index="group.employee">Angestellter</label>
 		<label index="group.projectmembers">Projektbeteiligte</label>
 		<label index="group.taskmembers">Zugewiesene Mitarbeiter</label>
 		<label index="delete.confirm">Wollen Sie diesen Kommentar wirklich löschen?</label>
 		<label index="contextmenu.task.addcomment">Kommentar</label>
 		<label index="search.label">Kommentare</label>
-		<label index="search.mode.label">Kommentare Suche</label>
+		<label index="search.mode.label">Kommentar-Suche</label>
 		<label index="filter.unseenFeedbackCurrentUser.label">Meine ungesehenen Feedbacks</label>
 		<label index="filter.unseenFeedbackUser.label">Ungesehene Feedbacks</label>
-		<label index="filter.fulltext.label">Feedback volltext</label>
+		<label index="filter.fulltext.label">Feedback-Volltext</label>
 		<label index="button.addComment">Neuen Kommentar hinzufügen</label>
 		<label index="button.reverseOrder">Sortierung ändern</label>
 		<label index="icon.remove">Kommentar löschen</label>
