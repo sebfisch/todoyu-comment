@@ -53,7 +53,7 @@
 		<label index="delete.confirm">Wollen Sie diesen Kommentar wirklich löschen?</label>
 		<label index="contextmenu.task.addcomment">Kommentar</label>
 		<label index="search.label">Kommentare</label>
-		<label index="search.mode.label">Kommentar-Suche</label>
+		<label index="search.mode.label">Kommentare suchen</label>
 		<label index="filter.unseenFeedbackCurrentUser.label">Meine ungesehenen Feedbacks</label>
 		<label index="filter.unseenFeedbackUser.label">Ungesehene Feedbacks</label>
 		<label index="filter.fulltext.label">Feedback-Volltext</label>
@@ -69,5 +69,5 @@
 		<label index="mail.showcommentinprojectview">Zeige Kommentar in der Projektansicht</label>
 		<label index="mail.commentfrom">Kommentar von</label>
 		<label index="mail.feedbackexpected">Feedback erwartet</label>
-	</labels>	
+	</labels>
 </locallang>

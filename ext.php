@@ -26,10 +26,6 @@
  * @subpackage	Comment
  */
 
-
-
-
-
 	// Declare ext ID, path
 define('EXTID_COMMENT', 105);
 define('PATH_EXT_COMMENT', PATH_EXT . '/comment');
