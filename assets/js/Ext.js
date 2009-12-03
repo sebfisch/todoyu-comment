@@ -101,7 +101,8 @@ Todoyu.Ext.comment = {
 			'parameters': {
 				'action':	'delete',
 				'comment':	idComment
-			}
+			},
+			'onComplete': Todoyu.Ext.comment.Edit.onRemoved.bind(this)
 		};
 
 		Todoyu.send(url, options);
@@ -122,6 +123,18 @@ Todoyu.Ext.comment = {
 	 */
 	addTaskComment: function(idTask) {
 		Todoyu.Ext.project.Task.showDetails(idTask, 'comment');
+	},
+	
+	
+	
+	/**
+	 * Set Label (on adding or removing comment)
+	 * 
+	 * @param	Integer idTask
+	 * @param	String	label
+	 */
+	setTabLabel: function(idTask, label){
+		$('task-' + idTask + '-tabhead-comment-label').select('.labeltext').first().update(label);
 	},
 
 
@@ -282,18 +295,20 @@ Todoyu.Ext.comment = {
 
 
 		/**
-		 * Evoked after clompetion of saving comment
+		 * Evoked after completion of saving comment
 		 * 
 		 * 	@param	Integer	idTask 
 		 * 	@param	Object	response 
 		 */
 		onSaved: function(idTask, response) {
-			var idComment=response.getTodoyuHeader('idComment');
-
+			var idComment	=	response.getTodoyuHeader('idComment');
+			var tabLabel	=	response.getTodoyuHeader('tabLabel');
+			
 			if( response.hasTodoyuError() ) {
 				$('comment-' + idTask + '-' + idComment + '-form').replace(response.responseText);
 			} else {
 				Todoyu.Ext.comment.List.refresh(idTask);
+				Todoyu.Ext.comment.setTabLabel(idTask, tabLabel);
 			}
 		},
 
@@ -308,6 +323,21 @@ Todoyu.Ext.comment = {
 		cancel: function(idTask, idComment) {
 			$('task-' + idTask + '-commentform-' + idComment).remove();
 			Todoyu.Ext.comment.List.refresh(idTask, true);
+		},
+		
+		
+		
+		/**
+		 * Evoked after completion of removing comment
+		 * 
+		 * @param	Integer	idTask
+		 * @param	Object	response
+		 */
+		onRemoved: function(response){
+			var tabLabel	=	response.getTodoyuHeader('tabLabel');
+			var idTask		=	response.getTodoyuHeader('idTask');
+			
+			Todoyu.Ext.comment.setTabLabel(idTask, tabLabel);
 		}
 	}
 

@@ -30,14 +30,18 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 	public function editAction(array $params) {
 		$idTask		= intval($params['task']);
 		$idComment	= intval($params['comment']);
-
+		
 		return TodoyuCommentRenderer::renderEdit($idTask, $idComment);
 	}
 
 	public function deleteAction(array $params) {
 		$idComment	= intval($params['comment']);
+		$idTask		= TodoyuCommentManager::getComment($idComment)->getTaskID();
 
 		TodoyuCommentManager::deleteComment($idComment);
+		
+		TodoyuHeader::sendTodoyuHeader('idTask', $idTask);
+		TodoyuHeader::sendTodoyuHeader('tabLabel', TodoyuCommentTask::getLabel($idTask));
 	}
 
 
@@ -59,8 +63,9 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 
 		if( $form->isValid() ) {
 			$data	= $form->getStorageData();
-
+			
 			TodoyuCommentManager::saveComment($data);
+			TodoyuHeader::sendTodoyuHeader('tabLabel', TodoyuCommentTask::getLabel($data['id_task']));
 		} else {
 			TodoyuHeader::sendTodoyuErrorHeader();
 			TodoyuHeader::sendTodoyuHeader('idComment', $idComment);
