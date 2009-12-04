@@ -34,6 +34,7 @@
 		<label index="mail.showcommentinprojectview">Show Comment in Project view</label>
 		<label index="mail.commentfrom">Comment from</label>
 		<label index="mail.feedbackexpected">Feedback expected</label>
+		<label index="portal.tab.feedback">Feedback</label>
 	</labels>
 	<labels lang="de">
 		<label index="ext.title">Aufgaben-Kommentar</label>
@@ -69,5 +70,6 @@
 		<label index="mail.showcommentinprojectview">Zeige Kommentar in der Projektansicht</label>
 		<label index="mail.commentfrom">Kommentar von</label>
 		<label index="mail.feedbackexpected">Feedback erwartet</label>
+		<label index="portal.tab.feedback">Feedback</label>
 	</labels>
 </locallang>

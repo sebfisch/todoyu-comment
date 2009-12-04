@@ -26,14 +26,29 @@
  * @subpackage	Admin
  */
 
-
+	// Add task tab for comments
 TodoyuTaskManager::registerTaskTab('comment', 'TodoyuCommentTask::getLabel', 'TodoyuCommentTask::getContent', 20);
 
+	// Add portal tab for feedbacks
+TodoyuPortalManager::addTab('feedback', 'TodoyuCommentRenderer::renderPortalFeedbackTabLabel', 'TodoyuCommentRenderer::renderPortalFeedbackTabContent', 30, array('comment/public'));
+
+	// Add task contextmenu to add comments to task
 TodoyuContextMenuManager::registerFunction('Task', 'TodoyuCommentManager::getTaskContextMenuItems', 150);
 
 
 $CONFIG['EXT']['comment']['infomail']['fromname'] 		= $CONFIG['SYSTEM']['name'];
 $CONFIG['EXT']['comment']['infomail']['email'] 			= $CONFIG['SYSTEM']['email'];
+
+
+
+/**
+ * Configuration for 'todo' tab
+ */
+$CONFIG['EXT']['comment']['feedbackTabFilters'] = array(
+	array(
+		'filter'	=> 'unseenFeedbackCurrentUser'
+	)
+);
 
 
 ?>

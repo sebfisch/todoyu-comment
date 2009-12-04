@@ -333,6 +333,14 @@ class TodoyuCommentManager {
 		return array_merge_recursive($items, $allowed);
 	}
 
+
+	public static function getFeedbackTaskIDs() {
+		$conditions	= $GLOBALS['CONFIG']['EXT']['comment']['feedbackTabFilters'];
+		$taskFilter	= new TodoyuTaskFilter($conditions);
+
+		return $taskFilter->getTaskIDs();
+	}
+
 }
 
 ?>

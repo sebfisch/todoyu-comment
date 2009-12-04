@@ -144,6 +144,35 @@ class TodoyuCommentRenderer {
 		return $form->getField('emailinfo')->render();
 	}
 
+
+
+	/**
+	 * Get tab label for portal feedback task
+	 *
+	 * @param	Bool		$count
+	 * @return	String
+	 */
+	public static function renderPortalFeedbackTabLabel($count = true) {
+		$label	= TodoyuLocale::getLabel('comment.portal.tab.feedback');
+
+		if( $count ) {
+			$taskIDs= TodoyuCommentManager::getFeedbackTaskIDs();
+
+			$label	= $label . ' (' . sizeof($taskIDs) . ')';
+		}
+
+		return $label;
+	}
+
+
+	public static function renderPortalFeedbackTabContent() {
+		$taskIDs= TodoyuCommentManager::getFeedbackTaskIDs();
+
+		TodoyuProjectPreferences::setForcedTaskTab('comment');
+
+		return TodoyuPortalRenderer::renderTaskList($taskIDs);
+	}
+
 }
 
 ?>
