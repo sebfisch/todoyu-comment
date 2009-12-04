@@ -1,0 +1,8 @@
+/* -----------------
+	Submenu
+   ----------------- */
+#navi-main-list-portal li.itemFeedback a {
+	background-image:url(../img/icons.png) !important;
+	background-repeat:no-repeat;
+	background-position:6px -356px;
+}
