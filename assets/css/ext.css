@@ -117,7 +117,7 @@
 
 .task-comments .comment-id {
 	float:right;
-	margin:-15px 5px 0 -12px;
+	margin: 2px 5px 0 -12px;
 	font-size:9px !important;
 	letter-spacing:1px;
 }
