@@ -61,6 +61,12 @@
 	padding:2px;
 }
 
+.task-comments div.comment ul {
+	list-style-type:square;
+	list-style-position:inside;
+	padding-left:10px;
+}
+
 .task-comments .comment-details .left {
 	float: left;
 	width: 300px !important;

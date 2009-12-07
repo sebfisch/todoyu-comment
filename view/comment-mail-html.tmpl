@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Comment Mail</title>
 <style type="text/css">
-body {
+body, td, p {
 	font-family:Arial, Helvetica, sans-serif;
 	font-size:12px;
 	background-color:#F8FFF0;
@@ -23,18 +23,32 @@ body {
     <td><strong>{Label task.task}</strong></td>
     <td><a href="{$tasklink}">{htmlencode $task.title} ({$task.id_project}.{$task.tasknumber})</a></td>
   </tr>
+  <tr>
+    <td><strong>{Label comment.mail.commentfrom}</strong></td>
+    <td>{$userWrite.firstname} {$userWrite.lastname} <a href="mailto:{$userWrite.firstname} {$userWrite.lastname}<{$userWrite.email}>">&lt;{$userWrite.email}&gt;</a></td>
+  </tr>
+{if $userWrite.id !== $userSend.id}
+  <tr>
+    <td><strong>{Label comment.mail.commentsentby}</strong></td>
+    <td>{$userSend.firstname} {$userSend.lastname} <a href="mailto:{$userSend.firstname} {$userSend.lastname}<{$userSend.email}>">&lt;{$userSend.email}&gt;</a></td>
+  </tr>
+{/if}  
 </table>
-<p>{Label comment.mail.showcommentinprojectview}: <a href="{$commentlink}">{Label comment.mail.commentlink}</a></p>
-<p>{Label comment.mail.commentfrom} {$userWrite.firstname} {$userWrite.lastname} <a href="mailto:{$userWrite.firstname} {$userWrite.lastname}<{$userWrite.email}>">&lt;{$userWrite.email}&gt;</a></p>
 <p>{$comment.comment}</p>
+
+<p>{Label comment.mail.showcommentinprojectview}:<br>
+<a href="{$commentlink}">{Label comment.mail.commentlink}</a></p>
+
 <table width="600" border="0" cellspacing="0" cellpadding="5">
 	{if sizeof($feedback_users) > 0}
 	<tr>
 		<td width="150" valign="top"><strong>{Label comment.mail.feedbackexpected}</strong></td>
 		<td width="430">
-	    {foreach $feedback_users feedbackUser}
-	    	{$feedbackUser.firstname} {$feedbackUser.lastname}<br>
-	    {/foreach}
+			<ul>
+			{foreach $feedback_users feedbackUser}
+				<li>{$feedbackUser.firstname} {$feedbackUser.lastname} &lt;{$feedbackUser.email}&gt;</li>
+			{/foreach}
+			</ul>
 	    </td>
   	</tr>
  	{/if}

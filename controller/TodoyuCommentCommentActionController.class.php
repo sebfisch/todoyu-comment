@@ -27,19 +27,32 @@
  */
 class TodoyuCommentCommentActionController extends TodoyuActionController {
 
+	/**
+	 * Load edit view of the comment
+	 *
+	 * @param	Array		$params
+	 * @return	String
+	 */
 	public function editAction(array $params) {
 		$idTask		= intval($params['task']);
 		$idComment	= intval($params['comment']);
-		
+
 		return TodoyuCommentRenderer::renderEdit($idTask, $idComment);
 	}
 
+
+
+	/**
+	 * Delete a comment
+	 *
+	 * @param	Array		$params
+	 */
 	public function deleteAction(array $params) {
 		$idComment	= intval($params['comment']);
 		$idTask		= TodoyuCommentManager::getComment($idComment)->getTaskID();
 
 		TodoyuCommentManager::deleteComment($idComment);
-		
+
 		TodoyuHeader::sendTodoyuHeader('idTask', $idTask);
 		TodoyuHeader::sendTodoyuHeader('tabLabel', TodoyuCommentTask::getLabel($idTask));
 	}
@@ -56,19 +69,23 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 		$xmlPath	= 'ext/comment/config/form/comment.xml';
 		$data		= $params['comment'];
 		$idComment	= intval($data['id']);
+		$idTask		= intval($data['id_task']);
 
 		$form		= TodoyuFormManager::getForm($xmlPath, $idComment);
 
 		$form->setFormData($data);
 
+
 		if( $form->isValid() ) {
 			$data	= $form->getStorageData();
-			
+
 			TodoyuCommentManager::saveComment($data);
 			TodoyuHeader::sendTodoyuHeader('tabLabel', TodoyuCommentTask::getLabel($data['id_task']));
 		} else {
 			TodoyuHeader::sendTodoyuErrorHeader();
 			TodoyuHeader::sendTodoyuHeader('idComment', $idComment);
+
+			$form->setRecordID($idTask . '-' . $idComment);
 
 			return $form->render();
 		}

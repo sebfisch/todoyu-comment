@@ -33,9 +33,12 @@
 		<label index="mail.commentlink">Open Comment</label>
 		<label index="mail.showcommentinprojectview">Show Comment in Project view</label>
 		<label index="mail.commentfrom">Comment from</label>
+		<label index="mail.commentsentby">Comment sent by</label>
 		<label index="mail.feedbackexpected">Feedback expected</label>
 		<label index="portal.tab.feedback">Feedback</label>
-		<label index="extconf.htmlformat.label">Send mails in HTML (instead plain text)</label>
+		<label index="js.commentSaved">Comment saved</label>
+		<label index="js.commentSavingFailed">Could not save comment</label>
+		<label index="js.emailSent">Email sent</label>
 	</labels>
 	<labels lang="de">
 		<label index="ext.title">Aufgaben-Kommentar</label>
@@ -70,8 +73,11 @@
 		<label index="mail.commentlink">Offener Kommentar</label>
 		<label index="mail.showcommentinprojectview">Zeige Kommentar in der Projektansicht</label>
 		<label index="mail.commentfrom">Kommentar von</label>
+		<label index="mail.commentsentby">Verschickt von</label>
 		<label index="mail.feedbackexpected">Feedback erwartet</label>
 		<label index="portal.tab.feedback">Feedback</label>
-		<label index="extconf.htmlformat.label">Mails im HTML Format verschicken (anstatt Nur-Text)</label>
+		<label index="js.commentSaved">Kommentar gespeichert</label>
+		<label index="js.commentSavingFailed">Kommentar konnte nicht gespeichert werden</label>
+		<label index="js.emailSent">Email verschickt</label>
 	</labels>
 </locallang>

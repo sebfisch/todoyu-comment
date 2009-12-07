@@ -306,9 +306,15 @@ Todoyu.Ext.comment = {
 			
 			if( response.hasTodoyuError() ) {
 				$('comment-' + idTask + '-' + idComment + '-form').replace(response.responseText);
+				Todoyu.notifyError('[LLL:comment.js.commentSavingFailed]');
 			} else {
 				Todoyu.Ext.comment.List.refresh(idTask);
 				Todoyu.Ext.comment.setTabLabel(idTask, tabLabel);
+				Todoyu.notifySuccess('[LLL:comment.js.commentSaved]');
+				
+				if( response.getTodoyuHeader('sentEmail') ) {
+					Todoyu.notifySuccess('[LLL:comment.js.emailSent]');
+				}
 			}
 		},
 

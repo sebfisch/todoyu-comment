@@ -19,7 +19,7 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-
+	// Include mail library
 require_once( PATH_LIB . '/php/phpmailer/class.phpmailer-lite.php' );
 
 /**
@@ -59,12 +59,12 @@ class TodoyuCommentMailer {
 		$comment	= TodoyuCommentManager::getComment($idComment);
 		$user		= TodoyuUserManager::getUser($idUser);
 
-
+			// Set mail config
 		$mail			= new PHPMailerLite(true);
 		$mail->CharSet	= 'utf-8';
 		$mail->From		= $GLOBALS['CONFIG']['EXT']['comment']['infomail']['email'];
 		$mail->FromName	= $GLOBALS['CONFIG']['EXT']['comment']['infomail']['fromname'];
-		$mail->Subject	= Label('comment.mail.subject') . ': ' . $comment->getTask()->getTitle();
+		$mail->Subject	= Label('comment.mail.subject') . ': ' . $comment->getTask()->getTitle() . ' (#' . $comment->getTask()->getTaskNumber(true) . ')';
 
 		$htmlBody		= self::getMailContentHtml($idComment, $idUser);
 		$textBody		= self::getMailContentText($idComment, $idUser);
@@ -72,71 +72,29 @@ class TodoyuCommentMailer {
 		$mail->MsgHTML($htmlBody, PATH_EXT_COMMENT);
 		$mail->AltBody	= $textBody;
 
-			// Set content
-//		if( self::canSendHtmlFormat() ) {
-//
-//			$mail->MsgHTML($bodyText, PATH_EXT_COMMENT);
-//		} else {
-//			$mail->AltBody	=
-//		}
-//
+
 		$mail->AddAddress($user->getEmail(), $user->getFullName());
 
 		try {
 			$sendStatus	= $mail->Send();
 		} catch(phpmailerException $e) {
-			//TodoyuDebug::printInFirebug($e->getMessage());
 			Todoyu::log($e->getMessage(), LOG_LEVEL_ERROR);
 			echo $e->getMessage()."\n";
 
 		}
 
-
-
 		return $sendStatus;
-
-
-
-//
-//		$comment	= TodoyuCommentManager::getComment($idComment);
-//		$user		= TodoyuUserManager::getUser($idUser);
-
-
-	}
-
-	private static function canSendHtmlFormat() {
-		$extConf	= TodoyuExtConfManager::getExtConf('comment');
-
-		return intval($extConf['htmlformat']) === 1;
 	}
 
 
-	private static function sendMailText($idComment, $idUser) {
 
-	}
-
-	private static function sendMailHtml($idComment, $idUser) {
-		$idComment	= intval($idComment);
-		$idUser		= intval($idUser);
-
-		$bodyText	= self::getMailContentHTML($idComment, $idUser);
-
-
-		$mail			= new PHPMailer();
-		$mail->CharSet	= 'utf-8';
-		$mail->From		= $GLOBALS['CONFIG']['EXT']['comment']['infomail']['email'];
-		$mail->FromName	= $GLOBALS['CONFIG']['EXT']['comment']['infomail']['fromname'];
-		$mail->Subject	= Label('comment.mail.subject') . ': ' . $comment->getTask()->getTitle();
-		$mail->AltBody	= "To view the message, please use an HTML compatible email viewer!";
-
-		$mail->MsgHTML($bodyText, PATH_EXT_COMMENT);
-
-		$mail->AddAddress($user->getEmail(), $user->getFullName());
-
-		return $mail->Send();
-	}
-
-
+	/**
+	 * Get data array to render email
+	 *
+	 * @param	Integer		$idComment
+	 * @param	Integer		$idUser
+	 * @return	Array
+	 */
 	private static function getMailData($idComment, $idUser) {
 		$idComment	= intval($idComment);
 		$idUser		= intval($idUser);
@@ -144,7 +102,8 @@ class TodoyuCommentMailer {
 		$task		= $comment->getTask();
 		$project	= $comment->getProject();
 		$userReceive= TodoyuUserManager::getUser($idUser);
-		$userWrite	= TodoyuAuth::getUser();
+		$userWrite	= $comment->getCreateUser();
+		$userSend	= TodoyuAuth::getUser();
 
 		$data	= array(
 			'comment'		=> $comment->getTemplateData(),
@@ -152,8 +111,11 @@ class TodoyuCommentMailer {
 			'task'			=> $task->getTemplateData(0),
 			'userReceive'	=> $userReceive->getTemplateData(),
 			'userWrite'		=> $userWrite->getTemplateData(),
+			'userSend'		=> $userSend->getTemplateData(),
 			'feedback_users'=> $comment->getFeedbackUsers()
 		);
+
+		TodoyuDebug::printInFirebug($data['feedback_users']);
 
 		$data['tasklink'] = TodoyuDiv::buildUrl(array(
 			'ext'		=> 'project',
@@ -174,7 +136,7 @@ class TodoyuCommentMailer {
 
 
 	/**
-	 * Render content for infomail
+	 * Render content for html mail
 	 *
 	 * @param	Integer		$idComment		Comment to send
 	 * @param	Integer		$idUser			User to send the email to
@@ -191,6 +153,14 @@ class TodoyuCommentMailer {
 	}
 
 
+
+	/**
+	 * Render content for text mail
+	 *
+	 * @param	Integer		$idComment		Comment to send
+	 * @param	Integer		$idUser			User to send the email to
+	 * @return	String
+	 */
 	private static function getMailContentText($idComment, $idUser) {
 		$idComment	= intval($idComment);
 		$idUser		= intval($idUser);

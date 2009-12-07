@@ -114,38 +114,6 @@ class TodoyuCommentRenderer {
 	}
 
 
-
-	/**
-	 * Render email box (form) to send to comments over email to the selected users when task is saved
-	 *
-	 * @param	Integer		$idTask
-	 * @return	String
-	 */
-	public static function renderEmailBox($idTask, $idComment) {
-		$idTask		= intval($idTask);
-		$idComment	= intval($idComment);
-
-		$xmlPath	= 'ext/comment/config/form/comment.xml';
-
-			// Construct form object
-		$form		= TodoyuFormManager::getForm($xmlPath, $idComment);
-
-			// Prepare/ Load (preset e.g) form data
-		$formData	= array(
-			'id_task' => $idTask
-		);
-		$formData	= TodoyuFormHook::callLoadData($xmlPath, $formData, $idComment);
-
-			// Set form data
-		$form->setFormData( $formData );
-		$form->setRecordID( $idTask . '-' . $idComment );
-
-			// Render
-		return $form->getField('emailinfo')->render();
-	}
-
-
-
 	/**
 	 * Get tab label for portal feedback task
 	 *
@@ -165,6 +133,12 @@ class TodoyuCommentRenderer {
 	}
 
 
+
+	/**
+	 * Render feedback tab content in portal
+	 *
+	 * @return	String
+	 */
 	public static function renderPortalFeedbackTabContent() {
 		$taskIDs= TodoyuCommentManager::getFeedbackTaskIDs();
 

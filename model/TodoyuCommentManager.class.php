@@ -90,12 +90,6 @@ class TodoyuCommentManager {
 			// Update comment in database
 		self::updateComment($idComment, $data);
 
-
-			// Send emails
-		if( $sendAsEmail && sizeof($usersEmail) > 0 ) {
-			TodoyuCommentMailer::sendEmails($idComment, $usersEmail);
-		}
-
 			// Set all comments in task as seend
 		TodoyuCommentFeedbackManager::setTaskCommentsAsSeen($data['id_task']);
 
@@ -104,9 +98,14 @@ class TodoyuCommentManager {
 			TodoyuCommentFeedbackManager::addFeedbacks($idComment, $usersFeedback);
 		}
 
-
 			// Call saved hook
 		TodoyuHookManager::callHook('comment', 'saved', array($idComment));
+
+			// Send emails
+		if( $sendAsEmail && sizeof($usersEmail) > 0 ) {
+			TodoyuCommentMailer::sendEmails($idComment, $usersEmail);
+			TodoyuHeader::sendTodoyuHeader('sentEmail', true);
+		}
 
 		return $idComment;
 	}
