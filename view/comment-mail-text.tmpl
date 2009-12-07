@@ -1,0 +1,21 @@
+{Label comment.mail.newcomment}
+
+{Label project.project}: {htmlencode $project.title}
+{Label task.task}: {htmlencode $task.title} ({$task.id_project}.{$task.tasknumber}) [{$tasklink}]
+
+{Label comment.mail.showcommentinprojectview}: {$commentlink}
+
+{Label comment.mail.commentfrom}: {$userWrite.firstname} {$userWrite.lastname} {$userWrite.firstname} {$userWrite.lastname}<{$userWrite.email}>
+
+{$comment.comment}
+
+
+{if sizeof($feedback_users) > 0}
+
+{Label comment.mail.feedbackexpected}:
+{foreach $feedback_users feedbackUser}
+{$feedbackUser.firstname} {$feedbackUser.lastname}
+{/foreach}
+
+{Label task.description}:
+{$task.description}

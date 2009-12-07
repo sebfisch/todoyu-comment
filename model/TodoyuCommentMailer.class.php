@@ -20,7 +20,7 @@
 ***************************************************************/
 
 
-require_once( PATH_LIB . '/php/phpmailer/class.phpmailer.php' );
+require_once( PATH_LIB . '/php/phpmailer/class.phpmailer-lite.php' );
 
 /**
  * Send comment mails
@@ -40,7 +40,7 @@ class TodoyuCommentMailer {
 		$userIDs	= TodoyuArray::intval($userIDs, true, true);
 
 		foreach($userIDs as $idUser) {
-			$result = self::sendCommentEmail($idComment, $idUser);
+			$result = self::sendMail($idComment, $idUser);
 		}
 	}
 
@@ -53,13 +53,73 @@ class TodoyuCommentMailer {
 	 * @param	Integer		$idUser
 	 * @return	Boolean		Success
 	 */
-	private static function sendCommentEmail($idComment, $idUser) {
+	public static function sendMail($idComment, $idUser) {
 		$idComment	= intval($idComment);
 		$idUser		= intval($idUser);
 		$comment	= TodoyuCommentManager::getComment($idComment);
 		$user		= TodoyuUserManager::getUser($idUser);
 
-		$bodyText	= self::getMailContent($idComment, $idUser);
+
+		$mail			= new PHPMailerLite(true);
+		$mail->CharSet	= 'utf-8';
+		$mail->From		= $GLOBALS['CONFIG']['EXT']['comment']['infomail']['email'];
+		$mail->FromName	= $GLOBALS['CONFIG']['EXT']['comment']['infomail']['fromname'];
+		$mail->Subject	= Label('comment.mail.subject') . ': ' . $comment->getTask()->getTitle();
+
+		$htmlBody		= self::getMailContentHtml($idComment, $idUser);
+		$textBody		= self::getMailContentText($idComment, $idUser);
+
+		$mail->MsgHTML($htmlBody, PATH_EXT_COMMENT);
+		$mail->AltBody	= $textBody;
+
+			// Set content
+//		if( self::canSendHtmlFormat() ) {
+//
+//			$mail->MsgHTML($bodyText, PATH_EXT_COMMENT);
+//		} else {
+//			$mail->AltBody	=
+//		}
+//
+		$mail->AddAddress($user->getEmail(), $user->getFullName());
+
+		try {
+			$sendStatus	= $mail->Send();
+		} catch(phpmailerException $e) {
+			//TodoyuDebug::printInFirebug($e->getMessage());
+			Todoyu::log($e->getMessage(), LOG_LEVEL_ERROR);
+			echo $e->getMessage()."\n";
+
+		}
+
+
+
+		return $sendStatus;
+
+
+
+//
+//		$comment	= TodoyuCommentManager::getComment($idComment);
+//		$user		= TodoyuUserManager::getUser($idUser);
+
+
+	}
+
+	private static function canSendHtmlFormat() {
+		$extConf	= TodoyuExtConfManager::getExtConf('comment');
+
+		return intval($extConf['htmlformat']) === 1;
+	}
+
+
+	private static function sendMailText($idComment, $idUser) {
+
+	}
+
+	private static function sendMailHtml($idComment, $idUser) {
+		$idComment	= intval($idComment);
+		$idUser		= intval($idUser);
+
+		$bodyText	= self::getMailContentHTML($idComment, $idUser);
 
 
 		$mail			= new PHPMailer();
@@ -77,15 +137,7 @@ class TodoyuCommentMailer {
 	}
 
 
-
-	/**
-	 * Render content for infomail
-	 *
-	 * @param	Integer		$idComment		Comment to send
-	 * @param	Integer		$idUser			User to send the email to
-	 * @return	String
-	 */
-	private static function getMailContent($idComment, $idUser) {
+	private static function getMailData($idComment, $idUser) {
 		$idComment	= intval($idComment);
 		$idUser		= intval($idUser);
 		$comment	= TodoyuCommentManager::getComment($idComment);
@@ -94,7 +146,6 @@ class TodoyuCommentMailer {
 		$userReceive= TodoyuUserManager::getUser($idUser);
 		$userWrite	= TodoyuAuth::getUser();
 
-		$tmpl	= 'ext/comment/view/comment-mail.tmpl';
 		$data	= array(
 			'comment'		=> $comment->getTemplateData(),
 			'project' 		=> $project->getTemplateData(),
@@ -116,6 +167,36 @@ class TodoyuCommentMailer {
 			'task'		=> $task->getID(),
 			'tab'		=> 'comment'
 		), 'task-comment-' . $comment->getID(), true);
+
+		return $data;
+	}
+
+
+
+	/**
+	 * Render content for infomail
+	 *
+	 * @param	Integer		$idComment		Comment to send
+	 * @param	Integer		$idUser			User to send the email to
+	 * @return	String
+	 */
+	private static function getMailContentHtml($idComment, $idUser) {
+		$idComment	= intval($idComment);
+		$idUser		= intval($idUser);
+
+		$tmpl		= 'ext/comment/view/comment-mail-html.tmpl';
+		$data		= self::getMailData($idComment, $idUser);
+
+		return render($tmpl, $data);
+	}
+
+
+	private static function getMailContentText($idComment, $idUser) {
+		$idComment	= intval($idComment);
+		$idUser		= intval($idUser);
+
+		$tmpl		= 'ext/comment/view/comment-mail-text.tmpl';
+		$data		= self::getMailData($idComment, $idUser);
 
 		return render($tmpl, $data);
 	}
