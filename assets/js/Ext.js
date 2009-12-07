@@ -130,8 +130,8 @@ Todoyu.Ext.comment = {
 	/**
 	 * Set Label (on adding or removing comment)
 	 * 
-	 * @param	Integer idTask
-	 * @param	String	label
+	 *	@param	Integer idTask
+	 *	@param	String	label
 	 */
 	setTabLabel: function(idTask, label){
 		$('task-' + idTask + '-tabhead-comment-label').select('.labeltext').first().update(label);
@@ -330,8 +330,8 @@ Todoyu.Ext.comment = {
 		/**
 		 * Evoked after completion of removing comment
 		 * 
-		 * @param	Integer	idTask
-		 * @param	Object	response
+		 *	@param	Integer	idTask
+		 *	@param	Object	response
 		 */
 		onRemoved: function(response){
 			var tabLabel	=	response.getTodoyuHeader('tabLabel');
