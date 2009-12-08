@@ -65,16 +65,19 @@ class TodoyuCommentSearch implements TodoyuSearchEngineIf {
 						u.firstname,
 						p.title as projecttitle,
 						cust.shortname as customer';
+
 			$table	= '	ext_comment_comment c,
 						ext_project_task t,
 						ext_project_project p,
 						ext_user_user u,
 						ext_user_customer cust';
-			$where	= '	c.id IN(' . implode(',', $commentIDs) . ') AND
-						c.id_task 			= t.id AND
-						c.id_user_create 	= u.id AND
-						t.id_project		= p.id AND
-						p.id_customer		= cust.id';
+
+			$where	= '	c.id IN(' . implode(',', $commentIDs) . ')
+						AND c.id_task 			= t.id
+						AND c.id_user_create 	= u.id
+						AND t.id_project		= p.id
+						AND p.id_customer		= cust.id';
+
 			$order	= '	c.date_create DESC';
 
 			$comments = Todoyu::db()->getArray($fields, $table, $where, '', $order);

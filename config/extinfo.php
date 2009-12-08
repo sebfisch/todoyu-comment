@@ -23,24 +23,23 @@
  * Various comment extension info data
  */
 
-
 $CONFIG['EXT']['comment']['info'] = array(
 	'title'				=> 'Task comments management',
 	'description' 		=> '',
 	'author' 			=> array(
-		'name'		=> 'Todoyu Core Team',
-		'email'		=> 'team@todoyu.com',
-		'company'	=> 'Snowflake Productions, Zürich'
+		'name'				=> 'Todoyu Core Team',
+		'email'				=> 'team@todoyu.com',
+		'company'			=> 'Snowflake Productions, Zürich'
 	),
 	'dependencies' 		=> 'project',
 	'conflicts'			=> '',
 	'state' 			=> 'beta',
-	'version' => '0.1.0',
-	'constraints' => array(
-		'depends' => array(
-			'project' 		=> '0.1.0',
+	'version'			=> '0.1.0',
+	'constraints'		=> array(
+		'depends'			=> array(
+			'project' 			=> '0.1.0',
 		),
-		'conflicts' => array(
+		'conflicts' 		=> array(
 
 		),
 		'suggests' => array(
@@ -48,6 +47,5 @@ $CONFIG['EXT']['comment']['info'] = array(
 		),
 	)
 );
-
 
 ?>
