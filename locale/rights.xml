@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<locallang>
+	<labels lang="en">
+		<label index="section.general">General settings</label>
+		<label index="right.use">Use comments</label>
+	</labels>
+	<labels lang="de">
+		
+	</labels>	
+</locallang>
