@@ -27,7 +27,7 @@
  */
 
 	// Add task tab for comments
-TodoyuTaskManager::registerTaskTab('comment', 'TodoyuCommentTask::getLabel', 'TodoyuCommentTask::getContent', 20);
+TodoyuTaskManager::addTaskTab('comment', 'TodoyuCommentTask::getLabel', 'TodoyuCommentTask::getContent', 20);
 
 	// Add portal tab for feedbacks
 TodoyuPortalManager::addTab('feedback', 'TodoyuCommentRenderer::renderPortalFeedbackTabLabel', 'TodoyuCommentRenderer::renderPortalFeedbackTabContent', 30, array('comment/public'));
