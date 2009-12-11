@@ -22,7 +22,6 @@
  * Ext: comment
  *
  */
-
 Todoyu.Ext.comment = {
 
 	PanelWidget: {},
@@ -33,17 +32,28 @@ Todoyu.Ext.comment = {
 	 *
 	 *	@param	Integer	idComment
 	 */
-	togglePublicStatus: function(idComment) {
+	togglePublic: function(idComment) {
 		var url		= Todoyu.getUrl('comment', 'task');
 		var options	= {
 			'parameters': {
-				'action':	'togglecustomervisibility',
+				'action':	'togglepublic',
 				'comment':	idComment
-			}
+			},
+			'onComplete': this.onToggledPublic.bind(this, idComment)
 		};
 
 		Todoyu.send(url , options);
-
+	},
+	
+	
+	
+	/**
+	 * Handler for togglePublic
+	 * 
+	 * @param	Integer			idComment
+	 * @param	Ajax.Response	response
+	 */
+	onToggledPublic: function(idComment, response) {
 		$('task-comment-' + idComment).toggleClassName('isPublic');
 		$('public-trigger-' + idComment).toggleClassName('comment-public');
 	},
@@ -55,29 +65,28 @@ Todoyu.Ext.comment = {
 	 *
 	 *	@param	Integer	idComment
 	 */
-	setSeenStatus: function(idComment)	{
+	setSeenStatus: function(idComment, idUser)	{
 		var url		= Todoyu.getUrl('comment', 'task');
 		var options	= {
 			'parameters': {
 				'action':	'seen',
 				'comment':	idComment
 			},
-			'onComplete': this.onSeenStatusSet.bind(this, idComment)
+			'onComplete': this.onSeenStatusSet.bind(this, idComment, idUser)
 		};
 
 		Todoyu.send(url, options);
 	},
 
-
-
+	
 	/**
-	 *	Event handler: onToggleSeenStatus (evoked after toggeling of 'seen' status)
-	 *
-	 *	@param	Object	response
+	 * Handler for setSeenStatus
+	 * 
+	 * @param	Integer			idComment
+	 * @param	Integer			idUser
+	 * @param	Ajax.Response	response
 	 */
-	onSeenStatusSet: function(idComment, response)	{
-		var idUser		= response.getTodoyuHeader('idUser');
-
+	onSeenStatusSet: function(idComment, idUser, response) {
 			// Remove unseen icon
 		$('comment-' + idComment + '-seenstatus').remove();
 			// Remove class which marks the name unseen

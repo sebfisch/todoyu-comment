@@ -37,6 +37,16 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 		$idTask		= intval($params['task']);
 		$idComment	= intval($params['comment']);
 
+		if( $idComment === 0 ) {
+			restrict('comment', 'add');
+		} else {
+			$comment	= TodoyuCommentManager::getComment($idComment);
+				// User is the creator or has right editAll
+			if( ! $comment->isCurrentUserCreator() ) {
+				restrict('comment', 'editAll');
+			}
+		}
+
 		return TodoyuCommentRenderer::renderEdit($idTask, $idComment);
 	}
 
@@ -49,9 +59,16 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 	 */
 	public function deleteAction(array $params) {
 		$idComment	= intval($params['comment']);
-		$idTask		= TodoyuCommentManager::getComment($idComment)->getTaskID();
+		$comment	= TodoyuCommentManager::getComment($idComment);
+
+			// User is the creator or has right deleteAll
+		if( ! $comment->isCurrentUserCreator() ) {
+			restrict('comment', 'deleteAll');
+		}
 
 		TodoyuCommentManager::deleteComment($idComment);
+
+		$idTask	= $comment->getTaskID();
 
 		TodoyuHeader::sendTodoyuHeader('idTask', $idTask);
 		TodoyuHeader::sendTodoyuHeader('tabLabel', TodoyuCommentTask::getLabel($idTask));
@@ -71,7 +88,17 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 		$idComment	= intval($data['id']);
 		$idTask		= intval($data['id_task']);
 
-		$form		= TodoyuFormManager::getForm($xmlPath, $idComment);
+			// Check rights
+		if( $idComment === 0 ) {
+			restrict('comment', 'add');
+		} else {
+			$comment	= TodoyuCommentManager::getComment($idComment);
+			if( ! $comment->isCurrentUserCreator() ) {
+				restrict('comment', 'editAll');
+			}
+		}
+
+		$form	= TodoyuFormManager::getForm($xmlPath, $idComment);
 
 		$form->setFormData($data);
 

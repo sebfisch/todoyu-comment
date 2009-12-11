@@ -61,8 +61,15 @@ class TodoyuCommentTask {
 		$idTask		= intval($idTask);
 		$numComments= TodoyuCommentManager::getNumberOfTaskComments($idTask);
 
+			// If no comments
 		if( $numComments === 0 ) {
-			return TodoyuCommentRenderer::renderEdit($idTask, 0);
+			if( allowed('comment', 'add') ) {
+					// Show form to add first task if allowed
+				return TodoyuCommentRenderer::renderEdit($idTask, 0);
+			} else {
+					// Show info message
+				return TodoyuCommentRenderer::renderNoCommentsInfo();
+			}
 		} else {
 			return TodoyuCommentRenderer::renderCommentList($idTask);
 		}

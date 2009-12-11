@@ -154,14 +154,22 @@ class TodoyuCommentFeedbackManager {
 		$table	= self::TABLE;
 		$where	= '	id_comment = ' . $idComment. ' AND
 					id_user_feedback = '.$idUser;
-		$values	= array(
+		$data	= array(
 			'is_seen' => 1
 		);
 
-		return Todoyu::db()->doUpdate($table, $where, $values) === 1;
+		return Todoyu::db()->doUpdate($table, $where, $data) === 1;
 	}
 
 
+
+	/**
+	 * Set all comments in a task as seen by an user
+	 *
+	 * @param	Integer		$idTask
+	 * @param	Integer		$idUser
+	 * @return	Integer		Number of updated comments
+	 */
 	public static function setTaskCommentsAsSeen($idTask, $idUser = 0) {
 		$idTask	= intval($idTask);
 		$idUser	= userid($idUser);

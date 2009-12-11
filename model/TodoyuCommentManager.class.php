@@ -201,6 +201,14 @@ class TodoyuCommentManager {
 		$where	= 'id_task = ' . $idTask . ' AND deleted = 0';
 		$order	= 'date_create ' . $sortDir;
 
+			// Limit comment it own and public if user can't see ALL comments
+		if( ! allowed('comment', 'seeAll') ) {
+			$where .= ' AND	(
+							id_user_create	= ' . userid() . ' OR
+							is_public		= 1
+						)';
+		}
+
 		return Todoyu::db()->getColumn($fields, $table, $where, '', $order);
 	}
 

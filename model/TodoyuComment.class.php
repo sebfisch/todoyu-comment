@@ -91,7 +91,7 @@ class TodoyuComment extends TodoyuBaseObject {
 	 * @return	Integer
 	 */
 	public function getCreateUserID() {
-		return $this->data['id_user_create'];
+		return intval($this->data['id_user_create']);
 	}
 
 

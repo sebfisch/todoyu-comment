@@ -36,6 +36,5 @@ TodoyuLocale::register('comment', PATH_EXT_COMMENT . '/locale/ext.xml');
 	// Request configurations
 require_once( PATH_EXT_COMMENT . '/config/extension.php' );
 require_once( PATH_EXT_COMMENT . '/config/search.php' );
-//require_once( PATH_EXT_COMMENT . '/dwoo/plugins.php');
 
 ?>

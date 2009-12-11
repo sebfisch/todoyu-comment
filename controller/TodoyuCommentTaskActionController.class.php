@@ -27,6 +27,23 @@
  */
 class TodoyuCommentTaskActionController extends TodoyuActionController {
 
+	/**
+	 * Initialize controller, check use right
+	 *
+	 * @param	Array		$params
+	 */
+	public function init(array $params) {
+		restrict('comment', 'use');
+	}
+
+
+
+	/**
+	 * Get comment list for tasktab
+	 *
+	 * @param	Array		$params
+	 * @return	String
+	 */
 	public function listAction(array $params) {
 		$idTask	= intval($params['task']);
 		$desc	= intval($params['desc']) === 1;
@@ -35,22 +52,31 @@ class TodoyuCommentTaskActionController extends TodoyuActionController {
 	}
 
 
-	public function togglecustomervisibilityAction(array $params) {
+
+	/**
+	 * Toggle visibility of a comment
+	 *
+	 * @param	Array		$params
+	 */
+	public function togglepublicAction(array $params) {
+		restrict('comment', 'makePublic');
+
 		$idComment	= intval($params['comment']);
 
 		TodoyuCommentManager::toggleCustomerVisibility($idComment);
 	}
 
+
+
+	/**
+	 * Mark an as feedback requested comment as seen
+	 *
+	 * @param	Array		$params
+	 */
 	public function seenAction(array $params) {
-		$idUser		= userid();
 		$idComment	= intval($params['comment']);
 
-		TodoyuCommentFeedbackManager::setAsSeen($idComment, $idUser);
-
-		TodoyuHeader::sendTodoyuHeader('idComment', $idComment);
-		TodoyuHeader::sendTodoyuHeader('idUser', $idUser);
-
-		return 'done';
+		TodoyuCommentFeedbackManager::setAsSeen($idComment);
 	}
 
 }

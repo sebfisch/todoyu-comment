@@ -36,6 +36,10 @@
 					<fieldClass>selectgrouped</fieldClass>
 					<size>7</size>
 					<multiple/>
+					<restrict conjunction="and">
+						<allow ext="comment" right="sendAsEmail" />
+						<allow ext="comment" right="requestFeedback" />
+					</restrict>
 				</field>
 
 				<field type="checkbox" name="is_public">

@@ -3,6 +3,14 @@
 	<labels lang="en">
 		<label index="section.general">General settings</label>
 		<label index="right.use">Use comments</label>
+		<label index="section.task">Task</label>
+		<label index="right.seeAll">See All Comments (not public)</label>
+		<label index="right.add">Add a new comment</label>
+		<label index="right.requestFeedback">Request Feedback</label>
+		<label index="right.makePublic">Set Comment Public</label>
+		<label index="right.sendAsEmail">Send Comment as Email</label>
+		<label index="right.deleteAll">Delete ALL Comments</label>
+		<label index="right.editAll">Edit ALL Comments</label>
 	</labels>
 	<labels lang="de">
 		

@@ -5,4 +5,14 @@
 		<right name="use" />
 	</section>
 	
+	<section name="task" require="use">
+		<right name="seeAll" />
+		<right name="add" />
+		<right name="requestFeedback" require="add" />
+		<right name="makePublic" />
+		<right name="sendAsEmail" />
+		<right name="deleteAll" />
+		<right name="editAll" />
+	</section>
+	
 </rights>

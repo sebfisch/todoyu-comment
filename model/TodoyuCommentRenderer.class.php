@@ -25,9 +25,7 @@
  * @package		Todoyu
  * @subpackage	Comment
  */
-
 class TodoyuCommentRenderer {
-
 
 	/**
 	 * Render a comment
@@ -40,10 +38,10 @@ class TodoyuCommentRenderer {
 
 		$comment	= TodoyuCommentManager::getComment($idComment);
 
+		$tmpl		= 'ext/comment/view/comment.tmpl';
 		$data		= $comment->getTemplateData(true);
-		$data['isInternal'] =  Todoyu::user()->isInternal();
 
-		return render('ext/comment/view/comment.tmpl', $data);
+		return render($tmpl, $data);
 	}
 
 
@@ -59,20 +57,27 @@ class TodoyuCommentRenderer {
 		$idTask		= intval($idTask);
 		$desc		= $desc ? true : false;
 
+		$tmpl	= 'ext/comment/view/list.tmpl';
 		$data	= array(
 			'idTask'	=> $idTask,
 			'desc'		=> $desc,
 			'descClass'	=> $desc ? 'desc' : 'asc',
-			'comments'	=> ''
+			'comments'	=> array()
 		);
 
 		$commentIDs	= TodoyuCommentManager::getTaskCommentIDs($idTask, $desc);
 
 		foreach($commentIDs as $idComment) {
-			$data['comments'] .= self::renderComment($idComment);
+			$data['comments'][$idComment] = self::renderComment($idComment);
 		}
 
-		return render('ext/comment/view/list.tmpl', $data);
+		return render($tmpl, $data);
+	}
+
+
+
+	public static function renderNoCommentsInfo() {
+		return 'No Comments';
 	}
 
 
