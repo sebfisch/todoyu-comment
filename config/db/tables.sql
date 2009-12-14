@@ -2,7 +2,7 @@
 -- Table structure for table `ext_comment_comment`
 --
 
-CREATE TABLE IF NOT EXISTS `ext_comment_comment` (
+CREATE TABLE `ext_comment_comment` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `date_update` int(10) unsigned NOT NULL DEFAULT '0',
   `date_create` int(10) unsigned NOT NULL DEFAULT '0',
@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS `ext_comment_comment` (
 -- Table structure for table `ext_comment_feedback`
 --
 
-CREATE TABLE IF NOT EXISTS `ext_comment_feedback` (
+CREATE TABLE `ext_comment_feedback` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `date_create` int(10) unsigned NOT NULL,
   `date_update` int(10) unsigned NOT NULL,
