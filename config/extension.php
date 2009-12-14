@@ -44,8 +44,10 @@ if( allowed('comment', 'use') ) {
 		// Add task tab for comments
 	TodoyuTaskManager::addTaskTab('comment', 'TodoyuCommentTask::getLabel', 'TodoyuCommentTask::getContent', 20);
 
-		// Add portal tab for feedbacks
-	TodoyuPortalManager::addTab('feedback', 'TodoyuCommentRenderer::renderPortalFeedbackTabLabel', 'TodoyuCommentRenderer::renderPortalFeedbackTabContent', 30, array('comment/public'));
+	if( TodoyuExtensions::isInstalled('portal') ) {
+			// Add portal tab for feedbacks
+		TodoyuPortalManager::addTab('feedback', 'TodoyuCommentRenderer::renderPortalFeedbackTabLabel', 'TodoyuCommentRenderer::renderPortalFeedbackTabContent', 30, array('comment/public'));
+	}
 
 		// Add task contextmenu to add comments to task
 	TodoyuContextMenuManager::registerFunction('Task', 'TodoyuCommentManager::getTaskContextMenuItems', 150);
