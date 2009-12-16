@@ -13,6 +13,15 @@
 		<label index="right.editAll">Edit ALL Comments</label>
 	</labels>
 	<labels lang="de">
-		
-	</labels>	
+		<label index="section.general">Allgemeine Einstellungen</label>
+		<label index="right.use">Benutze Kommentare</label>
+		<label index="section.task">Aufgabe</label>
+		<label index="right.seeAll">Sieht alle Kommentare (nicht öffentliche)</label>
+		<label index="right.add">Neuer Kommentar hinzufügen</label>
+		<label index="right.requestFeedback">Feedback von anderen anfordern</label>
+		<label index="right.makePublic">Kommentar öffentlich machen</label>
+		<label index="right.sendAsEmail">Kommentar als Email versenden</label>
+		<label index="right.deleteAll">Kann alle Kommentare löschen</label>
+		<label index="right.editAll">Kann alle Kommentare bearbeiten</label>
+	</labels>
 </locallang>
