@@ -7,7 +7,7 @@
 *
 *  This script is part of the todoyu project.
 *  The todoyu project is free software; you can redistribute it and/or modify
-*  it under the terms of the GNU General Public License, version 2, 
+*  it under the terms of the GNU General Public License, version 2,
 *  (http://www.gnu.org/licenses/old-licenses/gpl-2.0.html) as published by
 *  the Free Software Foundation;
 *
@@ -24,7 +24,7 @@ $CONFIG['EXT']['comment']['ContextMenu']['Task'] = array(
 		'submenu' => array(
 			'add-comment' => array(
 				'key'		=> 'add-comment',
-				'label'		=> 'LLL:comment.contextmenu.task.addcomment',
+				'label'		=> 'comment.contextmenu.task.addcomment',
 				'jsAction'	=> 'Todoyu.Ext.comment.addTaskComment(#ID#)',
 				'class'		=> 'task-ctxmenu task-add-comment'
 			)

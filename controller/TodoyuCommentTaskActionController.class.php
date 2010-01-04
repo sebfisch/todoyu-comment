@@ -63,7 +63,7 @@ class TodoyuCommentTaskActionController extends TodoyuActionController {
 
 		$idComment	= intval($params['comment']);
 
-		TodoyuCommentManager::toggleCustomerVisibility($idComment);
+		TodoyuCommentManager::togglePublic($idComment);
 	}
 
 

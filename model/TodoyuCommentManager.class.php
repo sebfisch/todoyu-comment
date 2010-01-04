@@ -227,7 +227,7 @@ class TodoyuCommentManager {
 
 
 	/**
-	 * Change comment visibility for customers
+	 * Change comments public flag
 	 *
 	 * @param	Integer		$idComment
 	 * @param	Boolean		$public
@@ -301,12 +301,12 @@ class TodoyuCommentManager {
 
 
 	/**
-	 * Toggle customer visibility of comment
+	 * Toggle comment public flag
 	 *
-	 * @param	Integer	$idComment
+	 * @param	Integer		$idComment
 	 * @return	Integer
 	 */
-	public static function toggleCustomerVisibility($idComment) {
+	public static function togglePublic($idComment) {
 		$idComment	= intval($idComment);
 
 		return Todoyu::db()->doBooleanInvert(self::TABLE, $idComment, 'is_public');

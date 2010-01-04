@@ -64,19 +64,19 @@ class TodoyuCommentSearch implements TodoyuSearchEngineIf {
 						u.lastname,
 						u.firstname,
 						p.title as projecttitle,
-						cust.shortname as customer';
+						comp.shortname as company';
 
 			$table	= '	ext_comment_comment c,
 						ext_project_task t,
 						ext_project_project p,
 						ext_user_user u,
-						ext_user_customer cust';
+						ext_user_company comp';
 
 			$where	= '	c.id IN(' . implode(',', $commentIDs) . ')
 						AND c.id_task 			= t.id
 						AND c.id_user_create 	= u.id
 						AND t.id_project		= p.id
-						AND p.id_customer		= cust.id';
+						AND p.id_company		= comp.id';
 
 			$order	= '	c.date_create DESC';
 
@@ -91,7 +91,7 @@ class TodoyuCommentSearch implements TodoyuSearchEngineIf {
 				$suggestions[] = array(
 					'labelTitle'=> TodoyuTime::format($comment['date_create'], 'D2M2Y2') . ': ' . $taskTitle . ' [' . $comment['id_project'] . '.' . $comment['tasknumber'] . ']',
 					'labelInfo'	=> $textShort,
-					'title'		=> $comment['firstname'] . ' ' . $comment['lastname'] . ', ' . $comment['customer'] . ': ' . $comment['projecttitle'] . ' # ' . $textLong,
+					'title'		=> $comment['firstname'] . ' ' . $comment['lastname'] . ', ' . $comment['company'] . ': ' . $comment['projecttitle'] . ' # ' . $textLong,
 					'onclick'	=> 'location.href=\'?ext=project&amp;project=' . $comment['id_project'] . '&amp;task=' . $comment['taskid'] . '&amp;tab=comment#task-comment-' . $comment['id'] . '\'');
 			}
 		}
