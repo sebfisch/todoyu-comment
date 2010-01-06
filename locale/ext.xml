@@ -42,6 +42,8 @@
 		<label index="js.commentSaved">Comment saved</label>
 		<label index="js.commentSavingFailed">Could not save comment</label>
 		<label index="js.emailSent">Email sent</label>
+		<label index="extconf.autorequestownerfeedback.label">Usergroup(s) to auto-request feedback from task owner: (removes feedback option with free receiver selection)</label>
+		<label index="extconf.automailcommenttoowner.label">Usergroup(s) to auto-mail comment to task owner: (removes mailing option with free receiver selection)</label>
 	</labels>
 	<labels lang="de">
 		<label index="ext.title">Aufgaben-Kommentar</label>
@@ -85,5 +87,7 @@
 		<label index="js.commentSaved">Kommentar gespeichert</label>
 		<label index="js.commentSavingFailed">Kommentar konnte nicht gespeichert werden</label>
 		<label index="js.emailSent">Email verschickt</label>
+		<label index="extconf.autorequestownerfeedback.label">Usergruppe(n) zu deren Kommentare automat. Feedback vom Task-eigner erwartet wird: (entfernt Feedback-option mit freier Addressaten-Wahl)</label>
+		<label index="extconf.automailcommenttoowner.label">Usergruppe(n) deren Kommentare automat. an den Task-Eigner gemailt werden: (entfernt Mailing-option mit freier Empfänger-Wahl)</label>
 	</labels>
 </locallang>

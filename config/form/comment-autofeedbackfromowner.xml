@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Extends the comment form with auto-feedback from task owner option -->
+<form>
+	<attributes>
+		<attribute name="action">?ext=comment&amp;controller=comment</attribute>
+		<attribute name="name">comment</attribute>
+		<attribute name="onsubmit">return false</attribute>
+		<attribute name="class">formComment</attribute>
+	</attributes>
+	
+	<fieldsets>
+
+		<fieldset name="autofeedbackfromowner">
+			<legend>Left form column</legend>
+			<class>main</class>
+			<elements>
+
+				<field type="select" name="feedback2">
+					<label>comment.edit.autoFeedbackFromOwner</label>
+					<source type="function">
+						<function>TodoyuCommentViewHelper::getFeedbackOwnerOption</function>
+						<lazyInit/>
+					</source>
+					<size>1</size>
+					<disabled>1</disabled>
+					<style>display:none</style>
+				</field>
+
+			</elements>
+		</fieldset>
+
+	</fieldsets>
+</form>

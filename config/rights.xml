@@ -9,10 +9,8 @@
 		<right name="seeAll" />
 		<right name="add" />
 		<right name="requestFeedback" require="add" />
-		<right name="autoRequestFeedbackFromOwner" require="add" />
 		<right name="makePublic" />
 		<right name="sendAsEmail" require="add" />
-		<right name="autoSendAsEmailToTaskOwner" require="add" />
 		<right name="deleteAll" />
 		<right name="editAll" />
 	</section>
