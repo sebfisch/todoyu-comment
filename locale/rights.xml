@@ -10,6 +10,7 @@
 		<label index="right.autoRequestFeedbackFromOwner">Auto-request Feedback from task owner (e.g for customers)</label>
 		<label index="right.makePublic">Set Comment Public</label>
 		<label index="right.sendAsEmail">Send Comment as Email</label>
+		<label index="right.autoSendAsEmailToTaskOwner">Auto-mail comment to task owner</label>
 		<label index="right.deleteAll">Delete ALL Comments</label>
 		<label index="right.editAll">Edit ALL Comments</label>
 	</labels>
@@ -23,6 +24,7 @@
 		<label index="right.autoRequestFeedbackFromOwner">Automat. Feedback vom Task-eigner anfordern (z.B für Kunden)</label>
 		<label index="right.makePublic">Kommentar öffentlich machen</label>
 		<label index="right.sendAsEmail">Kommentar als Email versenden</label>
+		<label index="right.autoSendAsEmailToTaskOwner">Automat. E-Mailen des Kommentars an Task-Eigner</label>
 		<label index="right.deleteAll">Kann alle Kommentare löschen</label>
 		<label index="right.editAll">Kann alle Kommentare bearbeiten</label>
 	</labels>

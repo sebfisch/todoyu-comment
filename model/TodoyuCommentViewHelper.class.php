@@ -51,6 +51,28 @@ class TodoyuCommentViewHelper {
 
 
 	/**
+	 * Get option of task owner as comment email receiver
+	 *
+	 * @param	Array		$formData
+	 * @return	Array
+	 */
+	public static function getTaskOwnerEmailOption(TodoyuFormElement $field) {
+		$idTask		= intval($field->getForm()->getHiddenField('id_task'));
+		$taskOwner	= TodoyuTaskManager::getTaskOwner($idTask);
+
+		$option = array(
+			0 => array(
+				'value'		=> $taskOwner[0]['id'],
+				'label'		=> $taskOwner[0]['lastname'] . ', ' . $taskOwner[0]['firstname'] . ' (' . $taskOwner[0]['email'] . ')',
+			)
+		);
+
+		return $option;
+	}
+
+
+
+	/**
 	 * Get option array for feedback select in comment edit form
 	 * The options are grouped in main groups with contain the options for
 	 * the users
@@ -107,9 +129,7 @@ class TodoyuCommentViewHelper {
 	 * @return	Array
 	 */
 	public static function getFeedbackOwnerOption(TodoyuFormElement $field) {
-		$formData	= $field->getForm()->getFormData();
-		$idTask		= intval($formData['id_task']);
-
+		$idTask		= intval($field->getForm()->getHiddenField('id_task'));
 		$taskOwner	= TodoyuTaskManager::getTaskOwner($idTask);
 
 		$option = array(

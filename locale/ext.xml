@@ -12,6 +12,7 @@
 		<label index="edit.autoFeedbackFromOwner">Feedback requested from task owner</label>
 		<label index="edit.is_public">Is Public</label>
 		<label index="edit.sendasemail">Send as email</label>
+		<label index="edit.autoSentEmailToTaskOwner">Send as email to task owner</label>
 		<label index="edit.sentEmailTo">Send email to</label>
 		<label index="group.employee">Employee</label>
 		<label index="group.projectmembers">Project Members</label>
@@ -54,6 +55,7 @@
 		<label index="edit.autoFeedbackFromOwner">Feedback von Task-Eigner verlangt</label>
 		<label index="edit.is_public">ist öffentlich</label>
 		<label index="edit.sendasemail">Als Email versenden</label>
+		<label index="edit.autoSentEmailToTaskOwner">Als Email an Task-Eigner senden</label>
 		<label index="edit.sentEmailTo">Email senden an</label>
 		<label index="group.employee">Angestellter</label>
 		<label index="group.projectmembers">Projektbeteiligte</label>

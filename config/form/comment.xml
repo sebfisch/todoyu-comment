@@ -47,6 +47,7 @@
 						<function>TodoyuCommentViewHelper::getFeedbackOwnerOption</function>
 						<lazyInit/>
 					</source>
+					<size>1</size>
 					<disabled>1</disabled>
 					<restrict>
 						<allow ext="comment" right="autoRequestFeedbackFromOwner" />
@@ -79,6 +80,20 @@
 					<style>display:none</style>
 					<restrict>
 						<allow ext="comment" right="sendAsEmail" />
+					</restrict>
+				</field>
+				
+				<field type="select" name="emailreceivers">
+					<label>comment.edit.autoSentEmailToTaskOwner</label>
+					<source type="function">
+						<function>TodoyuCommentViewHelper::getTaskOwnerEmailOption</function>
+						<lazyInit/>
+					</source>
+					<size>1</size>
+					<multiple>0</multiple>
+					<disabled>1</disabled>
+					<restrict>
+						<allow ext="comment" right="autoSendAsEmailToTaskOwner" />
 					</restrict>
 				</field>
 
