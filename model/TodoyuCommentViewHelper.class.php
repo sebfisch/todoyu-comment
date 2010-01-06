@@ -98,6 +98,30 @@ class TodoyuCommentViewHelper {
 		return $options;
 	}
 
+
+
+	/**
+	 * Get task owner option for feedback select
+	 *
+	 * @param	Array		$formData
+	 * @return	Array
+	 */
+	public static function getFeedbackOwnerOption(TodoyuFormElement $field) {
+		$formData	= $field->getForm()->getFormData();
+		$idTask		= intval($formData['id_task']);
+
+		$taskOwner	= TodoyuTaskManager::getTaskOwner($idTask);
+
+		$option = array(
+			0 => array(
+				'value'		=> $taskOwner[0]['id'],
+				'label'		=> $taskOwner[0]['lastname'] . ', ' . $taskOwner[0]['firstname'],
+			)
+		);
+
+		return $option;
+	}
+
 }
 
 

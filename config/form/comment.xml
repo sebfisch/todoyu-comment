@@ -40,6 +40,18 @@
 						<allow ext="comment" right="requestFeedback" />
 					</restrict>
 				</field>
+				
+				<field type="select" name="feedback">
+					<label>comment.edit.autoFeedbackFromOwner</label>
+					<source type="function">
+						<function>TodoyuCommentViewHelper::getFeedbackOwnerOption</function>
+						<lazyInit/>
+					</source>
+					<disabled>1</disabled>
+					<restrict>
+						<allow ext="comment" right="autoRequestFeedbackFromOwner" />
+					</restrict>
+				</field>
 
 				<field type="checkbox" name="is_public">
 					<label>comment.edit.is_public</label>
