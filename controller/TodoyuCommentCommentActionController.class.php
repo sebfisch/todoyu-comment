@@ -38,12 +38,12 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 		$idComment	= intval($params['comment']);
 
 		if( $idComment === 0 ) {
-			restrict('comment', 'add');
+			restrict('comment', 'task:add');
 		} else {
 			$comment	= TodoyuCommentManager::getComment($idComment);
 				// User is the creator or has right editAll
 			if( ! $comment->isCurrentUserCreator() ) {
-				restrict('comment', 'editAll');
+				restrict('comment', 'task:editAll');
 			}
 		}
 
@@ -63,7 +63,7 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 
 			// User is the creator or has right deleteAll
 		if( ! $comment->isCurrentUserCreator() ) {
-			restrict('comment', 'deleteAll');
+			restrict('comment', 'task:deleteAll');
 		}
 
 		TodoyuCommentManager::deleteComment($idComment);
@@ -88,7 +88,7 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 		$comment	= TodoyuCommentManager::getComment($idComment);
 			// User is the creator or has right editAll
 		if( ! $comment->isCurrentUserCreator() ) {
-			restrict('comment', 'viewHistory');
+			restrict('comment', 'task:viewHistory');
 		}
 
 		return TodoyuCommentRenderer::renderLog($idTask, $idComment);
@@ -110,11 +110,11 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 
 			// Check rights
 		if( $idComment === 0 ) {
-			restrict('comment', 'add');
+			restrict('comment', 'task:add');
 		} else {
 			$comment	= TodoyuCommentManager::getComment($idComment);
 			if( ! $comment->isCurrentUserCreator() ) {
-				restrict('comment', 'editAll');
+				restrict('comment', 'task:editAll');
 			}
 		}
 

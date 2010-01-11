@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <locallang>
 	<labels lang="en">
-		<label index="section.general">General settings</label>
-		<label index="right.use">Use comments</label>
-		<label index="section.task">Task</label>
-		<label index="right.seeAll">See All Comments (not public)</label>
-		<label index="right.add">Add a new comment</label>
-		<label index="right.requestFeedback">Request Feedback</label>
-		<label index="right.autoRequestFeedbackFromOwner">Auto-request Feedback from task owner (e.g for customers)</label>
-		<label index="right.makePublic">Set Comment Public</label>
-		<label index="right.sendAsEmail">Send Comment as Email</label>
-		<label index="right.autoSendAsEmailToTaskOwner">Auto-mail comment to task owner</label>
-		<label index="right.deleteAll">Delete ALL Comments</label>
-		<label index="right.editAll">Edit ALL Comments</label>
-		<label index="right.viewHistory">Review comment feedbacks and mailing history</label>
+		<label index="general">General settings</label>
+		<label index="general.use">Use comments</label>
+		<label index="task">Task</label>
+		<label index="task.seeAll">See All Comments (not public)</label>
+		<label index="task.add">Add a new comment</label>
+		<label index="task.requestFeedback">Request Feedback</label>
+		<label index="task.autoRequestFeedbackFromOwner">Auto-request Feedback from task owner (e.g for customers)</label>
+		<label index="task.makePublic">Set Comment Public</label>
+		<label index="task.sendAsEmail">Send Comment as Email</label>
+		<label index="task.autoSendAsEmailToTaskOwner">Auto-mail comment to task owner</label>
+		<label index="task.deleteAll">Delete ALL Comments</label>
+		<label index="task.editAll">Edit ALL Comments</label>
+		<label index="task.viewHistory">Review comment feedbacks and mailing history</label>
 	</labels>
 	<labels lang="de">
-		<label index="section.general">Allgemeine Einstellungen</label>
-		<label index="right.use">Benutze Kommentare</label>
-		<label index="section.task">Aufgabe</label>
-		<label index="right.seeAll">Sieht alle Kommentare (nicht öffentliche)</label>
-		<label index="right.add">Neuer Kommentar hinzufügen</label>
-		<label index="right.requestFeedback">Feedback von anderen anfordern</label>
-		<label index="right.autoRequestFeedbackFromOwner">Automat. Feedback vom Task-eigner anfordern (z.B für Kunden)</label>
-		<label index="right.makePublic">Kommentar öffentlich machen</label>
-		<label index="right.sendAsEmail">Kommentar als Email versenden</label>
-		<label index="right.autoSendAsEmailToTaskOwner">Automat. E-Mailen des Kommentars an Task-Eigner</label>
-		<label index="right.deleteAll">Kann alle Kommentare löschen</label>
-		<label index="right.editAll">Kann alle Kommentare bearbeiten</label>
-		<label index="right.viewHistory">Kommentar Feedbacks und Emai Verlauf einsehen</label>
+		<label index="general">Allgemeine Einstellungen</label>
+		<label index="general.use">Benutze Kommentare</label>
+		<label index="task">Aufgabe</label>
+		<label index="task.seeAll">Sieht alle Kommentare (nicht öffentliche)</label>
+		<label index="task.add">Neuer Kommentar hinzufügen</label>
+		<label index="task.requestFeedback">Feedback von anderen anfordern</label>
+		<label index="task.autoRequestFeedbackFromOwner">Automat. Feedback vom Task-eigner anfordern (z.B für Kunden)</label>
+		<label index="task.makePublic">Kommentar öffentlich machen</label>
+		<label index="task.sendAsEmail">Kommentar als Email versenden</label>
+		<label index="task.autoSendAsEmailToTaskOwner">Automat. E-Mailen des Kommentars an Task-Eigner</label>
+		<label index="task.deleteAll">Kann alle Kommentare löschen</label>
+		<label index="task.editAll">Kann alle Kommentare bearbeiten</label>
+		<label index="task.viewHistory">Kommentar Feedbacks und Emai Verlauf einsehen</label>
 	</labels>
 </locallang>

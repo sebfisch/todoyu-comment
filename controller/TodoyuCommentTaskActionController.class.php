@@ -33,7 +33,7 @@ class TodoyuCommentTaskActionController extends TodoyuActionController {
 	 * @param	Array		$params
 	 */
 	public function init(array $params) {
-		restrict('comment', 'use');
+		restrict('comment', 'general:use');
 	}
 
 
@@ -59,7 +59,7 @@ class TodoyuCommentTaskActionController extends TodoyuActionController {
 	 * @param	Array		$params
 	 */
 	public function togglepublicAction(array $params) {
-		restrict('comment', 'makePublic');
+		restrict('comment', 'comment:makePublic');
 
 		$idComment	= intval($params['comment']);
 

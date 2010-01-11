@@ -17,19 +17,19 @@
 			</a>
 		{/if}
 		{* ------------------------ make public ---------------------- *}
-		{restrict comment makePublic}
+		{restrict comment task:makePublic}
 			<a href="javascript:void(0)" onclick="Todoyu.Ext.comment.togglePublic({$id})" class="icon public-trigger {if $is_public}comment-public{/if}" title="{Label comment.icon.toggleCustomerVisibility}" id="public-trigger-{$id}">
 				<span class="hidden">{Label comment.icon.toggleCustomerVisibility}</span>
 			</a>
 		{/restrict}
 		{* -------------------------- delete ------------------------ *}
-		{if allowedOrOwn('comment','deleteAll', $id_user_create)}
+		{if allowedOrOwn('comment','task:deleteAll', $id_user_create)}
 			<a href="javascript:void(0)" onclick="Todoyu.Ext.comment.remove({$id})" class="icon comment-remove" title="{Label comment.icon.remove}">
 				<span class="hidden">{Label comment.icon.remove}</span>
 			</a>
 		{/if}
 		{* --------------------------- toggle log view --------------- *}
-		{restrict 'comment' 'viewHistory'}
+		{restrict 'comment' 'task:viewHistory'}
 			<a id="task-comment-log-{$id}-toggler" href="javascript:void(0)" onclick="Todoyu.Ext.comment.toggleLog({$id})" class="icon comment-log" title="{Label comment.icon.togglelog}">
 				<span class="hidden">{Label comment.icon.remove}</span>
 			</a>

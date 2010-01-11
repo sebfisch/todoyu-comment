@@ -1,5 +1,5 @@
 <div class="tabBlock overflow commentButtons" id="task-{$idTask}-comment-commands">
-{restrict 'comment' 'add'}
+{restrict 'comment' 'task:add'}
 	{Button label="comment.button.addComment" class="addComment" onclick="Todoyu.Ext.comment.edit($idTask, 0)"}
 {/restrict}
 	{Button label="comment.button.reverseOrder" class="reverseOrder $descClass" onclick="Todoyu.Ext.comment.toggleSorting($idTask)"}

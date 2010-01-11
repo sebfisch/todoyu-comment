@@ -40,7 +40,7 @@ $CONFIG['EXT']['comment']['feedbackTabFilters'] = array(
 );
 
 
-if( allowed('comment', 'use') ) {
+if( allowed('comment', 'general:use') ) {
 		// Add task tab for comments
 	TodoyuTaskManager::addTaskTab('comment', 'TodoyuCommentTask::getLabel', 'TodoyuCommentTask::getContent', 20);
 

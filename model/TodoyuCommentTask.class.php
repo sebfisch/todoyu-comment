@@ -63,7 +63,7 @@ class TodoyuCommentTask {
 
 			// If no comments
 		if( $numComments === 0 ) {
-			if( allowed('comment', 'add') ) {
+			if( allowed('comment', 'task:add') ) {
 					// Show form to add first task if allowed
 				return TodoyuCommentRenderer::renderEdit($idTask, 0);
 			} else {

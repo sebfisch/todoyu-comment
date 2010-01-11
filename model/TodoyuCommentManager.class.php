@@ -222,7 +222,7 @@ class TodoyuCommentManager {
 		$order	= 'date_create ' . $sortDir;
 
 			// Limit comment it own and public if user can't see ALL comments
-		if( ! allowed('comment', 'seeAll') ) {
+		if( ! allowed('comment', 'comment:seeAll') ) {
 			$where .= ' AND	(
 							id_user_create	= ' . userid() . ' OR
 							is_public		= 1

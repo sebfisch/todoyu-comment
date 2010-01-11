@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rights>
-	
+
 	<section name="general">
 		<right name="use" />
 	</section>
-	
-	<section name="task" require="use">
+
+	<section name="task" require="general:use">
 		<right name="seeAll" />
 		<right name="add" />
-		<right name="requestFeedback" require="add" />
+		<right name="requestFeedback" require="task:add" />
 		<right name="makePublic" />
-		<right name="sendAsEmail" require="add" />
+		<right name="sendAsEmail" require="task:add" />
 		<right name="deleteAll" />
 		<right name="editAll" />
 		<right name="viewHistory" />
 	</section>
-	
+
 </rights>
