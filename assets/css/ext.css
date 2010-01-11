@@ -224,7 +224,8 @@ li.comment .comment-history {
 }
 
 	.comment-history .log-head {
-		background:url(../img/icons.png) no-repeat 8px -386px;
+		cursor:pointer;
+		background:url(../img/icons.png) no-repeat 6px -447px;
 		padding:4px 0 4px 26px;
 	    background-color:#e8e8e8;
 	}
