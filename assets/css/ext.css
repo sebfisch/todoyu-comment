@@ -220,20 +220,37 @@
    ------------------------------------ */
 li.comment .comment-history {
     border-top:1px dotted #bbb;
-    border-bottom:1px dotted #bbb;
     padding:0 0 1px 0;
 }
 
-.comment-history .log-head {
-	background:url(../img/icons.png) no-repeat 8px -386px;
-	padding:4px 0 4px 26px;
-    background-color:#e8e8e8;
-}
+	.comment-history .log-head {
+		background:url(../img/icons.png) no-repeat 8px -386px;
+		padding:4px 0 4px 26px;
+	    background-color:#e8e8e8;
+	}
+	
+	.comment-history dl {
+		padding:4px 0 6px 8px;
+	}
+		.comment-history dl dt {
+			float:left;
+			width:92px;
+			padding-right:8px;
+		}
+			.comment-history dl dt.indented {
+				float:left;
+				width:92px;
+				padding-left:8px;
+			}
 
-.comment-history dl {
-	padding: 4px 0 6px 8px;
-}
-
+		.comment-history dl dd .user {
+			float:left;
+			width:150px;
+		}
+		.comment-history dl dd .description {
+		    width:360px;
+		    float:left;
+		}
 
 /* ------------------
 	Send as email
@@ -264,9 +281,9 @@ td.custSelectorOptions {
 	padding:0 0 0 4px;
 }
 
-td.custSelectorOptions input.toggleCustSel {
-	margin:0 0 0 0;
-}
+	td.custSelectorOptions input.toggleCustSel {
+		margin:0 0 0 0;
+	}
 
 input.ccommentMail {
 	margin:0 0 -2px 8px;

@@ -138,12 +138,7 @@ class TodoyuCommentRenderer {
 
 			// Render
 		$tmpl	= 'ext/comment/view/history.tmpl';
-
-		$data	= array(
-			'idTask'	=> $idTask,
-			'idComment'	=> $idComment,
-			'history'	=> TodoyuCommentHistoryManager::getHistory($idComment)
-		);
+		$data	=	TodoyuCommentHistoryManager::getHistory($idComment);
 
 		return render($tmpl, $data);
 	}

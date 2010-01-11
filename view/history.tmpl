@@ -1,9 +1,45 @@
 <div class="log-head">
-	{Label comment.history.header} {$history.dateFrom} - {$history.dateLastEntry}
+	{Label comment.history.header} - K{$id}
 </div>
 <dl>
-	<dt>xxx</dt>
-	<dd>aaa</dd>
-</dl>
+	{* --------------------- Comment created --------------------- *}
+	<dt>{date_format $date_create "%d.%m.%y %R"}</dt>
+	<dd class="user">
+		<span class="user">{$user_create}</span>
+		<span class="description">{Label comment.history.created}</span>
+	</dd>
+	<div class="clear"><!-- clear --></div>
 
-{debug $history}
+{foreach $log timestampEntry}
+	{foreach $timestampEntry logEntry}
+		{$curTimestamp	= $logEntry.date_create}
+		{* --------------------- List feedback requests --------------------- *}
+		{if $logEntry.table == 'ext_comment_feedback'}
+	<dt>{date_format $logEntry.date_create "%d.%m.%y %R"}</dt>
+	<dd class="user">
+		<span class="user">{$logEntry.user_create}</span>
+		<span class="description">{Label comment.history.feedbackrequestedfrom}: {$logEntry.user_feedback}</span>
+	</dd>
+	<div class="clear"><!-- clear --></div>
+			{* -------------- List seen if, when -------------- *}
+			{if $logEntry.is_seen == 1}
+	<dt class="indented">{date_format $logEntry.date_update "%d.%m.%y %R"}</dt>
+	<dd class="user">
+		<span class="user">{$logEntry.user_feedback}</span>
+		<span class="description">{Label comment.history.feedbackrequestseen}</span>
+	</dd>
+	<div class="clear"><!-- clear --></div>
+			{/if}
+		{/if}
+		{* --------------------- List mailings --------------------- *}
+		{if $logEntry.table == 'ext_comment_mailed'}
+	<dt>{date_format $logEntry.date_create "%d.%m.%y %R"}</dt>
+	<dd class="user">
+		<span class="user">{$logEntry.user_create}</span>
+		<span class="description">{Label comment.history.mailedto}: {$logEntry.user_mailed}</span>
+	</dd>
+	<div class="clear"><!-- clear --></div>	
+		{/if}
+	{/foreach}
+{/foreach}
+</dl>

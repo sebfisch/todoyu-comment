@@ -31,13 +31,14 @@ CREATE TABLE `ext_comment_feedback` (
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 --
--- Table structure for table `ext_comment_mm_comment_mailedto`
+-- Table structure for table `ext_comment_mailed`
 --
 
-CREATE TABLE `ext_comment_mm_comment_mailedto` (
+CREATE TABLE `ext_comment_mailed` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `date_create` int(10) unsigned NOT NULL,
+  `id_user_create` mediumint(8) unsigned NOT NULL,
   `id_comment` int(10) unsigned NOT NULL,
-  `id_user_mailedto` mediumint(8) unsigned NOT NULL,
+  `id_user_mailed` mediumint(8) unsigned NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;

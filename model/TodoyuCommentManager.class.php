@@ -113,26 +113,6 @@ class TodoyuCommentManager {
 
 
 	/**
-	 * Save log record about comment having been mailed when to which user
-	 *
-	 * @param	Integer		$idComment
-	 * @param	Integer		$idUser
-	 * @return	Integer		New MM relation ID
-	 */
-	public static function saveMailSentLog($idComment, $idUser) {
-		$mmTable= 'ext_comment_mm_comment_mailedto';
-		$data	= array(
-			'date_create'		=> NOW,
-			'id_comment'		=> intval($idComment),
-			'id_user_mailedto'	=> intval($idUser),
-		);
-
-		return Todoyu::db()->addRecord($mmTable, $data);
-	}
-
-
-
-	/**
 	 * Add comment
 	 *
 	 * @param	Array		$data
@@ -285,7 +265,6 @@ class TodoyuCommentManager {
 
 
 
-
 	/**
 	 * Get users which could receive a comment email
 	 *
@@ -356,6 +335,7 @@ class TodoyuCommentManager {
 
 		return array_merge_recursive($items, $allowed);
 	}
+
 
 
 	public static function getFeedbackTaskIDs() {

@@ -35,17 +35,66 @@ class TodoyuCommentHistoryManager {
 	 * @return	Array
 	 */
 	public static function getHistory($idComment = 0) {
-		$comment	= TodoyuCommentManager::getComment($idComment);
+		$idComment	= intval($idComment);
 
-//		TodoyuDebug::printHtml($comment);
+		$commentData	= TodoyuCommentManager::getCommentData($idComment);
+		$userCreate		= TodoyuUserManager::getLabel($commentData['id_user_create'], false);
+
+		$feedbackRequests	= TodoyuCommentFeedbackManager::getFeedbackRequests($idComment, false);
+		$mailsSend			= TodoyuCommentMailManager::getAllSent($idComment);
+
+		$log	= self::mergeAndSortLogEntries($feedbackRequests, $mailsSend);
+		$log	= TodoyuUserViewHelper::getUserLabelsRecursive($log);
 
 		$history	= array(
-			'dateStart'	=> '',
-			'date'		=> '',
+			'id'			=> $idComment,
+			'id_task'		=> $commentData['id_task'],
+			'date_create'	=> $commentData['date_create'],
+			'user_create'	=> $userCreate,
+			'log'			=> $log,
 		);
 
-
 		return $history;
+	}
+
+
+
+	/**
+	 * Merge and sort (by creation timestamp) log record entries of two tables
+	 *
+	 * @param 	Array	$log1
+	 * @param	Array	$log2
+	 * @param	String	$table1
+	 * @param	String	$table2
+	 * @return	Array
+	 */
+	private static function mergeAndSortLogEntries($log1, $log2, $table1 = 'ext_comment_feedback', $table2 = 'ext_comment_mailed') {
+		if ( count($log1) == 0 && count($log2) == 0 ) {
+				// Both logs empty
+			$log	= array();
+		} elseif ( count($log1) > 0 && count($log2) == 0 ) {
+				// Only log1 contains entries
+			$log	= $log1;
+		} elseif ( count($log1) == 0 && count($log2) > 0 ) {
+				// Only log2 contains entries
+			$log	= $log2;
+		} elseif ( count($log1) > 0 && count($log2) > 0 ) {
+				// Both logs contain entries
+			$log	= array();
+				// Merge the two logs
+			foreach($log1 as $data) {
+				$data['table']	= $table1;
+				$log[ $data['date_create'] ][]	= $data;
+			}
+			foreach($log2 as $num	=> $data) {
+				$data['table']	= $table2;
+				$log[ $data['date_create'] ][]	= $data;
+			}
+
+			ksort($log);
+		}
+
+		return $log;
 	}
 
 }

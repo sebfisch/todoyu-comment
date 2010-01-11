@@ -43,7 +43,7 @@ class TodoyuCommentMailer {
 			$result = self::sendMail($idComment, $idUser);
 
 			if ( $result !== false ) {
-				TodoyuCommentManager::saveMailSentLog($idComment, $idUser);
+				TodoyuCommentMailManager::saveMailSent($idComment, $idUser);
 			}
 		}
 	}

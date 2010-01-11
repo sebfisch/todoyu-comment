@@ -45,7 +45,11 @@
 		<label index="js.emailSent">Email sent</label>
 		<label index="extconf.autorequestownerfeedback.label">Usergroup(s) to auto-request feedback from task owner: (removes feedback option with free receiver selection)</label>
 		<label index="extconf.automailcommenttoowner.label">Usergroup(s) to auto-mail comment to task owner: (removes mailing option with free receiver selection)</label>
-		<label index="history.header">Comment History</label>
+		<label index="history.header">Comment History (Feedbacks and Mailing)</label>
+		<label index="history.created">Comment created</label>
+		<label index="history.feedbackrequestedfrom">Feedback requested from</label>
+		<label index="history.feedbackrequestseen">Feedback-request seen</label>
+		<label index="history.mailedto">Comment mailed to</label>
 	</labels>
 	<labels lang="de">
 		<label index="ext.title">Aufgaben-Kommentar</label>
@@ -92,6 +96,10 @@
 		<label index="js.emailSent">Email verschickt</label>
 		<label index="extconf.autorequestownerfeedback.label">Usergruppe(n) zu deren Kommentare automat. Feedback vom Task-eigner erwartet wird: (entfernt Feedback-option mit freier Addressaten-Wahl)</label>
 		<label index="extconf.automailcommenttoowner.label">Usergruppe(n) deren Kommentare automat. an den Task-Eigner gemailt werden: (entfernt Mailing-option mit freier Empfänger-Wahl)</label>
-		<label index="history.header">Kommentar-Verlauf</label>
+		<label index="history.header">Kommentar-Verlauf (Feedbacks und Mailing)</label>
+		<label index="history.created">Kommentar angelegt</label>
+		<label index="history.feedbackrequestedfrom">Feedback erbeten von</label>
+		<label index="history.feedbackrequestseen">Feedback-Bitte gesehen</label>
+		<label index="history.mailedto">Kommentar gemailed an</label>
 	</labels>
 </locallang>

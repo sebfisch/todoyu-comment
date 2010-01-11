@@ -142,6 +142,26 @@ class TodoyuCommentFeedbackManager {
 
 
 	/**
+	 * Check if a comment has a feedback request
+	 *
+	 * @param	Integer		$idComment
+	 * @param	Boolean		$onlyUnseen
+	 * @return	Array
+	 */
+	public static function getFeedbackRequests($idComment, $onlyUnseen = false) {
+		$idComment	= intval($idComment);
+
+		$fields	= '*';
+		$table	= self::TABLE;
+		$where	= 'id_comment = ' . $idComment .
+				  ($onlyUnseen === true ? ' AND is_seen = 0' : '');
+
+		return Todoyu::db()->getArray($fields, $table, $where);
+	}
+
+
+
+	/**
 	 * Set a feedback request as seen
 	 *
 	 * @param	Integer		$idFeedback
@@ -153,9 +173,10 @@ class TodoyuCommentFeedbackManager {
 
 		$table	= self::TABLE;
 		$where	= '	id_comment = ' . $idComment. ' AND
-					id_user_feedback = '.$idUser;
+					id_user_feedback = ' . $idUser;
 		$data	= array(
-			'is_seen' => 1
+			'date_update'	=> NOW,
+			'is_seen' 		=> 1
 		);
 
 		return Todoyu::db()->doUpdate($table, $where, $data) === 1;
