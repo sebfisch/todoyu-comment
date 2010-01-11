@@ -28,9 +28,9 @@ Todoyu.Ext.comment = {
 
 
 	/**
-	 *	Toggle customer visibility of given comment
+	 * Toggle customer visibility of given comment
 	 *
-	 *	@param	Integer	idComment
+	 * @param	Integer	idComment
 	 */
 	togglePublic: function(idComment) {
 		var url		= Todoyu.getUrl('comment', 'task');
@@ -61,9 +61,9 @@ Todoyu.Ext.comment = {
 
 
 	/**
-	 *	Toggle 'seen' status of given comment
+	 * Toggle 'seen' status of given comment
 	 *
-	 *	@param	Integer	idComment
+	 * @param	Integer	idComment
 	 */
 	setSeenStatus: function(idComment, idUser)	{
 		var url		= Todoyu.getUrl('comment', 'task');
@@ -77,6 +77,7 @@ Todoyu.Ext.comment = {
 
 		Todoyu.send(url, options);
 	},
+
 
 	
 	/**
@@ -96,9 +97,9 @@ Todoyu.Ext.comment = {
 
 
 	/**
-	 *	Remove given comment
+	 * Remove given comment
 	 *
-	 *	@param	Integer	idComment
+	 * @param	Integer	idComment
 	 */
 	remove: function(idComment) {
 		if( ! confirm('[LLL:comment.delete.confirm]') ) {
@@ -126,21 +127,21 @@ Todoyu.Ext.comment = {
 
 
 	/**
-	 *	Add new comment to given task
+	 * Add new comment to given task
 	 *
-	 *	@param	Integer	idTask
+	 * @param	Integer	idTask
 	 */
 	addTaskComment: function(idTask) {
 		Todoyu.Ext.project.Task.showDetails(idTask, 'comment');
 	},
-	
-	
-	
+
+
+
 	/**
 	 * Set Label (on adding or removing comment)
 	 * 
-	 *	@param	Integer idTask
-	 *	@param	String	label
+	 * @param	Integer idTask
+	 * @param	String	label
 	 */
 	setTabLabel: function(idTask, label){
 		$('task-' + idTask + '-tabhead-comment-label').select('.labeltext').first().update(label);
@@ -153,10 +154,10 @@ Todoyu.Ext.comment = {
 	 */
 	List: {
 		/**
-		 *	Refresh list of comments of given task, optionally toggle sorting order
+		 * Refresh list of comments of given task, optionally toggle sorting order
 		 *
-		 *	@param	Integer	idTask
-		 *	@param	Integer	desc	(0 or 1)
+		 * @param	Integer	idTask
+		 * @param	Integer	desc	(0 or 1)
 		 */
 		refresh: function(idTask, desc) {
 			var url				= Todoyu.getUrl('comment', 'task');
@@ -187,10 +188,10 @@ Todoyu.Ext.comment = {
 
 
 	/**
-	 *	Check whether sorting of comments of given task is desc (true) or asc (false)
+	 * Check whether sorting of comments of given task is desc (true) or asc (false)
 	 *
-	 *	@param	Integer	idTask
-	 *	@return	Boolean
+	 * @param	Integer	idTask
+	 * @return	Boolean
 	 */
 	checkSortingIsDesc: function( idTask ) {
 		var elementID	= 'task-' + idTask + '-comments';
@@ -206,9 +207,55 @@ Todoyu.Ext.comment = {
 
 
 	/**
-	 *	Toggle sorting of comments of given task
+	 * Toggle display of comment (feedbacks and mailing) log
 	 *
-	 *	@param	Integer	idTask
+	 * @param	Integer	idTask
+	 */
+	toggleLog: function(idComment) {
+		var logDiv	= $('task-comment-log-' + idComment + '-details');
+
+		if( ! logDiv.visible() ) {
+			if( logDiv.empty() ) {
+				
+				var url		= Todoyu.getUrl('comment', 'comment');
+				var options	= {
+					'parameters': {
+						'action':	'log',
+						'comment':	idComment
+					},
+					'onComplete': Todoyu.Ext.comment.onLogToggled.bind(this)
+				};
+				
+//				Todoyu.send(url, options);
+				Todoyu.Ui.update(logDiv, url, options);
+			}
+			logDiv.show();
+		} else {
+			logDiv.hide();
+		}
+		
+		this.updateToggleLogIcon(idComment);
+//		this.saveLogExpanded(idProject, detailDiv.visible());		
+	},
+	
+	
+	
+	onLogToggled: function(idComment, response) {
+//		console.log('OnComplete erreicht');
+	},
+
+
+
+	updateToggleLogIcon: function(idComment) {
+		Todoyu.Ui.updateToggleIcon('task-comment-log-', idComment);	
+	},
+
+
+
+	/**
+	 * Toggle sorting of comments of given task
+	 *
+	 * @param	Integer	idTask
 	 */
 	toggleSorting: function(idTask) {
 		var sortingIsDesc	= this.checkSortingIsDesc(idTask);
@@ -220,11 +267,11 @@ Todoyu.Ext.comment = {
 
 
 	/**
-	 *	Evoke comment editor (of given comment of given task)
-	 *	Note:	there is the method 'edit' and the sub object 'Edit' (case-sensitive) with its own methods
+	 * Evoke comment editor (of given comment of given task)
+	 * Note:	there is the method 'edit' and the sub object 'Edit' (case-sensitive) with its own methods
 	 *
-	 *	@param	Integer	idTask
-	 *	@param	Integer	idComment
+	 * @param	Integer	idTask
+	 * @param	Integer	idComment
 	 */
 	edit: function(idTask, idComment) {
 		var url		= Todoyu.getUrl('comment', 'comment');
@@ -256,17 +303,17 @@ Todoyu.Ext.comment = {
 
 
 	/**
-	 *	Comment editing methods
-	 *	Note:	there is the method 'edit' and the sub object 'Edit' (case-sensitive) with its own methods
+	 * Comment editing methods
+	 * Note:	there is the method 'edit' and the sub object 'Edit' (case-sensitive) with its own methods
 	 */
 	Edit: {
 
 		/**
-		 *	'Email changed' event handler
+		 * 'Email changed' event handler
 		 *
-		 *	@param	String	field
-		 *	@param	Integer	idTask
-		 *	@param	Integer	idComment
+		 * @param	String	field
+		 * @param	Integer	idTask
+		 * @param	Integer	idComment
 		 */
 		onChangeEmail: function(idTask, idComment) {
 			var checkbox= $('comment-' + idTask + '-' + idComment + '-field-sendasemail');
@@ -282,10 +329,10 @@ Todoyu.Ext.comment = {
 
 
 		/**
-		 *	Save comment
+		 * Save comment
 		 *
-		 *	@param	String	form
-		 *	@return	Boolean
+		 * @param	String	form
+		 * @return	Boolean
 		 */
 		save: function(form) {
 			tinyMCE.triggerSave();
@@ -306,8 +353,8 @@ Todoyu.Ext.comment = {
 		/**
 		 * Evoked after completion of saving comment
 		 * 
-		 * 	@param	Integer	idTask 
-		 * 	@param	Object	response 
+		 * @param	Integer	idTask 
+		 * @param	Object	response 
 		 */
 		onSaved: function(idTask, response) {
 			var idComment	=	response.getTodoyuHeader('idComment');
@@ -330,10 +377,10 @@ Todoyu.Ext.comment = {
 
 
 		/**
-		 *	Cancel editing of comment (close comment edit box)
+		 * Cancel editing of comment (close comment edit box)
 		 *
-		 *	@param	Integer	idTask
-		 *	@param	Integer	idComment
+		 * @param	Integer	idTask
+		 * @param	Integer	idComment
 		 */
 		cancel: function(idTask, idComment) {
 			$('task-' + idTask + '-commentform-' + idComment).remove();
@@ -345,8 +392,8 @@ Todoyu.Ext.comment = {
 		/**
 		 * Evoked after completion of removing comment
 		 * 
-		 *	@param	Integer	idTask
-		 *	@param	Object	response
+		 * @param	Integer	idTask
+		 * @param	Object	response
 		 */
 		onRemoved: function(response){
 			var tabLabel	=	response.getTodoyuHeader('tabLabel');

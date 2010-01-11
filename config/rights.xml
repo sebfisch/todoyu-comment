@@ -13,6 +13,7 @@
 		<right name="sendAsEmail" require="add" />
 		<right name="deleteAll" />
 		<right name="editAll" />
+		<right name="viewHistory" />
 	</section>
 	
 </rights>

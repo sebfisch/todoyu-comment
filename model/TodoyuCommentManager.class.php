@@ -113,6 +113,26 @@ class TodoyuCommentManager {
 
 
 	/**
+	 * Save log record about comment having been mailed when to which user
+	 *
+	 * @param	Integer		$idComment
+	 * @param	Integer		$idUser
+	 * @return	Integer		New MM relation ID
+	 */
+	public static function saveMailSentLog($idComment, $idUser) {
+		$mmTable= 'ext_comment_mm_comment_mailedto';
+		$data	= array(
+			'date_create'		=> NOW,
+			'id_comment'		=> intval($idComment),
+			'id_user_mailedto'	=> intval($idUser),
+		);
+
+		return Todoyu::db()->addRecord($mmTable, $data);
+	}
+
+
+
+	/**
 	 * Add comment
 	 *
 	 * @param	Array		$data
@@ -155,12 +175,12 @@ class TodoyuCommentManager {
 	 * @param	Array		$data
 	 * @param	Integer		$idComment
 	 * @return	Array
+	 * @todo	check / remove
 	 */
 	public static function saveCommentForeignRecords(array $data, $idComment) {
 
 		return $data;
 	}
-
 
 
 

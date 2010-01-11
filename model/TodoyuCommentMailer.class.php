@@ -41,6 +41,10 @@ class TodoyuCommentMailer {
 
 		foreach($userIDs as $idUser) {
 			$result = self::sendMail($idComment, $idUser);
+
+			if ( $result !== false ) {
+				TodoyuCommentManager::saveMailSentLog($idComment, $idUser);
+			}
 		}
 	}
 
@@ -80,7 +84,6 @@ class TodoyuCommentMailer {
 		} catch(phpmailerException $e) {
 			Todoyu::log($e->getMessage(), LOG_LEVEL_ERROR);
 			echo $e->getMessage()."\n";
-
 		}
 
 		return $sendStatus;
@@ -136,7 +139,7 @@ class TodoyuCommentMailer {
 
 
 	/**
-	 * Render content for html mail
+	 * Render content for HTML mail
 	 *
 	 * @param	Integer		$idComment		Comment to send
 	 * @param	Integer		$idUser			User to send the email to

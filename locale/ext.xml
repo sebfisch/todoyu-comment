@@ -30,6 +30,7 @@
 		<label index="icon.remove">Delete Comment</label>
 		<label index="icon.edit">Edit Comment</label>
 		<label index="icon.toggleCustomerVisibility">Switch visibility of this comment for customers</label>
+		<label index="icon.togglelog">Show / hide communication log</label>
 		<label index="comment.feedbackusers">Feedback requested</label>
 		<label index="mail.subject">New Comment</label>
 		<label index="mail.newcomment">A new comment was stored in todoyu</label>
@@ -44,6 +45,7 @@
 		<label index="js.emailSent">Email sent</label>
 		<label index="extconf.autorequestownerfeedback.label">Usergroup(s) to auto-request feedback from task owner: (removes feedback option with free receiver selection)</label>
 		<label index="extconf.automailcommenttoowner.label">Usergroup(s) to auto-mail comment to task owner: (removes mailing option with free receiver selection)</label>
+		<label index="history.header">Comment History</label>
 	</labels>
 	<labels lang="de">
 		<label index="ext.title">Aufgaben-Kommentar</label>
@@ -75,6 +77,7 @@
 		<label index="icon.remove">Kommentar löschen</label>
 		<label index="icon.edit">Kommentar bearbeiten</label>
 		<label index="icon.toggleCustomerVisibility">Sichtbarkeit für Kunden ändern</label>
+		<label index="icon.togglelog">Kommunikations-historie anzeigen / ausblenden</label>
 		<label index="comment.feedbackusers">Feedback verlangt</label>
 		<label index="mail.subject">Neuer Kommentar</label>
 		<label index="mail.newcomment">Ein neuer Kommentar wurde in todoyu gespeichert</label>
@@ -89,5 +92,6 @@
 		<label index="js.emailSent">Email verschickt</label>
 		<label index="extconf.autorequestownerfeedback.label">Usergruppe(n) zu deren Kommentare automat. Feedback vom Task-eigner erwartet wird: (entfernt Feedback-option mit freier Addressaten-Wahl)</label>
 		<label index="extconf.automailcommenttoowner.label">Usergruppe(n) deren Kommentare automat. an den Task-Eigner gemailt werden: (entfernt Mailing-option mit freier Empfänger-Wahl)</label>
+		<label index="history.header">Kommentar-Verlauf</label>
 	</labels>
 </locallang>

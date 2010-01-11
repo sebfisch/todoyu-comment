@@ -77,6 +77,26 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 
 
 	/**
+	 * Show comment feedbacks and mailing history log
+	 *
+	 * @param	Array		$params
+	 */
+	public function logAction(array $params) {
+		$idTask		= intval($params['task']);
+		$idComment	= intval($params['comment']);
+
+		$comment	= TodoyuCommentManager::getComment($idComment);
+			// User is the creator or has right editAll
+		if( ! $comment->isCurrentUserCreator() ) {
+			restrict('comment', 'viewHistory');
+		}
+
+		return TodoyuCommentRenderer::renderLog($idTask, $idComment);
+	}
+
+
+
+	/**
 	 * Save (update) comment
 	 *
 	 * @param	Array		$params

@@ -13,6 +13,7 @@
 		<label index="right.autoSendAsEmailToTaskOwner">Auto-mail comment to task owner</label>
 		<label index="right.deleteAll">Delete ALL Comments</label>
 		<label index="right.editAll">Edit ALL Comments</label>
+		<label index="right.viewHistory">Review comment feedbacks and mailing history</label>
 	</labels>
 	<labels lang="de">
 		<label index="section.general">Allgemeine Einstellungen</label>
@@ -27,5 +28,6 @@
 		<label index="right.autoSendAsEmailToTaskOwner">Automat. E-Mailen des Kommentars an Task-Eigner</label>
 		<label index="right.deleteAll">Kann alle Kommentare löschen</label>
 		<label index="right.editAll">Kann alle Kommentare bearbeiten</label>
+		<label index="right.viewHistory">Kommentar Feedbacks und Emai Verlauf einsehen</label>
 	</labels>
 </locallang>
