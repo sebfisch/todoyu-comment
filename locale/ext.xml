@@ -14,7 +14,7 @@
 		<label index="edit.sendasemail">Send as email</label>
 		<label index="edit.autoSentEmailToTaskOwner">Send as email to task owner</label>
 		<label index="edit.sentEmailTo">Send email to</label>
-		<label index="group.employee">Employee</label>
+		<label index="group.employees">Employees</label>
 		<label index="group.projectmembers">Project Members</label>
 		<label index="group.taskmembers">Task Members</label>
 		<label index="group.taskowner">Task Owner</label>
@@ -65,9 +65,9 @@
 		<label index="edit.sendasemail">Als Email versenden</label>
 		<label index="edit.autoSentEmailToTaskOwner">Als Email an Task-Eigner senden</label>
 		<label index="edit.sentEmailTo">Email senden an</label>
-		<label index="group.employee">Angestellter</label>
+		<label index="group.employees">Angestellte</label>
 		<label index="group.projectmembers">Projektbeteiligte</label>
-		<label index="group.taskmembers">Zugewiesene Mitarbeiter</label>
+		<label index="group.taskmembers">Personen im Task</label>
 		<label index="group.taskowner">Task-Eigner</label>
 		<label index="delete.confirm">Wollen Sie diesen Kommentar wirklich löschen?</label>
 		<label index="contextmenu.task.addcomment">Kommentar</label>

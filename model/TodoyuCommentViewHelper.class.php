@@ -109,7 +109,7 @@ class TodoyuCommentViewHelper {
 
 			// Get staff users
 		$users	= TodoyuUserManager::getInternalUsers();
-		$group	= Label('comment.group.employee');
+		$group	= Label('comment.group.employees');
 		foreach($users as $user) {
 			$options[$group][] = array(
 				'value'	=> $user['id'],
