@@ -31,7 +31,7 @@ define('EXTID_COMMENT', 105);
 define('PATH_EXT_COMMENT', PATH_EXT . '/comment');
 
 	// Register module locales
-TodoyuLocale::register('comment', PATH_EXT_COMMENT . '/locale/ext.xml');
+TodoyuLanguage::register('comment', PATH_EXT_COMMENT . '/locale/ext.xml');
 
 	// Request configurations
 require_once( PATH_EXT_COMMENT . '/config/extension.php' );

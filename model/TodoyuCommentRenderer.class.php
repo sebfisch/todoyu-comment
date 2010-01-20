@@ -195,7 +195,7 @@ class TodoyuCommentRenderer {
 	 * @return	String
 	 */
 	public static function renderPortalFeedbackTabLabel($count = true) {
-		$label	= TodoyuLocale::getLabel('comment.portal.tab.feedback');
+		$label	= TodoyuLanguage::getLabel('comment.portal.tab.feedback');
 
 		if( $count ) {
 			$taskIDs= TodoyuCommentManager::getFeedbackTaskIDs();
