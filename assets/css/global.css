@@ -6,3 +6,11 @@
 	background-repeat:no-repeat;
 	background-position:6px -356px;
 }
+
+/* --------------
+	Search
+   -------------- */
+
+.searchmode-comment {
+	background:url(../img/icons.png) no-repeat 3px -117px !important;
+}
