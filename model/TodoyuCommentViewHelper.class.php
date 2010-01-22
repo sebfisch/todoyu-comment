@@ -41,7 +41,7 @@ class TodoyuCommentViewHelper {
 		foreach($users as $user) {
 			$options[] 	= array(
 				'value'	=> $user['id'],
-				'label'	=> $user['lastname'] . ' ' . $user['firstname'] . ' (' . $user['email'] . ')'
+				'label'	=> TodoyuUserManager::getLabel($user['id'], true, true)
 			);
 		}
 
@@ -57,17 +57,7 @@ class TodoyuCommentViewHelper {
 	 * @return	Array
 	 */
 	public static function getTaskOwnerEmailOption(TodoyuFormElement $field) {
-		$idTask		= intval($field->getForm()->getHiddenField('id_task'));
-		$taskOwner	= TodoyuTaskManager::getTaskOwner($idTask);
-
-		$option = array(
-			0 => array(
-				'value'		=> $taskOwner[0]['id'],
-				'label'		=> $taskOwner[0]['lastname'] . ', ' . $taskOwner[0]['firstname'] . ' (' . $taskOwner[0]['email'] . ')',
-			)
-		);
-
-		return $option;
+		return TodoyuTaskViewHelper::getOwnerEmailOption($field);
 	}
 
 
@@ -87,35 +77,16 @@ class TodoyuCommentViewHelper {
 		$options	= array();
 
 			// Task users
-		$users	= TodoyuTaskManager::getTaskUsers($idTask);
-
-		$group	= Label('comment.group.taskmembers');
-		foreach($users as $user) {
-			$options[$group][] = array(
-				'value'	=> $user['id'],
-				'label'	=> $user['lastname'] . ' ' . $user['firstname']
-			);
-		}
+		$groupLabel	= Label('comment.group.taskmembers');
+		$options[$groupLabel]	= TodoyuTaskViewHelper::getTaskUsersOptions($field);
 
 			// Get project users
-		$users	= TodoyuProjectManager::getProjectUsers($idProject);
-		$group	= Label('comment.group.projectmembers');
-		foreach($users as $user) {
-			$options[$group][] = array(
-				'value'	=> $user['id'],
-				'label'	=> $user['lastname'] . ' ' . $user['firstname']
-			);
-		}
+		$groupLabel	= Label('comment.group.projectmembers');
+		$options[$groupLabel]	= TodoyuProjectViewHelper::getProjectUsersOptions($field);
 
-			// Get staff users
-		$users	= TodoyuUserManager::getInternalUsers();
-		$group	= Label('comment.group.employees');
-		foreach($users as $user) {
-			$options[$group][] = array(
-				'value'	=> $user['id'],
-				'label'	=> $user['lastname'] . ' ' . $user['firstname']
-			);
-		}
+			// Get staff users (employees of internal company)
+		$groupLabel	= Label('comment.group.employees');
+		$options[$groupLabel]	= TodoyuUserViewHelper::getInternalUsersOptions($field);
 
 		return $options;
 	}
@@ -134,8 +105,8 @@ class TodoyuCommentViewHelper {
 
 		$option = array(
 			0 => array(
-				'value'		=> $taskOwner[0]['id'],
-				'label'		=> $taskOwner[0]['lastname'] . ', ' . $taskOwner[0]['firstname'],
+				'value'	=> $taskOwner[0]['id'],
+				'label'	=> TodoyuUserManager::getLabel($taskOwner[0]['id'])
 			)
 		);
 
@@ -143,6 +114,5 @@ class TodoyuCommentViewHelper {
 	}
 
 }
-
 
 ?>
