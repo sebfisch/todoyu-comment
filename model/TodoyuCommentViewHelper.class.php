@@ -72,8 +72,9 @@ class TodoyuCommentViewHelper {
 	 */
 	public static function getFeedbackUsersGroupedOptions(TodoyuFormElement $field) {
 		$formData	= $field->getForm()->getFormData();
-		$idTask		= intval($formData['id_task']);
-		$idProject	= TodoyuTaskManager::getProjectID($idTask);
+
+//		$idTask		= intval($formData['id_task']);
+//		$idProject	= TodoyuTaskManager::getProjectID($idTask);
 		$options	= array();
 
 			// Task users
