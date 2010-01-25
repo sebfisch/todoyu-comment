@@ -3,10 +3,6 @@
 	{Button label="comment.button.addComment" class="addComment" onclick="Todoyu.Ext.comment.edit($idTask, 0)"}
 {/restrict}
 	{Button label="comment.button.reverseOrder" class="reverseOrder $descClass" onclick="Todoyu.Ext.comment.toggleSorting($idTask)"}
-
-	<a class="icon timing toggle" onclick="Todoyu.Ext.comment.List.toggle({$idTask})" href="javascript:void(0)" title="{Label comment.tab.toggle}">
-		<span class="hidden">{Label comment.tab.toggle}</span>
-	</a>
 </div>
 
 <ul class="task-comments {if $desc}desc{else}asc{/if}" id="task-{$idTask}-comments">

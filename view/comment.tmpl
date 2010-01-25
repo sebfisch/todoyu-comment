@@ -10,25 +10,25 @@
 		</span>
 		<span id="task-comment-{$id}-id" class="comment-id" title="{Label comment.id}">K{$id}</span>
 		<span id="task-comment-{$id}-options" class="comment-options">
-		{* --------------------------- edit ------------------------- *}
+		{* --------------------------- Edit ------------------------- *}
 		{if allowedOrOwn('comment','editAll', $id_user_create)}
 			<a href="javascript:void(0)" onclick="Todoyu.Ext.comment.edit({$id_task}, {$id})" class="icon comment-edit" title="{Label comment.icon.edit}">
 				<span class="hidden">{Label comment.icon.edit}</span>
 			</a>
 		{/if}
-		{* ------------------------ make public ---------------------- *}
+		{* ------------------------ Make public ---------------------- *}
 		{restrict comment task:makePublic}
 			<a href="javascript:void(0)" onclick="Todoyu.Ext.comment.togglePublic({$id})" class="icon public-trigger {if $is_public}comment-public{/if}" title="{Label comment.icon.toggleCustomerVisibility}" id="public-trigger-{$id}">
 				<span class="hidden">{Label comment.icon.toggleCustomerVisibility}</span>
 			</a>
 		{/restrict}
-		{* -------------------------- delete ------------------------ *}
+		{* -------------------------- Delete ------------------------ *}
 		{if allowedOrOwn('comment','task:deleteAll', $id_user_create)}
 			<a href="javascript:void(0)" onclick="Todoyu.Ext.comment.remove({$id})" class="icon comment-remove" title="{Label comment.icon.remove}">
 				<span class="hidden">{Label comment.icon.remove}</span>
 			</a>
 		{/if}
-		{* --------------------------- toggle log view --------------- *}
+		{* --------------------------- Toggle log view --------------- *}
 		{restrict 'comment' 'task:viewHistory'}
 			<a id="task-comment-log-{$id}-toggler" href="javascript:void(0)" onclick="Todoyu.Ext.comment.toggleLog({$id})" class="icon comment-log" title="{Label comment.icon.togglelog}">
 				<span class="hidden">{Label comment.icon.remove}</span>
@@ -37,8 +37,8 @@
 		</span>
 	</div>
 	<div id="task-comment-{$id}-text" class="comment-details">
-		<div class="left comment">{$comment}</div>
-		<div class="right users">
+		{* --------------------------- Comment users --------------- *}
+		<div class="users">
 		{foreach $users_feedback feedbackUser name=usersFeedback}
 			<dl>
 			{if $dwoo.foreach.usersFeedback.first}
@@ -53,6 +53,8 @@
 			{else}
 		{/foreach}
 		</div>
+		{* --------------------------- Comment itself --------------- *}
+		<div class="comment">{$comment}</div>
 	</div>
 	<div class="clear"><!-- clear --></div>
 	<div id="task-comment-log-{$id}-details" class="comment-history" style="display:none;"></div>

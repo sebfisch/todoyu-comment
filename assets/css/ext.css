@@ -46,7 +46,7 @@
 }
 
 .task-comments .comment-details {
-	padding:2px;
+	padding:2px
 }
 
 .task-comments div.comment ul {
@@ -63,6 +63,10 @@
 .task-comments .comment-details .comment,
 .task-comments .comment-details .users {
 	padding:5px !important;
+}
+
+.task-comments .comment-details .users {
+	border-bottom:1px dotted #bec5ab;
 }
 
 .task-comments .comment-details .right {
