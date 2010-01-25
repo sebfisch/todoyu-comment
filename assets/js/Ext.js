@@ -44,12 +44,12 @@ Todoyu.Ext.comment = {
 
 		Todoyu.send(url , options);
 	},
-	
-	
-	
+
+
+
 	/**
 	 * Handler for togglePublic
-	 * 
+	 *
 	 * @param	Integer			idComment
 	 * @param	Ajax.Response	response
 	 */
@@ -79,10 +79,10 @@ Todoyu.Ext.comment = {
 	},
 
 
-	
+
 	/**
 	 * Handler for setSeenStatus
-	 * 
+	 *
 	 * @param	Integer			idComment
 	 * @param	Integer			idUser
 	 * @param	Ajax.Response	response
@@ -139,7 +139,7 @@ Todoyu.Ext.comment = {
 
 	/**
 	 * Set Label (on adding or removing comment)
-	 * 
+	 *
 	 * @param	Integer idTask
 	 * @param	String	label
 	 */
@@ -216,7 +216,7 @@ Todoyu.Ext.comment = {
 
 		if( ! logDiv.visible() ) {
 			if( logDiv.empty() ) {
-				
+
 				var url		= Todoyu.getUrl('comment', 'comment');
 				var options	= {
 					'parameters': {
@@ -225,7 +225,7 @@ Todoyu.Ext.comment = {
 					},
 					'onComplete': Todoyu.Ext.comment.onLogToggled.bind(this)
 				};
-				
+
 //				Todoyu.send(url, options);
 				Todoyu.Ui.update(logDiv, url, options);
 			}
@@ -233,21 +233,21 @@ Todoyu.Ext.comment = {
 		} else {
 			logDiv.hide();
 		}
-		
+
 		this.updateToggleLogIcon(idComment);
-//		this.saveLogExpanded(idProject, detailDiv.visible());		
+//		this.saveLogExpanded(idProject, detailDiv.visible());
 	},
-	
-	
-	
+
+
+
 	onLogToggled: function(idComment, response) {
-//		console.log('OnComplete erreicht');
+//		Todoyu.log('OnComplete erreicht');
 	},
 
 
 
 	updateToggleLogIcon: function(idComment) {
-		Todoyu.Ui.updateToggleIcon('task-comment-log-', idComment);	
+		Todoyu.Ui.updateToggleIcon('task-comment-log-', idComment);
 	},
 
 
@@ -352,14 +352,14 @@ Todoyu.Ext.comment = {
 
 		/**
 		 * Evoked after completion of saving comment
-		 * 
-		 * @param	Integer	idTask 
-		 * @param	Object	response 
+		 *
+		 * @param	Integer	idTask
+		 * @param	Object	response
 		 */
 		onSaved: function(idTask, response) {
 			var idComment	=	response.getTodoyuHeader('idComment');
 			var tabLabel	=	response.getTodoyuHeader('tabLabel');
-			
+
 			if( response.hasTodoyuError() ) {
 				$('comment-' + idTask + '-' + idComment + '-form').replace(response.responseText);
 				Todoyu.notifyError('[LLL:comment.js.commentSavingFailed]');
@@ -367,7 +367,7 @@ Todoyu.Ext.comment = {
 				Todoyu.Ext.comment.List.refresh(idTask);
 				Todoyu.Ext.comment.setTabLabel(idTask, tabLabel);
 				Todoyu.notifySuccess('[LLL:comment.js.commentSaved]');
-				
+
 				if( response.getTodoyuHeader('sentEmail') ) {
 					Todoyu.notifySuccess('[LLL:comment.js.emailSent]');
 				}
@@ -386,19 +386,19 @@ Todoyu.Ext.comment = {
 			$('task-' + idTask + '-commentform-' + idComment).remove();
 			Todoyu.Ext.comment.List.refresh(idTask, true);
 		},
-		
-		
-		
+
+
+
 		/**
 		 * Evoked after completion of removing comment
-		 * 
+		 *
 		 * @param	Integer	idTask
 		 * @param	Object	response
 		 */
 		onRemoved: function(response){
 			var tabLabel	=	response.getTodoyuHeader('tabLabel');
 			var idTask		=	response.getTodoyuHeader('idTask');
-			
+
 			Todoyu.Ext.comment.setTabLabel(idTask, tabLabel);
 		}
 	}
