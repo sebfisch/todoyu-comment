@@ -6,7 +6,7 @@
 	{/if}
 		<span id="task-comment-{$id}-crdate" class="comment-crdate hasicon">{date_format $date_create "%d.%m.%y %R"}</span>
 		<span id="task-comment-{$id}-user" class="comment-user hasicon">
-			<a href="javascript:void(0)" onclick="Todoyu.Ext.user.showUserPopup({$user_create.id})">{$user_create.lastname} {$user_create.firstname}</a>
+			<a href="javascript:void(0)" onclick="Todoyu.Ext.contact.Person.show({$user_create.id})">{$user_create.lastname} {$user_create.firstname}</a>
 		</span>
 		<span id="task-comment-{$id}-id" class="comment-id" title="{Label comment.id}">K{$id}</span>
 		<span id="task-comment-{$id}-options" class="comment-options">

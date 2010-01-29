@@ -50,6 +50,14 @@ $CONFIG['EXT']['comment']['assets'] = array(
 			array(
 				'file'		=> 'ext/comment/assets/js/Ext.js',
 				'position'	=> 100
+			),
+			array(
+				'file'		=> 'ext/contact/assets/js/Ext.js',
+				'position'	=> 100
+			),
+			array(
+				'file'		=> 'ext/contact/assets/js/Person.js',
+				'position'	=> 100
 			)
 		),
 		'css' => array(
