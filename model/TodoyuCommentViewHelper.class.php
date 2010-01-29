@@ -73,17 +73,29 @@ class TodoyuCommentViewHelper {
 	public static function getFeedbackUsersGroupedOptions(TodoyuFormElement $field) {
 		$formData	= $field->getForm()->getFormData();
 
-//		$idTask		= intval($formData['id_task']);
-//		$idProject	= TodoyuTaskManager::getProjectID($idTask);
+		$idTask		= intval($formData['id_task']);
+		$idProject	= TodoyuTaskManager::getProjectID($idTask);
 		$options	= array();
 
 			// Task users
 		$groupLabel	= Label('comment.group.taskmembers');
-		$options[$groupLabel]	= TodoyuTaskViewHelper::getTaskUsersOptions($field);
+		$taskUsers		= TodoyuTaskManager::getTaskUsers($idTask);
+		foreach($taskUsers as $user) {
+			$options[$groupLabel][] = array(
+				'value'	=> $user['id'],
+				'label'	=> TodoyuUserManager::getLabel($user['id'], false, true)
+			);
+		}
 
 			// Get project users
-		$groupLabel	= Label('comment.group.projectmembers');
-		$options[$groupLabel]	= TodoyuProjectViewHelper::getProjectUsersOptions($field);
+		$groupLabel		= Label('comment.group.projectmembers');
+		$projectUsers	= TodoyuProjectManager::getProjectUsers($idProject);
+		foreach($projectUsers as $user) {
+			$options[$groupLabel][] = array(
+				'value'	=> $user['id'],
+				'label'	=> TodoyuUserManager::getLabel($user['id'])
+			);
+		}
 
 			// Get staff users (employees of internal company)
 		$groupLabel	= Label('comment.group.employees');

@@ -103,11 +103,13 @@ class TodoyuCommentRenderer {
 		$data		= array();
 
 		if( $idComment !== 0 ) {
-			$data		= TodoyuCommentManager::getComment($idComment)->getTemplateData();
+			$data = TodoyuCommentManager::getComment($idComment)->getTemplateData(true);
+			$data['feedback'] = TodoyuArray::getColumn($data['users_feedback'], 'id');
 		} else {
 			$data['id_task']= $idTask;
 			$data['id']		= $idComment;
 		}
+
 
 		$form->setFormData($data);
 		$form->setRecordID($idTask . '-' . $idComment);
