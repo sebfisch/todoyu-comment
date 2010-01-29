@@ -118,8 +118,6 @@ class TodoyuCommentMailer {
 			'feedback_users'=> $comment->getFeedbackUsers()
 		);
 
-		TodoyuDebug::printInFirebug($data['feedback_users']);
-
 		$data['tasklink'] = TodoyuDiv::buildUrl(array(
 			'ext'		=> 'project',
 			'project'	=> $project->getID(),
