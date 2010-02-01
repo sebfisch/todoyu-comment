@@ -133,7 +133,9 @@ Todoyu.Ext.comment = {
 	 */
 	addTaskComment: function(idTask) {
 		Todoyu.Ext.project.Task.showDetails(idTask, 'comment');
-		
+
+			// Create new comment and open for editing
+//		this.edit(idTask, 0);
 	},
 
 
