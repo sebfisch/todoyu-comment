@@ -133,6 +133,7 @@ Todoyu.Ext.comment = {
 	 */
 	addTaskComment: function(idTask) {
 		Todoyu.Ext.project.Task.showDetails(idTask, 'comment');
+		
 	},
 
 
@@ -146,45 +147,6 @@ Todoyu.Ext.comment = {
 	setTabLabel: function(idTask, label){
 		$('task-' + idTask + '-tabhead-comment-label').select('.labeltext').first().update(label);
 	},
-
-
-
-	/**
-	 *	List comments of task methods
-	 */
-	List: {
-		/**
-		 * Refresh list of comments of given task, optionally toggle sorting order
-		 *
-		 * @param	Integer	idTask
-		 * @param	Integer	desc	(0 or 1)
-		 */
-		refresh: function(idTask, desc) {
-			var url				= Todoyu.getUrl('comment', 'task');
-			var target			= 'task-' + idTask + '-tabcontent-comment';
-
-			var options	= {
-				'parameters': {
-					'action':	'list',
-					'task':		idTask,
-					'desc':		desc
-				}
-			};
-
-			Todoyu.Ui.update(target, url, options);
-		},
-
-
-
-		/**
-		 * Toggle comments list visibility
-		 */
-		toggle: function(idTask) {
-			Todoyu.Ui.toggle('task-' + idTask + '-comments');
-		}
-
-	},
-
 
 
 	/**
@@ -298,109 +260,6 @@ Todoyu.Ext.comment = {
 		}
 
 		Todoyu.Ui.update(target, url, options);
-	},
-
-
-
-	/**
-	 * Comment editing methods
-	 * Note:	there is the method 'edit' and the sub object 'Edit' (case-sensitive) with its own methods
-	 */
-	Edit: {
-
-		/**
-		 * 'Email changed' event handler
-		 *
-		 * @param	String	field
-		 * @param	Integer	idTask
-		 * @param	Integer	idComment
-		 */
-		onChangeEmail: function(idTask, idComment) {
-			var checkbox= $('comment-' + idTask + '-' + idComment + '-field-sendasemail');
-			var emailEl	= $('formElement-comment-' + idTask + '-' + idComment + '-field-emailreceivers');
-
-			if( checkbox.checked ) {
-				emailEl.show();
-			} else {
-				emailEl.hide();
-			}
-		},
-
-
-
-		/**
-		 * Save comment
-		 *
-		 * @param	String	form
-		 * @return	Boolean
-		 */
-		save: function(form) {
-			tinyMCE.triggerSave();
-			var idTask	= $(form).up('.task').readAttribute('id').split('-').last();
-
-			$(form).request({
-				'parameters': {
-					'action':	'save'
-				},
-				'onComplete': this.onSaved.bind(this, idTask)
-			});
-
-			return false;
-		},
-
-
-
-		/**
-		 * Evoked after completion of saving comment
-		 *
-		 * @param	Integer	idTask
-		 * @param	Object	response
-		 */
-		onSaved: function(idTask, response) {
-			var idComment	=	response.getTodoyuHeader('idComment');
-			var tabLabel	=	response.getTodoyuHeader('tabLabel');
-
-			if( response.hasTodoyuError() ) {
-				$('comment-' + idTask + '-' + idComment + '-form').replace(response.responseText);
-				Todoyu.notifyError('[LLL:comment.js.commentSavingFailed]');
-			} else {
-				Todoyu.Ext.comment.List.refresh(idTask);
-				Todoyu.Ext.comment.setTabLabel(idTask, tabLabel);
-				Todoyu.notifySuccess('[LLL:comment.js.commentSaved]');
-
-				if( response.getTodoyuHeader('sentEmail') ) {
-					Todoyu.notifySuccess('[LLL:comment.js.emailSent]');
-				}
-			}
-		},
-
-
-
-		/**
-		 * Cancel editing of comment (close comment edit box)
-		 *
-		 * @param	Integer	idTask
-		 * @param	Integer	idComment
-		 */
-		cancel: function(idTask, idComment) {
-			$('task-' + idTask + '-commentform-' + idComment).remove();
-			Todoyu.Ext.comment.List.refresh(idTask, true);
-		},
-
-
-
-		/**
-		 * Evoked after completion of removing comment
-		 *
-		 * @param	Integer	idTask
-		 * @param	Object	response
-		 */
-		onRemoved: function(response){
-			var tabLabel	=	response.getTodoyuHeader('tabLabel');
-			var idTask		=	response.getTodoyuHeader('idTask');
-
-			Todoyu.Ext.comment.setTabLabel(idTask, tabLabel);
-		}
 	}
 
 };
