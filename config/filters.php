@@ -19,46 +19,81 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-$CONFIG['FILTERS']['TASK']['widgets']['unseenFeedbackCurrentUser'] = array(
-	'funcRef'	=> 'TodoyuCommentTaskFilter::Filter_unseenFeedbackCurrentUser',
-	'label'		=> 'LLL:comment.filter.unseenFeedbackCurrentUser.label',
-	'optgroup'	=> 'LLL:task.search.label',
-	'widget'	=> 'checkbox',
-	'wConf'   => array(
-  		'checked' => true
-	)
-);
-
+/**
+ * Unseen comment feedback request for user
+ */
 $CONFIG['FILTERS']['TASK']['widgets']['unseenFeedbackUser'] = array(
 	'funcRef'	=> 'TodoyuCommentTaskFilter::Filter_unseenFeedbackUser',
-	'label'		=> 'LLL:comment.filter.unseenFeedbackUser.label',
-	'optgroup'	=> 'LLL:task.search.label',
+	'label'		=> 'LLL:comment.filter.unseenFeedbackUser',
+	'optgroup'	=> 'LLL:comment.search.label',
 	'widget'	=> 'textinput',
 	'wConf' => array(
 		'autocomplete'	=> true,
 		'FuncRef'		=> 'TodoyuUserFilterDataSource::autocompleteUsers',
 		'FuncParams'	=> array(),
 		'LabelFuncRef'	=> 'TodoyuUserFilterDataSource::getLabel',
-		'negation'	=> array(
-    		'labelTrue'		=> 'LLL:search.negation.default.true',
-    		'labelFalse'	=> 'LLL:search.negation.default.false',
-	    )
+		'negation'	=> 'default'
 	)
 );
 
-$CONFIG['FILTERS']['TASK']['widgets']['feedbackFulltext'] = array(
+$CONFIG['FILTERS']['TASK']['filters']['unseenFeedbackCurrentUser'] = array(
+	'funcRef'	=> 'TodoyuCommentTaskFilter::Filter_unseenFeedbackCurrentUser'
+);
+
+$CONFIG['FILTERS']['TASK']['widgets']['unseenFeedbackGroups'] = array(
+	'funcRef'	=> 'TodoyuCommentTaskFilter::Filter_unseenFeedbackGroups',
+	'label'		=> 'LLL:comment.filter.unseenFeedbackGroups',
+	'optgroup'	=> 'LLL:comment.search.label',
+	'widget'	=> 'select',
+	'wConf'		=> array(
+		'multiple'	=> true,
+		'size'		=> 5,
+		'FuncRef'	=> 'TodoyuTaskFilterDataSource::getUsergroupOptions'
+	)
+);
+
+
+/**
+ * Comment fulltext search
+ */
+$CONFIG['FILTERS']['TASK']['widgets']['commentFulltext'] = array(
 	'funcRef'	=> 'TodoyuCommentTaskFilter::Filter_fulltext',
-	'label'		=> 'LLL:comment.filter.fulltext.label',
-	'optgroup'	=> 'LLL:task.search.label',
+	'label'		=> 'LLL:comment.filter.commentFulltext',
+	'optgroup'	=> 'LLL:comment.search.label',
 	'widget'	=> 'textinput',
 	'wConf' => array(
 		'autocomplete'	=> false,
 		'LabelFuncRef'	=> 'TodoyuUserFilterDataSource::getLabel',
-		'negation'	=> array(
-    		'labelTrue'		=> 'LLL:search.negation.default.true',
-    		'labelFalse'	=> 'LLL:search.negation.default.false',
-	    )
+		'negation'	=> 'default'
 	)
 );
+
+
+$CONFIG['FILTERS']['TASK']['widgets']['commentWrittenUser'] = array(
+	'funcRef'	=> 'TodoyuCommentTaskFilter::Filter_commentWrittenUser',
+	'label'		=> 'LLL:comment.filter.commentWrittenUser',
+	'optgroup'	=> 'LLL:comment.search.label',
+	'widget'	=> 'textinput',
+	'wConf' => array(
+		'autocomplete'	=> true,
+		'FuncRef'		=> 'TodoyuUserFilterDataSource::autocompleteUsers',
+		'FuncParams'	=> array(),
+		'LabelFuncRef'	=> 'TodoyuUserFilterDataSource::getLabel',
+		'negation'	=> 'default'
+	)
+);
+
+$CONFIG['FILTERS']['TASK']['widgets']['commentWrittenGroups'] = array(
+	'funcRef'	=> 'TodoyuCommentTaskFilter::Filter_commentWrittenGroups',
+	'label'		=> 'LLL:comment.filter.commentWrittenGroups',
+	'optgroup'	=> 'LLL:comment.search.label',
+	'widget'	=> 'select',
+	'wConf'		=> array(
+		'multiple'	=> true,
+		'size'		=> 5,
+		'FuncRef'	=> 'TodoyuTaskFilterDataSource::getUsergroupOptions'
+	)
+);
+
 
 ?>
