@@ -58,7 +58,7 @@ $CONFIG['EXT']['comment']['assets'] = array(
 			array(
 				'file'		=> 'ext/comment/assets/js/Edit.js',
 				'position'	=> 102
-			),
+			)/*,
 			array(
 				'file'		=> 'ext/contact/assets/js/Ext.js',
 				'position'	=> 110
@@ -66,7 +66,7 @@ $CONFIG['EXT']['comment']['assets'] = array(
 			array(
 				'file'		=> 'ext/contact/assets/js/Person.js',
 				'position'	=> 120
-			)
+			)*/
 		),
 		'css' => array(
 			array(
@@ -77,19 +77,6 @@ $CONFIG['EXT']['comment']['assets'] = array(
 	)
 
 );
-
-
-
-$CONFIG['EXT']['project']['assets']['public']['js'][] = array(
-	'file'		=> 'ext/comment/assets/js/Ext.js',
-	'position'	=> 100
-);
-
-$CONFIG['EXT']['project']['assets']['public']['css'][] = array(
-	'file'		=> 'ext/comment/assets/css/ext.css',
-	'position'	=> 100
-);
-
 
 
 ?>

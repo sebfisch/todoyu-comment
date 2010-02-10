@@ -132,10 +132,13 @@ Todoyu.Ext.comment = {
 	 * @param	Integer	idTask
 	 */
 	addTaskComment: function(idTask) {
-		Todoyu.Ext.project.Task.showDetails(idTask, 'comment');
-
-			// Create new comment and open for editing
-//		this.edit(idTask, 0);
+		Todoyu.Ext.project.Task.showDetails(idTask, 'comment', this.onTaskCommentTabLoaded.bind(this));
+	},
+	
+	onTaskCommentTabLoaded: function(idTask, tab, response) {
+		if( ! Todoyu.exists('task-' + idTask + '-commentform-0') ) {
+			this.edit(idTask, 0);
+		}
 	},
 
 
@@ -190,7 +193,6 @@ Todoyu.Ext.comment = {
 					'onComplete': Todoyu.Ext.comment.onLogToggled.bind(this)
 				};
 
-//				Todoyu.send(url, options);
 				Todoyu.Ui.update(logDiv, url, options);
 			}
 			logDiv.show();
@@ -199,7 +201,6 @@ Todoyu.Ext.comment = {
 		}
 
 		this.updateToggleLogIcon(idComment);
-//		this.saveLogExpanded(idProject, detailDiv.visible());
 	},
 
 

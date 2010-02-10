@@ -23,6 +23,10 @@
  * Note:	there is the method 'edit' and the sub object 'Edit' (case-sensitive) with its own methods
  */
 Todoyu.Ext.comment.Edit = {
+	
+	ext: Todoyu.Ext.comment,
+	
+	
 	/**
 	 * 'Email changed' event handler
 	 *
