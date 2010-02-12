@@ -61,10 +61,10 @@ class TodoyuCommentMailManager {
 	/**
 	 * Get all mail sent log entries
 	 *
-	 *	@param	Integer	$idComment
-	 *	@param	Integer	$idUserCreate
-	 *	@param	Integer	$idUserMailed
-	 *	@return	Array
+	 * @param	Integer	$idComment
+	 * @param	Integer	$idUserCreate
+	 * @param	Integer	$idUserMailed
+	 * @return	Array
 	 */
 	public static function getAllSent($idComment, $idUserCreate = 0, $idUserMailed = 0) {
 		$idComment		= intval($idComment);

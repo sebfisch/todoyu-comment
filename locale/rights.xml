@@ -3,6 +3,9 @@
 	<labels lang="en">
 		<label index="general">General settings</label>
 		<label index="general.use">Use comments</label>
+		<label index="general.portaltab">Feedbacks-tab in Portal</label>
+		<label index="comment">Comment</label>
+		<label index="comment.search">Search comments</label>
 		<label index="task">Task</label>
 		<label index="task.seeAll">See All Comments (not public)</label>
 		<label index="task.add">Add a new comment</label>
@@ -18,6 +21,9 @@
 	<labels lang="de">
 		<label index="general">Allgemeine Einstellungen</label>
 		<label index="general.use">Benutze Kommentare</label>
+		<label index="general.portaltab">Feedbacks-Tab im Portal</label>
+		<label index="comment">Kommentar</label>
+		<label index="comment.search">Kommentare Durchsuchen</label>
 		<label index="task">Aufgabe</label>
 		<label index="task.seeAll">Sieht alle Kommentare (nicht öffentliche)</label>
 		<label index="task.add">Neuer Kommentar hinzufügen</label>

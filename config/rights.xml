@@ -3,8 +3,13 @@
 
 	<section name="general">
 		<right name="use" />
+		<right name="portaltab" require="general:use" />
 	</section>
 
+	<section name="comment" require="general:use">
+		<right name="search" />
+	</section>
+	
 	<section name="task" require="general:use">
 		<right name="seeAll" />
 		<right name="add" />

@@ -20,6 +20,8 @@
 ***************************************************************/
 
 	// Add comment search engine
-TodoyuSearchManager::addSearchEngine('comment', 'TodoyuCommentSearch::getResults', 'TodoyuCommentSearch::getSuggestions', 'comment.search.label', 'comment.search.mode.label', 50);
+if ( allowed('comment', 'comment:search') ) {
+	TodoyuSearchManager::addSearchEngine('comment', 'TodoyuCommentSearch::getResults', 'TodoyuCommentSearch::getSuggestions', 'comment.search.label', 'comment.search.mode.label', 50);
+}
 
 ?>
