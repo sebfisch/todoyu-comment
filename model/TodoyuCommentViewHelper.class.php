@@ -41,7 +41,7 @@ class TodoyuCommentViewHelper {
 		foreach($users as $user) {
 			$options[] 	= array(
 				'value'	=> $user['id'],
-				'label'	=> TodoyuUserManager::getLabel($user['id'], true, true)
+				'label'	=> TodoyuPersonManager::getLabel($user['id'], true, true)
 			);
 		}
 
@@ -83,7 +83,7 @@ class TodoyuCommentViewHelper {
 		foreach($taskUsers as $user) {
 			$options[$groupLabel][] = array(
 				'value'	=> $user['id'],
-				'label'	=> TodoyuUserManager::getLabel($user['id'], false, true)
+				'label'	=> TodoyuPersonManager::getLabel($user['id'], false, true)
 			);
 		}
 
@@ -93,7 +93,7 @@ class TodoyuCommentViewHelper {
 		foreach($projectUsers as $user) {
 			$options[$groupLabel][] = array(
 				'value'	=> $user['id'],
-				'label'	=> TodoyuUserManager::getLabel($user['id'])
+				'label'	=> TodoyuPersonManager::getLabel($user['id'])
 			);
 		}
 
@@ -119,7 +119,7 @@ class TodoyuCommentViewHelper {
 		$option = array(
 			0 => array(
 				'value'	=> $taskOwner[0]['id'],
-				'label'	=> TodoyuUserManager::getLabel($taskOwner[0]['id'])
+				'label'	=> TodoyuPersonManager::getLabel($taskOwner[0]['id'])
 			)
 		);
 

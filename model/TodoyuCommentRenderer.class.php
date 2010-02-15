@@ -158,7 +158,7 @@ class TodoyuCommentRenderer {
 		$extConf	= TodoyuExtConfManager::getExtConf('comment');
 		$usergroups	= explode(',', $extConf['autorequestownerfeedback']);
 
-		if ( TodoyuUserManager::isInAnyGroup(userid(), $usergroups) ) {
+		if ( TodoyuPersonManager::isInAnyGroup(userid(), $usergroups) ) {
 			$form->getFieldset('main')->removeField('feedback', true);
 			$form->getFieldset('main')->addElementsFromXML('ext/comment/config/form/comment-autofeedbackfromowner.xml');
 		}
@@ -179,7 +179,7 @@ class TodoyuCommentRenderer {
 		$extConf	= TodoyuExtConfManager::getExtConf('comment');
 		$usergroups	= explode(',', $extConf['automailcommenttoowner']);
 
-		if ( TodoyuUserManager::isInAnyGroup(userid(), $usergroups) ) {
+		if ( TodoyuPersonManager::isInAnyGroup(userid(), $usergroups) ) {
 			$form->getFieldset('main')->removeField('sendasemail', true);
 			$form->getFieldset('main')->removeField('emailreceivers', true);
 			$form->getFieldset('main')->addElementsFromXML('ext/comment/config/form/comment-automailtoowner.xml');

@@ -277,7 +277,7 @@ class TodoyuCommentManager {
 
 		$taskUsers		= TodoyuTaskManager::getTaskUsers($idTask);
 		$projectUsers	= TodoyuProjectManager::getProjectUsers($idProject);
-		$internalUsers	= TodoyuUserManager::getInternalUsers();
+		$internalUsers	= TodoyuPersonManager::getInternalUsers();
 
 		$users = array();
 

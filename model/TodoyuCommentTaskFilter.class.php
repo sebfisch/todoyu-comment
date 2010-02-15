@@ -83,12 +83,12 @@ class TodoyuCommentTaskFilter {
 				'ext_project_task',
 				'ext_comment_comment',
 				'ext_comment_feedback',
-				'ext_user_mm_user_group'
+				'ext_contact_mm_person_role'
 			);
 			$where	= '	ext_comment_comment.id_task 			= ext_project_task.id AND
 						ext_comment_feedback.id_comment 		= ext_comment_comment.id AND
-						ext_comment_feedback.id_user_feedback	= ext_user_mm_user_group.id_user AND
-						ext_user_mm_user_group.id_group IN(' . implode(',', $groupIDs) . ')';
+						ext_comment_feedback.id_user_feedback	= ext_contact_mm_person_role.id_user AND
+						ext_contact_mm_person_role.id_group IN(' . implode(',', $groupIDs) . ')';
 
 			$queryParts	= array(
 				'tables'=> $tables,
@@ -184,11 +184,11 @@ class TodoyuCommentTaskFilter {
 			$tables	= array(
 				'ext_project_task',
 				'ext_comment_comment',
-				'ext_user_mm_user_group'
+				'ext_contact_mm_person_role'
 			);
 			$where	= '	ext_comment_comment.id_task 		= ext_project_task.id AND
-						ext_comment_comment.id_user_create 	= ext_user_mm_user_group.id_user AND
-						ext_user_mm_user_group.id_group IN(' . implode(',', $groupIDs) . ')';
+						ext_comment_comment.id_user_create 	= ext_contact_mm_person_role.id_user AND
+						ext_contact_mm_person_role.id_group IN(' . implode(',', $groupIDs) . ')';
 
 			$queryParts	= array(
 				'tables'=> $tables,

@@ -69,8 +69,8 @@ class TodoyuCommentSearch implements TodoyuSearchEngineIf {
 			$table	= '	ext_comment_comment c,
 						ext_project_task t,
 						ext_project_project p,
-						ext_user_user u,
-						ext_user_company comp';
+						ext_contact_person u,
+						ext_contact_company comp';
 
 			$where	= '	c.id IN(' . implode(',', $commentIDs) . ')
 						AND c.id_task 			= t.id

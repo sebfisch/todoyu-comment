@@ -225,7 +225,7 @@ class TodoyuCommentFeedbackManager {
 					u.firstname,
 					u.lastname,
 					f.is_seen';
-		$tables	= '	ext_user_user u,
+		$tables	= '	ext_contact_person u,
 					ext_comment_feedback f';
 		$where	= '	f.id_comment 		= ' . $idComment . ' AND
 					f.id_user_feedback	= u.id AND
