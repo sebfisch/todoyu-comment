@@ -8,20 +8,20 @@
 		<fieldset name="config">
 
 			<elements>
-				
+
 				<field type="select" name="autorequestownerfeedback">
 					<label>comment.extconf.autorequestownerfeedback.label</label>
 					<source type="function">
-						<function>TodoyuUsergroupViewHelper::getUsergroupOptions</function>
+						<function>TodoyuRoleViewHelper::getUsergroupOptions</function>
 						<lazyInit/>
 					</source>
 					<multiple>1</multiple>
 				</field>
-				
+
 				<field type="select" name="automailcommenttoowner">
 					<label>comment.extconf.automailcommenttoowner.label</label>
 					<source type="function">
-						<function>TodoyuUsergroupViewHelper::getUsergroupOptions</function>
+						<function>TodoyuRoleViewHelper::getUsergroupOptions</function>
 						<lazyInit/>
 					</source>
 					<multiple>1</multiple>
