@@ -204,7 +204,7 @@ class TodoyuCommentManager {
 			// Limit comment it own and public if user can't see ALL comments
 		if( ! allowed('comment', 'comment:seeAll') ) {
 			$where .= ' AND	(
-							id_user_create	= ' . personid() . ' OR
+							id_person_create	= ' . personid() . ' OR
 							is_public		= 1
 						)';
 		}
@@ -254,11 +254,11 @@ class TodoyuCommentManager {
 	 */
 	public static function isCreator($idComment, $idUser = 0) {
 		$idComment	= intval($idComment);
-		$idUser		= userid($idUser);
+		$idUser		= personid($idUser);
 
 		$fields	= 'id';
 		$table	= self::TABLE;
-		$where	= 'id = ' . $idComment . ' AND id_user_create = ' . $idUser;
+		$where	= 'id = ' . $idComment . ' AND id_person_create = ' . $idUser;
 
 		return Todoyu::db()->hasResult($fields, $table, $where);
 	}
@@ -275,8 +275,8 @@ class TodoyuCommentManager {
 		$idTask		= intval($idTask);
 		$idProject	= TodoyuTaskManager::getProjectID($idTask);
 
-		$taskUsers		= TodoyuTaskManager::getTaskUsers($idTask);
-		$projectUsers	= TodoyuProjectManager::getProjectUsers($idProject);
+		$taskUsers		= TodoyuTaskManager::getTaskPersons($idTask);
+		$projectUsers	= TodoyuProjectManager::getProjectPersons($idProject);
 		$internalUsers	= TodoyuPersonManager::getInternalPersons();
 
 		$users = array();

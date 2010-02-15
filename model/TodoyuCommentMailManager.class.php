@@ -49,8 +49,8 @@ class TodoyuCommentMailManager {
 		$data	= array(
 			'date_create'		=> NOW,
 			'id_comment'		=> $idComment,
-			'id_user_create'	=> personid(),
-			'id_user_mailed'	=> $idUserMailed,
+			'id_person_create'	=> personid(),
+			'id_person_mailed'	=> $idUserMailed,
 		);
 
 		return Todoyu::db()->addRecord(self::TABLE, $data);
@@ -73,8 +73,8 @@ class TodoyuCommentMailManager {
 
 		$fields	= '*';
 		$where	= 'id_comment = ' . $idComment .
-				 ($idUserCreate !== 0 ? ' AND id_user_create = ' . $idUserCreate : '') .
-				 ($idUserMailed !== 0 ? ' AND id_user_mailed IN (' . $idUserMailed . ')' : '');
+				 ($idUserCreate !== 0 ? ' AND id_person_create = ' . $idUserCreate : '') .
+				 ($idUserMailed !== 0 ? ' AND id_person_mailed IN (' . $idUserMailed . ')' : '');
 		$groupBy	= 'id';
 		$orderBy	= 'date_create';
 

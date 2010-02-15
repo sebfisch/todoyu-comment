@@ -38,7 +38,7 @@ class TodoyuCommentHistoryManager {
 		$idComment	= intval($idComment);
 
 		$commentData	= TodoyuCommentManager::getCommentData($idComment);
-		$userCreate		= TodoyuPersonManager::getLabel($commentData['id_user_create'], false);
+		$userCreate		= TodoyuPersonManager::getLabel($commentData['id_person_create'], false);
 
 		$feedbackRequests	= TodoyuCommentFeedbackManager::getFeedbackRequests($idComment, false);
 		$mailsSend			= TodoyuCommentMailManager::getAllSent($idComment);

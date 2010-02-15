@@ -11,7 +11,7 @@
 		<span id="task-comment-{$id}-id" class="comment-id" title="{Label comment.id}">K{$id}</span>
 		<span id="task-comment-{$id}-options" class="comment-options">
 		{* --------------------------- Edit ------------------------- *}
-		{if allowedOrOwn('comment','editAll', $id_user_create)}
+		{if allowedOrOwn('comment','editAll', $id_person_create)}
 			<a href="javascript:void(0)" onclick="Todoyu.Ext.comment.edit({$id_task}, {$id})" class="icon comment-edit" title="{Label comment.icon.edit}">
 				<span class="hidden">{Label comment.icon.edit}</span>
 			</a>
@@ -23,7 +23,7 @@
 			</a>
 		{/restrict}
 		{* -------------------------- Delete ------------------------ *}
-		{if allowedOrOwn('comment','task:deleteAll', $id_user_create)}
+		{if allowedOrOwn('comment','task:deleteAll', $id_person_create)}
 			<a href="javascript:void(0)" onclick="Todoyu.Ext.comment.remove({$id})" class="icon comment-remove" title="{Label comment.icon.remove}">
 				<span class="hidden">{Label comment.icon.remove}</span>
 			</a>

@@ -79,7 +79,7 @@ class TodoyuCommentViewHelper {
 
 			// Task users
 		$groupLabel	= Label('comment.group.taskmembers');
-		$taskUsers		= TodoyuTaskManager::getTaskUsers($idTask);
+		$taskUsers		= TodoyuTaskManager::getTaskPersons($idTask);
 		foreach($taskUsers as $user) {
 			$options[$groupLabel][] = array(
 				'value'	=> $user['id'],
@@ -89,7 +89,7 @@ class TodoyuCommentViewHelper {
 
 			// Get project users
 		$groupLabel		= Label('comment.group.projectmembers');
-		$projectUsers	= TodoyuProjectManager::getProjectUsers($idProject);
+		$projectUsers	= TodoyuProjectManager::getProjectPersons($idProject);
 		foreach($projectUsers as $user) {
 			$options[$groupLabel][] = array(
 				'value'	=> $user['id'],
