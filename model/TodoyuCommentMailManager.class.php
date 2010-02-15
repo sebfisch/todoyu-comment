@@ -49,7 +49,7 @@ class TodoyuCommentMailManager {
 		$data	= array(
 			'date_create'		=> NOW,
 			'id_comment'		=> $idComment,
-			'id_user_create'	=> userid(),
+			'id_user_create'	=> personid(),
 			'id_user_mailed'	=> $idUserMailed,
 		);
 

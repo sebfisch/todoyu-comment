@@ -99,10 +99,10 @@ class TodoyuComment extends TodoyuBaseObject {
 	/**
 	 * Get the user which added the comment
 	 *
-	 * @return	TodoyuUser
+	 * @return	TodoyuPerson
 	 */
 	public function getCreateUser() {
-		return TodoyuPersonManager::getUser($this->getCreateUserID());
+		return TodoyuPersonManager::getPerson($this->getCreateUserID());
 	}
 
 

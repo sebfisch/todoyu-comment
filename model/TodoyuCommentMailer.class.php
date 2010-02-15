@@ -57,11 +57,11 @@ class TodoyuCommentMailer {
 	 * @param	Integer		$idUser
 	 * @return	Boolean		Success
 	 */
-	public static function sendMail($idComment, $idUser) {
+	public static function sendMail($idComment, $idPerson) {
 		$idComment	= intval($idComment);
-		$idUser		= intval($idUser);
+		$idPerson	= intval($idPerson);
 		$comment	= TodoyuCommentManager::getComment($idComment);
-		$user		= TodoyuPersonManager::getUser($idUser);
+		$person		= TodoyuPersonManager::getPerson($idPerson);
 
 			// Set mail config
 		$mail			= new PHPMailerLite(true);
@@ -70,14 +70,14 @@ class TodoyuCommentMailer {
 		$mail->FromName	= $GLOBALS['CONFIG']['EXT']['comment']['infomail']['fromname'];
 		$mail->Subject	= Label('comment.mail.subject') . ': ' . $comment->getTask()->getTitle() . ' (#' . $comment->getTask()->getTaskNumber(true) . ')';
 
-		$htmlBody		= self::getMailContentHtml($idComment, $idUser);
-		$textBody		= self::getMailContentText($idComment, $idUser);
+		$htmlBody		= self::getMailContentHtml($idComment, $idPerson);
+		$textBody		= self::getMailContentText($idComment, $idPerson);
 
 		$mail->MsgHTML($htmlBody, PATH_EXT_COMMENT);
 		$mail->AltBody	= $textBody;
 
 
-		$mail->AddAddress($user->getEmail(), $user->getFullName());
+		$mail->AddAddress($person->getEmail(), $person->getFullName());
 
 		try {
 			$sendStatus	= $mail->Send();
@@ -95,26 +95,26 @@ class TodoyuCommentMailer {
 	 * Get data array to render email
 	 *
 	 * @param	Integer		$idComment
-	 * @param	Integer		$idUser
+	 * @param	Integer		$idPerson
 	 * @return	Array
 	 */
-	private static function getMailData($idComment, $idUser) {
-		$idComment	= intval($idComment);
-		$idUser		= intval($idUser);
-		$comment	= TodoyuCommentManager::getComment($idComment);
-		$task		= $comment->getTask();
-		$project	= $comment->getProject();
-		$userReceive= TodoyuPersonManager::getUser($idUser);
-		$userWrite	= $comment->getCreateUser();
-		$userSend	= TodoyuAuth::getUser();
+	private static function getMailData($idComment, $idPerson) {
+		$idComment		= intval($idComment);
+		$idPerson		= intval($idPerson);
+		$comment		= TodoyuCommentManager::getComment($idComment);
+		$task			= $comment->getTask();
+		$project		= $comment->getProject();
+		$personReceive	= TodoyuPersonManager::getPerson($idPerson);
+		$personWrite	= $comment->getCreateUser();
+		$personSend		= TodoyuAuth::getPerson();
 
 		$data	= array(
 			'comment'		=> $comment->getTemplateData(),
 			'project' 		=> $project->getTemplateData(),
 			'task'			=> $task->getTemplateData(0),
-			'userReceive'	=> $userReceive->getTemplateData(),
-			'userWrite'		=> $userWrite->getTemplateData(),
-			'userSend'		=> $userSend->getTemplateData(),
+			'userReceive'	=> $personReceive->getTemplateData(),
+			'userWrite'		=> $personWrite->getTemplateData(),
+			'userSend'		=> $personSend->getTemplateData(),
 			'feedback_users'=> $comment->getFeedbackUsers()
 		);
 

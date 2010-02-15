@@ -28,7 +28,7 @@
 class TodoyuCommentTaskFilter {
 
 	public static function Filter_unseenFeedbackCurrentUser($idUser, $negate = false) {
-		return self::Filter_unseenFeedbackUser(userid(), $negate);
+		return self::Filter_unseenFeedbackUser(personid(), $negate);
 	}
 
 

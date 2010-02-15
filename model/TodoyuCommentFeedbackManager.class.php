@@ -50,7 +50,7 @@ class TodoyuCommentFeedbackManager {
 		$table	= self::TABLE;
 		$data	= array('date_create'		=> NOW,
 						'date_update'		=> 0,
-						'id_user_create'	=> userid(),
+						'id_user_create'	=> personid(),
 						'id_user_feedback'	=> $idFeedbackUser,
 						'id_comment'		=> $idComment,
 						'is_seen'			=> 0);
@@ -248,7 +248,7 @@ class TodoyuCommentFeedbackManager {
 	 */
 	public static function isCommentUnapproved($idComment)	{
 		$idComment	= intval($idComment);
-		$idUser		= userid();
+		$idUser		= personid();
 
 		$field	= 'is_seen';
 		$table	= self::TABLE;
