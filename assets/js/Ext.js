@@ -150,7 +150,7 @@ Todoyu.Ext.comment = {
 	 * @param	String	label
 	 */
 	setTabLabel: function(idTask, label){
-		$('task-' + idTask + '-tabhead-comment-label').select('.labeltext').first().update(label);
+		$('task-' + idTask + '-tab-comment-label').select('.labeltext').first().update(label);
 	},
 
 
