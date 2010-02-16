@@ -3,8 +3,6 @@
 	<attributes>
 		<attribute name="action">?ext=comment&amp;controller=comment</attribute>
 		<attribute name="name">comment</attribute>
-		<attribute name="onsubmit">return false</attribute>
-		<attribute name="class">formComment</attribute>
 	</attributes>
 	<hiddenFields>
 		<field name="id" />
