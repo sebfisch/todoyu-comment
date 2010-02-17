@@ -26,11 +26,8 @@
  * @subpackage	Project
  */
 
-
-
-
 $CONFIG['EXT']['comment']['assets'] = array(
-		// default assets: loaded all over the installation always
+		// Default assets: loaded all over the installation always
 	'default' => array(
 		'js' => array(
 
@@ -44,7 +41,7 @@ $CONFIG['EXT']['comment']['assets'] = array(
 	),
 
 
-		// public assets: basis assets for this extension
+		// Public assets: basis assets for this extension
 	'public' => array(
 		'js' => array(
 			array(
@@ -77,6 +74,5 @@ $CONFIG['EXT']['comment']['assets'] = array(
 	)
 
 );
-
 
 ?>
