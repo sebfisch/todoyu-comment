@@ -6,7 +6,7 @@
 	{/if}
 		<span id="task-comment-{$id}-crdate" class="comment-crdate hasicon">{date_format $date_create "%d.%m.%y %R"}</span>
 		<span id="task-comment-{$id}-user" class="comment-user hasicon">
-			{userLabel idPrefix="comment_usercreate" idRecord=$id idUser=$user_create.id}
+			{personLabel idPrefix="comment-personcreate" idRecord=$id idPerson=$person_create.id}
 		</span>
 		<span id="task-comment-{$id}-id" class="comment-id" title="{Label comment.id}">K{$id}</span>
 		<span id="task-comment-{$id}-options" class="comment-options">
@@ -48,7 +48,7 @@
 			{/if}
 				<dd>
 					{if $feedbackUser.is_seen}{$class=''}{else}{$class='commentuser-unapproved'}{/if}
-					{userLabel idPrefix="comment_userfeedback" idRecord=$id idUser=$feedbackUser.id class=$class}
+					{personLabel idPrefix="comment_personfeedback" idRecord=$id idPerson=$feedbackPerson.id class=$class}
 				</dd>
 				</dl>
 			{else}
