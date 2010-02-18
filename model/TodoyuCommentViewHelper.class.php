@@ -99,7 +99,7 @@ class TodoyuCommentViewHelper {
 
 			// Get staff users (employees of internal company)
 		$groupLabel	= Label('comment.group.employees');
-		$options[$groupLabel]	= TodoyuUserViewHelper::getInternalUsersOptions($field);
+		$options[$groupLabel]	= TodoyuContactViewHelper::getInternalPersonOptions($field);
 
 		return $options;
 	}
