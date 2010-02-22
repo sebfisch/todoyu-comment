@@ -44,7 +44,7 @@ class TodoyuCommentHistoryManager {
 		$mailsSend			= TodoyuCommentMailManager::getAllSent($idComment);
 
 		$log	= self::mergeAndSortLogEntries($feedbackRequests, $mailsSend);
-		$log	= TodoyuUserViewHelper::getUserLabelsRecursive($log);
+//		$log	= TodoyuUserViewHelper::getUserLabelsRecursive($log);
 
 		$history	= array(
 			'id'			=> $idComment,

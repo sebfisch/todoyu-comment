@@ -24,27 +24,21 @@
  */
 
 $CONFIG['EXT']['comment']['info'] = array(
-	'title'				=> 'Task comments management',
-	'description' 		=> '',
-	'author' 			=> array(
-		'name'				=> 'Todoyu Core Team',
-		'email'				=> 'team@todoyu.com',
-		'company'			=> 'Snowflake Productions, Zürich'
+	'title'			=> 'Task comments management',
+	'description' 	=> '',
+	'author' 		=> array(
+		'name'		=> 'Todoyu Core Team',
+		'email'		=> 'team@todoyu.com',
+		'company'	=> 'Snowflake Productions, Zürich'
 	),
-	'dependencies' 		=> 'project',
-	'conflicts'			=> '',
-	'state' 			=> 'beta',
-	'version'			=> '0.1.0',
-	'constraints'		=> array(
-		'depends'			=> array(
-			'project' 			=> '0.1.0',
+	'state' 		=> 'beta',
+	'version'		=> '0.2.0',
+	'constraints'	=> array(
+		'depends'	=> array(
+			'project' 	=> '0.2.0',
 		),
-		'conflicts' 		=> array(
-
-		),
-		'suggests' => array(
-
-		),
+		'conflicts' => array(
+		)
 	)
 );
 
