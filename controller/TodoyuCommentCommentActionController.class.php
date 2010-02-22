@@ -42,7 +42,7 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 		} else {
 			$comment	= TodoyuCommentManager::getComment($idComment);
 				// User is the creator or has right editAll
-			if( ! $comment->isCurrentUserCreator() ) {
+			if( ! $comment->isCurrentPersonCreator() ) {
 				restrict('comment', 'task:editAll');
 			}
 		}
@@ -62,7 +62,7 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 		$comment	= TodoyuCommentManager::getComment($idComment);
 
 			// User is the creator or has right deleteAll
-		if( ! $comment->isCurrentUserCreator() ) {
+		if( ! $comment->isCurrentPersonCreator() ) {
 			restrict('comment', 'task:deleteAll');
 		}
 
@@ -87,7 +87,7 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 
 		$comment	= TodoyuCommentManager::getComment($idComment);
 			// User is the creator or has right editAll
-		if( ! $comment->isCurrentUserCreator() ) {
+		if( ! $comment->isCurrentPersonCreator() ) {
 			restrict('comment', 'task:viewHistory');
 		}
 
@@ -113,7 +113,7 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 			restrict('comment', 'task:add');
 		} else {
 			$comment	= TodoyuCommentManager::getComment($idComment);
-			if( ! $comment->isCurrentUserCreator() ) {
+			if( ! $comment->isCurrentPersonCreator() ) {
 				restrict('comment', 'task:editAll');
 			}
 		}
