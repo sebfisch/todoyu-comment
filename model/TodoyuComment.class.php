@@ -86,40 +86,40 @@ class TodoyuComment extends TodoyuBaseObject {
 
 
 	/**
-	 * Get ID of the user which added the comment
+	 * Get ID of the person which added the comment
 	 *
 	 * @return	Integer
 	 */
-	public function getCreateUserID() {
-		return intval($this->data['id_person_create']);
+	public function getCreatePersonID() {
+		return $this->getPersonID('create');
 	}
 
 
 
 	/**
-	 * Get the user which added the comment
+	 * Get the person which added the comment
 	 *
 	 * @return	TodoyuPerson
 	 */
-	public function getCreateUser() {
-		return TodoyuPersonManager::getPerson($this->getCreateUserID());
+	public function getCreatePerson() {
+		return $this->getPerson('create');
 	}
 
 
 
 	/**
-	 * Get users being stored to have a feedback requested from to this comment
+	 * Get persons being stored to have a feedback requested from to this comment
 	 *
 	 * @return	Array
 	 */
-	public function getFeedbackUsers() {
-		return TodoyuCommentFeedbackManager::getFeedbackUsers($this->id);
+	public function getFeedbackPersons() {
+		return TodoyuCommentFeedbackManager::getFeedbackPersons($this->id);
 	}
 
 
 	protected function loadForeignData() {
-		$this->data['user_create']		= $this->getCreateUser()->getTemplateData(false);
-		$this->data['users_feedback']	= TodoyuCommentFeedbackManager::getFeedbackUsers($this->id);
+		$this->data['person_create']	= $this->getCreatePerson()->getTemplateData(false);
+		$this->data['persons_feedback']	= TodoyuCommentFeedbackManager::getFeedbackPersons($this->id);
 		$this->data['unapproved']		= TodoyuCommentFeedbackManager::isCommentUnapproved($this->id);
 
 
@@ -136,7 +136,7 @@ class TodoyuComment extends TodoyuBaseObject {
 
 
 	/**
-	 * Prepare comments rendering template data (creation user, having been seen status, feedback users)
+	 * Prepare comments rendering template data (creation person, having been seen status, feedback persons)
 	 *
 	 * @return Array
 	 */

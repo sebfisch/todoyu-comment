@@ -61,11 +61,11 @@
 }
 
 .task-comments .comment-details .comment,
-.task-comments .comment-details .users {
+.task-comments .comment-details .persons {
 	padding:5px !important;
 }
 
-.task-comments .comment-details .users {
+.task-comments .comment-details .persons {
 	border-bottom:1px dotted #bec5ab;
 }
 
@@ -74,23 +74,23 @@
 	width:285px;
 }
 
-.task-comments .comment-details .users dt,
-.task-comments .comment-details .users dd,
-.task-comments .comment-details .users dd a {
+.task-comments .comment-details .persons dt,
+.task-comments .comment-details .persons dd,
+.task-comments .comment-details .persons dd a {
 	color:#666;
 	line-height:18px;
 }
 
-.task-comments .comment-details .users dt {
+.task-comments .comment-details .persons dt {
 	float:left;
 	width:130px;
 }
 
-.task-comments .comment-details .users dd span {
+.task-comments .comment-details .persons dd span {
 	padding-left:13px;
 }
 
-.task-comments .comment-details .users dd span.commentuser-unapproved {
+.task-comments .comment-details .persons dd span.commentperson-unapproved {
 	background:transparent url('../img/icons.png') no-repeat 0 -330px;
 }
 
@@ -108,7 +108,7 @@
 	background:url(../img/icons.png) no-repeat 0 -116px;
 }
 
-.task-comments .comment-userapproval {
+.task-comments .comment-personapproval {
 	display:block;
 	float:left;
 	margin-right:10px;
@@ -117,7 +117,7 @@
 	background:url(../img/icons.png) no-repeat 0 -300px;
 }
 
-.task-comments .comment-user {
+.task-comments .comment-person {
 	padding-left:25px;
 	background:url(../img/icons.png) no-repeat 0 -90px;
 }
@@ -222,7 +222,7 @@ li.comment .comment-history {
 		padding:4px 0 4px 26px;
 	    background-color:#e8e8e8;
 	}
-	
+
 	.comment-history dl {
 		padding:4px 0 6px 8px;
 	}
@@ -237,7 +237,7 @@ li.comment .comment-history {
 				padding-left:8px;
 			}
 
-		.comment-history dl dd .user {
+		.comment-history dl dd .person {
 			float:left;
 			width:150px;
 		}

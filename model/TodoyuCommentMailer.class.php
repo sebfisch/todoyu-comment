@@ -31,19 +31,19 @@ require_once( PATH_LIB . '/php/phpmailer/class.phpmailer-lite.php' );
 class TodoyuCommentMailer {
 
 	/**
-	 * Send comment information email to the users
+	 * Send comment information email to the persons
 	 *
 	 * @param	Integer		$idComment
-	 * @param	Array		$userIDs
+	 * @param	Array		$personIDs
 	 */
-	public static function sendEmails($idComment, array $userIDs) {
-		$userIDs	= TodoyuArray::intval($userIDs, true, true);
+	public static function sendEmails($idComment, array $personIDs) {
+		$personIDs	= TodoyuArray::intval($personIDs, true, true);
 
-		foreach($userIDs as $idUser) {
-			$result = self::sendMail($idComment, $idUser);
+		foreach($personIDs as $idPerson) {
+			$result = self::sendMail($idComment, $idPerson);
 
 			if ( $result !== false ) {
-				TodoyuCommentMailManager::saveMailSent($idComment, $idUser);
+				TodoyuCommentMailManager::saveMailSent($idComment, $idPerson);
 			}
 		}
 	}
@@ -51,10 +51,10 @@ class TodoyuCommentMailer {
 
 
 	/**
-	 * Send a comment email to an user
+	 * Send a comment email to an person
 	 *
 	 * @param	Integer		$idComment
-	 * @param	Integer		$idUser
+	 * @param	Integer		$idPerson
 	 * @return	Boolean		Success
 	 */
 	public static function sendMail($idComment, $idPerson) {
@@ -105,17 +105,17 @@ class TodoyuCommentMailer {
 		$task			= $comment->getTask();
 		$project		= $comment->getProject();
 		$personReceive	= TodoyuPersonManager::getPerson($idPerson);
-		$personWrite	= $comment->getCreateUser();
+		$personWrite	= $comment->getCreatePerson();
 		$personSend		= TodoyuAuth::getPerson();
 
 		$data	= array(
 			'comment'		=> $comment->getTemplateData(),
 			'project' 		=> $project->getTemplateData(),
 			'task'			=> $task->getTemplateData(0),
-			'userReceive'	=> $personReceive->getTemplateData(),
-			'userWrite'		=> $personWrite->getTemplateData(),
-			'userSend'		=> $personSend->getTemplateData(),
-			'feedback_users'=> $comment->getFeedbackUsers()
+			'personReceive'	=> $personReceive->getTemplateData(),
+			'personWrite'	=> $personWrite->getTemplateData(),
+			'personSend'	=> $personSend->getTemplateData(),
+			'feedback_persons'=> $comment->getFeedbackPersons()
 		);
 
 		$data['tasklink'] = TodoyuDiv::buildUrl(array(
@@ -140,15 +140,15 @@ class TodoyuCommentMailer {
 	 * Render content for HTML mail
 	 *
 	 * @param	Integer		$idComment		Comment to send
-	 * @param	Integer		$idUser			User to send the email to
+	 * @param	Integer		$idPerson		Person to send the email to
 	 * @return	String
 	 */
-	private static function getMailContentHtml($idComment, $idUser) {
+	private static function getMailContentHtml($idComment, $idPerson) {
 		$idComment	= intval($idComment);
-		$idUser		= intval($idUser);
+		$idPerson		= intval($idPerson);
 
 		$tmpl		= 'ext/comment/view/comment-mail-html.tmpl';
-		$data		= self::getMailData($idComment, $idUser);
+		$data		= self::getMailData($idComment, $idPerson);
 
 		return render($tmpl, $data);
 	}
@@ -159,15 +159,15 @@ class TodoyuCommentMailer {
 	 * Render content for text mail
 	 *
 	 * @param	Integer		$idComment		Comment to send
-	 * @param	Integer		$idUser			User to send the email to
+	 * @param	Integer		$idPerson		Person to send the email to
 	 * @return	String
 	 */
-	private static function getMailContentText($idComment, $idUser) {
+	private static function getMailContentText($idComment, $idPerson) {
 		$idComment	= intval($idComment);
-		$idUser		= intval($idUser);
+		$idPerson		= intval($idPerson);
 
 		$tmpl		= 'ext/comment/view/comment-mail-text.tmpl';
-		$data		= self::getMailData($idComment, $idUser);
+		$data		= self::getMailData($idComment, $idPerson);
 
 		return render($tmpl, $data);
 	}

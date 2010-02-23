@@ -35,7 +35,7 @@ $CONFIG['EXT']['comment']['infomail']['email'] 			= $CONFIG['SYSTEM']['email'];
  */
 $CONFIG['EXT']['comment']['feedbackTabFilters'] = array(
 	array(
-		'filter'	=> 'unseenFeedbackCurrentUser',
+		'filter'	=> 'unseenFeedbackCurrentPerson',
 		'negate'	=> false
 	)
 );

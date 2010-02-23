@@ -28,7 +28,7 @@
 				<field type="selectgrouped" name="feedback">
 					<label>comment.edit.feedback</label>
 					<source type="function">
-						<function>TodoyuCommentViewHelper::getFeedbackUsersGroupedOptions</function>
+						<function>TodoyuCommentViewHelper::getFeedbackPersonsGroupedOptions</function>
 						<lazyInit/>
 					</source>
 					<fieldClass>selectgrouped</fieldClass>

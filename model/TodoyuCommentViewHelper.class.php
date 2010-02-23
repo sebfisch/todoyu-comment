@@ -28,7 +28,7 @@
 class TodoyuCommentViewHelper {
 
 	/**
-	 * Get option array of users which can receive the comment email (project members)
+	 * Get option array of persons which can receive the comment email (project members)
 	 *
 	 * @param	Array		$formData
 	 * @return	Array
@@ -36,12 +36,12 @@ class TodoyuCommentViewHelper {
 	public static function getEmailReceiverOptions(TodoyuFormElement $field) {
 		$idTask		= intval($field->getForm()->getHiddenField('id_task'));
 		$options	= array();
-		$users		= TodoyuCommentManager::getEmailReceivers($idTask);
+		$persons	= TodoyuCommentManager::getEmailReceivers($idTask);
 
-		foreach($users as $user) {
+		foreach($persons as $person) {
 			$options[] 	= array(
-				'value'	=> $user['id'],
-				'label'	=> TodoyuPersonManager::getLabel($user['id'], true, true)
+				'value'	=> $person['id'],
+				'label'	=> TodoyuPersonManager::getLabel($person['id'], true, true)
 			);
 		}
 
@@ -65,39 +65,39 @@ class TodoyuCommentViewHelper {
 	/**
 	 * Get option array for feedback select in comment edit form
 	 * The options are grouped in main groups with contain the options for
-	 * the users
+	 * the persons
 	 *
 	 * @param	Array		$formData
 	 * @return	Array
 	 */
-	public static function getFeedbackUsersGroupedOptions(TodoyuFormElement $field) {
+	public static function getFeedbackPersonsGroupedOptions(TodoyuFormElement $field) {
 		$formData	= $field->getForm()->getFormData();
 
 		$idTask		= intval($formData['id_task']);
 		$idProject	= TodoyuTaskManager::getProjectID($idTask);
 		$options	= array();
 
-			// Task users
+			// Task persons
 		$groupLabel	= Label('comment.group.taskmembers');
-		$taskUsers		= TodoyuTaskManager::getTaskPersons($idTask);
-		foreach($taskUsers as $user) {
+		$taskPersons= TodoyuTaskManager::getTaskPersons($idTask);
+		foreach($taskPersons as $person) {
 			$options[$groupLabel][] = array(
-				'value'	=> $user['id'],
-				'label'	=> TodoyuPersonManager::getLabel($user['id'], false, true)
+				'value'	=> $person['id'],
+				'label'	=> TodoyuPersonManager::getLabel($person['id'], false, true)
 			);
 		}
 
-			// Get project users
+			// Get project persons
 		$groupLabel		= Label('comment.group.projectmembers');
-		$projectUsers	= TodoyuProjectManager::getProjectPersons($idProject);
-		foreach($projectUsers as $user) {
+		$projectPersons	= TodoyuProjectManager::getProjectPersons($idProject);
+		foreach($projectPersons as $person) {
 			$options[$groupLabel][] = array(
-				'value'	=> $user['id'],
-				'label'	=> TodoyuPersonManager::getLabel($user['id'])
+				'value'	=> $person['id'],
+				'label'	=> TodoyuPersonManager::getLabel($person['id'])
 			);
 		}
 
-			// Get staff users (employees of internal company)
+			// Get staff persons (employees of internal company)
 		$groupLabel	= Label('comment.group.employees');
 		$options[$groupLabel]	= TodoyuContactViewHelper::getInternalPersonOptions($field);
 

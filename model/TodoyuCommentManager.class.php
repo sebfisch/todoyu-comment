@@ -79,8 +79,8 @@ class TodoyuCommentManager {
 
 			// Extract feedback and email data
 		$sendAsEmail	= intval($data['sendasemail']) === 1;
-		$usersEmail		= array_unique(TodoyuArray::intExplode(',', $data['emailreceivers'], true, true));
-		$usersFeedback	= array_unique(TodoyuArray::intExplode(',', $data['feedback'], true, true));
+		$personEmail	= array_unique(TodoyuArray::intExplode(',', $data['emailreceivers'], true, true));
+		$personsFeedback= array_unique(TodoyuArray::intExplode(',', $data['feedback'], true, true));
 
 			// Remove special handled fields
 		unset($data['sendasemail']);
@@ -94,16 +94,16 @@ class TodoyuCommentManager {
 		TodoyuCommentFeedbackManager::setTaskCommentsAsSeen($data['id_task']);
 
 			// Register feedback for current comment
-		if( sizeof($usersFeedback) > 0 ) {
-			TodoyuCommentFeedbackManager::addFeedbacks($idComment, $usersFeedback);
+		if( sizeof($personsFeedback) > 0 ) {
+			TodoyuCommentFeedbackManager::addFeedbacks($idComment, $personsFeedback);
 		}
 
 			// Call saved hook
 		TodoyuHookManager::callHook('comment', 'saved', array($idComment));
 
 			// Send emails
-		if( $sendAsEmail && sizeof($usersEmail) > 0 ) {
-			TodoyuCommentMailer::sendEmails($idComment, $usersEmail);
+		if( $sendAsEmail && sizeof($personsEmail) > 0 ) {
+			TodoyuCommentMailer::sendEmails($idComment, $personsEmail);
 			TodoyuHeader::sendTodoyuHeader('sentEmail', true);
 		}
 
@@ -201,7 +201,7 @@ class TodoyuCommentManager {
 		$where	= 'id_task = ' . $idTask . ' AND deleted = 0';
 		$order	= 'date_create ' . $sortDir;
 
-			// Limit comment it own and public if user can't see ALL comments
+			// Limit comment it own and public if person can't see ALL comments
 		if( ! allowed('comment', 'comment:seeAll') ) {
 			$where .= ' AND	(
 							id_person_create	= ' . personid() . ' OR
@@ -246,19 +246,19 @@ class TodoyuCommentManager {
 
 
 	/**
-	 * Check if a user is the create of a comment
+	 * Check if a person is the create of a comment
 	 *
 	 * @param	Integer		$idComment
-	 * @param	Integer		$idUser
+	 * @param	Integer		$idPerson
 	 * @return	Boolean
 	 */
-	public static function isCreator($idComment, $idUser = 0) {
+	public static function isCreator($idComment, $idPerson = 0) {
 		$idComment	= intval($idComment);
-		$idUser		= personid($idUser);
+		$idPerson	= personid($idPerson);
 
 		$fields	= 'id';
 		$table	= self::TABLE;
-		$where	= 'id = ' . $idComment . ' AND id_person_create = ' . $idUser;
+		$where	= 'id = ' . $idComment . ' AND id_person_create = ' . $idPerson;
 
 		return Todoyu::db()->hasResult($fields, $table, $where);
 	}
@@ -266,7 +266,7 @@ class TodoyuCommentManager {
 
 
 	/**
-	 * Get users which could receive a comment email
+	 * Get Persons which could receive a comment email
 	 *
 	 * @param	Integer		$idTask
 	 * @return	Array
@@ -275,34 +275,34 @@ class TodoyuCommentManager {
 		$idTask		= intval($idTask);
 		$idProject	= TodoyuTaskManager::getProjectID($idTask);
 
-		$taskUsers		= TodoyuTaskManager::getTaskPersons($idTask);
-		$projectUsers	= TodoyuProjectManager::getProjectPersons($idProject);
-		$internalUsers	= TodoyuPersonManager::getInternalPersons();
+		$taskPersons	= TodoyuTaskManager::getTaskPersons($idTask);
+		$projectPersons	= TodoyuProjectManager::getProjectPersons($idProject);
+		$internalPersons= TodoyuPersonManager::getInternalPersons();
 
-		$users = array();
+		$persons = array();
 
-			// Add task users
-		foreach($taskUsers as $user) {
-			if( ! empty($user['email']) ) {
-				$users[$user['id']] = $user;
+			// Add task Persons
+		foreach($taskPersons as $person) {
+			if( ! empty($person['email']) ) {
+				$persons[$person['id']] = $person;
 			}
 		}
 
-			// Add project users
-		foreach($projectUsers as $user) {
-			if( ! empty($user['email']) ) {
-				$users[$user['id']] = $user;
+			// Add project Persons
+		foreach($projectPersons as $person) {
+			if( ! empty($person['email']) ) {
+				$persons[$person['id']] = $person;
 			}
 		}
 
-			// Add internal users
-		foreach($internalUsers as $user) {
-			if( ! empty($user['email']) ) {
-				$users[$user['id']] = $user;
+			// Add internal Persons
+		foreach($internalPersons as $person) {
+			if( ! empty($person['email']) ) {
+				$persons[$person['id']] = $person;
 			}
 		}
 
-		return $users;
+		return $persons;
 	}
 
 

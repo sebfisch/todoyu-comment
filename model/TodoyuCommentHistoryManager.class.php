@@ -25,32 +25,30 @@
  * @package		Todoyu
  * @subpackage	Comment
  */
-
 class TodoyuCommentHistoryManager {
 
 	/**
-	 * Get comment IDs which need a feedback from the user
+	 * Get comment IDs which need a feedback from the person
 	 *
-	 * @param	Integer		$idUser
+	 * @param	Integer		$idComment
 	 * @return	Array
 	 */
 	public static function getHistory($idComment = 0) {
 		$idComment	= intval($idComment);
 
 		$commentData	= TodoyuCommentManager::getCommentData($idComment);
-		$userCreate		= TodoyuPersonManager::getLabel($commentData['id_person_create'], false);
+		$personCreate	= TodoyuPersonManager::getLabel($commentData['id_person_create'], false);
 
 		$feedbackRequests	= TodoyuCommentFeedbackManager::getFeedbackRequests($idComment, false);
 		$mailsSend			= TodoyuCommentMailManager::getAllSent($idComment);
 
 		$log	= self::mergeAndSortLogEntries($feedbackRequests, $mailsSend);
-//		$log	= TodoyuUserViewHelper::getUserLabelsRecursive($log);
 
 		$history	= array(
 			'id'			=> $idComment,
 			'id_task'		=> $commentData['id_task'],
 			'date_create'	=> $commentData['date_create'],
-			'user_create'	=> $userCreate,
+			'person_create'	=> $personCreate,
 			'log'			=> $log,
 		);
 

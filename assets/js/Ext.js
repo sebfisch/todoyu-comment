@@ -65,14 +65,14 @@ Todoyu.Ext.comment = {
 	 *
 	 * @param	Integer	idComment
 	 */
-	setSeenStatus: function(idComment, idUser)	{
+	setSeenStatus: function(idComment, idPerson)	{
 		var url		= Todoyu.getUrl('comment', 'task');
 		var options	= {
 			'parameters': {
 				'action':	'seen',
 				'comment':	idComment
 			},
-			'onComplete': this.onSeenStatusSet.bind(this, idComment, idUser)
+			'onComplete': this.onSeenStatusSet.bind(this, idComment, idPerson)
 		};
 
 		Todoyu.send(url, options);
@@ -84,14 +84,14 @@ Todoyu.Ext.comment = {
 	 * Handler for setSeenStatus
 	 *
 	 * @param	Integer			idComment
-	 * @param	Integer			idUser
+	 * @param	Integer			idPerson
 	 * @param	Ajax.Response	response
 	 */
-	onSeenStatusSet: function(idComment, idUser, response) {
+	onSeenStatusSet: function(idComment, idPerson, response) {
 			// Remove unseen icon
 		$('comment-' + idComment + '-seenstatus').remove();
 			// Remove class which marks the name unseen
-		$('task-comment-' + idComment + '-feedbackuser-' + idUser).removeClassName('commentuser-unapproved');
+		$('task-comment-' + idComment + '-feedbackperson-' + idPerson).removeClassName('commentperson-unapproved');
 	},
 
 
@@ -134,7 +134,7 @@ Todoyu.Ext.comment = {
 	addTaskComment: function(idTask) {
 		Todoyu.Ext.project.Task.showDetails(idTask, 'comment', this.onTaskCommentTabLoaded.bind(this));
 	},
-	
+
 	onTaskCommentTabLoaded: function(idTask, tab, response) {
 		if( ! Todoyu.exists('task-' + idTask + '-commentform-0') ) {
 			this.edit(idTask, 0);

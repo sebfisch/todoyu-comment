@@ -27,25 +27,25 @@
  */
 class TodoyuCommentTaskFilter {
 
-	public static function Filter_unseenFeedbackCurrentUser($idUser, $negate = false) {
-		return self::Filter_unseenFeedbackUser(personid(), $negate);
+	public static function Filter_unseenFeedbackCurrentPerson($idPerson, $negate = false) {
+		return self::Filter_unseenFeedbackPerson(personid(), $negate);
 	}
 
 
 
 	/**
-	 * Filter for tasks which have unseen comments (with feedback request) for a user
+	 * Filter for tasks which have unseen comments (with feedback request) for a person
 	 *
-	 * @param	Integer		$value		ID user
+	 * @param	Integer		$value		ID person
 	 * @param	Boolean		$negate
 	 * @return	Array
 	 */
-	public static function Filter_unseenFeedbackUser($idUser, $negate = false) {
+	public static function Filter_unseenFeedbackPerson($idPerson, $negate = false) {
 		$queryParts	= false;
-		$idUser		= intval($idUser);
+		$idPerson	= intval($idPerson);
 		$seenStatus	= $negate ? 1 : 0 ;
 
-		if( $idUser !== 0 ) {
+		if( $idPerson !== 0 ) {
 			$tables	= array(
 				'ext_project_task',
 				'ext_comment_comment',
@@ -54,7 +54,7 @@ class TodoyuCommentTaskFilter {
 			$where	= '	ext_comment_comment.id_task 			= ext_project_task.id AND
 						ext_comment_feedback.id_comment 		= ext_comment_comment.id AND
 						ext_comment_feedback.is_seen			= ' . $seenStatus . ' AND
-						ext_comment_feedback.id_person_feedback	= ' . $idUser;
+						ext_comment_feedback.id_person_feedback	= ' . $idPerson;
 
 			$queryParts	= array(
 				'tables'=> $tables,
@@ -140,23 +140,23 @@ class TodoyuCommentTaskFilter {
 
 
 	/**
-	 * Filter condition: Tasks which are written by an user
+	 * Filter condition: Tasks which are written by a person
 	 *
-	 * @param	Integer		$idUser
+	 * @param	Integer		$idPerson
 	 * @param	Bool		$negate
 	 * @return	Array		Or FALSE
 	 */
-	public static function Filter_commentWrittenUser($idUser, $negate = false) {
+	public static function Filter_commentWrittenPerson($idPerson, $negate = false) {
 		$queryParts	= false;
-		$idUser		= intval($idUser);
+		$idPerson	= intval($idPerson);
 
-		if( $idUser !== 0 ) {
+		if( $idPerson !== 0 ) {
 			$tables	= array(
 				'ext_project_task',
 				'ext_comment_comment'
 			);
 			$where	= '	ext_comment_comment.id_task 		= ext_project_task.id AND
-						ext_comment_comment.id_person_create 	= ' . $idUser;
+						ext_comment_comment.id_person_create= ' . $idPerson;
 
 			$queryParts	= array(
 				'tables'=> $tables,

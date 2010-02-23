@@ -26,12 +26,12 @@ body, td, p {
  </tr>
  <tr>
   <td><strong>{Label comment.mail.commentfrom}</strong></td>
-  <td>{$userWrite.firstname} {$userWrite.lastname} <a href="mailto:{$userWrite.firstname} {$userWrite.lastname}<{$userWrite.email}>">&lt;{$userWrite.email}&gt;</a></td>
+  <td>{$personWrite.firstname} {$personWrite.lastname} <a href="mailto:{$personWrite.firstname} {$personWrite.lastname}<{$personWrite.email}>">&lt;{$personWrite.email}&gt;</a></td>
  </tr>
-{if $userWrite.id !== $userSend.id}
+{if $personWrite.id !== $personSend.id}
  <tr>
   <td><strong>{Label comment.mail.commentsentby}</strong></td>
-  <td>{$userSend.firstname} {$userSend.lastname} <a href="mailto:{$userSend.firstname} {$userSend.lastname}<{$userSend.email}>">&lt;{$userSend.email}&gt;</a></td>
+  <td>{$personSend.firstname} {$personSend.lastname} <a href="mailto:{$personSend.firstname} {$personSend.lastname}<{$personSend.email}>">&lt;{$personSend.email}&gt;</a></td>
  </tr>
 {/if}
 </table>
@@ -42,13 +42,13 @@ body, td, p {
 <a href="{$commentlink}">{Label comment.mail.commentlink}</a></p>
 
 <table width="600" border="0" cellspacing="0" cellpadding="5">
- {if sizeof($feedback_users) > 0}
+ {if sizeof($feedback_persons) > 0}
  <tr>
   <td width="150" valign="top"><strong>{Label comment.mail.feedbackexpected}</strong></td>
   <td width="430">
    <ul>
-   {foreach $feedback_users feedbackUser}
-    <li>{$feedbackUser.firstname} {$feedbackUser.lastname} &lt;{$feedbackUser.email}&gt;</li>
+   {foreach $feedback_persons $feedbackPerson}
+   		<li>{$feedbackPerson.firstname} {$feedbackPerson.lastname} &lt;{$feedbackPerson.email}&gt;</li>
    {/foreach}
    </ul>
   </td>

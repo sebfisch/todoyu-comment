@@ -36,21 +36,21 @@ class TodoyuCommentMailManager {
 
 
 	/**
-	 * Save log record about comment having been mailed when to which user
+	 * Save log record about comment having been mailed when to which person
 	 *
 	 * @param	Integer		$idComment
-	 * @param	Integer		$idUserMailed
+	 * @param	Integer		$idPersonMailed
 	 * @return	Integer		New record ID
 	 */
-	public static function saveMailSent($idComment, $idUserMailed) {
+	public static function saveMailSent($idComment, $idPersonMailed) {
 		$idComment		= intval($idComment);
-		$idUserMailed	= intval($idUserMailed);
+		$idPersonMailed	= intval($idPersonMailed);
 
 		$data	= array(
 			'date_create'		=> NOW,
 			'id_comment'		=> $idComment,
 			'id_person_create'	=> personid(),
-			'id_person_mailed'	=> $idUserMailed,
+			'id_person_mailed'	=> $idPersonMailed,
 		);
 
 		return Todoyu::db()->addRecord(self::TABLE, $data);
@@ -61,20 +61,20 @@ class TodoyuCommentMailManager {
 	/**
 	 * Get all mail sent log entries
 	 *
-	 * @param	Integer	$idComment
-	 * @param	Integer	$idUserCreate
-	 * @param	Integer	$idUserMailed
+	 * @param	Integer		$idComment
+	 * @param	Integer		$idPersonCreate
+	 * @param	Integer		$idPersonMailed
 	 * @return	Array
 	 */
-	public static function getAllSent($idComment, $idUserCreate = 0, $idUserMailed = 0) {
+	public static function getAllSent($idComment, $idPersonCreate = 0, $idPersonMailed = 0) {
 		$idComment		= intval($idComment);
-		$idUserCreate	= intval($idUserCreate);
-		$idUserMailed	= intval($idUserMailed);
+		$idPersonCreate	= intval($idPersonCreate);
+		$idPersonMailed	= intval($idPersonMailed);
 
 		$fields	= '*';
 		$where	= 'id_comment = ' . $idComment .
-				 ($idUserCreate !== 0 ? ' AND id_person_create = ' . $idUserCreate : '') .
-				 ($idUserMailed !== 0 ? ' AND id_person_mailed IN (' . $idUserMailed . ')' : '');
+				 ($idPersonCreate !== 0 ? ' AND id_person_create = ' . $idPersonCreate : '') .
+				 ($idPersonMailed !== 0 ? ' AND id_person_mailed IN (' . $idPersonMailed . ')' : '');
 		$groupBy	= 'id';
 		$orderBy	= 'date_create';
 

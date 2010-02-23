@@ -40,18 +40,18 @@ class TodoyuCommentFeedbackManager {
 	 * Add a new feedback request
 	 *
 	 * @param	Integer		$idComment
-	 * @param	Integer		$idFeedbackUser
+	 * @param	Integer		$idFeedbackPerson
 	 * @return	Integer
 	 */
-	public static function addFeedback($idComment, $idFeedbackUser) {
-		$idComment		= intval($idComment);
-		$idFeedbackUser	= intval($idFeedbackUser);
+	public static function addFeedback($idComment, $idFeedbackPerson) {
+		$idComment			= intval($idComment);
+		$idFeedbackPerson	= intval($idFeedbackPerson);
 
 		$table	= self::TABLE;
 		$data	= array('date_create'		=> NOW,
 						'date_update'		=> 0,
 						'id_person_create'	=> personid(),
-						'id_person_feedback'	=> $idFeedbackUser,
+						'id_person_feedback'=> $idFeedbackPerson,
 						'id_comment'		=> $idComment,
 						'is_seen'			=> 0);
 
@@ -61,34 +61,34 @@ class TodoyuCommentFeedbackManager {
 
 
 	/**
-	 * Add feedback requests for multiple users
+	 * Add feedback requests for multiple persons
 	 *
 	 * @param	Integer		$idComment
-	 * @param	Array		$feedbackUserIDs
+	 * @param	Array		$personIDs
 	 */
-	public static function addFeedbacks($idComment, array $userIDs) {
+	public static function addFeedbacks($idComment, array $personIDs) {
 		$idComment	= intval($idComment);
-		$userIDs	= TodoyuArray::intval($userIDs, true, true);
+		$personIDs	= TodoyuArray::intval($personIDs, true, true);
 
-		foreach($userIDs as $idUser) {
-			self::addFeedback($idComment, $idUser);
+		foreach($personIDs as $idPerson) {
+			self::addFeedback($idComment, $idPerson);
 		}
 	}
 
 
 
 	/**
-	 * Get comment IDs which need a feedback from the user
+	 * Get comment IDs which need a feedback from the person
 	 *
-	 * @param	Integer		$idUser
+	 * @param	Integer		$idPerson
 	 * @return	Array
 	 */
-	public static function getCommentIDs($idUser = 0) {
-		$idUser	= personid($idUser);
+	public static function getCommentIDs($idPerson = 0) {
+		$idPerson	= personid($idPerson);
 
 		$field	= 'id_comment';
 		$table	= self::TABLE;
-		$where	= '	id_person_feedback= ' . $idUser . ' AND
+		$where	= '	id_person_feedback= ' . $idPerson . ' AND
 					is_seen			= 0';
 		$order	= 'date_create';
 
@@ -98,19 +98,19 @@ class TodoyuCommentFeedbackManager {
 
 
 	/**
-	 * Get task IDs which have comments which need a feedback from the user
+	 * Get task IDs which have comments which need a feedback from the person
 	 *
-	 * @param	Integer		$idUser
+	 * @param	Integer		$idPerson
 	 * @return	Array
 	 */
-	public static function getTaskIDs($idUser = 0) {
-		$idUser	= personid($idUser);
+	public static function getTaskIDs($idPerson = 0) {
+		$idPerson	= personid($idPerson);
 
 		$field	= '	c.id_task';
 		$table	= 	self::TABLE . ' f,
 					ext_comment_comment c';
 		$where	= '	f.id_comment		= c.id AND
-					f.id_person_feedback	= ' . $idUser . ' AND
+					f.id_person_feedback= ' . $idPerson . ' AND
 					f.is_seen			= 0';
 		$order	= '	f.date_create';
 
@@ -123,18 +123,18 @@ class TodoyuCommentFeedbackManager {
 	 * Check if a comment has a feedback request
 	 *
 	 * @param	Integer		$idComment
-	 * @param	Integer		$idUser
+	 * @param	Integer		$idPerson
 	 * @return	Boolean
 	 */
-	public static function hasFeedbackRequest($idComment, $idUser = 0) {
+	public static function hasFeedbackRequest($idComment, $idPerson = 0) {
 		$idComment	= intval($idComment);
-		$idUser		= personid($idUser);
+		$idPerson	= personid($idPerson);
 
 		$field	= 'id';
 		$table	= self::TABLE;
-		$where	= '	id_comment		= ' . $idComment . ' AND
-					id_person_feedback= ' . $idUser . ' AND
-					is_seen			= 0';
+		$where	= '	id_comment			= ' . $idComment . ' AND
+					id_person_feedback	= ' . $idPerson . ' AND
+					is_seen				= 0';
 
 		return Todoyu::db()->hasResult($field, $table, $where);
 	}
@@ -167,13 +167,13 @@ class TodoyuCommentFeedbackManager {
 	 * @param	Integer		$idFeedback
 	 * @return	Boolean
 	 */
-	public static function setAsSeen($idComment, $idUser = 0) {
+	public static function setAsSeen($idComment, $idPerson = 0) {
 		$idComment	= intval($idComment);
-		$idUser		= personid($idUser);
+		$idPerson	= personid($idPerson);
 
 		$table	= self::TABLE;
-		$where	= '	id_comment = ' . $idComment. ' AND
-					id_person_feedback = ' . $idUser;
+		$where	= '	id_comment 			= ' . $idComment. ' AND
+					id_person_feedback 	= ' . $idPerson;
 		$data	= array(
 			'date_update'	=> NOW,
 			'is_seen' 		=> 1
@@ -185,20 +185,20 @@ class TodoyuCommentFeedbackManager {
 
 
 	/**
-	 * Set all comments in a task as seen by an user
+	 * Set all comments in a task as seen by an person
 	 *
 	 * @param	Integer		$idTask
-	 * @param	Integer		$idUser
+	 * @param	Integer		$idPerson
 	 * @return	Integer		Number of updated comments
 	 */
-	public static function setTaskCommentsAsSeen($idTask, $idUser = 0) {
+	public static function setTaskCommentsAsSeen($idTask, $idPerson = 0) {
 		$idTask	= intval($idTask);
-		$idUser	= personid($idUser);
+		$idPerson	= personid($idPerson);
 
 		$tables	= 	self::TABLE . ' f,
 					ext_comment_comment c';
 		$where	= '	f.id_comment 		= c.id AND
-					f.id_person_feedback	= ' . $idUser . ' AND
+					f.id_person_feedback	= ' . $idPerson . ' AND
 					c.id_task			= ' . $idTask ;
 		$data	= array(
 			'f.is_seen'		=> 1,
@@ -211,29 +211,29 @@ class TodoyuCommentFeedbackManager {
 
 
 	/**
-	 * Get users whom feedback to given comment is requested from
+	 * Get persons whom feedback to given comment is requested from
 	 *
 	 * @param	Interger	$idComment
 	 * @return	Array
 	 */
-	public static function getFeedbackUsers($idComment) {
+	public static function getFeedbackPersons($idComment) {
 		$idComment	= intval($idComment);
 
-		$fields	= '	u.id,
-					u.username,
-					u.email,
-					u.firstname,
-					u.lastname,
+		$fields	= '	p.id,
+					p.username,
+					p.email,
+					p.firstname,
+					p.lastname,
 					f.is_seen';
-		$tables	= '	ext_contact_person u,
+		$tables	= '	ext_contact_person p,
 					ext_comment_feedback f';
 		$where	= '	f.id_comment 		= ' . $idComment . ' AND
-					f.id_person_feedback	= u.id AND
-					u.deleted			= 0 AND
-					u.active			= 1';
-		$group	= '	u.id';
-		$order	= '	u.lastname,
-					u.firstname';
+					f.id_person_feedback= p.id AND
+					p.deleted			= 0 AND
+					p.active			= 1';
+		$group	= '	p.id';
+		$order	= '	p.lastname,
+					p.firstname';
 
 		return Todoyu::db()->getArray($fields, $tables, $where, $group, $order);
 	}
@@ -248,12 +248,12 @@ class TodoyuCommentFeedbackManager {
 	 */
 	public static function isCommentUnapproved($idComment)	{
 		$idComment	= intval($idComment);
-		$idUser		= personid();
+		$idPerson		= personid();
 
 		$field	= 'is_seen';
 		$table	= self::TABLE;
 		$where	= 'id_comment		= ' . $idComment . ' AND
-				   id_person_feedback	= ' . $idUser;
+				   id_person_feedback	= ' . $idPerson;
 
 		$isSeen =  Todoyu::db()->getColumn($field, $table, $where);
 
