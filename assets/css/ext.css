@@ -7,7 +7,14 @@
 
 
 
-/* Tasktab */
+
+/* --------------------------
+ 	Tasktab
+   --------------------------*/
+div.task div.taskTabs ul li.comment span.icon {
+	background:url(../img/icons.png) no-repeat 0 -113px;
+}
+
 .tasktabs .comment span {
 	background:url(../img/icons.png) no-repeat 0 2px;
 }
