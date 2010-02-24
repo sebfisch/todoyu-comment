@@ -21,7 +21,7 @@
 		<label index="delete.confirm">Do you really want to delete this comment?</label>
 		<label index="contextmenu.task.addcomment">Comment</label>
 		<label index="search.label">Comments</label>
-		<label index="search.mode.label">Search Comments</label>
+		<label index="search.mode.label">Find Comments</label>
 		<label index="filter.unseenFeedbackPerson">Feedback Requests</label>
 		<label index="filter.unseenFeedbackGroups">Feedback Requests From Groups</label>
 		<label index="filter.commentFulltext">Comment Fulltext</label>
@@ -74,7 +74,7 @@
 		<label index="delete.confirm">Wollen Sie diesen Kommentar wirklich löschen?</label>
 		<label index="contextmenu.task.addcomment">Kommentar</label>
 		<label index="search.label">Kommentare</label>
-		<label index="search.mode.label">Kommentare suchen</label>
+		<label index="search.mode.label">Kommentare finden</label>
 		<label index="filter.unseenFeedbackPerson">Feedback verlangt</label>
 		<label index="filter.unseenFeedbackGroups">Feedback verlangt von Gruppen</label>
 		<label index="filter.commentFulltext">Kommentar Volltext</label>

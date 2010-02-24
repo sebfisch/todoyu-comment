@@ -37,6 +37,4 @@ TodoyuLanguage::register('comment', PATH_EXT_COMMENT . '/locale/ext.xml');
 require_once( PATH_EXT_COMMENT . '/config/extension.php' );
 require_once( PATH_EXT_COMMENT. '/config/hooks.php' );
 
-//require_once( PATH_EXT_COMMENT . '/config/search.php' );
-
 ?>
