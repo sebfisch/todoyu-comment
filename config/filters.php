@@ -40,9 +40,9 @@ $CONFIG['FILTERS']['TASK']['filters']['unseenFeedbackCurrentPerson'] = array(
 	'funcRef'	=> 'TodoyuCommentTaskFilter::Filter_unseenFeedbackCurrentPerson'
 );
 
-$CONFIG['FILTERS']['TASK']['widgets']['unseenFeedbackGroups'] = array(
+$CONFIG['FILTERS']['TASK']['widgets']['unseenFeedbackRoles'] = array(
 	'funcRef'	=> 'TodoyuCommentTaskFilter::Filter_unseenFeedbackRoles',
-	'label'		=> 'LLL:comment.filter.unseenFeedbackGroups',
+	'label'		=> 'LLL:comment.filter.unseenFeedbackRoles',
 	'optgroup'	=> 'LLL:comment.search.label',
 	'widget'	=> 'select',
 	'wConf'		=> array(
@@ -83,9 +83,9 @@ $CONFIG['FILTERS']['TASK']['widgets']['commentWrittenPerson'] = array(
 	)
 );
 
-$CONFIG['FILTERS']['TASK']['widgets']['commentWrittenGroups'] = array(
-	'funcRef'	=> 'TodoyuCommentTaskFilter::Filter_commentWrittenGroups',
-	'label'		=> 'LLL:comment.filter.commentWrittenGroups',
+$CONFIG['FILTERS']['TASK']['widgets']['commentWrittenRoles'] = array(
+	'funcRef'	=> 'TodoyuCommentTaskFilter::Filter_commentWrittenRoles',
+	'label'		=> 'LLL:comment.filter.commentWrittenRoles',
 	'optgroup'	=> 'LLL:comment.search.label',
 	'widget'	=> 'select',
 	'wConf'		=> array(

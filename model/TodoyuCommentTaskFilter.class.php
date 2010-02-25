@@ -74,7 +74,7 @@ class TodoyuCommentTaskFilter {
 	 * @param	Bool		$negate
 	 * @return	Array
 	 */
-	public static function Filter_unseenFeedbackGroups($groupIDs, $negate = false) {
+	public static function Filter_unseenFeedbackRoles($groupIDs, $negate = false) {
 		$queryParts	= false;
 		$groupIDs	= TodoyuArray::intExplode(',', $groupIDs, true, true);
 
@@ -170,17 +170,17 @@ class TodoyuCommentTaskFilter {
 
 
 	/**
-	 * Filter condition: Tasks which have comments which are written by a member of one of the groups
+	 * Filter condition: Tasks which have comments which are written by a member of one of the roles
 	 *
-	 * @param	String		$groupIDs
+	 * @param	String		$roleIDs
 	 * @param	Bool		$negate
 	 * @return	Array		Or FALSE
 	 */
-	public static function Filter_commentWrittenGroups($groupIDs, $negate = false) {
+	public static function Filter_commentWrittenRoles($roleIDs, $negate = false) {
 		$queryParts	= false;
-		$groupIDs	= TodoyuArray::intExplode(',', $groupIDs, true, true);
+		$roleIDs	= TodoyuArray::intExplode(',', $roleIDs, true, true);
 
-		if( sizeof($groupIDs) > 0 ) {
+		if( sizeof($roleIDs) > 0 ) {
 			$tables	= array(
 				'ext_project_task',
 				'ext_comment_comment',
@@ -188,7 +188,7 @@ class TodoyuCommentTaskFilter {
 			);
 			$where	= '	ext_comment_comment.id_task 		= ext_project_task.id AND
 						ext_comment_comment.id_person_create 	= ext_contact_mm_person_role.id_person AND
-						ext_contact_mm_person_role.id_role IN(' . implode(',', $groupIDs) . ')';
+						ext_contact_mm_person_role.id_role IN(' . implode(',', $roleIDs) . ')';
 
 			$queryParts	= array(
 				'tables'=> $tables,
