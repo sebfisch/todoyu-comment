@@ -220,7 +220,7 @@ class TodoyuCommentRenderer {
 
 		TodoyuProjectPreferences::setForcedTaskTab('comment');
 
-		return TodoyuPortalRenderer::renderTaskList($taskIDs);
+		return TodoyuTaskRenderer::renderTaskListing($taskIDs);
 	}
 
 }

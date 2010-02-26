@@ -52,6 +52,7 @@
 		<label index="history.feedbackrequestedfrom">Feedback requested from</label>
 		<label index="history.feedbackrequestseen">Feedback-request seen</label>
 		<label index="history.mailedto">Comment mailed to</label>
+		<label index="portal.tab.feedbacks">Feedbacks</label>
 	</labels>
 	<labels lang="de">
 		<label index="ext.title">Aufgaben-Kommentar</label>
@@ -105,5 +106,6 @@
 		<label index="history.feedbackrequestedfrom">Feedback erbeten von</label>
 		<label index="history.feedbackrequestseen">Feedback-Bitte gesehen</label>
 		<label index="history.mailedto">Kommentar gemailed an</label>
+		<label index="portal.tab.feedbacks">Feedbacks</label>
 	</labels>
 </locallang>

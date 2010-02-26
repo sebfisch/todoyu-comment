@@ -44,7 +44,7 @@ $CONFIG['EXT']['comment']['feedbackTabFilters'] = array(
 if( allowed('comment', 'general:use') ) {
 
 		// Add task tab for comments
-	TodoyuTaskManager::addTaskTab('comment', 'TodoyuCommentTask::getLabel', 'TodoyuCommentTask::getContent', 20);
+	TodoyuTaskManager::addTaskTab('comment', 'TodoyuCommentTask::getLabel', 'TodoyuCommentTask::getContent', 30);
 
 	if( TodoyuExtensions::isInstalled('portal') && allowed('comment', 'general:portaltab') ) {
 			// Add portal tab for feedbacks
