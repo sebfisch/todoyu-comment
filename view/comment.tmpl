@@ -30,9 +30,9 @@
 		{/if}
 		{* --------------------------- Toggle log view --------------- *}
 		{restrict 'comment' 'task:viewHistory'}
-			<a id="task-comment-log-{$id}-toggler" href="javascript:void(0)" onclick="Todoyu.Ext.comment.toggleLog({$id})" class="icon comment-log" title="{Label comment.icon.togglelog}">
+	<!--  	<a id="task-comment-log-{$id}-toggler" href="javascript:void(0)" onclick="Todoyu.Ext.comment.toggleLog({$id})" class="icon comment-log" title="{Label comment.icon.togglelog}">
 				<span class="hidden">{Label comment.icon.remove}</span>
-			</a>
+			</a> -->
 		{/restrict}
 		</span>
 	</div>
@@ -48,7 +48,7 @@
 			{/if}
 				<dd>
 					{if $feedbackPerson.is_seen}{$class=''}{else}{$class='commentperson-unapproved'}{/if}
-					{personLabel idPrefix="comment_personfeedback" idRecord=$id idPerson=$feedbackPerson.id class=$class}
+					{personLabel idPrefix="comment-personfeedback" idRecord=$id idPerson=$feedbackPerson.id class=$class}
 				</dd>
 				</dl>
 			{else}

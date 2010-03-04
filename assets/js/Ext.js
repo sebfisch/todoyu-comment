@@ -91,7 +91,7 @@ Todoyu.Ext.comment = {
 			// Remove unseen icon
 		$('comment-' + idComment + '-seenstatus').remove();
 			// Remove class which marks the name unseen
-		$('task-comment-' + idComment + '-feedbackperson-' + idPerson).removeClassName('commentperson-unapproved');
+		$('comment-personfeedback-' + idComment + '-' + idPerson).removeClassName('commentperson-unapproved');
 	},
 
 
