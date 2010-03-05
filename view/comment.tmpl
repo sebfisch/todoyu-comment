@@ -4,8 +4,8 @@
 	{if $unapproved}
 		<a href="javascript:void(0)" id="comment-{$id}-seenstatus" onclick="Todoyu.Ext.comment.setSeenStatus({$id}, {personid()})" class="comment-personapproval hasicon"></a>
 	{/if}
-		<span id="task-comment-{$id}-crdate" class="comment-crdate hasicon">{date_format $date_create "%d.%m.%y %R"}</span>
-		<span id="task-comment-{$id}-person" class="comment-person hasicon">
+		<span id="task-comment-{$id}-crdate" class="comment-crdate">{date_format $date_create "%d.%m.%y %R"}</span> -
+		<span id="task-comment-{$id}-person" class="comment-person">
 			{personLabel idPrefix="comment-personcreate" idRecord=$id idPerson=$person_create.id}
 		</span>
 		<span id="task-comment-{$id}-id" class="comment-id" title="{Label comment.id}">K{$id}</span>
@@ -34,18 +34,21 @@
 		{* --------------------------- Comment persons --------------- *}
 		<div class="persons">
 		{foreach $persons_feedback feedbackPerson name=personsFeedback}
-			<dl>
+			
 			{if $dwoo.foreach.personsFeedback.first}
-				<dt>{Label LLL:comment.comment.feedbackPersons}</dt>
+				{Label comment.comment.feedbackPersons}
 			{else}
-				<dt>&nbsp;</dt>
+				
 			{/if}
-				<dd>
-					{if $feedbackPerson.is_seen}{$class=''}{else}{$class='commentperson-unapproved'}{/if}
-					{personLabel idPrefix="comment-personfeedback" idRecord=$id idPerson=$feedbackPerson.id class=$class}
-				</dd>
-				</dl>
+				
+			{if $feedbackPerson.is_seen}{$class=''}{else}{$class='commentperson-unapproved'}{/if}
+			{personLabel idPrefix="comment-personfeedback" idRecord=$id idPerson=$feedbackPerson.id class=$class}
+			{if $dwoo.foreach.personsFeedback.last}
+				<div class="divider"> </div>
 			{else}
+			
+			{/if}
+
 		{/foreach}
 		</div>
 		{* --------------------------- Comment itself --------------- *}

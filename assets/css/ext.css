@@ -67,12 +67,11 @@ div.task div.taskTabs ul li.comment span.icon {
 	width:300px !important;
 }
 
-.task-comments .comment-details .comment,
-.task-comments .comment-details .persons {
+.task-comments .comment-details .comment{
 	padding:5px !important;
 }
 
-.task-comments .comment-details .persons {
+.task-comments .comment-details .persons .divider {
 	border-bottom:1px dotted #bec5ab;
 }
 
@@ -81,29 +80,29 @@ div.task div.taskTabs ul li.comment span.icon {
 	width:285px;
 }
 
-.task-comments .comment-details .persons dt,
-.task-comments .comment-details .persons dd,
-.task-comments .comment-details .persons dd a {
+.task-comments .comment-details .persons {
+	padding:0 5px;
+}
+
+.task-comments .comment-details .persons,
+.task-comments .comment-details .persons span {
 	color:#666;
 	line-height:18px;
 }
 
-.task-comments .comment-details .persons dt {
-	float:left;
-	width:130px;
-}
-
-.task-comments .comment-details .persons dd span {
+.task-comments .comment-details .persons span {
 	padding-left:13px;
+	
+	white-space: nowrap;
 }
 
-.task-comments .comment-details .persons dd span.commentperson-unapproved {
+.task-comments .comment-details .persons span.commentperson-unapproved {
 	background:transparent url('../img/icons.png') no-repeat 0 -330px;
 }
 
 .task-comments li.isPublic {
 	border:solid #FF0000 !important;
-	border-width:1px 2px !important;
+	border-width:1px !important;
 }
 
 .task-comments .hasicon {
@@ -111,8 +110,7 @@ div.task div.taskTabs ul li.comment span.icon {
 }
 
 .task-comments .comment-crdate {
-	padding-left:22px;
-	background:url(../img/icons.png) no-repeat 0 -116px;
+
 }
 
 .task-comments .comment-personapproval {
@@ -125,8 +123,7 @@ div.task div.taskTabs ul li.comment span.icon {
 }
 
 .task-comments .comment-person {
-	padding-left:25px;
-	background:url(../img/icons.png) no-repeat 0 -90px;
+		
 }
 
 .task-comments .comment-id {
