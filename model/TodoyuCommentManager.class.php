@@ -336,9 +336,7 @@ class TodoyuCommentManager {
 		if( $task->isTask() ) {
 			$ownItems	=& $GLOBALS['CONFIG']['EXT']['comment']['ContextMenu']['Task'];
 
-			if( allowed('comment', 'task:addcomment') ) {
-				$allowed['add']['submenu']['add-comment'] = $ownItems['add']['submenu']['add-comment'];
-			}
+			$allowed['add']['submenu']['add-comment'] = $ownItems['add']['submenu']['add-comment'];
 		}
 
 		return array_merge_recursive($items, $allowed);

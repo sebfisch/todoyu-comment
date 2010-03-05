@@ -3,22 +3,15 @@
 
 	<section name="general">
 		<right name="use" />
-		<right name="portaltab" require="general:use" />
-	</section>
-
-	<section name="comment" require="general:use">
-		<right name="search" />
 	</section>
 	
-	<section name="task" require="general:use">
+	<section name="comment" require="general:use">
 		<right name="seeAll" />
-		<right name="add" />
-		<right name="requestFeedback" require="task:add" />
-		<right name="makePublic" />
-		<right name="sendAsEmail" require="task:add" />
-		<right name="deleteAll" />
+		<right name="editOwn" />
 		<right name="editAll" />
-		<right name="viewHistory" />
+		<right name="requestFeedback" />
+		<right name="sendAsEmail" />
+		<right name="delete" />
 	</section>
 
 </rights>

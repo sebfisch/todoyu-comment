@@ -35,22 +35,20 @@
 					<size>7</size>
 					<multiple/>
 					<restrict>
-						<allow ext="comment" right="task:requestFeedback" />
+						<allow ext="comment" right="comment:requestFeedback" />
 					</restrict>
 				</field>
 
 				<field type="checkbox" name="is_public">
 					<label>comment.edit.is_public</label>
-					<restrict>
-						<allow ext="comment" right="task:makePublic" />
-					</restrict>
+					<restrictInternal />
 				</field>
 
 				<field type="checkbox" name="sendasemail">
 					<label>comment.edit.sendasemail</label>
 					<onchange>Todoyu.Ext.comment.Edit.onChangeEmail(#id_task#, #id#)</onchange>
 					<restrict>
-						<allow ext="comment" right="task:sendAsEmail" />
+						<allow ext="comment" right="comment:sendAsEmail" />
 					</restrict>
 				</field>
 
@@ -64,7 +62,7 @@
 					<multiple/>
 					<style>display:none</style>
 					<restrict>
-						<allow ext="comment" right="task:sendAsEmail" />
+						<allow ext="comment" right="comment:sendAsEmail" />
 					</restrict>
 				</field>
 

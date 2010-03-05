@@ -13,7 +13,7 @@ CREATE TABLE `ext_comment_comment` (
   `is_public` tinyint(1) unsigned NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `task` (`id_task`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `ext_comment_feedback`
@@ -28,7 +28,7 @@ CREATE TABLE `ext_comment_feedback` (
   `id_comment` int(10) unsigned NOT NULL,
   `is_seen` tinyint(1) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 --
 -- Table structure for table `ext_comment_mailed`
@@ -42,4 +42,4 @@ CREATE TABLE `ext_comment_mailed` (
   `id_comment` int(10) unsigned NOT NULL,
   `id_person_mailed` smallint(5) unsigned NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8;

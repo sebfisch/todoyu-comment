@@ -27,6 +27,12 @@
  */
 class TodoyuCommentCommentActionController extends TodoyuActionController {
 
+	public function init(array $params) {
+		restrict('comment', 'general:use');
+	}
+
+
+
 	/**
 	 * Load edit view of the comment
 	 *
@@ -37,14 +43,13 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 		$idTask		= intval($params['task']);
 		$idComment	= intval($params['comment']);
 
-		if( $idComment === 0 ) {
-			restrict('comment', 'task:add');
+		$comment	= TodoyuCommentManager::getComment($idComment);
+
+			// Person is the creator or has right editAll
+		if( $comment->isCurrentPersonCreator() ) {
+			restrict('comment', 'comment:editOwn');
 		} else {
-			$comment	= TodoyuCommentManager::getComment($idComment);
-				// Person is the creator or has right editAll
-			if( ! $comment->isCurrentPersonCreator() ) {
-				restrict('comment', 'task:editAll');
-			}
+			restrict('comment', 'comment:editAll');
 		}
 
 		return TodoyuCommentRenderer::renderEdit($idTask, $idComment);
@@ -58,13 +63,10 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 	 * @param	Array		$params
 	 */
 	public function deleteAction(array $params) {
+		restrict('comment', 'comment:delete');
+
 		$idComment	= intval($params['comment']);
 		$comment	= TodoyuCommentManager::getComment($idComment);
-
-			// Person is the creator or has right deleteAll
-		if( ! $comment->isCurrentPersonCreator() ) {
-			restrict('comment', 'task:deleteAll');
-		}
 
 		TodoyuCommentManager::deleteComment($idComment);
 
@@ -86,10 +88,6 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 		$idComment	= intval($params['comment']);
 
 		$comment	= TodoyuCommentManager::getComment($idComment);
-			// Person is the creator or has right editAll
-		if( ! $comment->isCurrentPersonCreator() ) {
-			restrict('comment', 'task:viewHistory');
-		}
 
 		return TodoyuCommentRenderer::renderLog($idTask, $idComment);
 	}
@@ -108,13 +106,14 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 		$idComment	= intval($data['id']);
 		$idTask		= intval($data['id_task']);
 
-			// Check rights
-		if( $idComment === 0 ) {
-			restrict('comment', 'task:add');
-		} else {
+			// Check edit rights for existing comments
+		if( $idComment !== 0 ) {
 			$comment	= TodoyuCommentManager::getComment($idComment);
-			if( ! $comment->isCurrentPersonCreator() ) {
-				restrict('comment', 'task:editAll');
+
+			if( $comment->isCurrentPersonCreator() ) {
+				restrict('comment', 'comment:editOwn');
+			} else {
+				restrict('comment', 'comment:editAll');
 			}
 		}
 
