@@ -224,7 +224,7 @@ Todoyu.Ext.comment = {
 	 */
 	toggleSorting: function(idTask) {
 		var sortingIsDesc	= this.checkSortingIsDesc(idTask);
-		var desc = sortingIsDesc ? 0 : 1
+		var desc 			= sortingIsDesc ? 0 : 1;
 
 		Todoyu.Ext.comment.List.refresh(idTask, desc);
 	},
