@@ -39,6 +39,7 @@ div.task div.taskTabs ul li.comment span.icon {
 	position:relative;
 	margin:0 0 5px 0;
 	padding:7px 5px;
+	font-weight:bold;
 	background:#E5E8DA url(../../../../core/assets/img/bg-tabheader) repeat-x 0 top;
 }
 
@@ -129,8 +130,9 @@ div.task div.taskTabs ul li.comment span.icon {
 .task-comments .comment-id {
 	float:right;
 	margin:2px 5px 0 -12px;
-	font-size:9px !important;
+	font-size:11px !important;
 	letter-spacing:1px;
+	font-weight: normal;
 }
 
 .task-comments .comment-options {
