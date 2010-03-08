@@ -3,7 +3,7 @@
 </div>
 <dl>
 	{* --------------------- Comment created --------------------- *}
-	<dt>{date_format $date_create "%d.%m.%y %R"}</dt>
+	<dt>{dateFormat $logEntry.date_update datetime}</dt>
 	<dd class="person">
 		<span class="person">{$person_create}</span>
 		<span class="description">{Label comment.history.created}</span>
@@ -15,7 +15,7 @@
 		{$curTimestamp	= $logEntry.date_create}
 		{* --------------------- List feedback requests --------------------- *}
 		{if $logEntry.table == 'ext_comment_feedback'}
-	<dt>{date_format $logEntry.date_create "%d.%m.%y %R"}</dt>
+	<dt>{dateFormat $logEntry.date_update datetime}</dt>
 	<dd class="person">
 		<span class="person">{$logEntry.person_create}</span>
 		<span class="description">{Label comment.history.feedbackrequestedfrom}: {$logEntry.person_feedback}</span>
@@ -23,7 +23,7 @@
 	<div class="clear"><!-- clear --></div>
 			{* -------------- List seen if, when -------------- *}
 			{if $logEntry.is_seen == 1}
-	<dt class="indented">{date_format $logEntry.date_update "%d.%m.%y %R"}</dt>
+	<dt class="indented">{dateFormat $logEntry.date_update datetime}</dt>
 	<dd class="person">
 		<span class="person">{$logEntry.person_feedback}</span>
 		<span class="description">{Label comment.history.feedbackrequestseen}</span>
@@ -33,7 +33,7 @@
 		{/if}
 		{* --------------------- List mailings --------------------- *}
 		{if $logEntry.table == 'ext_comment_mailed'}
-	<dt>{date_format $logEntry.date_create "%d.%m.%y %R"}</dt>
+	<dt>{dateFormat $logEntry.date_update datetime}</dt>
 	<dd class="person">
 		<span class="person">{$logEntry.person_create}</span>
 		<span class="description">{Label comment.history.mailedto}: {$logEntry.person_mailed}</span>
