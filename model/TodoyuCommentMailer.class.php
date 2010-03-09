@@ -109,13 +109,13 @@ class TodoyuCommentMailer {
 		$personSend		= TodoyuAuth::getPerson();
 
 		$data	= array(
-			'comment'		=> $comment->getTemplateData(),
-			'project' 		=> $project->getTemplateData(),
-			'task'			=> $task->getTemplateData(0),
-			'personReceive'	=> $personReceive->getTemplateData(),
-			'personWrite'	=> $personWrite->getTemplateData(),
-			'personSend'	=> $personSend->getTemplateData(),
-			'feedback_persons'=> $comment->getFeedbackPersons()
+			'comment'			=> $comment->getTemplateData(),
+			'project' 			=> $project->getTemplateData(),
+			'task'				=> $task->getTemplateData(0),
+			'personReceive'		=> $personReceive->getTemplateData(),
+			'personWrite'		=> $personWrite->getTemplateData(),
+			'personSend'		=> $personSend->getTemplateData(),
+			'feedback_persons'	=> $comment->getFeedbackPersons()
 		);
 
 		$data['tasklink'] = TodoyuDiv::buildUrl(array(
@@ -145,7 +145,7 @@ class TodoyuCommentMailer {
 	 */
 	private static function getMailContentHtml($idComment, $idPerson) {
 		$idComment	= intval($idComment);
-		$idPerson		= intval($idPerson);
+		$idPerson	= intval($idPerson);
 
 		$tmpl		= 'ext/comment/view/comment-mail-html.tmpl';
 		$data		= self::getMailData($idComment, $idPerson);

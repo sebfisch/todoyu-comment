@@ -47,9 +47,11 @@ body, td, p {
   <td width="150" valign="top"><strong>{Label comment.mail.feedbackexpected}</strong></td>
   <td width="430">
    <ul>
-   {foreach $feedback_persons $feedbackPerson}
+   {if sizeof($feedback_persons) > 0}
+      {foreach $feedback_persons feedbackPerson}
    		<li>{$feedbackPerson.firstname} {$feedbackPerson.lastname} &lt;{$feedbackPerson.email}&gt;</li>
-   {/foreach}
+      {/foreach}
+   {/if}
    </ul>
   </td>
  </tr>

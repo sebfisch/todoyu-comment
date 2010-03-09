@@ -79,7 +79,7 @@ class TodoyuCommentManager {
 
 			// Extract feedback and email data
 		$sendAsEmail	= intval($data['sendasemail']) === 1;
-		$personEmail	= array_unique(TodoyuArray::intExplode(',', $data['emailreceivers'], true, true));
+		$personsEmail	= array_unique(TodoyuArray::intExplode(',', $data['emailreceivers'], true, true));
 		$personsFeedback= array_unique(TodoyuArray::intExplode(',', $data['feedback'], true, true));
 
 			// Remove special handled fields

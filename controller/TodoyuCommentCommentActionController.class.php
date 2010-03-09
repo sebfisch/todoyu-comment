@@ -27,6 +27,11 @@
  */
 class TodoyuCommentCommentActionController extends TodoyuActionController {
 
+	/**
+	 * Init comment controller: restrict rights
+	 *
+	 * @param	Array	$params
+	 */
 	public function init(array $params) {
 		restrict('comment', 'general:use');
 	}
@@ -106,7 +111,7 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 		$idComment	= intval($data['id']);
 		$idTask		= intval($data['id_task']);
 
-			// Check edit rights for existing comments
+			// Check editing rights for existing comments
 		if( $idComment !== 0 ) {
 			$comment	= TodoyuCommentManager::getComment($idComment);
 
@@ -118,10 +123,9 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 		}
 
 		$form	= TodoyuFormManager::getForm($xmlPath, $idComment);
-
 		$form->setFormData($data);
 
-
+			// Validate comment and save / notify about failure
 		if( $form->isValid() ) {
 			$data	= $form->getStorageData();
 
