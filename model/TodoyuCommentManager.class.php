@@ -91,9 +91,8 @@ class TodoyuCommentManager {
 		self::updateComment($idComment, $data);
 
 			// Clear record cache
-//		TodoyuCache::removeRecord('TodoyuComment', $idComment);
-//		TodoyuCache::removeRecordQuery('TodoyuComment', $idComment);
-		TodoyuCache::flush();
+		TodoyuRecordManager::removeRecordCache('TodoyuComment', $idComment);
+		TodoyuRecordManager::removeRecordQueryCache(self::TABLE, $idComment);
 
 			// Set all comments in task as send
 		TodoyuCommentFeedbackManager::setTaskCommentsAsSeen($data['id_task']);
