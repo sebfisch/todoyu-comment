@@ -25,9 +25,9 @@
 
 $CONFIG['EXT']['comment']['info'] = array(
 	'title'			=> 'Task Comment Management',
-	'description' 	=> '',
+	'description' 	=> 'Task Comment Management',
 	'author' 		=> array(
-		'name'		=> 'todoyu Core Team',
+		'name'		=> 'todoyu Core Developer Team',
 		'email'		=> 'team@todoyu.com',
 		'company'	=> 'snowflake productions GmbH, Zurich'
 	),
