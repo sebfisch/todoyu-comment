@@ -130,6 +130,7 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 			$data	= $form->getStorageData();
 
 			TodoyuCommentManager::saveComment($data);
+
 			TodoyuHeader::sendTodoyuHeader('tabLabel', TodoyuCommentTask::getLabel($data['id_task']));
 		} else {
 			TodoyuHeader::sendTodoyuErrorHeader();

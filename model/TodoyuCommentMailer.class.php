@@ -60,6 +60,7 @@ class TodoyuCommentMailer {
 	public static function sendMail($idComment, $idPerson) {
 		$idComment	= intval($idComment);
 		$idPerson	= intval($idPerson);
+
 		$comment	= TodoyuCommentManager::getComment($idComment);
 		$person		= TodoyuPersonManager::getPerson($idPerson);
 
@@ -75,7 +76,6 @@ class TodoyuCommentMailer {
 
 		$mail->MsgHTML($htmlBody, PATH_EXT_COMMENT);
 		$mail->AltBody	= $textBody;
-
 
 		$mail->AddAddress($person->getEmail(), $person->getFullName());
 
@@ -101,9 +101,12 @@ class TodoyuCommentMailer {
 	private static function getMailData($idComment, $idPerson) {
 		$idComment		= intval($idComment);
 		$idPerson		= intval($idPerson);
+
 		$comment		= TodoyuCommentManager::getComment($idComment);
+
 		$task			= $comment->getTask();
 		$project		= $comment->getProject();
+
 		$personReceive	= TodoyuPersonManager::getPerson($idPerson);
 		$personWrite	= $comment->getCreatePerson();
 		$personSend		= TodoyuAuth::getPerson();
