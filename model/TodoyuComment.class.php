@@ -117,20 +117,14 @@ class TodoyuComment extends TodoyuBaseObject {
 	}
 
 
+
+	/**
+	 * Load comment foreign data: creator, feedback persons, approval state
+	 */
 	protected function loadForeignData() {
 		$this->data['person_create']	= $this->getCreatePerson()->getTemplateData(false);
 		$this->data['persons_feedback']	= TodoyuCommentFeedbackManager::getFeedbackPersons($this->id);
 		$this->data['unapproved']		= TodoyuCommentFeedbackManager::isCommentUnapproved($this->id);
-
-
-//		if( TodoyuCommentFeedbackManager::hasFeedbackRequest($this->id) ) {
-//			$data['currentUserHasSeen']	= TodoyuCommentFeedbackManager::getSeenStatusOfCurrentUser($data['id']);
-//		} else{
-//			$data['currentUserHasSeen']	= true;
-//		}
-//
-
-
 	}
 
 
@@ -144,7 +138,6 @@ class TodoyuComment extends TodoyuBaseObject {
 		if( $loadForeignRecords ) {
 			$this->loadForeignData();
 		}
-
 
 		return parent::getTemplateData();;
 	}
