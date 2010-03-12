@@ -11,6 +11,7 @@
 	Search
    -------------- */
 
-#headlet-quicksearch-modes .searchmode-comment a {
-	background:url(../img/icons.png) no-repeat 3px -117px !important;
+#headlet-quicksearch-content form.searchmodeComment a.mode,
+#headlet-quicksearch-modes li.searchmodeComment a {
+	background:url(../img/icons.png) no-repeat 3px -115px !important;
 }
