@@ -47,13 +47,11 @@ class TodoyuCommentMailManager {
 		$idPersonMailed	= intval($idPersonMailed);
 
 		$data	= array(
-			'date_create'		=> NOW,
 			'id_comment'		=> $idComment,
-			'id_person_create'	=> personid(),
 			'id_person_mailed'	=> $idPersonMailed,
 		);
 
-		return Todoyu::db()->addRecord(self::TABLE, $data);
+		return TodoyuRecordManager::addRecord(self::TABLE, $data);
 	}
 
 
