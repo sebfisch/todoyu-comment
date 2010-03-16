@@ -29,7 +29,7 @@
 class TodoyuCommentMailManager {
 
 	/**
-	 * Default working table
+	 * Default table for database requests
 	 */
 	const TABLE = 'ext_comment_mailed';
 

@@ -29,8 +29,7 @@
 class TodoyuCommentFeedbackManager {
 
 	/**
-	 * Default working table
-	 *
+	 * Default table for database requests
 	 */
 	const TABLE = 'ext_comment_feedback';
 
