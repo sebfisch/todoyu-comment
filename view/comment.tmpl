@@ -52,7 +52,7 @@
 		{/foreach}
 		</div>
 		{* --------------------------- Comment itself --------------- *}
-		<div class="comment">{$comment}</div>
+		<div class="comment">{limitHTMLwordsLen $comment 60}</div>
 	</div>
 	<div class="clear"><!-- clear --></div>
 	<div id="task-comment-log-{$id}-details" class="comment-history" style="display:none;"></div>
