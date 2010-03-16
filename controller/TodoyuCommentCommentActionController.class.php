@@ -106,8 +106,11 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 	 * @return	String
 	 */
 	public function saveAction(array $params) {
-		$xmlPath	= 'ext/comment/config/form/comment.xml';
-		$data		= $params['comment'];
+		$xmlPath			= 'ext/comment/config/form/comment.xml';
+		$data				= $params['comment'];
+
+		$data['comment']	= TodoyuCommentManager::filterHtmlTags($data['comment']);
+
 		$idComment	= intval($data['id']);
 		$idTask		= intval($data['id_task']);
 

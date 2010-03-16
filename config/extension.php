@@ -26,12 +26,19 @@
  * @subpackage	Admin
  */
 
+	// System name and email to be used in sender attribute inside emails
 $CONFIG['EXT']['comment']['infomail']['fromname'] 		= $CONFIG['SYSTEM']['name'];
 $CONFIG['EXT']['comment']['infomail']['email'] 			= $CONFIG['SYSTEM']['email'];
 
 
+
+	// Allowable tags inside comments text when saving
+$CONFIG['EXT']['contact']['allowabletags']	= '<p><b><i><u><strike><ol><ul><li><br>';
+
+
+
 /**
- * Configuration for 'todo' tab in portal
+ * Configuration for 'feedbacks' tab in portal
  */
 $CONFIG['EXT']['comment']['feedbackTabFilters'] = array(
 	array(
@@ -41,6 +48,10 @@ $CONFIG['EXT']['comment']['feedbackTabFilters'] = array(
 );
 
 
+
+/**
+ * Add comments related tabs, context menu items
+ */
 if( allowed('comment', 'general:use') ) {
 
 		// Add task tab for comments

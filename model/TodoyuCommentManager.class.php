@@ -59,6 +59,18 @@ class TodoyuCommentManager {
 
 
 	/**
+	 * Filter HTML tags inside comment text to keep only allowable ones
+	 *
+	 * @param	String		$comment
+	 * @return	String
+	 */
+	public static function filterHtmlTags($text) {
+		return strip_tags($text, $GLOBALS['CONFIG']['EXT']['contact']['allowabletags']);
+	}
+
+
+
+	/**
 	 * Save comment
 	 *
 	 * @param	Array		$data
