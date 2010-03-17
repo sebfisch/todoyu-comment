@@ -112,8 +112,8 @@ class TodoyuCommentSearch implements TodoyuSearchEngineIf {
 			$comments = Todoyu::db()->getArray($fields, $table, $where, '', $order);
 
 			foreach($comments as $comment) {
-				$textLong	= TodoyuDiv::getSubstring(strip_tags($comment['comment']), $find[0], 50, 60);
-				$textShort	= TodoyuDiv::getSubstring(strip_tags($comment['comment']), $find[0], 20, 30);
+				$textLong	= TodoyuString::getSubstring(strip_tags($comment['comment']), $find[0], 50, 60);
+				$textShort	= TodoyuString::getSubstring(strip_tags($comment['comment']), $find[0], 20, 30);
 				$textShort	= str_ireplace($find[0], '<strong>' . $find[0] . '</strong>', $textShort);
 				$taskTitle	= substr($comment['tasktitle'], 0, 40);
 
