@@ -22,28 +22,57 @@
 class TodoyuCommentSearch implements TodoyuSearchEngineIf {
 
 	/**
-	 * Search project in fulltext mode. Return the ID of the matching projects
+	 * Search project in fulltext mode, search for comment numbers. Return IDs of matching comments.
 	 *
-	 * @param	Array		$find		Keywords which have to be in the projects
-	 * @param	Array		$ignore		Keywords which must not be in the project
+	 * @param	Array		$find		Keywords which have to be in the comments
+	 * @param	Array		$ignore		Keywords which must not be in the comment
 	 * @param	Integer		$limit
-	 * @return	Array		Project IDs
+	 * @return	Array		comment IDs
 	 */
 	public static function searchComments(array $find, array $ignore = array(), $limit = 100) {
+			// Find comment IDs via fulltext search
 		$table	= 'ext_comment_comment';
 		$fields	= array('comment');
 
-		return TodoyuSearch::searchTable($table, $fields, $find, $ignore, $limit);
+		$commentIDs	= TodoyuSearch::searchTable($table, $fields, $find, $ignore, $limit);
+
+			// Find more IDs via extraction of comment numbers contained in search words
+		$commentIDs	= array_merge($commentIDs, self::getCommentIdNumsFromSearchWords($find) );
+
+		return array_unique($commentIDs);
 	}
 
 
 
 	/**
-	 * Get suggestions
+	 * Identify and extract (converted to numeric IDs) comment identification numbers from search words like 'K1', 'K2', etc.
 	 *
 	 * @param	Array	$find
-	 * @param	Array	$ignore
-	 * @param	Integer	$limit
+	 * @return	Array
+	 */
+	private static function getCommentIdNumsFromSearchWords(array $find) {
+		$ids	= array();
+
+		foreach($find as $sword) {
+			$sword	= str_replace('k', '', strtolower($sword));
+			$id		= intval($sword);
+
+			if ( $id > 0 ) {
+				$ids[]	= $id;
+			}
+		}
+
+		return $ids;
+	}
+
+
+
+	/**
+	 * Get suggestions of comments suiting to given search request
+	 *
+	 * @param	Array		$find
+	 * @param	Array		$ignore
+	 * @param	Integer		$limit
 	 * @return	Array
 	 */
 	public static function getSuggestions(array $find, array $ignore = array(), $limit = 5) {
@@ -89,7 +118,7 @@ class TodoyuCommentSearch implements TodoyuSearchEngineIf {
 				$taskTitle	= substr($comment['tasktitle'], 0, 40);
 
 				$suggestions[] = array(
-					'labelTitle'=> TodoyuTime::format($comment['date_create'], 'D2M2Y2') . ': ' . $taskTitle . ' [' . $comment['id_project'] . '.' . $comment['tasknumber'] . ']',
+					'labelTitle'=> TodoyuTime::format($comment['date_create'], 'D2M2Y2') . ': ' . $taskTitle . ' [K ' . $comment['id'] . ' / ' . $comment['id_project'] . '.' . $comment['tasknumber'] . ']',
 					'labelInfo'	=> $textShort,
 					'title'		=> $comment['firstname'] . ' ' . $comment['lastname'] . ', ' . $comment['company'] . ': ' . $comment['projecttitle'] . ' # ' . $textLong,
 					'onclick'	=> 'location.href=\'?ext=project&amp;project=' . $comment['id_project'] . '&amp;task=' . $comment['taskid'] . '&amp;tab=comment#task-comment-' . $comment['id'] . '\'');
