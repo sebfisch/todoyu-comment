@@ -4,62 +4,162 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Comment Mail</title>
 <style type="text/css">
-body, td, p {
-	font-family:Arial, Helvetica, sans-serif;
-	font-size:12px;
-	background-color:#F8FFF0;
+body, p {
+	margin:0;
+	padding:0;
+	font-family:Arial;
+	font-size:11px;
+}
+
+td {
+	font-family:Arial;
+	font-size:11px;
 }
 </style>
 </head>
 
-<body>
-<p>{Label comment.mail.newcomment}</p>
+<body bgcolor="#f8fff0">
 
-<table width="600" border="0" cellspacing="0" cellpadding="5">
- <tr>
-  <td width="70"><strong>{Label project.project}</strong></td>
-  <td width="510">{htmlencode $project.title}</td>
- </tr>
- <tr>
-  <td><strong>{Label task.task}</strong></td>
-  <td><a href="{$tasklink}">{htmlencode $task.title} ({$task.id_project}.{$task.tasknumber})</a></td>
- </tr>
- <tr>
-  <td><strong>{Label comment.mail.commentfrom}</strong></td>
-  <td>{$personWrite.firstname} {$personWrite.lastname} <a href="mailto:{$personWrite.firstname} {$personWrite.lastname}<{$personWrite.email}>">&lt;{$personWrite.email}&gt;</a></td>
- </tr>
-{if $personWrite.id !== $personSend.id}
- <tr>
-  <td><strong>{Label comment.mail.commentsentby}</strong></td>
-  <td>{$personSend.firstname} {$personSend.lastname} <a href="mailto:{$personSend.firstname} {$personSend.lastname}<{$personSend.email}>">&lt;{$personSend.email}&gt;</a></td>
- </tr>
-{/if}
+{* task status colors *}
+{assign array("" "#7f007f" "#FF0000" "#FFAC00" "#FFFC00" "#77DC00" "green" "#A60000" "grey" "#2335e0" "pink") colors}
+
+<table width="600" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td>
+			<img src="{constant(TODOYU_URL)}config/img/company.png" alt="" width="159" height="52" border="0" />
+			<br /><br /><br />
+		</td>
+	</tr>
+	<tr>
+		<td style="color: #000; font-size: 11px; font-family: Arial;">
+			{Label comment.mail.newcomment}
+			<br /><br />
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table width="600" border="0" cellspacing="0" cellpadding="5" bgcolor="#d3dabb">
+				<tr>
+					<td width="10" bgcolor="{$colors[$task.status]}"  style="background:{$colors[$task.status]}; border-left:1px solid {$colors[$task.status]};"><!-- spacer --></td>
+					<td valign="top" align="left" style="color: #000; font-size: 11px; font-family: Arial;">
+						<strong style="margin: 0; padding: 0; color: #000; font-size: 11px; font-family: Arial;">
+							{dateFormat $task.date_deadline D2M2Y2}
+						</strong>
+					</td>
+					<td valign="top" align="left" style="color: #000; font-size: 11px; font-family: Arial;">
+						<strong style="margin: 0; padding: 0; color: #000; font-size: 11px; font-family: Arial;">
+							company title
+						</strong>
+					</td>
+					<td valign="top" align="left" style="color: #000; font-size: 11px; font-family: Arial;">
+						<strong style="margin: 0; padding: 0; color: #000; font-size: 11px; font-family: Arial;">
+							{htmlencode $project.title} - <a href="{$tasklink}">{htmlencode $task.title}</a>
+						</strong>
+					</td>
+					<td valign="top" align="right" style="color: #000; font-size: 11px; font-family: Arial;">
+						<strong style="margin: 0; padding: 0; color: #000; font-size: 11px; font-family: Arial;">
+							{$task.id_project}.{$task.tasknumber}
+						</strong>
+					</td>
+					<td width="10"><!-- spacer --></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table width="600" border="0" cellspacing="0" cellpadding="5" bgcolor="#f1f1f1">
+				<tr>
+					<td width="10" style="border-left:1px solid {$colors[$task.status]};"><!-- spacer --></td>
+					<td style="color: #000; font-size: 11px; font-family: Arial;">
+						{$task.description}
+					</td>
+					<td width="10"><!-- spacer --></td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table width="600" border="0" cellspacing="0" cellpadding="0" bgcolor="#e3eace">
+				<tr><td height="10" style="border-left:1px solid {$colors[$task.status]};"><!-- spacer --></td></tr>
+				<tr>
+					<td align="center" style="border-left:1px solid {$colors[$task.status]};">
+						<table width="580" border="0" cellspacing="0" cellpadding="5" bgcolor="#d3dabb">
+							<tr>
+								<td width="10"><!-- spacer --></td>
+								<td valign="top" align="left">
+									<strong style="margin: 0; padding: 0; color: #000; font-size: 11px; font-family: Arial;">
+										{dateFormat $comment.date_create D2M2Y2} - <a href="mailto:{$personWrite.firstname}%20{$personWrite.lastname}%20%3C{$personWrite.email}%3E">{$personWrite.firstname} {$personWrite.lastname}</a>
+									</strong>
+								</td>
+								<td valign="top" align="right">
+									<strong style="margin: 0; padding: 0; color: #000; font-size: 11px; font-family: Arial;">
+										K{$comment.id}
+									</strong>
+								</td>
+								<td width="10"><!-- spacer --></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				{if sizeof($feedback_persons) > 0}
+				<tr>
+					<td align="center" style="border-left:1px solid {$colors[$task.status]};">
+						<table width="580" border="0" cellspacing="0" cellpadding="5" bgcolor="#f1f1f1" style="border-bottom:1px solid #d3dabb;">
+							<tr>
+								<td width="10"><!-- spacer --></td>
+								<td valign="top" align="left" style="color: #000; font-size: 11px; font-family: Arial;">
+										{Label comment.mail.feedbackexpected}:
+								</td>
+								<td valign="top" align="left" style="color: #000; font-size: 11px; font-family: Arial;">
+									{foreach $feedback_persons feedbackPerson}
+										<a href="mailto:{$feedbackPerson.firstname}%20{$feedbackPerson.lastname}%20%3C{$feedbackPerson.email}%3E">{$feedbackPerson.firstname} {$feedbackPerson.lastname},</a>
+									{/foreach}
+								</td>
+								<td width="10"><!-- spacer --></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				{/if}
+				<tr>
+					<td align="center" style="border-left:1px solid {$colors[$task.status]};">
+						<table width="580" border="0" cellspacing="0" cellpadding="5" bgcolor="#f1f1f1" style="border-bottom:1px solid #d3dabb;">
+							<tr>
+								<td width="10"><!-- spacer --></td>
+								<td style="color: #000; font-size: 11px; font-family: Arial;">
+									{$comment.comment}
+								</td>
+								<td width="10"><!-- spacer --></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr>
+					<td align="center" style="border-left:1px solid {$colors[$task.status]};">
+						<table width="580" border="0" cellspacing="0" cellpadding="5" bgcolor="#f1f1f1">
+							<tr>
+								<td width="10"><!-- spacer --></td>
+								<td style="color: #000; font-size: 11px; font-family: Arial;">
+									<a href="{$commentlink}">{Label comment.mail.showcommentinprojectview}</a>
+									<br /><br />
+								</td>
+								<td width="10"><!-- spacer --></td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+				<tr><td height="10" style="border-left:1px solid {$colors[$task.status]};"><!-- spacer --></td></tr>
+			</table>
+		</td>
+	</tr>
 </table>
 
-<p>{$comment.comment}</p>
-
-<p>{Label comment.mail.showcommentinprojectview}:<br />
-<a href="{$commentlink}">{Label comment.mail.commentlink}</a></p>
-
-<table width="600" border="0" cellspacing="0" cellpadding="5">
- {if sizeof($feedback_persons) > 0}
- <tr>
-  <td width="150" valign="top"><strong>{Label comment.mail.feedbackexpected}</strong></td>
-  <td width="430">
-   <ul>
-   {if sizeof($feedback_persons) > 0}
-      {foreach $feedback_persons feedbackPerson}
-   		<li>{$feedbackPerson.firstname} {$feedbackPerson.lastname} &lt;{$feedbackPerson.email}&gt;</li>
-      {/foreach}
-   {/if}
-   </ul>
-  </td>
- </tr>
- {/if}
- <tr>
-  <td valign="top"><strong>{Label task.description}</strong></td>
-  <td>{$task.description}</td>
- </tr>
-</table>
 </body>
 </html>

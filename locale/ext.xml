@@ -94,7 +94,7 @@
 		<label index="mail.showcommentinprojectview">Zeige Kommentar in der Projektansicht</label>
 		<label index="mail.commentfrom">Kommentar von</label>
 		<label index="mail.commentsentby">Verschickt von</label>
-		<label index="mail.feedbackexpected">Feedback erwartet</label>
+		<label index="mail.feedbackexpected">Feedback erwartet von</label>
 		<label index="portal.tab.feedback">Feedback</label>
 		<label index="js.commentSaved">Kommentar gespeichert</label>
 		<label index="js.commentSavingFailed">Kommentar konnte nicht gespeichert werden</label>
