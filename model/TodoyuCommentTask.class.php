@@ -38,8 +38,6 @@ class TodoyuCommentTask {
 
 		$numComments = TodoyuCommentManager::getNumberOfTaskComments($idTask);
 
-		TodoyuPage::addExtAssets('comment');
-
 		if( $numComments === 0 ) {
 			return Label('comment.tab.noComments');
 		} elseif( $numComments === 1 ) {

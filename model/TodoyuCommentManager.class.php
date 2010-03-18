@@ -375,7 +375,7 @@ class TodoyuCommentManager {
 	 *
 	 */
 	public static function onTasksRender() {
-		TodoyuPage::addExtAssets('comment');
+
 	}
 
 }
