@@ -99,7 +99,7 @@
 		<label index="js.commentSaved">Kommentar gespeichert</label>
 		<label index="js.commentSavingFailed">Kommentar konnte nicht gespeichert werden</label>
 		<label index="js.emailSent">Email verschickt</label>
-		<label index="extconf.autorequestownerfeedback.label">Rollen zu deren Kommentare automat. Feedback vom Task-eigner erwartet wird: (entfernt Feedback-option mit freier Addressaten-Wahl)</label>
+		<label index="extconf.autorequestownerfeedback.label">Rollen zu deren Kommentare automat. Feedback vom Task-eigner erwartet wird: (entfernt Feedback-option mit freier Adressaten-Wahl)</label>
 		<label index="extconf.automailcommenttoowner.label">Rollen deren Kommentare automat. an den Task-Eigner gemailt werden: (entfernt Mailing-option mit freier Empfänger-Wahl)</label>
 		<label index="history.header">Kommentar-Verlauf (Feedbacks und Mailing)</label>
 		<label index="history.created">Kommentar angelegt</label>
