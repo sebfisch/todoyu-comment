@@ -42,7 +42,8 @@ $CONFIG['EXT']['contact']['allowabletags']	= '<p><b><i><u><strike><ol><ul><li><b
  */
 $CONFIG['EXT']['comment']['feedbackTabFilters'] = array(
 	array(
-		'filter'	=> 'unseenFeedbackCurrentPerson',
+		'filter'	=> 'unseenFeedbackPerson',
+		'value'		=> 0,
 		'negate'	=> false
 	)
 );

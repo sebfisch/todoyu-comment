@@ -42,7 +42,7 @@ class TodoyuCommentTaskFilter {
 	 */
 	public static function Filter_unseenFeedbackPerson($idPerson, $negate = false) {
 		$queryParts	= false;
-		$idPerson	= intval($idPerson);
+		$idPerson	= personid($idPerson);
 		$seenStatus	= $negate ? 1 : 0 ;
 
 		if( $idPerson !== 0 ) {
