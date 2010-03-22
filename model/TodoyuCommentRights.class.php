@@ -23,7 +23,7 @@
  * Comment rights functions
  *
  * @package		Todoyu
- * @subpackage	Project
+ * @subpackage	Comment
  */
 class TodoyuCommentRights {
 
