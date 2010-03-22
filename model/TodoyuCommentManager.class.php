@@ -260,7 +260,6 @@ class TodoyuCommentManager {
 
 
 
-
 	/**
 	 * Check if a person is the create of a comment
 	 *
@@ -360,6 +359,11 @@ class TodoyuCommentManager {
 
 
 
+	/**
+	 * Get IDs of tasks with a requested feedback from current person
+	 *
+	 * @return	Array
+	 */
 	public static function getFeedbackTaskIDs() {
 		$conditions	= $GLOBALS['CONFIG']['EXT']['comment']['feedbackTabFilters'];
 		$taskFilter	= new TodoyuTaskFilter($conditions);

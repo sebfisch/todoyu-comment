@@ -112,16 +112,19 @@ class TodoyuCommentSearch implements TodoyuSearchEngineIf {
 			$comments = Todoyu::db()->getArray($fields, $table, $where, '', $order);
 
 			foreach($comments as $comment) {
-				$textLong	= TodoyuString::getSubstring(strip_tags($comment['comment']), $find[0], 50, 60);
-				$textShort	= TodoyuString::getSubstring(strip_tags($comment['comment']), $find[0], 20, 30);
-				$textShort	= str_ireplace($find[0], '<strong>' . $find[0] . '</strong>', $textShort);
-				$taskTitle	= substr($comment['tasktitle'], 0, 40);
+				if ( TodoyuCommentRights::isSeeAllowed($comment['id']) ) {
+					$textLong	= TodoyuString::getSubstring(strip_tags($comment['comment']), $find[0], 50, 60);
+					$textShort	= TodoyuString::getSubstring(strip_tags($comment['comment']), $find[0], 20, 30);
+					$textShort	= str_ireplace($find[0], '<strong>' . $find[0] . '</strong>', $textShort);
+					$taskTitle	= substr($comment['tasktitle'], 0, 40);
 
-				$suggestions[] = array(
-					'labelTitle'=> TodoyuTime::format($comment['date_create'], 'D2M2Y2') . ': ' . $taskTitle . ' [K ' . $comment['id'] . ' / ' . $comment['id_project'] . '.' . $comment['tasknumber'] . ']',
-					'labelInfo'	=> $textShort,
-					'title'		=> $comment['firstname'] . ' ' . $comment['lastname'] . ', ' . $comment['company'] . ': ' . $comment['projecttitle'] . ' # ' . $textLong,
-					'onclick'	=> 'location.href=\'?ext=project&amp;project=' . $comment['id_project'] . '&amp;task=' . $comment['taskid'] . '&amp;tab=comment#task-comment-' . $comment['id'] . '\'');
+					$suggestions[] = array(
+						'labelTitle'=> TodoyuTime::format($comment['date_create'], 'D2M2Y2') . ': ' . $taskTitle . ' [K ' . $comment['id'] . ' / ' . $comment['id_project'] . '.' . $comment['tasknumber'] . ']',
+						'labelInfo'	=> $textShort,
+						'title'		=> $comment['firstname'] . ' ' . $comment['lastname'] . ', ' . $comment['company'] . ': ' . $comment['projecttitle'] . ' # ' . $textLong,
+						'onclick'	=> 'location.href=\'?ext=project&amp;project=' . $comment['id_project'] . '&amp;task=' . $comment['taskid'] . '&amp;tab=comment#task-comment-' . $comment['id'] . '\''
+					);
+				}
 			}
 		}
 
