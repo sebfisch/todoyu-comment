@@ -12,6 +12,7 @@
 		<right name="requestFeedback" />
 		<right name="sendAsEmail" />
 		<right name="delete" />
+		<right name="makePublic" />
 	</section>
 
 </rights>

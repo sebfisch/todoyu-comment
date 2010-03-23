@@ -17,11 +17,11 @@
 			</a>
 		{/if}
 		{* ------------------------ Make public ---------------------- *}
-		{restrictInternal}
+		{if allowed('comment','comment:makePublic')}
 			<a href="javascript:void(0)" onclick="Todoyu.Ext.comment.togglePublic({$id})" class="icon public-trigger {if $is_public}comment-public{/if}" title="{Label comment.icon.toggleCustomerVisibility}" id="public-trigger-{$id}">
 				<span class="hidden">{Label comment.icon.toggleCustomerVisibility}</span>
 			</a>
-		{/restrictInternal}
+		{/if}
 		{* -------------------------- Delete ------------------------ *}
 		{if allowed('comment','comment:delete')}
 			<a href="javascript:void(0)" onclick="Todoyu.Ext.comment.remove({$id})" class="icon comment-remove" title="{Label comment.icon.remove}">

@@ -7,9 +7,10 @@
 		<label index="comment.seeAll">See All Comments (Not Public)</label>
 		<label index="comment.editOwn">Edit OWN Comments</label>
 		<label index="comment.editAll">Edit ALL Comments</label>
-		<label index="comment.delete">Delete Comment</label>
 		<label index="comment.requestFeedback">Request Feedback</label>
+		<label index="comment.delete">Delete Comment</label>
 		<label index="comment.sendAsEmail">Send Comment By Email</label>
+		<label index="comment.makePublic">Make Comment Public</label>
 	</labels>
 	<labels lang="de">
 		<label index="general">Allgemeine Einstellungen</label>
@@ -18,8 +19,9 @@
 		<label index="comment.seeAll">Sieht alle Kommentare</label>
 		<label index="comment.editOwn">Kann eigene Kommentare bearbeiten</label>
 		<label index="comment.editAll">Kann alle Kommentare bearbeiten</label>
-		<label index="comment.delete">Kann Kommentare löschen</label>
 		<label index="comment.requestFeedback">Feedback von anderen anfordern</label>
 		<label index="comment.sendAsEmail">Kommentar als Email versenden</label>
+		<label index="comment.delete">Kommentare löschen</label>
+		<label index="comment.makePublic">Kommentare öffentlich schalten</label>
 	</labels>
 </locallang>
