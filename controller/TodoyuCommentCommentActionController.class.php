@@ -39,6 +39,19 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 
 
 	/**
+	 * Add a new comment
+	 *
+	 * @param	Array		$params
+	 */
+	public function addAction(array $params) {
+		$idTask		= intval($params['task']);
+
+		return TodoyuCommentRenderer::renderEdit($idTask, 0);
+	}
+
+
+
+	/**
 	 * Load edit view of the comment
 	 *
 	 * @param	Array		$params

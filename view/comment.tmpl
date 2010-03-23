@@ -11,7 +11,7 @@
 		<span id="task-comment-{$id}-id" class="comment-id" title="{Label comment.id}">K{$id}</span>
 		<span id="task-comment-{$id}-options" class="comment-options">
 		{* --------------------------- Edit ------------------------- *}
-		{if allowed('comment', 'comment:editAll') || (allowed('comment','editOwn') && isPersonID($id_person_create))}
+		{if allowed('comment', 'comment:editAll') || allowedOrOwn('comment','editOwn', $id_person_create)}
 			<a href="javascript:void(0)" onclick="Todoyu.Ext.comment.edit({$id_task}, {$id})" class="icon comment-edit" title="{Label comment.icon.edit}">
 				<span class="hidden">{Label comment.icon.edit}</span>
 			</a>

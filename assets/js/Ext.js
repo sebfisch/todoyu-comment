@@ -228,6 +228,28 @@ Todoyu.Ext.comment = {
 
 		Todoyu.Ext.comment.List.refresh(idTask, desc);
 	},
+	
+	
+	add: function(idTask) {
+		this.removeForms(idTask);
+		
+		var url		= Todoyu.getUrl('comment', 'comment');
+		var options = {
+			'parameters': {
+				'action': 	'add',
+				'task':		idTask
+			},
+			'insertion':	'after',
+			'onComplete': this.onAdd.bind(this, idTask)
+		};
+		var target	= 'task-' + idTask + '-comment-commands';
+		
+		Todoyu.Ui.update(target, url, options);		
+	},
+	
+	onAdd: function(idTask, response) {
+		
+	},
 
 
 
@@ -245,24 +267,20 @@ Todoyu.Ext.comment = {
 				'action': 	'edit',
 				'task':		idTask,
 				'comment':	idComment
-			}
+			},
+			'onComplete':	this.onEdit.bind(this, idTask, idComment)
 		};
-		var target;
-
-		if( idComment === 0 ) {
-				// Remove other forms
-			$$('#task-' + idTask + '-tabcontent-comment .commentform').invoke('remove');
-
-			target = 'task-' + idTask + '-comment-commands';
-			options.insertion = 'after';
-		} else {
-			target = 'task-comment-' + idComment + '-text';
-			options.onComplete = function(response) {
-				$('task-' + idTask + '-commentform-' + idComment).removeClassName('taskOptionBlock');
-			};
-		}
-
+		var target	= 'task-comment-' + idComment + '-text';
+		
 		Todoyu.Ui.update(target, url, options);
+	},
+	
+	onEdit: function(idTask, idComment, response) {
+		$('task-' + idTask + '-commentform-' + idComment).removeClassName('taskOptionBlock');
+	},
+	
+	removeForms: function(idTask) {
+		$('task-' + idTask + '-tabcontent-comment').select('.commentform').invoke('remove');
 	}
 
 };
