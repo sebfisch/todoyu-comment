@@ -65,7 +65,7 @@ class TodoyuCommentManager {
 	 * @return	String
 	 */
 	public static function filterHtmlTags($text) {
-		return strip_tags($text, $GLOBALS['CONFIG']['EXT']['contact']['allowabletags']);
+		return strip_tags($text, Todoyu::$CONFIG['EXT']['contact']['allowabletags']);
 	}
 
 
@@ -349,7 +349,7 @@ class TodoyuCommentManager {
 		$allowed= array();
 
 		if( $task->isTask() ) {
-			$ownItems	=& $GLOBALS['CONFIG']['EXT']['comment']['ContextMenu']['Task'];
+			$ownItems	=& Todoyu::$CONFIG['EXT']['comment']['ContextMenu']['Task'];
 
 			$allowed['add']['submenu']['add-comment'] = $ownItems['add']['submenu']['add-comment'];
 		}
@@ -365,7 +365,7 @@ class TodoyuCommentManager {
 	 * @return	Array
 	 */
 	public static function getFeedbackTaskIDs() {
-		$conditions	= $GLOBALS['CONFIG']['EXT']['comment']['feedbackTabFilters'];
+		$conditions	= Todoyu::$CONFIG['EXT']['comment']['feedbackTabFilters'];
 		$taskFilter	= new TodoyuTaskFilter($conditions);
 
 		return $taskFilter->getTaskIDs();

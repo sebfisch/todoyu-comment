@@ -23,7 +23,7 @@
  * Various comment extension info data
  */
 
-$CONFIG['EXT']['comment']['info'] = array(
+Todoyu::$CONFIG['EXT']['comment']['info'] = array(
 	'title'			=> 'Task Comment Management',
 	'description' 	=> 'Task Comment Management',
 	'author' 		=> array(

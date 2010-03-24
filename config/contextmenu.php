@@ -19,7 +19,7 @@
 *  This copyright notice MUST APPEAR in all copies of the script!
 ***************************************************************/
 
-$CONFIG['EXT']['comment']['ContextMenu']['Task'] = array(
+Todoyu::$CONFIG['EXT']['comment']['ContextMenu']['Task'] = array(
 	'add' => array(
 		'submenu' => array(
 			'add-comment' => array(

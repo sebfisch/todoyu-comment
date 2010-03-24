@@ -22,7 +22,7 @@
 /**
  * Unseen comment feedback request for person
  */
-$CONFIG['FILTERS']['TASK']['widgets']['unseenFeedbackPerson'] = array(
+Todoyu::$CONFIG['FILTERS']['TASK']['widgets']['unseenFeedbackPerson'] = array(
 	'funcRef'	=> 'TodoyuCommentTaskFilter::Filter_unseenFeedbackPerson',
 	'label'		=> 'LLL:comment.filter.unseenFeedbackPerson',
 	'optgroup'	=> 'LLL:comment.search.label',
@@ -36,11 +36,11 @@ $CONFIG['FILTERS']['TASK']['widgets']['unseenFeedbackPerson'] = array(
 	)
 );
 
-$CONFIG['FILTERS']['TASK']['filters']['unseenFeedbackCurrentPerson'] = array(
+Todoyu::$CONFIG['FILTERS']['TASK']['filters']['unseenFeedbackCurrentPerson'] = array(
 	'funcRef'	=> 'TodoyuCommentTaskFilter::Filter_unseenFeedbackCurrentPerson'
 );
 
-$CONFIG['FILTERS']['TASK']['widgets']['unseenFeedbackRoles'] = array(
+Todoyu::$CONFIG['FILTERS']['TASK']['widgets']['unseenFeedbackRoles'] = array(
 	'funcRef'	=> 'TodoyuCommentTaskFilter::Filter_unseenFeedbackRoles',
 	'label'		=> 'LLL:comment.filter.unseenFeedbackRoles',
 	'optgroup'	=> 'LLL:comment.search.label',
@@ -56,7 +56,7 @@ $CONFIG['FILTERS']['TASK']['widgets']['unseenFeedbackRoles'] = array(
 /**
  * Comment fulltext search
  */
-$CONFIG['FILTERS']['TASK']['widgets']['commentFulltext'] = array(
+Todoyu::$CONFIG['FILTERS']['TASK']['widgets']['commentFulltext'] = array(
 	'funcRef'	=> 'TodoyuCommentTaskFilter::Filter_fulltext',
 	'label'		=> 'LLL:comment.filter.commentFulltext',
 	'optgroup'	=> 'LLL:comment.search.label',
@@ -69,7 +69,7 @@ $CONFIG['FILTERS']['TASK']['widgets']['commentFulltext'] = array(
 );
 
 
-$CONFIG['FILTERS']['TASK']['widgets']['commentWrittenPerson'] = array(
+Todoyu::$CONFIG['FILTERS']['TASK']['widgets']['commentWrittenPerson'] = array(
 	'funcRef'	=> 'TodoyuCommentTaskFilter::Filter_commentWrittenPerson',
 	'label'		=> 'LLL:comment.filter.commentWrittenPerson',
 	'optgroup'	=> 'LLL:comment.search.label',
@@ -83,7 +83,7 @@ $CONFIG['FILTERS']['TASK']['widgets']['commentWrittenPerson'] = array(
 	)
 );
 
-$CONFIG['FILTERS']['TASK']['widgets']['commentWrittenRoles'] = array(
+Todoyu::$CONFIG['FILTERS']['TASK']['widgets']['commentWrittenRoles'] = array(
 	'funcRef'	=> 'TodoyuCommentTaskFilter::Filter_commentWrittenRoles',
 	'label'		=> 'LLL:comment.filter.commentWrittenRoles',
 	'optgroup'	=> 'LLL:comment.search.label',

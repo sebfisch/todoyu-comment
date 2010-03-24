@@ -26,7 +26,7 @@
  * @subpackage	Project
  */
 
-$CONFIG['EXT']['comment']['assets'] = array(
+Todoyu::$CONFIG['EXT']['comment']['assets'] = array(
 	'js' => array(
 		array(
 			'file'		=> 'ext/comment/assets/js/Ext.js',

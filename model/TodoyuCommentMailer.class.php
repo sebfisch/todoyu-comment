@@ -67,8 +67,8 @@ class TodoyuCommentMailer {
 			// Set mail config
 		$mail			= new PHPMailerLite(true);
 		$mail->CharSet	= 'utf-8';
-		$mail->From		= $GLOBALS['CONFIG']['EXT']['comment']['infomail']['email'];
-		$mail->FromName	= $GLOBALS['CONFIG']['EXT']['comment']['infomail']['fromname'];
+		$mail->From		= Todoyu::$CONFIG['EXT']['comment']['infomail']['email'];
+		$mail->FromName	= Todoyu::$CONFIG['EXT']['comment']['infomail']['fromname'];
 		$mail->Subject	= Label('comment.mail.subject') . ': ' . $comment->getTask()->getTitle() . ' (#' . $comment->getTask()->getTaskNumber(true) . ')';
 
 		$htmlBody		= self::getMailContentHtml($idComment, $idPerson);
