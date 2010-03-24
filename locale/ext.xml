@@ -35,7 +35,7 @@
 		<label index="icon.togglelog">Show / Hide Communication Log</label>
 		<label index="comment.feedbackPersons">Feedback Requested From:</label>
 		<label index="mail.subject">New Comment</label>
-		<label index="mail.newcomment">A New Comment Was Stored In todoyu</label>
+		<label index="mail.newcomment">A new comment has been given</label>
 		<label index="mail.commentlink">Open Comment</label>
 		<label index="mail.showcommentinprojectview">Show Comment In Project View</label>
 		<label index="mail.commentfrom">Comment From</label>
