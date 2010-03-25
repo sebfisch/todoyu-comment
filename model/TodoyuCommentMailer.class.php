@@ -67,6 +67,13 @@ class TodoyuCommentMailer {
 			// Set mail config
 		$mail			= new PHPMailerLite(true);
 		$mail->CharSet	= 'utf-8';
+
+//	@todo verify
+//		if ( DIRECTORY_SEPARATOR === '\\' ) {
+//				// Windows Server: toggle send method from 'sendMail' (default) to 'mail'
+//			$mail->Mailer	= 'mail';
+//		}
+
 		$mail->From		= Todoyu::$CONFIG['EXT']['comment']['infomail']['email'];
 		$mail->FromName	= Todoyu::$CONFIG['EXT']['comment']['infomail']['fromname'];
 		$mail->Subject	= Label('comment.mail.subject') . ': ' . $comment->getTask()->getTitle() . ' (#' . $comment->getTask()->getTaskNumber(true) . ')';
@@ -77,13 +84,20 @@ class TodoyuCommentMailer {
 		$mail->MsgHTML($htmlBody, PATH_EXT_COMMENT);
 		$mail->AltBody	= $textBody;
 
-		$mail->AddAddress($person->getEmail(), $person->getFullName());
+//	@todo	verify
+//		if ( DIRECTORY_SEPARATOR !== '\\' ) {
+				// Non-Windows (e.g Linux)
+			$mail->AddAddress($person->getEmail(), $person->getFullName());
+//		} else {
+//				// Windows
+//			$mail->AddAddress($person->getEmail(), '');
+//		}
 
 		try {
 			$sendStatus	= $mail->Send();
 		} catch(phpmailerException $e) {
 			Todoyu::log($e->getMessage(), LOG_LEVEL_ERROR);
-			echo $e->getMessage()."\n";
+			echo $e->getMessage() . "\n";
 		}
 
 		return $sendStatus;
@@ -176,5 +190,4 @@ class TodoyuCommentMailer {
 	}
 
 }
-
 ?>
