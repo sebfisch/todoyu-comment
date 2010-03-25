@@ -135,13 +135,13 @@ class TodoyuCommentMailer {
 			'feedback_persons'	=> $comment->getFeedbackPersons()
 		);
 
-		$data['tasklink'] = TodoyuDiv::buildUrl(array(
+		$data['tasklink'] = TodoyuString::buildUrl(array(
 			'ext'		=> 'project',
 			'project'	=> $project->getID(),
 			'task'		=> $task->getID()
 		), 'task-' . $task->getID(), true);
 
-		$data['commentlink'] = TodoyuDiv::buildUrl(array(
+		$data['commentlink'] = TodoyuString::buildUrl(array(
 			'ext'		=> 'project',
 			'project'	=> $project->getID(),
 			'task'		=> $task->getID(),
