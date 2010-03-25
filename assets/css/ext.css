@@ -16,8 +16,8 @@ h1.extIconComment .title {
 /* --------------------------
  	Tasktab
    --------------------------*/
-.tasktabs .comment span {
-	background:url(../img/icons.png) no-repeat 0 2px;
+.task .taskTabs ul li.comment span.icon {
+	background:url(../img/icons.png) no-repeat 0 5px;
 }
 
 .task .tabContent .commentButtons button.addComment .icon {
