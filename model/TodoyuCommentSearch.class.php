@@ -131,20 +131,6 @@ class TodoyuCommentSearch implements TodoyuSearchEngineIf {
 		return $suggestions;
 	}
 
-
-
-	/**
-	 * Get results
-	 * @todo 	implement
-	 *
-	 * @param	Array	$find
-	 * @param	Array	$ignore
-	 * @param	Integer	$limit
-	 */
-	public static function getResults(array $find, array $ignore = array(), $limit = 20) {
-
-	}
-
 }
 
 ?>
