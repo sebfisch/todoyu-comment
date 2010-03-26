@@ -370,17 +370,6 @@ class TodoyuCommentManager {
 		return $taskFilter->getTaskIDs();
 	}
 
-
-
-	/**
-	 * Hook when tasks are rendered
-	 * Add comment assets
-	 *
-	 */
-	public static function onTasksRender() {
-
-	}
-
 }
 
 ?>
