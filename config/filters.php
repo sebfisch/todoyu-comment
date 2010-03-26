@@ -90,7 +90,7 @@ Todoyu::$CONFIG['FILTERS']['TASK']['widgets']['commentWrittenRoles'] = array(
 	'wConf'		=> array(
 		'multiple'	=> true,
 		'size'		=> 5,
-		'FuncRef'	=> 'TodoyuTaskFilterDataSource::getRoleOptions'
+		'FuncRef'	=> 'TodoyuRoleDatasource::getRoleOptions'
 	)
 );
 
