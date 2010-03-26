@@ -76,17 +76,6 @@ class TodoyuCommentRenderer {
 
 
 	/**
-	 * @todo make localized, check
-	 *
-	 * @return	String
-	 */
-	public static function renderNoCommentsInfo() {
-		return 'No Comments';
-	}
-
-
-
-	/**
 	 * Render comment edit area (edit form) in the task tab
 	 *
 	 * @param	Integer		$idTask

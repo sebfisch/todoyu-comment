@@ -94,8 +94,7 @@ h1.extIconComment .title {
 
 .task-comments .comment-details .persons span {
 	padding-left:13px;
-
-	white-space: nowrap;
+	white-space:nowrap;
 }
 
 .task-comments .comment-details .persons span.commentperson-unapproved {
@@ -133,7 +132,7 @@ h1.extIconComment .title {
 	margin:2px 5px 0 -12px;
 	font-size:11px !important;
 	letter-spacing:1px;
-	font-weight: normal;
+	font-weight:normal;
 }
 
 .task-comments .comment-options {
