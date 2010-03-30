@@ -60,8 +60,6 @@ class TodoyuCommentTaskActionController extends TodoyuActionController {
 	public function togglepublicAction(array $params) {
 		restrict('comment', 'comment:makePublic');
 
-//		TodoyuDebug::printInFirebug('test');
-
 		$idComment	= intval($params['comment']);
 
 		TodoyuCommentManager::togglePublic($idComment);
