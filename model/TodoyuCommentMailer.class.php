@@ -127,7 +127,7 @@ class TodoyuCommentMailer {
 		$data	= array(
 			'comment'			=> $comment->getTemplateData(),
 			'project' 			=> $project->getTemplateData(),
-			'task'				=> $task->getTemplateData(0),
+			'task'				=> $task->getTemplateData(2),
 			'personReceive'		=> $personReceive->getTemplateData(),
 			'personWrite'		=> $personWrite->getTemplateData(),
 			'personSend'		=> $personSend->getTemplateData(),
