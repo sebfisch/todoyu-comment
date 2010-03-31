@@ -36,6 +36,7 @@ class TodoyuCommentMailer {
 	 * @param	Array		$personIDs
 	 */
 	public static function sendEmails($idComment, array $personIDs) {
+		$idComment	= intval($idComment);
 		$personIDs	= TodoyuArray::intval($personIDs, true, true);
 
 		foreach($personIDs as $idPerson) {
