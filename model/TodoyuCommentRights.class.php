@@ -68,10 +68,7 @@ class TodoyuCommentRights {
 			if ( allowed('comment', 'comment:editAll')) {
 				return true;
 			} else {
-				$idPerson	= personid();
-				if ( $comment->isCurrentPersonCreator() && allowed('comment', 'comment:editOwn') ) {
-					return true;
-				}
+				return TodoyuTaskRights::isEditAllowed($idTask);
 			}
 		}
 
