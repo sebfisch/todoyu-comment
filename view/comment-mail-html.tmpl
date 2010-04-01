@@ -31,7 +31,7 @@ td {
 		</td>
 	</tr>
 	<tr>
-		<td style="color: #000; font-size: 11px; font-family: Arial;">
+		<td style="color:#000; font-size:11px; font-family:Arial;">
 			{Label comment.mail.newcomment}
 			<br /><br />
 		</td>
@@ -41,23 +41,23 @@ td {
 			<table width="600" border="0" cellspacing="0" cellpadding="5" bgcolor="#d3dabb">
 				<tr>
 					<td width="10" bgcolor="{$colors[$task.status]}"  style="background:{$colors[$task.status]}; border-left:1px solid {$colors[$task.status]};"><!-- spacer --></td>
-					<td valign="top" align="left" style="color: #000; font-size: 11px; font-family: Arial;">
-						<strong style="margin: 0; padding: 0; color: #000; font-size: 11px; font-family: Arial;">
+					<td valign="top" align="left" style="color:#000; font-size:11px; font-family:Arial;">
+						<strong style="margin:0; padding:0; color:#000; font-size:11px; font-family:Arial;">
 							{dateFormat $task.date_deadline D2M2Y2}
 						</strong>
 					</td>
-					<td valign="top" align="left" style="color: #000; font-size: 11px; font-family: Arial;">
-						<strong style="margin: 0; padding: 0; color: #000; font-size: 11px; font-family: Arial;">
+					<td valign="top" align="left" style="color:#000; font-size:11px; font-family:Arial;">
+						<strong style="margin:0; padding:0; color:#000; font-size:11px; font-family:Arial;">
 							{$project.company.title}
 						</strong>
 					</td>
-					<td valign="top" align="left" style="color: #000; font-size: 11px; font-family: Arial;">
-						<strong style="margin: 0; padding: 0; color: #000; font-size: 11px; font-family: Arial;">
+					<td valign="top" align="left" style="color:#000; font-size:11px; font-family:Arial;">
+						<strong style="margin:0; padding:0; color:#000; font-size:11px; font-family:Arial;">
 							{htmlencode $project.title} - <a href="{$tasklink}">{htmlencode $task.title}</a>
 						</strong>
 					</td>
-					<td valign="top" align="right" style="color: #000; font-size: 11px; font-family: Arial;">
-						<strong style="margin: 0; padding: 0; color: #000; font-size: 11px; font-family: Arial;">
+					<td valign="top" align="right" style="color:#000; font-size:11px; font-family:Arial;">
+						<strong style="margin:0; padding:0; color:#000; font-size:11px; font-family:Arial;">
 							{$task.id_project}.{$task.tasknumber}
 						</strong>
 					</td>
@@ -71,7 +71,7 @@ td {
 			<table width="600" border="0" cellspacing="0" cellpadding="5" bgcolor="#f1f1f1">
 				<tr>
 					<td width="10" style="border-left:1px solid {$colors[$task.status]};"><!-- spacer --></td>
-					<td style="color: #000; font-size: 11px; font-family: Arial;">
+					<td style="color:#000; font-size:11px; font-family:Arial;">
 						{$task.description}
 					</td>
 					<td width="10"><!-- spacer --></td>
@@ -94,12 +94,12 @@ td {
 							<tr>
 								<td width="10"><!-- spacer --></td>
 								<td valign="top" align="left">
-									<strong style="margin: 0; padding: 0; color: #000; font-size: 11px; font-family: Arial;">
+									<strong style="margin:0; padding:0; color:#000; font-size:11px; font-family:Arial;">
 										{dateFormat $comment.date_create D2M2Y2} - <a href="mailto:{$personWrite.firstname}%20{$personWrite.lastname}%20%3C{$personWrite.email}%3E">{$personWrite.firstname} {$personWrite.lastname}</a>
 									</strong>
 								</td>
 								<td valign="top" align="right">
-									<strong style="margin: 0; padding: 0; color: #000; font-size: 11px; font-family: Arial;">
+									<strong style="margin:0; padding:0; color:#000; font-size:11px; font-family:Arial;">
 										K{$comment.id}
 									</strong>
 								</td>
@@ -114,10 +114,10 @@ td {
 						<table width="580" border="0" cellspacing="0" cellpadding="5" bgcolor="#f1f1f1" style="border-bottom:1px solid #d3dabb;">
 							<tr>
 								<td width="10"><!-- spacer --></td>
-								<td valign="top" align="left" style="color: #000; font-size: 11px; font-family: Arial;">
+								<td valign="top" align="left" style="color:#000; font-size:11px; font-family:Arial;">
 										{Label comment.mail.feedbackexpected}:
 								</td>
-								<td valign="top" align="left" style="color: #000; font-size: 11px; font-family: Arial;">
+								<td valign="top" align="left" style="color:#000; font-size:11px; font-family:Arial;">
 									{foreach $feedback_persons feedbackPerson}
 										<a href="mailto:{$feedbackPerson.firstname}%20{$feedbackPerson.lastname}%20%3C{$feedbackPerson.email}%3E">{$feedbackPerson.firstname} {$feedbackPerson.lastname},</a>
 									{/foreach}
@@ -133,7 +133,7 @@ td {
 						<table width="580" border="0" cellspacing="0" cellpadding="5" bgcolor="#f1f1f1" style="border-bottom:1px solid #d3dabb;">
 							<tr>
 								<td width="10"><!-- spacer --></td>
-								<td style="color: #000; font-size: 11px; font-family: Arial;">
+								<td style="color:#000; font-size:11px; font-family:Arial;">
 									{$comment.comment}
 								</td>
 								<td width="10"><!-- spacer --></td>
@@ -146,7 +146,7 @@ td {
 						<table width="580" border="0" cellspacing="0" cellpadding="5" bgcolor="#f1f1f1">
 							<tr>
 								<td width="10"><!-- spacer --></td>
-								<td style="color: #000; font-size: 11px; font-family: Arial;">
+								<td style="color:#000; font-size:11px; font-family:Arial;">
 									<a href="{$commentlink}">{Label comment.mail.showcommentinprojectview}</a>
 									<br /><br />
 								</td>
