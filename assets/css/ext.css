@@ -107,7 +107,7 @@ h1.extIconComment .title {
 }
 
 .task-comments .hasicon {
-	padding:3px 0px;
+	padding:3px 0;
 }
 
 .task-comments .comment-crdate {
@@ -139,7 +139,7 @@ h1.extIconComment .title {
 	position:absolute;
 	top:5px;
 	right:5px;
-	margin:0px 82px 0px -82px;
+	margin:0 82px 0 -82px;
 }
 
 .task-comments .comment-options a {

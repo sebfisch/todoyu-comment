@@ -172,7 +172,7 @@ class TodoyuCommentTaskFilter {
 	 * Filter condition: Tasks which have comments which are written by a member of one of the roles
 	 *
 	 * @param	String		$roleIDs
-	 * @param	Bool		$negate
+	 * @param	Boolean		$negate
 	 * @return	Array		Or FALSE
 	 */
 	public static function Filter_commentWrittenRoles($roleIDs, $negate = false) {
