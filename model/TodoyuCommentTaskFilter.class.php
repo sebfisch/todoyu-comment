@@ -70,7 +70,7 @@ class TodoyuCommentTaskFilter {
 	 * Filter condition: Tasks which have comment feedbacks which have not been seen by a member of a group
 	 *
 	 * @param	String		$groupIDs
-	 * @param	Bool		$negate
+	 * @param	Boolean		$negate
 	 * @return	Array
 	 */
 	public static function Filter_unseenFeedbackRoles($groupIDs, $negate = false) {
@@ -142,7 +142,7 @@ class TodoyuCommentTaskFilter {
 	 * Filter condition: Tasks which are written by a person
 	 *
 	 * @param	Integer		$idPerson
-	 * @param	Bool		$negate
+	 * @param	Boolean		$negate
 	 * @return	Array		Or FALSE
 	 */
 	public static function Filter_commentWrittenPerson($idPerson, $negate = false) {

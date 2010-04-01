@@ -181,7 +181,7 @@ class TodoyuCommentRenderer {
 	/**
 	 * Get tab label for portal feedback task
 	 *
-	 * @param	Bool		$count
+	 * @param	Boolean		$count
 	 * @return	String
 	 */
 	public static function renderPortalFeedbackTabLabel($count = true) {
