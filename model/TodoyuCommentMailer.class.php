@@ -69,7 +69,7 @@ class TodoyuCommentMailer {
 		$mail->CharSet	= 'utf-8';
 
 //	@todo verify
-//		if ( DIRECTORY_SEPARATOR === '\\' ) {
+//		if ( DIR_SEP === '\\' ) {
 //				// Windows Server: toggle send method from 'sendMail' (default) to 'mail'
 //			$mail->Mailer	= 'mail';
 //		}
@@ -85,7 +85,7 @@ class TodoyuCommentMailer {
 		$mail->AltBody	= $textBody;
 
 //	@todo	verify
-//		if ( DIRECTORY_SEPARATOR !== '\\' ) {
+//		if ( DIR_SEP !== '\\' ) {
 				// Non-Windows (e.g Linux)
 			$mail->AddAddress($person->getEmail(), $person->getFullName());
 //		} else {
