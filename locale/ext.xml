@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <locallang>
-	<labels lang="en">
+	<labels lang="en_GB">
 		<label index="ext.title">Task Comments</label>
 		<label index="id">Comment-ID</label>
 		<label index="tab.comment">Comment</label>
@@ -55,7 +55,7 @@
 		<label index="history.mailedto">Comment Mailed To</label>
 		<label index="portal.tab.feedbacks">Feedbacks</label>
 	</labels>
-	<labels lang="de">
+	<labels lang="de_DE">
 		<label index="ext.title">Aufgaben-Kommentar</label>
 		<label index="id">Kommentar-ID</label>
 		<label index="tab.comment">Kommentar</label>
@@ -110,7 +110,7 @@
 		<label index="history.mailedto">Kommentar versandt an</label>
 		<label index="portal.tab.feedbacks">Feedbacks</label>
 	</labels>
-	<labels lang="pt">
+	<labels lang="pt_BR">
 		<label index="ext.title">Notas da Tarefa</label>
 		<label index="id">Nota-ID</label>
 		<label index="tab.comment">Nota</label>

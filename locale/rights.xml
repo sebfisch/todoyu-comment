@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <locallang>
-	<labels lang="en">
+	<labels lang="en_GB">
 		<label index="general">General Settings</label>
 		<label index="general.use">Use Comments</label>
 		<label index="comment">Comment</label>
@@ -12,7 +12,7 @@
 		<label index="comment.sendAsEmail">Send Comment By Email</label>
 		<label index="comment.makePublic">Make Comment Public</label>
 	</labels>
-	<labels lang="de">
+	<labels lang="de_DE">
 		<label index="general">Allgemeine Einstellungen</label>
 		<label index="general.use">Benutze Kommentare</label>
 		<label index="comment">Kommentar</label>
@@ -24,7 +24,7 @@
 		<label index="comment.delete">Kommentare löschen</label>
 		<label index="comment.makePublic">Kommentare öffentlich schalten</label>
 	</labels>
-	<labels lang="pt">
+	<labels lang="pt_BR">
 		<label index="general">Adminitração</label>
 		<label index="general.use">Utilizar Notas</label>
 		<label index="comment">Nota</label>
