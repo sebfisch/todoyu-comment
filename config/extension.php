@@ -63,7 +63,7 @@ if( allowed('comment', 'general:use') ) {
 	}
 
 		// Add task contextmenu to add comments to task
-	TodoyuContextMenuManager::registerFunction('Task', 'TodoyuCommentManager::getTaskContextMenuItems', 150);
+	TodoyuContextMenuManager::addFunction('Task', 'TodoyuCommentManager::getTaskContextMenuItems', 150);
 }
 
 ?>
