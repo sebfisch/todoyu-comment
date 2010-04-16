@@ -33,6 +33,7 @@ define('PATH_EXT_COMMENT', PATH_EXT . '/comment');
 TodoyuLanguage::register('comment', PATH_EXT_COMMENT . '/locale/ext.xml');
 
 	// Request configurations
+	// @notice	Auto-loaded configs if available: admin, assets, create, contextmenu, extinfo, filters, form, page, panelwidgets, rights, search
 require_once( PATH_EXT_COMMENT . '/config/extension.php' );
 require_once( PATH_EXT_COMMENT. '/config/hooks.php' );
 require_once( PATH_EXT_COMMENT . '/dwoo/plugins.php');
