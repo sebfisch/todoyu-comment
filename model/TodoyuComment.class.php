@@ -26,7 +26,6 @@
  */
 class TodoyuComment extends TodoyuBaseObject {
 
-
 	/**
 	 * Initialize comment
 	 *

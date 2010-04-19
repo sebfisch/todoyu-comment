@@ -29,9 +29,9 @@ Todoyu.Ext.comment.Edit = {
 	/**
 	 * 'Email changed' event handler
 	 *
-	 * @param	String	field
-	 * @param	Integer	idTask
-	 * @param	Integer	idComment
+	 * @param	{String}	field
+	 * @param	{Integer}	idTask
+	 * @param	{Integer}	idComment
 	 */
 	onChangeEmail: function(idTask, idComment) {
 		var checkbox= $('comment-' + idTask + '-' + idComment + '-field-sendasemail');
@@ -49,8 +49,8 @@ Todoyu.Ext.comment.Edit = {
 	/**
 	 * Save comment
 	 *
-	 * @param	String	form
-	 * @return	Boolean
+	 * @param	{String}	form
+	 * @return	{Boolean}
 	 */
 	save: function(form) {
 		tinyMCE.triggerSave();
@@ -71,8 +71,8 @@ Todoyu.Ext.comment.Edit = {
 	/**
 	 * Evoked after completion of saving comment
 	 *
-	 * @param	Integer	idTask
-	 * @param	Object	response
+	 * @param	{Integer}	idTask
+	 * @param	{Object}	response
 	 */
 	onSaved: function(idTask, response) {
 		var idComment	=	response.getTodoyuHeader('idComment');
@@ -97,8 +97,8 @@ Todoyu.Ext.comment.Edit = {
 	/**
 	 * Cancel editing of comment (close comment edit box)
 	 *
-	 * @param	Integer	idTask
-	 * @param	Integer	idComment
+	 * @param	{Integer}	idTask
+	 * @param	{Integer}	idComment
 	 */
 	cancel: function(idTask, idComment) {
 		$('task-' + idTask + '-commentform-' + idComment).remove();
@@ -110,8 +110,8 @@ Todoyu.Ext.comment.Edit = {
 	/**
 	 * Evoked after completion of removing comment
 	 *
-	 * @param	Integer	idTask
-	 * @param	Object	response
+	 * @param	{Integer}	idTask
+	 * @param	{Object}	response
 	 */
 	onRemoved: function(response){
 		var tabLabel	=	response.getTodoyuHeader('tabLabel');
