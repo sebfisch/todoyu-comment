@@ -24,7 +24,6 @@
  * @package		Todoyu
  * @subpackage	Comment
  */
-
 class TodoyuCommentFeedbackManager {
 
 	/**
