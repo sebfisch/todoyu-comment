@@ -164,7 +164,6 @@ class TodoyuCommentManager {
 
 
 
-
 	/**
 	 * Save extra comment data
 	 *

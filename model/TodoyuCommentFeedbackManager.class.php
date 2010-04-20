@@ -249,8 +249,8 @@ class TodoyuCommentFeedbackManager {
 
 		$field	= 'is_seen';
 		$table	= self::TABLE;
-		$where	= 'id_comment		= ' . $idComment . ' AND
-				   id_person_feedback	= ' . $idPerson;
+		$where	= ' id_comment		= ' . $idComment . ' AND
+					id_person_feedback	= ' . $idPerson;
 
 		$isSeen =  Todoyu::db()->getColumn($field, $table, $where);
 
