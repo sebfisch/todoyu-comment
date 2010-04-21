@@ -56,7 +56,7 @@ class TodoyuCommentRights {
 
 
 	/**
-	 * Check if person can edit comments in this task
+	 * Check whether person can edit comments in this task
 	 *
 	 * @param	Integer		$idTask
 	 * @return	Boolean
@@ -92,7 +92,7 @@ class TodoyuCommentRights {
 
 
 	/**
-	 * Check if a person can see the comment
+	 * Check whether a person can see the comment
 	 *
 	 * @param	Integer		$idComment
 	 * @return	Boolean

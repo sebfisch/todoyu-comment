@@ -257,7 +257,7 @@ class TodoyuCommentManager {
 
 
 	/**
-	 * Check if a person is the create of a comment
+	 * Check whether a person is the create of a comment
 	 *
 	 * @param	Integer		$idComment
 	 * @param	Integer		$idPerson

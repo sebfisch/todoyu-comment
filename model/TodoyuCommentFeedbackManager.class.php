@@ -117,7 +117,7 @@ class TodoyuCommentFeedbackManager {
 
 
 	/**
-	 * Check if a comment has a feedback request
+	 * Check whether a comment has a feedback request
 	 *
 	 * @param	Integer		$idComment
 	 * @param	Integer		$idPerson
@@ -139,7 +139,7 @@ class TodoyuCommentFeedbackManager {
 
 
 	/**
-	 * Check if a comment has a feedback request
+	 * Check whether a comment has a feedback request
 	 *
 	 * @param	Integer		$idComment
 	 * @param	Boolean		$onlyUnseen
@@ -235,7 +235,7 @@ class TodoyuCommentFeedbackManager {
 
 
 	/**
-	 * Check if the comment has a feedback request which is not "seen" yet
+	 * Check whether the comment has a feedback request which is not "seen" yet
 	 *
 	 * @param	Integer		$idComment
 	 * @return	Boolean		Open feedback request found
