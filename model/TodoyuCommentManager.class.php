@@ -188,14 +188,11 @@ class TodoyuCommentManager {
 	 */
 	public static function getTaskComments($idTask, $desc = false) {
 		$idTask	= intval($idTask);
-		$sortDir= $desc ? 'DESC' : 'ASC';
 
-		$fields	= '*';
-		$table	= self::TABLE;
 		$where	= 'id_task = ' . $idTask . ' AND deleted = 0';
-		$order	= 'date_create ' . $sortDir;
+		$order	= 'date_create ' . ($desc ? 'DESC' : 'ASC');
 
-		return Todoyu::db()->getArray($fields, $table, $where, '', $order);
+		return TodoyuRecordManager::getAllRecords(self::TABLE, $where, $order);
 	}
 
 

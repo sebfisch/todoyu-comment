@@ -148,12 +148,9 @@ class TodoyuCommentFeedbackManager {
 	public static function getFeedbackRequests($idComment, $onlyUnseen = false) {
 		$idComment	= intval($idComment);
 
-		$fields	= '*';
-		$table	= self::TABLE;
-		$where	= 'id_comment = ' . $idComment .
-				  ($onlyUnseen === true ? ' AND is_seen = 0' : '');
+		$where	= 'id_comment = ' . $idComment . ($onlyUnseen === true ? ' AND is_seen = 0' : '');
 
-		return Todoyu::db()->getArray($fields, $table, $where);
+		return TodoyuRecordManager::getAllRecords(self::TABLE, $where, '');
 	}
 
 
