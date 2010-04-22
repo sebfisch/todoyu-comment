@@ -83,6 +83,8 @@ class TodoyuCommentManager {
 			$idComment = self::addComment();
 		}
 
+		$data['comment']	= TodoyuCommentManager::filterHtmlTags($data['comment']);
+
 			// Call hooked save data functions
 		$data	= TodoyuFormHook::callSaveData($xmlPath, $data, $idComment);
 		$data	= self::saveCommentForeignRecords($data, $idComment);

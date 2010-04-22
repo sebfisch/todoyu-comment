@@ -32,7 +32,7 @@ Todoyu::$CONFIG['EXT']['comment']['infomail']['email'] 			= Todoyu::$CONFIG['SYS
 
 
 	// Allowable tags inside comments text when saving
-Todoyu::$CONFIG['EXT']['contact']['allowabletags']	= '<p><b><i><u><strike><ol><ul><li><br>';
+Todoyu::$CONFIG['EXT']['contact']['allowabletags']	= '<p><b><strong><em><span><i><u><strike><ol><ul><li><br>';
 
 
 
