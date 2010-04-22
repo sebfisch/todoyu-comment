@@ -16,7 +16,7 @@ h1.extIconComment .title {
 /* --------------------------
  	Tasktab
    --------------------------*/
-.task .taskTabs ul li.comment span.icon {
+.task .taskTabs ul li.comment .label span.icon {
 	background:url(../img/icons.png) no-repeat 0 5px;
 }
 
@@ -131,7 +131,7 @@ h1.extIconComment .title {
 
 .task-comments .comment-id {
 	float:right;
-	margin:2px 5px 0 -12px;
+	margin:0 5px 0 -12px;
 	font-size:11px !important;
 	letter-spacing:1px;
 	font-weight:normal;
@@ -151,7 +151,7 @@ h1.extIconComment .title {
 }
 
 .task-comments .public-trigger {
-	background:url(../img/icons.png) no-repeat 0 -238px;
+	background:url(../img/icons.png) no-repeat 0 -236px;
 	width:22px !important;
 }
 
@@ -160,7 +160,7 @@ h1.extIconComment .title {
 }
 
 .task-comments .comment-remove {
-	background:url(../img/icons.png) no-repeat 0 -28px;
+	background:url(../img/icons.png) no-repeat 0 -26px;
 }
 
 .task-comments .comment-public {
