@@ -42,9 +42,12 @@ class TodoyuCommentMailer {
 		foreach($personIDs as $idPerson) {
 			$result = self::sendMail($idComment, $idPerson);
 
+			/*
+			// NOT IN USE AT THE MOMENT
 			if ( $result !== false ) {
 				TodoyuCommentMailManager::saveMailSent($idComment, $idPerson);
 			}
+			*/
 		}
 	}
 
@@ -66,11 +69,13 @@ class TodoyuCommentMailer {
 
 			// Set mail config
 		$mail			= new PHPMailerLite(true);
+		$mail->Mailer	= 'mail';
 		$mail->CharSet	= 'utf-8';
 
-//	@todo verify
-//		if ( DIR_SEP === '\\' ) {
-//				// Windows Server: toggle send method from 'sendMail' (default) to 'mail'
+//
+//			// Change mail programm
+//		if( PHP_OS !== 'Linux' ) {
+//				// Windows Server: use 'mail' instead of 'sendmail'
 //			$mail->Mailer	= 'mail';
 //		}
 
@@ -84,10 +89,13 @@ class TodoyuCommentMailer {
 		$mail->MsgHTML($htmlBody, PATH_EXT_COMMENT);
 		$mail->AltBody	= $textBody;
 
+		$mail->AddAddress($person->getEmail(), $person->getFullName());
+
+
 //	@todo	verify
 //		if ( DIR_SEP !== '\\' ) {
 				// Non-Windows (e.g Linux)
-			$mail->AddAddress($person->getEmail(), $person->getFullName());
+//			$mail->AddAddress($person->getEmail(), $person->getFullName());
 //		} else {
 //				// Windows
 //			$mail->AddAddress($person->getEmail(), '');
@@ -97,7 +105,8 @@ class TodoyuCommentMailer {
 			$sendStatus	= $mail->Send();
 		} catch(phpmailerException $e) {
 			Todoyu::log($e->getMessage(), LOG_LEVEL_ERROR);
-			echo $e->getMessage() . "\n";
+		} catch(Exception $e) {
+			Todoyu::log($e->getMessage(), LOG_LEVEL_ERROR);
 		}
 
 		return $sendStatus;
