@@ -67,7 +67,7 @@ class TodoyuCommentTaskFilter {
 
 
 	/**
-	 * Filter condition: Tasks which have comment feedbacks which have not been seen by a member of a group
+	 * Filter condition: Tasks which have comment feedback which have not been seen by a member of a group
 	 *
 	 * @param	String		$groupIDs
 	 * @param	Boolean		$negate

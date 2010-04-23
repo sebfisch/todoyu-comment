@@ -116,7 +116,7 @@ class TodoyuCommentRenderer {
 
 
 	/**
-	 * Render comment feedbacks and mailing log
+	 * Render comment feedback and mailing log
 	 *
 	 * @param	Integer		$idTask
 	 * @param	Integer		$idComment

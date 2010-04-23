@@ -37,7 +37,7 @@ Todoyu::$CONFIG['EXT']['contact']['allowabletags']	= '<p><b><strong><em><span><i
 
 
 /**
- * Configuration for 'feedbacks' tab in portal
+ * Configuration for 'feedback' tab in portal
  */
 Todoyu::$CONFIG['EXT']['comment']['feedbackTabFilters'] = array(
 	array(
@@ -58,7 +58,7 @@ if( allowed('comment', 'general:use') ) {
 	TodoyuTaskManager::addTaskTab('comment', 'TodoyuCommentTask::getLabel', 'TodoyuCommentTask::getContent', 30);
 
 	if( TodoyuExtensions::isInstalled('portal') ) {
-			// Add portal tab for feedbacks
+			// Add portal tab for feedback
 		TodoyuPortalManager::addTab('feedback', 'TodoyuCommentRenderer::renderPortalFeedbackTabLabel', 'TodoyuCommentRenderer::renderPortalFeedbackTabContent', 30, array('comment/public'));
 	}
 

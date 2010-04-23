@@ -96,7 +96,7 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 
 
 	/**
-	 * Show comment feedbacks and mailing history log
+	 * Show comment feedback and mailing history log
 	 *
 	 * @param	Array		$params
 	 */

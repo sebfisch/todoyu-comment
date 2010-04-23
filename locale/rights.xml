@@ -4,12 +4,12 @@
 		<label index="general">General Settings</label>
 		<label index="general.use">Use Comments</label>
 		<label index="comment">Comment</label>
-		<label index="comment.seeAll">See All Comments (Not Public)</label>
+		<label index="comment.seeAll">See All comments (not public)</label>
 		<label index="comment.editOwn">Edit OWN Comments</label>
 		<label index="comment.editAll">Edit ALL Comments</label>
 		<label index="comment.requestFeedback">Request Feedback</label>
 		<label index="comment.delete">Delete Comment</label>
-		<label index="comment.sendAsEmail">Send Comment By Email</label>
+		<label index="comment.sendAsEmail">Send comment by email</label>
 		<label index="comment.makePublic">Make Comment Public</label>
 	</labels>
 	<labels lang="de_DE">
