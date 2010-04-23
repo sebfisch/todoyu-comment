@@ -22,7 +22,12 @@
  * Note:	there is the method 'edit' and the sub object 'Edit' (case-sensitive) with its own methods
  */
 Todoyu.Ext.comment.Edit = {
-	
+
+	/**
+	 * Extension backlink
+	 *
+	 * @var	{Object}	ext
+	 */
 	ext: Todoyu.Ext.comment,
 	
 	

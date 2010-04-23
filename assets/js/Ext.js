@@ -19,7 +19,6 @@
 
 /**
  * Ext: comment
- *
  */
 Todoyu.Ext.comment = {
 
