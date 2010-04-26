@@ -21,7 +21,7 @@
 class TodoyuCommentSearch implements TodoyuSearchEngineIf {
 
 	/**
-	 * Search project in fulltext mode, search for comment numbers. Return IDs of matching comments.
+	 * Search project in full-text mode, search for comment numbers. Return IDs of matching comments.
 	 *
 	 * @param	Array		$find		Keywords which have to be in the comments
 	 * @param	Array		$ignore		Keywords which must not be in the comment
@@ -29,7 +29,7 @@ class TodoyuCommentSearch implements TodoyuSearchEngineIf {
 	 * @return	Array		comment IDs
 	 */
 	public static function searchComments(array $find, array $ignore = array(), $limit = 100) {
-			// Find comment IDs via fulltext search
+			// Find comment IDs via full-text search
 		$table	= 'ext_comment_comment';
 		$fields	= array('comment');
 

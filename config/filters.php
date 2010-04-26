@@ -53,7 +53,7 @@ Todoyu::$CONFIG['FILTERS']['TASK']['widgets']['unseenFeedbackRoles'] = array(
 
 
 /**
- * Comment fulltext search
+ * Comment full-text search
  */
 Todoyu::$CONFIG['FILTERS']['TASK']['widgets']['commentFulltext'] = array(
 	'funcRef'	=> 'TodoyuCommentTaskFilter::Filter_fulltext',
