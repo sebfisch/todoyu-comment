@@ -15,6 +15,8 @@ CREATE TABLE `ext_comment_comment` (
   KEY `task` (`id_task`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
 --
 -- Table structure for table `ext_comment_feedback`
 --
@@ -29,6 +31,8 @@ CREATE TABLE `ext_comment_feedback` (
   `is_seen` tinyint(1) unsigned NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
 
 --
 -- Table structure for table `ext_comment_mailed`
