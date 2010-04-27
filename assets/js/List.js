@@ -25,8 +25,8 @@ Todoyu.Ext.comment.List = {
 	/**
 	 * Refresh list of comments of given task, optionally toggle sorting order
 	 *
-	 * @param	{Integer}	idTask
-	 * @param	{Integer}	desc	(0 or 1)
+	 * @param	{Number}	idTask
+	 * @param	{Number}	desc	(0 or 1)
 	 */
 	refresh: function(idTask, desc) {
 		var url				= Todoyu.getUrl('comment', 'task');

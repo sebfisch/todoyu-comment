@@ -28,7 +28,7 @@ Todoyu.Ext.comment = {
 	/**
 	 * Toggle customer visibility of given comment
 	 *
-	 * @param	{Integer}	idComment
+	 * @param	{Number}	idComment
 	 */
 	togglePublic: function(idComment) {
 		var url		= Todoyu.getUrl('comment', 'task');
@@ -48,7 +48,7 @@ Todoyu.Ext.comment = {
 	/**
 	 * Handler for togglePublic
 	 *
-	 * @param	{Integer}			idComment
+	 * @param	{Number}			idComment
 	 * @param	{Ajax.Response}	response
 	 */
 	onToggledPublic: function(idComment, response) {
@@ -61,7 +61,7 @@ Todoyu.Ext.comment = {
 	/**
 	 * Toggle 'seen' status of given comment
 	 *
-	 * @param	{Integer}	idComment
+	 * @param	{Number}	idComment
 	 */
 	setSeenStatus: function(idComment, idPerson)	{
 		var url		= Todoyu.getUrl('comment', 'task');
@@ -81,8 +81,8 @@ Todoyu.Ext.comment = {
 	/**
 	 * Handler for setSeenStatus
 	 *
-	 * @param	{Integer}			idComment
-	 * @param	{Integer}			idPerson
+	 * @param	{Number}			idComment
+	 * @param	{Number}			idPerson
 	 * @param	{Ajax.Response}	response
 	 */
 	onSeenStatusSet: function(idComment, idPerson, response) {
@@ -97,7 +97,7 @@ Todoyu.Ext.comment = {
 	/**
 	 * Remove given comment
 	 *
-	 * @param	{Integer}	idComment
+	 * @param	{Number}	idComment
 	 */
 	remove: function(idComment) {
 		if( ! confirm('[LLL:comment.delete.confirm]') ) {
@@ -127,7 +127,7 @@ Todoyu.Ext.comment = {
 	/**
 	 * Add new comment to given task
 	 *
-	 * @param	{Integer}	idTask
+	 * @param	{Number}	idTask
 	 */
 	addTaskComment: function(idTask) {
 		Todoyu.Ext.project.Task.showDetails(idTask, 'comment', this.onTaskCommentTabLoaded.bind(this));
@@ -144,7 +144,7 @@ Todoyu.Ext.comment = {
 	/**
 	 * Set Label (on adding or removing comment)
 	 *
-	 * @param	{Integer} idTask
+	 * @param	{Number} idTask
 	 * @param	{String}	label
 	 */
 	setTabLabel: function(idTask, label){
@@ -155,7 +155,7 @@ Todoyu.Ext.comment = {
 	/**
 	 * Check whether sorting of comments of given task is desc (true) or asc (false)
 	 *
-	 * @param	{Integer}	idTask
+	 * @param	{Number}	idTask
 	 * @return	{Boolean}
 	 */
 	checkSortingIsDesc: function( idTask ) {
@@ -174,7 +174,7 @@ Todoyu.Ext.comment = {
 	/**
 	 * Toggle display of comment (feedbacks and mailing) log
 	 *
-	 * @param	{Integer}	idTask
+	 * @param	{Number}	idTask
 	 */
 	toggleLog: function(idComment) {
 		var logDiv	= $('task-comment-log-' + idComment + '-details');
@@ -218,7 +218,7 @@ Todoyu.Ext.comment = {
 	/**
 	 * Toggle sorting of comments of given task
 	 *
-	 * @param	{Integer}	idTask
+	 * @param	{Number}	idTask
 	 */
 	toggleSorting: function(idTask) {
 		var sortingIsDesc	= this.checkSortingIsDesc(idTask);
@@ -232,7 +232,7 @@ Todoyu.Ext.comment = {
 	/**
 	 * Add a new comment, open empty edit form
 	 * 
-	 * @param	{Integer}		idTask
+	 * @param	{Number}		idTask
 	 */
 	add: function(idTask) {
 		this.removeForms(idTask);
@@ -256,7 +256,7 @@ Todoyu.Ext.comment = {
 	/**
 	 * Handler when empty edit form to add comment loaded
 	 * 
-	 * @param	{Integer}			idTask
+	 * @param	{Number}			idTask
 	 * @param	{Ajax.Response}	response
 	 */
 	onAdd: function(idTask, response) {
@@ -269,8 +269,8 @@ Todoyu.Ext.comment = {
 	 * Evoke comment editor (of given comment of given task)
 	 * Note:	there is the method 'edit' and the sub object 'Edit' (case-sensitive) with its own methods
 	 *
-	 * @param	{Integer}	idTask
-	 * @param	{Integer}	idComment
+	 * @param	{Number}	idTask
+	 * @param	{Number}	idComment
 	 */
 	edit: function(idTask, idComment) {
 		var url		= Todoyu.getUrl('comment', 'comment');
@@ -292,8 +292,8 @@ Todoyu.Ext.comment = {
 	/**
 	 * Handler when comment edit form loaded
 	 * 
-	 * @param	{Integer}			idTask
-	 * @param	{Integer}			idComment
+	 * @param	{Number}			idTask
+	 * @param	{Number}			idComment
 	 * @param	{Ajax.Response}	response
 	 */
 	onEdit: function(idTask, idComment, response) {
@@ -305,7 +305,7 @@ Todoyu.Ext.comment = {
 	/**
 	 * Remove all open edit forms for comment
 	 * 
-	 * @param	{Integer}		idTask
+	 * @param	{Number}		idTask
 	 */
 	removeForms: function(idTask) {
 		$('task-' + idTask + '-tabcontent-comment').select('.commentform').invoke('remove');
