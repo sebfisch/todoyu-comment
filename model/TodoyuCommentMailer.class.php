@@ -79,8 +79,8 @@ class TodoyuCommentMailer {
 //			$mail->Mailer	= 'mail';
 //		}
 
-		$mail->From		= Todoyu::$CONFIG['EXT']['comment']['infomail']['email'];
-		$mail->FromName	= Todoyu::$CONFIG['EXT']['comment']['infomail']['fromname'];
+		$mail->From		= Todoyu::person()->getEmail(); //Todoyu::$CONFIG['EXT']['comment']['infomail']['email'];
+		$mail->FromName	= Todoyu::person()->getFullName(); // Todoyu::$CONFIG['EXT']['comment']['infomail']['fromname'];
 		$mail->Subject	= Label('comment.mail.subject') . ': ' . $comment->getTask()->getTitle() . ' (#' . $comment->getTask()->getTaskNumber(true) . ')';
 
 		$htmlBody		= self::getMailContentHtml($idComment, $idPerson);
