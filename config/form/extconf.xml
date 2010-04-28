@@ -15,7 +15,7 @@
 						<function>TodoyuRoleViewHelper::getRoleOptions</function>
 						<lazyInit/>
 					</source>
-					<multiple>1</multiple>
+					<multiple />
 				</field>
 
 				<field type="select" name="automailcommenttoowner">
