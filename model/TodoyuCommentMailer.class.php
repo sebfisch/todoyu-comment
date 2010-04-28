@@ -104,9 +104,9 @@ class TodoyuCommentMailer {
 		try {
 			$sendStatus	= $mail->Send();
 		} catch(phpmailerException $e) {
-			Todoyu::log($e->getMessage(), LOG_LEVEL_ERROR);
+			Todoyu::log($e->getMessage(), TodoyuLogger::LEVEL_ERROR);
 		} catch(Exception $e) {
-			Todoyu::log($e->getMessage(), LOG_LEVEL_ERROR);
+			Todoyu::log($e->getMessage(), TodoyuLogger::LEVEL_ERROR);
 		}
 
 		return $sendStatus;
