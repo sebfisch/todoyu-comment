@@ -13,14 +13,14 @@
 			<class>main</class>
 			<elements>
 
-				<field type="select" name="feedback2">
+				<field type="select" name="feedback">
 					<label>comment.edit.autoFeedbackFromOwner</label>
 					<source type="function">
 						<function>TodoyuCommentViewHelper::getFeedbackOwnerOption</function>
 						<lazyInit/>
 					</source>
 					<size>1</size>
-					<disabled>1</disabled>
+					<disabled />
 					<style>display:none</style>
 				</field>
 
