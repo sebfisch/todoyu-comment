@@ -22,8 +22,12 @@
  * Page
  *
  * @package		Todoyu
- * @subpackage	Admin
+ * @subpackage	Comment
  */
 
+if( allowed('portal', 'general:use') ) {
+		// Add portal tab for feedback
+	TodoyuPortalManager::addTab('feedback', 'TodoyuCommentRenderer::renderPortalFeedbackTabLabel', 'TodoyuCommentRenderer::renderPortalFeedbackTabContent', 30);
+}
 
 ?>
