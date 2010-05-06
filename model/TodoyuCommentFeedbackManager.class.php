@@ -44,15 +44,13 @@ class TodoyuCommentFeedbackManager {
 		$idComment			= intval($idComment);
 		$idFeedbackPerson	= intval($idFeedbackPerson);
 
-		$table	= self::TABLE;
-		$data	= array('date_create'		=> NOW,
-						'date_update'		=> 0,
-						'id_person_create'	=> personid(),
-						'id_person_feedback'=> $idFeedbackPerson,
-						'id_comment'		=> $idComment,
-						'is_seen'			=> 0);
+		$data	= array(
+			'id_person_feedback'=> $idFeedbackPerson,
+			'id_comment'		=> $idComment,
+			'is_seen'			=> 0
+		);
 
-		return Todoyu::db()->doInsert($table, $data);
+		return TodoyuRecordManager::addRecord(self::TABLE, $data);
 	}
 
 
@@ -66,6 +64,8 @@ class TodoyuCommentFeedbackManager {
 	public static function addFeedbacks($idComment, array $personIDs) {
 		$idComment	= intval($idComment);
 		$personIDs	= TodoyuArray::intval($personIDs, true, true);
+		
+		TodoyuDebug::printInFireBug($personIDs, '$personIDs');
 
 		foreach($personIDs as $idPerson) {
 			self::addFeedback($idComment, $idPerson);
@@ -223,8 +223,7 @@ class TodoyuCommentFeedbackManager {
 					ext_comment_feedback f';
 		$where	= '		f.id_comment 		= ' . $idComment .
 				  ' AND	f.id_person_feedback= p.id
-				    AND	p.deleted			= 0
-				    AND	p.active			= 1';
+				    AND	p.deleted			= 0';
 		$group	= '	p.id';
 		$order	= '	p.lastname,
 					p.firstname';
