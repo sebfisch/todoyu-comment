@@ -11,9 +11,9 @@
 		<label index="edit.feedback">Feedback Requested</label>
 		<label index="edit.autoFeedbackFromOwner">Feedback requested from task owner</label>
 		<label index="edit.is_public">Comment is visible to all members of this project</label>
-		<label index="edit.sendasemail">Send comment by email</label>
-		<label index="edit.autoSentEmailToTaskOwner">Send by email to task owner</label>
-		<label index="edit.sentEmailTo">Send Email To</label>
+		<label index="edit.sendasemail">Send comment by e-mail</label>
+		<label index="edit.autoSentEmailToTaskOwner">Send by e-mail to task owner</label>
+		<label index="edit.sentEmailTo">Send E-mail To</label>
 		<label index="group.employees">Employees</label>
 		<label index="group.projectmembers">Project Members</label>
 		<label index="group.taskmembers">Task Members</label>
@@ -33,10 +33,10 @@
 		<label index="icon.remove">Delete Comment</label>
 		<label index="icon.edit">Edit Comment</label>
 		<label index="icon.toggleCustomerVisibility">Switch visibility of this comment</label>
-		<label index="icon.togglelog">Show / Hide Communication Log</label>
+		<label index="icon.togglelog">Show/Hide Communication Log</label>
 		<label index="comment.feedbackPersons">Feedback Requested From:</label>
 		<label index="mail.subject">New Comment</label>
-		<label index="mail.newcomment">A new comment has been given</label>
+		<label index="mail.newcomment">A new comment was created</label>
 		<label index="mail.commentlink">Open Comment</label>
 		<label index="mail.showcommentinprojectview">Show comment in project view</label>
 		<label index="mail.commentfrom">Comment From</label>
@@ -44,8 +44,8 @@
 		<label index="mail.feedbackexpected">Feedback Expected</label>
 		<label index="portal.tab.feedback">Feedback</label>
 		<label index="js.commentSaved">Comment Saved</label>
-		<label index="js.commentSavingFailed">Could Not Save Comment</label>
-		<label index="js.emailSent">Email Sent</label>
+		<label index="js.commentSavingFailed">Could not save comment</label>
+		<label index="js.emailSent">E-mail Sent</label>
 		<label index="extconf.autorequestownerfeedback.label">Roles to auto-request feedback from task owner (removes feedback option with free receiver selection):</label>
 		<label index="extconf.automailcommenttoowner.label">Roles to auto-mail comment to task owner (removes mailing option with free receiver selection):</label>
 		<label index="history.header">Comment history (feedback and mailing)</label>
