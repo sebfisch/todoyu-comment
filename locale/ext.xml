@@ -23,7 +23,8 @@
 		<label index="search.label">Comments</label>
 		<label index="nocomments">No Comments</label>
 		<label index="search.mode.label">Find Comments</label>
-		<label index="filter.unseenFeedbackPerson">Feedback Requests</label>
+		<label index="filter.unseenFeedback">Feedback requests</label>
+		<label index="filter.unseenFeedbackPerson">Feedback requests by person</label>
 		<label index="filter.unseenFeedbackRoles">Feedback requests by roles</label>
 		<label index="filter.commentFulltext">Comment Full Text</label>
 		<label index="filter.commentWrittenPerson">Comment written by person</label>
@@ -78,7 +79,8 @@
 		<label index="search.label">Kommentare</label>
 		<label index="nocomments">Keine Kommentare</label>
 		<label index="search.mode.label">Kommentare finden</label>
-		<label index="filter.unseenFeedbackPerson">Feedback verlangt</label>
+		<label index="filter.unseenFeedback">Feedback verlangt</label>
+		<label index="filter.unseenFeedbackPerson">Feedback verlangt von Person</label>
 		<label index="filter.unseenFeedbackRoles">Feedback verlangt von Rollen</label>
 		<label index="filter.commentFulltext">Kommentar Volltext</label>
 		<label index="filter.commentWrittenPerson">Kommentar geschrieben</label>

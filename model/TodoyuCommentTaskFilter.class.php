@@ -25,7 +25,49 @@
  * @subpackage	Comment
  */
 class TodoyuCommentTaskFilter {
+	
+	
+	
+	/**
+	 * filters all unseen feedbacks
+	 * 
+	 * 
+	 * @param	Mixed		$value
+	 * @param	Boolean		$negate
+	 * @return	Array
+	 */
+	public static function Filter_unseenFeedback($value, $negate = false)	{
+		$queryParts	= false;
+		$seenStatus	= $negate ? 1 : 0 ;
 
+		
+		$tables	= array(
+			'ext_project_task',
+			'ext_comment_comment',
+			'ext_comment_feedback'
+		);
+		$where	= '		ext_comment_comment.id_task 			= ext_project_task.id
+					AND	ext_comment_feedback.id_comment 		= ext_comment_comment.id
+					AND ext_comment_feedback.is_seen			= ' . $seenStatus;
+
+		$queryParts	= array(
+			'tables'=> $tables,
+			'where'	=> $where
+		);
+		
+
+		return $queryParts;
+	}
+	
+	
+	
+	/**
+	 * Filters all unseen feedbacks off current user
+	 * 
+	 * 
+	 * @param	Integer		$idPerson
+	 * @param	Boolean		$negate
+	 */
 	public static function Filter_unseenFeedbackCurrentPerson($idPerson, $negate = false) {
 		return self::Filter_unseenFeedbackPerson(personid(), $negate);
 	}

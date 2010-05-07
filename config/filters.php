@@ -18,6 +18,17 @@
 * This copyright notice MUST APPEAR in all copies of the script.
 *****************************************************************************/
 
+
+Todoyu::$CONFIG['FILTERS']['TASK']['widgets']['unseenFeedback'] = array(
+	'funcRef'	=> 'TodoyuCommentTaskFilter::Filter_unseenFeedback',
+	'label'		=> 'LLL:comment.filter.unseenFeedback',
+	'optgroup'	=> 'LLL:comment.search.label',
+	'widget'	=> 'checkbox',
+	'wConf'		=> array(
+		'checked'	=> true
+	)
+);
+
 /**
  * Unseen comment feedback request for person
  */
