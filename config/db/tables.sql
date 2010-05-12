@@ -4,8 +4,8 @@
 
 CREATE TABLE `ext_comment_comment` (
   `id` int(10) NOT NULL AUTO_INCREMENT,
-  `date_update` int(10) unsigned NOT NULL DEFAULT '0',
   `date_create` int(10) unsigned NOT NULL DEFAULT '0',
+  `date_update` int(10) unsigned NOT NULL DEFAULT '0',
   `deleted` tinyint(1) unsigned NOT NULL DEFAULT '0',
   `id_person_create` int(10) unsigned NOT NULL DEFAULT '0',
   `id_task` mediumint(9) unsigned NOT NULL DEFAULT '0',
