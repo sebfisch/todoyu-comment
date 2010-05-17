@@ -58,7 +58,8 @@ Todoyu.Ext.comment.Edit = {
 	 * @return	{Boolean}
 	 */
 	save: function(form) {
-		tinyMCE.triggerSave();
+		Todoyu.Ui.closeRTE(form);
+
 		var idTask	= $(form).up('.task').readAttribute('id').split('-').last();
 
 		$(form).request({
