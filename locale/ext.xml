@@ -72,7 +72,7 @@
 		<label index="edit.sentEmailTo">Email senden an</label>
 		<label index="group.employees">Angestellte</label>
 		<label index="group.projectmembers">Projektbeteiligte</label>
-		<label index="group.taskmembers">Personen im Task</label>
+		<label index="group.taskmembers">An dieser Aufgabe beteiligte Personen</label>
 		<label index="group.taskowner">Task-Eigner</label>
 		<label index="delete.confirm">Wollen Sie diesen Kommentar wirklich löschen?</label>
 		<label index="contextmenu.task.addcomment">Kommentar</label>
