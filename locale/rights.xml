@@ -60,4 +60,16 @@
 		<label index="comment.sendAsEmail">Transmettre le commentaire par courriel</label>
 		<label index="comment.makePublic">Rendre public ce commentaire</label>
 	</labels>
+	<labels lang="nl_NL">
+		<label index="general">Algemene instellingen</label>
+		<label index="general.use">Gebruik opmerkingen</label>
+		<label index="comment">Opmerking</label>
+		<label index="comment.seeAll">Alle opmerkingen bekijken (niet openbaar)</label>
+		<label index="comment.editOwn">Eigen opmerkingen bewerken</label>
+		<label index="comment.editAll">Alle opmerkingen bewerken</label>
+		<label index="comment.requestFeedback">Terugkoppeling vragen</label>
+		<label index="comment.delete">Opmerking verwijderen</label>
+		<label index="comment.sendAsEmail">Opmerking versturen per e-mail</label>
+		<label index="comment.makePublic">Opmerking openbaar maken</label>
+	</labels>
 </locallang>
