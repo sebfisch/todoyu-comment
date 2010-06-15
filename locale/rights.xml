@@ -84,4 +84,16 @@
 		<label index="comment.sendAsEmail">Odeslat komentář emailem</label>
 		<label index="comment.makePublic">Označit komentář jako veřejný</label>
 	</labels>
+	<labels lang="ja_JP">
+		<label index="general">一般設定</label>
+		<label index="general.use">コメントの使用</label>
+		<label index="comment">コメント</label>
+		<label index="comment.seeAll">全コメント (非パブリック) の表示</label>
+		<label index="comment.editOwn">自分のコメントを編集</label>
+		<label index="comment.editAll">全コメントを編集</label>
+		<label index="comment.requestFeedback">フィードバックの要求</label>
+		<label index="comment.delete">コメントの削除</label>
+		<label index="comment.sendAsEmail">メールでのコメント送信</label>
+		<label index="comment.makePublic">コメントを公開する</label>
+	</labels>
 </locallang>
