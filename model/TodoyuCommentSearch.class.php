@@ -21,7 +21,7 @@
 class TodoyuCommentSearch implements TodoyuSearchEngineIf {
 
 	/**
-	 * Search project in full-text mode, search for comment numbers. Return IDs of matching comments.
+	 * Search comment in full-text mode, search for comment numbers. Return IDs of matching comments.
 	 *
 	 * @param	Array		$find		Keywords which have to be in the comments
 	 * @param	Array		$ignore		Keywords which must not be in the comment
