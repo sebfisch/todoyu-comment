@@ -18,7 +18,13 @@
 * This copyright notice MUST APPEAR in all copies of the script.
 *****************************************************************************/
 
-	// Add comment search engine
+/**
+ * Add comment search engine types: comments
+ *
+ * @package		Todoyu
+ * @subpackage	Project
+ */
+
 if ( allowed('comment', 'general:use') ) {
 	TodoyuSearchManager::addEngine('comment', 'TodoyuCommentSearch::getSuggestions', 'comment.search.label', 'comment.search.mode.label', 50);
 }
