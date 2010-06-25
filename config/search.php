@@ -22,7 +22,7 @@
  * Add comment search engine types: comments
  *
  * @package		Todoyu
- * @subpackage	Project
+ * @subpackage	Comment
  */
 
 if ( allowed('comment', 'general:use') ) {
