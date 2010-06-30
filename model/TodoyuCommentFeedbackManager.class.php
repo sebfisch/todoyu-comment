@@ -83,8 +83,8 @@ class TodoyuCommentFeedbackManager {
 
 		$field	= 'id_comment';
 		$table	= self::TABLE;
-		$where	= '		id_person_feedback	= ' . $idPerson .
-				  ' AND	is_seen				= 0';
+		$where	= '		id_person_feedback	= ' . $idPerson
+				. ' AND	is_seen				= 0';
 		$order	= 'date_create';
 
 		return Todoyu::db()->getColumn($field, $table, $where, '', $order);
@@ -104,9 +104,9 @@ class TodoyuCommentFeedbackManager {
 		$field	= '	c.id_task';
 		$table	= 	self::TABLE . ' f,
 					ext_comment_comment c';
-		$where	= '		f.id_comment		= c.id
-					AND	f.id_person_feedback= ' . $idPerson .
-				  ' AND	f.is_seen			= 0';
+		$where	= '		f.id_comment		= c.id'
+				. '	AND	f.id_person_feedback= ' . $idPerson
+				. ' AND	f.is_seen			= 0';
 		$order	= '	f.date_create';
 
 		return Todoyu::db()->getColumn($field, $table, $where, '', $order);
@@ -127,9 +127,9 @@ class TodoyuCommentFeedbackManager {
 
 		$field	= 'id';
 		$table	= self::TABLE;
-		$where	= '		id_comment			= ' . $idComment .
-				  ' AND	id_person_feedback	= ' . $idPerson .
-				  ' AND	is_seen				= 0';
+		$where	= '		id_comment			= ' . $idComment
+				. ' AND	id_person_feedback	= ' . $idPerson
+				. ' AND	is_seen				= 0';
 
 		return Todoyu::db()->hasResult($field, $table, $where);
 	}
@@ -164,8 +164,8 @@ class TodoyuCommentFeedbackManager {
 		$idPerson	= personid($idPerson);
 
 		$table	= self::TABLE;
-		$where	= '		id_comment 			= ' . $idComment .
-				  ' AND	id_person_feedback 	= ' . $idPerson;
+		$where	= '		id_comment 			= ' . $idComment
+				. ' AND	id_person_feedback 	= ' . $idPerson;
 		$data	= array(
 			'date_update'	=> NOW,
 			'is_seen' 		=> 1
@@ -189,9 +189,9 @@ class TodoyuCommentFeedbackManager {
 
 		$tables	= 	self::TABLE . ' f,
 					ext_comment_comment c';
-		$where	= '		f.id_comment 		= c.id
-					AND	f.id_person_feedback= ' . $idPerson .
-				  ' AND	c.id_task			= ' . $idTask ;
+		$where	= '		f.id_comment 		= c.id'
+				. '	AND	f.id_person_feedback= ' . $idPerson
+				. ' AND	c.id_task			= ' . $idTask ;
 		$data	= array(
 			'f.is_seen'		=> 1,
 			'f.date_update'	=> NOW
@@ -243,8 +243,8 @@ class TodoyuCommentFeedbackManager {
 
 		$field	= 'is_seen';
 		$table	= self::TABLE;
-		$where	= '		id_comment			= ' . $idComment .
-				  ' AND	id_person_feedback	= ' . $idPerson;
+		$where	= '		id_comment			= ' . $idComment
+				. ' AND	id_person_feedback	= ' . $idPerson;
 
 		$isSeen =  Todoyu::db()->getColumn($field, $table, $where);
 
