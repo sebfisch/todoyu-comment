@@ -68,7 +68,9 @@ class TodoyuCommentRights {
 			if ( allowed('comment', 'comment:editAll')) {
 				return true;
 			} else {
-				return TodoyuTaskRights::isEditAllowed($idTask);
+				$task	= TodoyuTaskManager::getTask($idTask);
+
+				return $task->isEditable();
 			}
 		}
 
