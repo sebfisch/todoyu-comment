@@ -46,7 +46,7 @@
 
 				<field type="checkbox" name="sendasemail">
 					<label>comment.edit.sendasemail</label>
-					<onchange>Todoyu.Ext.comment.Edit.onChangeEmail(#id_task#, #id#)</onchange>
+					<onclick>Todoyu.Ext.comment.Edit.onClickSendAsEmail(#id_task#, #id#)</onclick>
 					<restrict>
 						<allow ext="comment" right="comment:sendAsEmail" />
 					</restrict>

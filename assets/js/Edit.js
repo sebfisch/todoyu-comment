@@ -38,7 +38,7 @@ Todoyu.Ext.comment.Edit = {
 	 * @param	{Number}	idTask
 	 * @param	{Number}	idComment
 	 */
-	onChangeEmail: function(idTask, idComment) {
+	onClickSendAsEmail: function(idTask, idComment) {
 		var checkbox= $('comment-' + idTask + '-' + idComment + '-field-sendasemail');
 		var emailEl	= $('formElement-comment-' + idTask + '-' + idComment + '-field-emailreceivers');
 
