@@ -25,7 +25,7 @@ Todoyu::$CONFIG['EXT']['comment']['ContextMenu']['Task'] = array(
 				'key'		=> 'add-comment',
 				'label'		=> 'comment.contextmenu.task.addcomment',
 				'jsAction'	=> 'Todoyu.Ext.comment.addTaskComment(#ID#)',
-				'class'		=> 'task-ctxmenu task-add-comment'
+				'class'		=> 'taskContextMenu task-add-comment'
 			)
 		)
 	)
