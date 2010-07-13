@@ -97,9 +97,6 @@ class TodoyuCommentRenderer {
 			$data['id_task']= $idTask;
 			$data['id']		= $idComment;
 		}
-		
-		TodoyuDebug::printInFireBug($data, 'data');
-
 
 		$form->setFormData($data);
 		$form->setRecordID($idTask . '-' . $idComment);
