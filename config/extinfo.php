@@ -31,10 +31,10 @@ Todoyu::$CONFIG['EXT']['comment']['info'] = array(
 		'company'	=> 'snowflake productions GmbH, Zurich'
 	),
 	'state' 		=> 'stable',
-	'version'		=> '1.0.1',
+	'version'		=> '1.0.2',
 	'constraints'	=> array(
 		'depends'	=> array(
-			'project' 	=> '1.0.1',
+			'project' 	=> '1.0.2',
 		),
 		'conflicts' => array(
 		)
