@@ -63,6 +63,7 @@ Todoyu::$CONFIG['FILTERS']['TASK']['widgets']['unseenFeedbackRoles'] = array(
 );
 
 
+
 /**
  * Comment full-text search
  */
