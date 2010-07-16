@@ -42,10 +42,6 @@ Todoyu::$CONFIG['EXT']['comment']['assets'] = array(
 	),
 	'css' => array(
 		array(
-			'file'		=> 'ext/comment/assets/css/global.css',
-			'position'	=> 100
-		),
-		array(
 			'file'		=> 'ext/comment/assets/css/ext.css',
 			'position'	=> 100
 		)
