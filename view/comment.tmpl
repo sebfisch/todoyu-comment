@@ -11,19 +11,19 @@
 		<span id="task-comment-{$id}-id" class="comment-id" title="{Label comment.id}">K{$id}</span>
 		<span id="task-comment-{$id}-options" class="comment-options">
 		{* --------------------------- Edit ------------------------- *}
-		{if allowed('comment', 'comment:editAll') || allowedAndOwn('comment','comment:editOwn', $id_person_create)}
+		{if !$locked && (allowed('comment', 'comment:editAll') || allowedAndOwn('comment','comment:editOwn', $id_person_create))}
 			<a href="javascript:void(0)" onclick="Todoyu.Ext.comment.edit({$id_task}, {$id})" class="icon comment-edit" title="{Label comment.icon.edit}">
 				<span class="hidden">{Label comment.icon.edit}</span>
 			</a>
 		{/if}
 		{* ------------------------ Make public ---------------------- *}
-		{if allowed('comment','comment:makePublic')}
+		{if !$locked && allowed('comment','comment:makePublic')}
 			<a href="javascript:void(0)" onclick="Todoyu.Ext.comment.togglePublic({$id})" class="icon public-trigger {if $is_public}comment-public{/if}" title="{Label comment.icon.toggleCustomerVisibility}" id="public-trigger-{$id}">
 				<span class="hidden">{Label comment.icon.toggleCustomerVisibility}</span>
 			</a>
 		{/if}
 		{* -------------------------- Delete ------------------------ *}
-		{if allowed('comment','comment:delete')}
+		{if !$locked && allowed('comment','comment:delete')}
 			<a href="javascript:void(0)" onclick="Todoyu.Ext.comment.remove({$id})" class="icon comment-remove" title="{Label comment.icon.remove}">
 				<span class="hidden">{Label comment.icon.remove}</span>
 			</a>

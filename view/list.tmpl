@@ -1,6 +1,10 @@
 <div class="tabBlock overflow commentButtons" id="task-{$idTask}-comment-commands">
-	{Button label="comment.button.addComment" class="addComment" onclick="Todoyu.Ext.comment.add($idTask)"}
-	{Button label="comment.button.reverseOrder" class="reverseOrder $descClass" onclick="Todoyu.Ext.comment.toggleSorting($idTask)"}
+	{if !$locked}
+		{Button label="comment.button.addComment" class="addComment" onclick="Todoyu.Ext.comment.add($idTask)"}
+	{/if}
+	{if sizeof($comments) > 1}
+		{Button label="comment.button.reverseOrder" class="reverseOrder $descClass" onclick="Todoyu.Ext.comment.toggleSorting($idTask)"}
+	{/if}
 </div>
 
 <ul class="task-comments {if $desc}desc{else}asc{/if}" id="task-{$idTask}-comments">

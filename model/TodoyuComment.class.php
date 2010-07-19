@@ -111,7 +111,18 @@ class TodoyuComment extends TodoyuBaseObject {
 	 * @return	Array
 	 */
 	public function getFeedbackPersons() {
-		return TodoyuCommentFeedbackManager::getFeedbackPersons($this->id);
+		return TodoyuCommentFeedbackManager::getFeedbackPersons($this->getID());
+	}
+
+
+
+	/**
+	 * Check if comment is locked because of its task
+	 *
+	 * @return	Boolean
+	 */
+	public function isLocked() {
+		return TodoyuTaskManager::isLocked($this->getTaskID());
 	}
 
 
@@ -121,8 +132,9 @@ class TodoyuComment extends TodoyuBaseObject {
 	 */
 	protected function loadForeignData() {
 		$this->data['person_create']	= $this->getCreatePerson()->getTemplateData(false);
-		$this->data['persons_feedback']	= TodoyuCommentFeedbackManager::getFeedbackPersons($this->id);
-		$this->data['unapproved']		= TodoyuCommentFeedbackManager::isCommentUnapproved($this->id);
+		$this->data['persons_feedback']	= TodoyuCommentFeedbackManager::getFeedbackPersons($this->getID());
+		$this->data['unapproved']		= TodoyuCommentFeedbackManager::isCommentUnapproved($this->getID());
+		$this->data['locked']			= $this->isLocked();
 	}
 
 

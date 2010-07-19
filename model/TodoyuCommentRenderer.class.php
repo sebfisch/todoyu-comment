@@ -61,7 +61,8 @@ class TodoyuCommentRenderer {
 			'idTask'	=> $idTask,
 			'desc'		=> $desc,
 			'descClass'	=> $desc ? 'desc' : 'asc',
-			'comments'	=> array()
+			'comments'	=> array(),
+			'locked'	=> TodoyuTaskManager::isLocked($idTask)
 		);
 
 		$commentIDs	= TodoyuCommentManager::getTaskCommentIDs($idTask, $desc);
