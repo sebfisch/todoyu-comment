@@ -64,8 +64,8 @@ class TodoyuCommentRights {
 	public static function isEditInTaskAllowed($idTask) {
 		$idTask	= intval($idTask);
 
-		if ( TodoyuTaskRights::isSeeAllowed($idTask) ) {
-			if ( allowed('comment', 'comment:editAll')) {
+		if( TodoyuTaskRights::isSeeAllowed($idTask) ) {
+			if( allowed('comment', 'comment:editAll')) {
 				return true;
 			} else {
 				$task	= TodoyuTaskManager::getTask($idTask);
@@ -104,8 +104,8 @@ class TodoyuCommentRights {
 		$comment	= TodoyuCommentManager::getComment($idComment);
 		$idTask		= $comment->getTaskID();
 
-		if ( TodoyuTaskRights::isSeeAllowed($idTask) ) {
-			if ( allowed('comment', 'comment:seeAll')) {
+		if( TodoyuTaskRights::isSeeAllowed($idTask) ) {
+			if( allowed('comment', 'comment:seeAll')) {
 				return true;
 			} else {
 				$idPerson	= personid();

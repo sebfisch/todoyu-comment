@@ -44,7 +44,7 @@ class TodoyuCommentMailer {
 
 			/*
 			// NOT IN USE AT THE MOMENT
-			if ( $result !== false ) {
+			if( $result !== false ) {
 				TodoyuCommentMailManager::saveMailSent($idComment, $idPerson);
 			}
 			*/
@@ -93,7 +93,7 @@ class TodoyuCommentMailer {
 
 
 //	@todo	verify
-//		if ( DIR_SEP !== '\\' ) {
+//		if( DIR_SEP !== '\\' ) {
 				// Non-Windows (e.g Linux)
 //			$mail->AddAddress($person->getEmail(), $person->getFullName());
 //		} else {

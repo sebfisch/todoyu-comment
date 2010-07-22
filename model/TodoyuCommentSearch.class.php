@@ -56,7 +56,7 @@ class TodoyuCommentSearch implements TodoyuSearchEngineIf {
 			$sword	= str_replace('k', '', strtolower($sword));
 			$id		= intval($sword);
 
-			if ( $id > 0 ) {
+			if( $id > 0 ) {
 				$ids[]	= $id;
 			}
 		}
@@ -111,7 +111,7 @@ class TodoyuCommentSearch implements TodoyuSearchEngineIf {
 			$comments = Todoyu::db()->getArray($fields, $table, $where, '', $order);
 
 			foreach($comments as $comment) {
-				if (
+				if(
 //	@todo	check - problem: worker can comment tasks which he's assigned to, and can find the comment in searches, but cannot view them in projects area if not allowed to see the whole project
 //					TodoyuProjectRights::isSeeAllowed($comment['id_project']) &&
 //					TodoyuTaskRights::isSeeAllowed($comment['taskid']) &&

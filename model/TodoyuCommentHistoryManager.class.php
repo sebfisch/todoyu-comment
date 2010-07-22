@@ -66,16 +66,16 @@ class TodoyuCommentHistoryManager {
 	 * @return	Array
 	 */
 	private static function mergeAndSortLogEntries($log1, $log2, $table1 = 'ext_comment_feedback', $table2 = 'ext_comment_mailed') {
-		if ( count($log1) == 0 && count($log2) == 0 ) {
+		if( count($log1) == 0 && count($log2) == 0 ) {
 				// Both logs empty
 			$log	= array();
-		} elseif ( count($log1) > 0 && count($log2) == 0 ) {
+		} elseif( count($log1) > 0 && count($log2) == 0 ) {
 				// Only log1 contains entries
 			$log	= $log1;
-		} elseif ( count($log1) == 0 && count($log2) > 0 ) {
+		} elseif( count($log1) == 0 && count($log2) > 0 ) {
 				// Only log2 contains entries
 			$log	= $log2;
-		} elseif ( count($log1) > 0 && count($log2) > 0 ) {
+		} elseif( count($log1) > 0 && count($log2) > 0 ) {
 				// Both logs contain entries
 			$log	= array();
 				// Merge the two logs

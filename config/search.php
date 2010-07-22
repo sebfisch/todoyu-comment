@@ -25,7 +25,7 @@
  * @subpackage	Comment
  */
 
-if ( allowed('comment', 'general:use') ) {
+if( allowed('comment', 'general:use') ) {
 	TodoyuSearchManager::addEngine('comment', 'TodoyuCommentSearch::getSuggestions', 'comment.search.label', 'comment.search.mode.label', 50);
 }
 
