@@ -4,7 +4,7 @@
 	<section name="general">
 		<right name="use" />
 	</section>
-	
+
 	<section name="comment" require="general:use">
 		<right name="seeAll" />
 		<right name="editOwn" />

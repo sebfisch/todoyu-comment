@@ -90,7 +90,7 @@ Todoyu::$CONFIG['FILTERS']['TASK']['widgets']['commentWrittenPerson'] = array(
 		'FuncRef'		=> 'TodoyuPersonFilterDataSource::autocompletePersons',
 		'FuncParams'	=> array(),
 		'LabelFuncRef'	=> 'TodoyuPersonFilterDataSource::getLabel',
-		'negation'	=> 'default'
+		'negation'		=> 'default'
 	)
 );
 

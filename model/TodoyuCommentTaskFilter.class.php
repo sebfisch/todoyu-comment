@@ -25,9 +25,9 @@
  * @subpackage	Comment
  */
 class TodoyuCommentTaskFilter {
-	
-	
-	
+
+
+
 	/**
 	 * Filters for unseen feedbacks
 	 *
@@ -55,9 +55,9 @@ class TodoyuCommentTaskFilter {
 
 		return $queryParts;
 	}
-	
-	
-	
+
+
+
 	/**
 	 * Filters all unseen feedbacks off current user
 	 * 

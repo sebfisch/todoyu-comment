@@ -29,8 +29,9 @@ Todoyu.Ext.comment.Edit = {
 	 * @var	{Object}	ext
 	 */
 	ext: Todoyu.Ext.comment,
-	
-	
+
+
+
 	/**
 	 * 'Email changed' event handler
 	 *
