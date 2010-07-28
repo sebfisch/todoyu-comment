@@ -126,4 +126,5 @@ Todoyu.Ext.comment.Edit = {
 
 		Todoyu.Ext.comment.setTabLabel(idTask, tabLabel);
 	}
+
 };
