@@ -245,16 +245,16 @@ h1.extIconComment .title {
 	Comment feedback and mailing log
    ----------------------------------------- */
 li.comment .comment-history {
-    border:1px dotted #8cabc8;
-    background-color:#F7FBFF;
-    padding:0 0 1px 0;
+	border:1px dotted #8cabc8;
+	background-color:#F7FBFF;
+	padding:0 0 1px 0;
 }
 
 	.comment-history .log-head {
 		cursor:pointer;
 		background:url(../img/icons.png) no-repeat 6px -447px;
 		padding:4px 0 4px 26px;
-	    background-color:#e8e8e8;
+		background-color:#e8e8e8;
 	}
 
 	.comment-history dl {
@@ -276,8 +276,8 @@ li.comment .comment-history {
 			width:150px;
 		}
 		.comment-history dl dd .description {
-		    width:360px;
-		    float:left;
+			width:360px;
+			float:left;
 		}
 
 
@@ -311,7 +311,7 @@ td.custSelectorOptions {
 }
 
 	td.custSelectorOptions input.toggleCustSel {
-		margin:0 0 0 0;
+		margin:0;
 	}
 
 input.ccommentMail {
