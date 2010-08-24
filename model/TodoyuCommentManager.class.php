@@ -89,7 +89,6 @@ class TodoyuCommentManager {
 		$data	= TodoyuFormHook::callSaveData($xmlPath, $data, $idComment);
 		$data	= self::saveCommentForeignRecords($data, $idComment);
 
-
 			// Extract feedback and email data
 		$sendAsEmail	= intval($data['sendasemail']) === 1;
 		$personsEmail	= array_unique(TodoyuArray::intExplode(',', $data['emailreceivers'], true, true));
