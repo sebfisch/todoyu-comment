@@ -331,7 +331,7 @@ input.deleteButtonOwnComment {
 /* ------------------------
 	Context menu task
    ------------------------ */
-#contextmenu .task-add-comment {
+#contextmenu .taskContextMenu.task-add-comment {
 	background-image:url(../img/icons.png);
 	background-position:3px 3px;
 }
