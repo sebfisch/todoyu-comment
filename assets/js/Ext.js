@@ -141,9 +141,16 @@ Todoyu.Ext.comment = {
 		Todoyu.Ext.project.Task.showDetails(idTask, 'comment', this.onTaskCommentTabLoaded.bind(this));
 	},
 
-	onTaskCommentTabLoaded: function(idTask, tab, response) {
+
+	/**
+	 * Handler when task comment tab is loaded
+	 * 
+	 * @param	{Number}	idTask
+	 * @param	{String}	tab
+	 */
+	onTaskCommentTabLoaded: function(idTask, tab) {
 		if( ! Todoyu.exists('task-' + idTask + '-commentform-0') ) {
-			this.edit(idTask, 0);
+			this.add(idTask);
 		}
 	},
 
@@ -239,7 +246,7 @@ Todoyu.Ext.comment = {
 
 	/**
 	 * Add a new comment, open empty edit form
-	 * 
+	 *
 	 * @param	{Number}		idTask
 	 */
 	add: function(idTask) {
@@ -263,7 +270,7 @@ Todoyu.Ext.comment = {
 
 	/**
 	 * Handler when empty edit form to add comment loaded
-	 * 
+	 *
 	 * @param	{Number}			idTask
 	 * @param	{Ajax.Response}	response
 	 */
@@ -299,7 +306,7 @@ Todoyu.Ext.comment = {
 
 	/**
 	 * Handler when comment edit form loaded
-	 * 
+	 *
 	 * @param	{Number}			idTask
 	 * @param	{Number}			idComment
 	 * @param	{Ajax.Response}	response
@@ -312,7 +319,7 @@ Todoyu.Ext.comment = {
 
 	/**
 	 * Remove all open edit forms for comment
-	 * 
+	 *
 	 * @param	{Number}		idTask
 	 */
 	removeForms: function(idTask) {
