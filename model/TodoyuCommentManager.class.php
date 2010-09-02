@@ -365,7 +365,7 @@ class TodoyuCommentManager {
 		$conditions	= Todoyu::$CONFIG['EXT']['comment']['feedbackTabFilters'];
 		$taskFilter	= new TodoyuTaskFilter($conditions);
 
-		return $taskFilter->getTaskIDs();
+		return $taskFilter->getTaskIDs('ext_comment_comment.date_create');
 	}
 
 }
