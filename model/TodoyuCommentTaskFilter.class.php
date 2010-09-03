@@ -45,6 +45,7 @@ class TodoyuCommentTaskFilter {
 			'ext_comment_feedback'
 		);
 		$where	=	'	ext_comment_comment.id_task 	= ext_project_task.id'
+				. ' AND	ext_comment_comment.deleted 	= 0'
 				. '	AND	ext_comment_feedback.id_comment = ext_comment_comment.id'
 				. '	AND ext_comment_feedback.is_seen	= ' . $seenStatus;
 
@@ -90,6 +91,7 @@ class TodoyuCommentTaskFilter {
 				'ext_comment_feedback'
 			);
 			$where	= '		ext_comment_comment.id_task 			= ext_project_task.id'
+					. '	AND	ext_comment_comment.deleted 			= 0'
 					. '	AND	ext_comment_feedback.id_comment 		= ext_comment_comment.id'
 					. '	AND ext_comment_feedback.is_seen			= ' . $seenStatus
 					. ' AND	ext_comment_feedback.id_person_feedback	= ' . $idPerson;
@@ -124,6 +126,7 @@ class TodoyuCommentTaskFilter {
 				'ext_contact_mm_person_role'
 			);
 			$where	= '		ext_comment_comment.id_task 			= ext_project_task.id'
+					. '	AND	ext_comment_comment.deleted 			= 0'
 					. '	AND	ext_comment_feedback.id_comment 		= ext_comment_comment.id'
 					. '	AND ext_comment_feedback.id_person_feedback	= ext_contact_mm_person_role.id_person'
 					. '	AND ext_contact_mm_person_role.id_role IN(' . implode(',', $groupIDs) . ')';
@@ -163,9 +166,11 @@ class TodoyuCommentTaskFilter {
 			$negator	= $negate ? 'NOT ' : '';
 
 
-			$where	= '(ext_comment_comment.id_task = ext_project_task.id'
+			$where	= '( ext_comment_comment.id_task	= ext_project_task.id'
 					. ' AND ' . $negator . Todoyu::db()->buildLikeQuery($keywords, $fields)
-					. ')';
+					. ')'
+					. ' AND ext_comment_comment.deleted	= 0'
+			;
 
 			$queryParts	= array(
 				'tables'=> $tables,
@@ -195,6 +200,7 @@ class TodoyuCommentTaskFilter {
 				'ext_comment_comment'
 			);
 			$where	= '		ext_comment_comment.id_task 		= ext_project_task.id'
+					. '	AND	ext_comment_comment.deleted 		= 0'
 					. '	AND	ext_comment_comment.id_person_create= ' . $idPerson;
 
 			$queryParts	= array(
@@ -226,6 +232,7 @@ class TodoyuCommentTaskFilter {
 				'ext_contact_mm_person_role'
 			);
 			$where	= '		ext_comment_comment.id_task 		= ext_project_task.id'
+					. '	AND	ext_comment_comment.deleted			= 0'
 					. '	AND	ext_comment_comment.id_person_create= ext_contact_mm_person_role.id_person'
 					. '	AND	ext_contact_mm_person_role.id_role IN(' . implode(',', $roleIDs) . ')';
 
