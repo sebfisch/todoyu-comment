@@ -95,10 +95,15 @@ class TodoyuCommentRenderer {
 			$data = TodoyuCommentManager::getComment($idComment)->getTemplateData(true);
 			$data['feedback'] = TodoyuArray::getColumn($data['persons_feedback'], 'id');
 		} else {
+			$author = TodoyuCommentManager::getPreviousCommentsAuthorId($idTask);
 			$data['id_task']= $idTask;
 			$data['id']		= $idComment;
-		}
 
+			if($author > 0)	{
+				$data['feedback'] = $author;
+			}
+		}
+		
 		$form->setFormData($data);
 		$form->setRecordID($idTask . '-' . $idComment);
 

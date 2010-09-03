@@ -56,7 +56,7 @@ class TodoyuCommentManager {
 	}
 
 
-
+	
 	/**
 	 * Filter HTML tags inside comment text to keep only allowable ones
 	 *
@@ -366,6 +366,26 @@ class TodoyuCommentManager {
 		$taskFilter	= new TodoyuTaskFilter($conditions);
 
 		return $taskFilter->getTaskIDs('ext_comment_comment.date_create');
+	}
+
+
+
+	/**
+	 * Returns the id_person_create of the last task-comment
+	 *
+	 * @param	Integer		$idTask
+	 * @param	Integer		$idComment
+	 * @return	Integer
+	 */
+	public static function getPreviousCommentsAuthorId($idTask)	{
+		$idTask	=	intval($idTask);
+		
+		if(self::getNumberOfTaskComments($idTask) > 0)	{
+			$comments = self::getTaskCommentIDs($idTask, true);
+			return self::getComment($comments[0])->id_person_create;
+		}
+
+		return 0;
 	}
 
 }
