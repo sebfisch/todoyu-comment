@@ -106,5 +106,4 @@ Todoyu::$CONFIG['FILTERS']['TASK']['widgets']['commentWrittenRoles'] = array(
 	)
 );
 
-
 ?>
