@@ -32,6 +32,94 @@ class TodoyuCommentFeedbackManager {
 	const TABLE = 'ext_comment_feedback';
 
 
+	/**
+	 * Save feedback requests of given comment
+	 *
+	 * @param	Integer		$idComment
+	 * @param	Array		$feedbackPersonIDs
+	 */
+	public static function updateFeedbacks($idComment, $feedbackPersonIDs = array()) {
+			// Get already stored unseen feedbacks
+		$seenFeedbackPersonIDs	= self::getSeenFeedbacksPersonIDs($idComment);
+
+			// Remove feedbacks that have been seen already from list, those don't need to be removed/resaved
+		$feedbackPersonIDs	= array_diff($feedbackPersonIDs, $seenFeedbackPersonIDs);
+
+			// Remove old open feedbacks from DB
+		self::removeUnseenFeedbacks($idComment);
+
+			// Add newly added feedback requests
+		self::addFeedbacks($idComment, $feedbackPersonIDs);
+	}
+
+
+
+	/**
+	 * Get IDs of persons from whom a feedback is requested and who saw it already
+	 *
+	 * @param	Integer		$idComment
+	 * @return	Array
+	 */
+	public static function getSeenFeedbacksPersonIDs($idComment) {
+		$idComment	= intval($idComment);
+
+		$requests	= self::getSeenFeedbackRequests($idComment);
+
+		return self::extractPersonIDsFromFeedbacks($requests);
+	}
+
+
+
+	/**
+	 * Get IDs of persons from whom a feedback is requested (and not yet seen)
+	 *
+	 * @param	Integer		$idComment
+	 * @return	Array
+	 */
+	public static function getUnseenFeedbacksPersonIDs($idComment) {
+		$idComment	= intval($idComment);
+		$requests	= self::getFeedbackRequests($idComment, true);
+
+		return self::extractPersonIDsFromFeedbacks($requests);
+	}
+
+
+
+	/**
+	 * Extract person IDs from given feedbacks
+	 *
+	 * @param	Array	$requests
+	 * @return	Array
+	 */
+	public static function extractPersonIDsFromFeedbacks(array $requests = array()) {
+		$requests	= TodoyuArray::sortByLabel($requests, 'id_person_feedback');
+
+		$personIDs	= array();
+		foreach($requests as $request) {
+			$personIDs[]	= $request['id_person_feedback'];
+		}
+
+		return array_unique($personIDs);
+	}
+
+
+
+	/**
+	 * Remove all unseen feedback request from given comment
+	 *
+	 * @param	Integer		$idComment
+	 * @return	Integer		Num affected rows
+	 */
+	public static function removeUnseenFeedbacks($idComment) {
+		$where	=
+				'		id_comment	= ' . $idComment
+			.	' AND	is_seen		= 0'
+		;
+
+		return Todoyu::db()->doDelete(self::TABLE, $where);
+	}
+
+
 
 	/**
 	 * Add a new feedback request
@@ -137,7 +225,7 @@ class TodoyuCommentFeedbackManager {
 
 
 	/**
-	 * Check whether a comment has a feedback request
+	 * Get feedback requests, optionally only not yet seen ones
 	 *
 	 * @param	Integer		$idComment
 	 * @param	Boolean		$onlyUnseen
@@ -148,7 +236,23 @@ class TodoyuCommentFeedbackManager {
 
 		$where	= 'id_comment = ' . $idComment . ($onlyUnseen === true ? ' AND is_seen = 0' : '');
 
-		return TodoyuRecordManager::getAllRecords(self::TABLE, $where, '');
+		return	TodoyuRecordManager::getAllRecords(self::TABLE, $where, '');
+	}
+
+
+
+	/**
+	 * Get all seen feedback requests
+	 *
+	 * @param	Integer		$idComment
+	 * @return	Array
+	 */
+	public static function getSeenFeedbackRequests($idComment) {
+		$idComment	= intval($idComment);
+
+		$where	= 'id_comment = ' . $idComment . ' AND is_seen = 1';
+
+		return	TodoyuRecordManager::getAllRecords(self::TABLE, $where, '');
 	}
 
 

@@ -111,7 +111,7 @@ class TodoyuCommentManager {
 
 			// Register feedback for current comment
 		if( sizeof($personsFeedback) > 0 ) {
-			TodoyuCommentFeedbackManager::addFeedbacks($idComment, $personsFeedback);
+			TodoyuCommentFeedbackManager::updateFeedbacks($idComment, $personsFeedback);
 		}
 
 			// Call saved hook
