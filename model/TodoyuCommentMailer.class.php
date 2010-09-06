@@ -32,6 +32,7 @@ class TodoyuCommentMailer {
 	/**
 	 * Send comment information email to the persons
 	 *
+	 * @todo	(re)implement logging of sent mails!
 	 * @param	Integer		$idComment
 	 * @param	Array		$personIDs
 	 */
@@ -39,8 +40,14 @@ class TodoyuCommentMailer {
 		$idComment	= intval($idComment);
 		$personIDs	= TodoyuArray::intval($personIDs, true, true);
 
+		$succeeded	= true;
 		foreach($personIDs as $idPerson) {
-			$result = self::sendMail($idComment, $idPerson);
+				// @todo	make hiding of sender email and comment authors' emails optional and configurable
+			$result = self::sendMail($idComment, $idPerson, false, true);
+
+			if ( $result === false ) {
+				$succeeded	= false;
+			}
 
 			/*
 			// NOT IN USE AT THE MOMENT
@@ -49,6 +56,8 @@ class TodoyuCommentMailer {
 			}
 			*/
 		}
+
+		return $succeeded;
 	}
 
 
@@ -58,9 +67,11 @@ class TodoyuCommentMailer {
 	 *
 	 * @param	Integer		$idComment
 	 * @param	Integer		$idPerson
+	 * @param	Boolean		$setSenderFromPersonMail
+	 * @param	Boolean		$hideEmails					Show comment authors email addresses in message?
 	 * @return	Boolean		Success
 	 */
-	public static function sendMail($idComment, $idPerson) {
+	public static function sendMail($idComment, $idPerson, $setSenderFromPersonMail = false, $hideEmails = true) {
 		$idComment	= intval($idComment);
 		$idPerson	= intval($idPerson);
 
@@ -79,12 +90,16 @@ class TodoyuCommentMailer {
 //			$mail->Mailer	= 'mail';
 //		}
 
-		$mail->From		= Todoyu::person()->getEmail();
-		$mail->FromName	= Todoyu::person()->getFullName() . ' (todoyu)'; 
+		if( $setSenderFromPersonMail === true ) {
+			$mail->From		= Todoyu::person()->getEmail();
+		}
+
+		$mail->set('ReplyTo', Todoyu::person()->getEmail());
+		$mail->FromName	= Todoyu::person()->getFullName() . ' (todoyu)';
 		$mail->Subject	= Label('comment.mail.subject') . ': ' . $comment->getTask()->getTitle() . ' (#' . $comment->getTask()->getTaskNumber(true) . ')';
 
-		$htmlBody		= self::getMailContentHtml($idComment, $idPerson);
-		$textBody		= self::getMailContentText($idComment, $idPerson);
+		$htmlBody		= self::getMailContentHtml($idComment, $idPerson, $hideEmails);
+		$textBody		= self::getMailContentText($idComment, $idPerson, $hideEmails);
 
 		$mail->MsgHTML($htmlBody, PATH_EXT_COMMENT);
 		$mail->AltBody	= $textBody;
@@ -167,14 +182,17 @@ class TodoyuCommentMailer {
 	 *
 	 * @param	Integer		$idComment		Comment to send
 	 * @param	Integer		$idPerson		Person to send the email to
+	 * @param	Boolean		$hideEmails
 	 * @return	String
 	 */
-	private static function getMailContentHtml($idComment, $idPerson) {
+	private static function getMailContentHtml($idComment, $idPerson, $hideEmails = true) {
 		$idComment	= intval($idComment);
 		$idPerson	= intval($idPerson);
 
 		$tmpl		= 'ext/comment/view/comment-mail-html.tmpl';
-		$data		= self::getMailData($idComment, $idPerson);
+
+		$data				= self::getMailData($idComment, $idPerson);
+		$data['hideEmails']	= $hideEmails;
 
 		return render($tmpl, $data);
 	}
@@ -186,14 +204,16 @@ class TodoyuCommentMailer {
 	 *
 	 * @param	Integer		$idComment		Comment to send
 	 * @param	Integer		$idPerson		Person to send the email to
+	 * @param	Boolean		$hideEmails		Hide comment authors' email addresses in message?
 	 * @return	String
 	 */
-	private static function getMailContentText($idComment, $idPerson) {
+	private static function getMailContentText($idComment, $idPerson, $hideEmails = true) {
 		$idComment	= intval($idComment);
 		$idPerson		= intval($idPerson);
 
 		$tmpl		= 'ext/comment/view/comment-mail-text.tmpl';
-		$data		= self::getMailData($idComment, $idPerson);
+		$data				= self::getMailData($idComment, $idPerson);
+		$data['hideEmails']	= $hideEmails;
 
 		return render($tmpl, $data);
 	}

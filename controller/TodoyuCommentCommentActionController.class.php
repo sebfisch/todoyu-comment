@@ -118,8 +118,8 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 	 * @return	String
 	 */
 	public function saveAction(array $params) {
-		$xmlPath			= 'ext/comment/config/form/comment.xml';
-		$data				= $params['comment'];
+		$xmlPath= 'ext/comment/config/form/comment.xml';
+		$data	= $params['comment'];
 
 		$idComment	= intval($data['id']);
 		$idTask		= intval($data['id_task']);
@@ -142,6 +142,7 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 		if( $form->isValid() ) {
 			$data	= $form->getStorageData();
 
+				// Store comment and send email if mail-option activated 
 			TodoyuCommentManager::saveComment($data);
 
 			TodoyuHeader::sendTodoyuHeader('tabLabel', TodoyuCommentTask::getLabel($data['id_task']));

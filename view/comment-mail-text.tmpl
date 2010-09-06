@@ -3,8 +3,8 @@
 ========================================================================
 {Label project.project}:	{htmlencode $project.title}
 {Label task.task}:	{htmlencode $task.title} ({$task.id_project}.{$task.tasknumber})
-{Label comment.mail.commentfrom}:	{$personWrite.firstname} {$personWrite.lastname} <{$personWrite.email}>
-{if $personWrite.id !== $personSend.id}{Label comment.mail.commentsentby}:	{$personSend.firstname} {$personSend.lastname} <{$personSend.email}>{/if}
+{Label comment.mail.commentfrom}:	{$personWrite.firstname} {$personWrite.lastname}{if $hideEmails != true} <{$personWrite.email}>{/if}
+{if $personWrite.id !== $personSend.id}{Label comment.mail.commentsentby}:	{$personSend.firstname} {$personSend.lastname}{if $hideEmails != true} <{$personSend.email}>{/if}{/if}
 ========================================================================
 {html2text $comment.comment}
 
@@ -16,7 +16,7 @@
 ========================================================================
 {Label comment.mail.feedbackexpected}:
 {foreach $feedback_persons feedbackPerson}
- - {$feedbackPerson.firstname} {$feedbackPerson.lastname} <{$feedbackPerson.email}>
+ - {$feedbackPerson.firstname} {$feedbackPerson.lastname} {if $hideEmails != true}<{$feedbackPerson.email}>{/if}
 {/foreach}
 {/if}
 ========================================================================

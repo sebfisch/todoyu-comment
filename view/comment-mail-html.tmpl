@@ -95,7 +95,7 @@ td {
 								<td width="10"><!-- spacer --></td>
 								<td valign="top" align="left">
 									<strong style="margin:0; padding:0; color:#000; font-size:11px; font-family:Arial;">
-										{dateFormat $comment.date_create D2M2Y2} - <a href="mailto:{$personWrite.firstname}%20{$personWrite.lastname}%20%3C{$personWrite.email}%3E">{$personWrite.firstname} {$personWrite.lastname}</a>
+										{dateFormat $comment.date_create D2M2Y2} - {if $hideEmails == true}{$personWrite.firstname} {$personWrite.lastname}{else}<a href="mailto:{$personWrite.firstname}%20{$personWrite.lastname}%20%3C{$personWrite.email}%3E">{$personWrite.firstname} {$personWrite.lastname}</a>{/if}
 									</strong>
 								</td>
 								<td valign="top" align="right">
@@ -119,7 +119,11 @@ td {
 								</td>
 								<td valign="top" align="left" style="color:#000; font-size:11px; font-family:Arial;">
 									{foreach $feedback_persons feedbackPerson}
-										<a href="mailto:{$feedbackPerson.firstname}%20{$feedbackPerson.lastname}%20%3C{$feedbackPerson.email}%3E">{$feedbackPerson.firstname} {$feedbackPerson.lastname},</a>
+										{if $hideEmails != true}
+											<a href="mailto:{$feedbackPerson.firstname}%20{$feedbackPerson.lastname}%20%3C{$feedbackPerson.email}%3E">{$feedbackPerson.firstname} {$feedbackPerson.lastname},</a>
+										{else}
+											{$feedbackPerson.firstname} {$feedbackPerson.lastname}
+										{/if}
 									{/foreach}
 								</td>
 								<td width="10"><!-- spacer --></td>
