@@ -9,6 +9,6 @@
 
 <ul class="task-comments {if $desc}desc{else}asc{/if}" id="task-{$idTask}-comments">
 {foreach $comments commentHTML}
-	{$commentHTML}
+	{substituteUrlsByHperlinks $commentHTML}
 {/foreach}
 </ul>

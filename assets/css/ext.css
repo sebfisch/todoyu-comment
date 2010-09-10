@@ -90,6 +90,10 @@ h1.extIconComment .title {
 	padding-left:10px;
 }
 
+.task-comments div.comment a {
+	text-decoration:underline;
+}
+
 .task-comments .comment-details .left {
 	float:left;
 	width:300px !important;
