@@ -91,7 +91,9 @@ class TodoyuCommentMailer {
 //		}
 
 		if( $setSenderFromPersonMail === true ) {
-			$mail->From		= Todoyu::person()->getEmail();
+			$mail->From	= Todoyu::person()->getEmail();
+		} else {
+			$mail->From	= Todoyu::$CONFIG['SYSTEM']['email'];
 		}
 
 		$mail->set('ReplyTo', Todoyu::person()->getEmail());
