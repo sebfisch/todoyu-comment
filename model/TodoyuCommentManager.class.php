@@ -56,7 +56,7 @@ class TodoyuCommentManager {
 	}
 
 
-	
+
 	/**
 	 * Filter HTML tags inside comment text to keep only allowable ones
 	 *
@@ -371,21 +371,28 @@ class TodoyuCommentManager {
 
 
 	/**
-	 * Returns the id_person_create of the last task-comment
+	 * Get ID of the person which requested a feedback from the current user and the feedback is open
 	 *
 	 * @param	Integer		$idTask
-	 * @param	Integer		$idComment
 	 * @return	Integer
 	 */
-	public static function getPreviousCommentsAuthorId($idTask)	{
-		$idTask	=	intval($idTask);
-		
-		if(self::getNumberOfTaskComments($idTask) > 0)	{
-			$comments = self::getTaskCommentIDs($idTask, true);
-			return self::getComment($comments[0])->id_person_create;
-		}
+	public static function getOpenFeedbackRequestPersonID($idTask) {
+		$idTask	= intval($idTask);
 
-		return 0;
+		$field	= '	fb.id_person_create';
+		$tables	= '	ext_comment_feedback fb,
+					ext_comment_comment co';
+		$where	= '		fb.id_comment			= co.id'
+				. ' AND co.id_task				= ' . $idTask
+				. ' AND	fb.id_person_feedback	= ' . TodoyuAuth::getPersonID()
+				. ' AND	fb.is_seen				= 0';
+		$order	= '	fb.date_create DESC';
+		$limit	= 1;
+		$resField	= 'id_person_create';
+
+		$idPerson	= Todoyu::db()->getFieldValue($field, $tables, $where, '', $order, $limit, $resField);
+
+		return intval($idPerson);
 	}
 
 }

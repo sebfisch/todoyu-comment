@@ -91,19 +91,22 @@ class TodoyuCommentRenderer {
 		$form		= TodoyuFormManager::getForm($xmlPath, $idComment);
 		$data		= array();
 
-		if( $idComment !== 0 ) {
-			$data = TodoyuCommentManager::getComment($idComment)->getTemplateData(true);
-			$data['feedback'] = TodoyuArray::getColumn($data['persons_feedback'], 'id');
-		} else {
-			$author = TodoyuCommentManager::getPreviousCommentsAuthorId($idTask);
-			$data['id_task']= $idTask;
-			$data['id']		= $idComment;
+		if( $idComment === 0 ) {
 
-			if($author > 0)	{
-				$data['feedback'] = $author;
-			}
+			// New comment
+			$idFeedbackPerson	= TodoyuCommentManager::getOpenFeedbackRequestPersonID($idTask);
+			$data	= array(
+				'id'		=> 0,
+				'id_task'	=> $idTask,
+				'feedback'	=> $idFeedbackPerson
+			);
+		} else {
+			// Edit comment
+			$comment	= TodoyuCommentManager::getComment($idComment);
+			$data		= $comment->getTemplateData(true);
+			$data['feedback'] = TodoyuArray::getColumn($data['persons_feedback'], 'id');
 		}
-		
+
 		$form->setFormData($data);
 		$form->setRecordID($idTask . '-' . $idComment);
 
