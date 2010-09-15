@@ -49,7 +49,7 @@
 		{/foreach}
 		</div>
 		{* --------------------------- Comment itself --------------- *}
-		<div class="comment">{limitHTMLwordsLen(linkUrls($comment), 60)}</div>
+		<div class="comment">{linkUrls $comment}</div>
 	</div>
 	<div class="clear"><!-- clear --></div>
 	<div id="task-comment-log-{$id}-details" class="comment-history" style="display:none;"></div>
