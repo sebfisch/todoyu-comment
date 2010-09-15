@@ -44,14 +44,17 @@ class TodoyuCommentTaskFilter {
 			'ext_comment_comment',
 			'ext_comment_feedback'
 		);
-		$where	=	'	ext_comment_comment.id_task 	= ext_project_task.id'
-				. ' AND	ext_comment_comment.deleted 	= 0'
-				. '	AND	ext_comment_feedback.id_comment = ext_comment_comment.id'
+		$where	=	'	ext_comment_comment.deleted 	= 0'
 				. '	AND ext_comment_feedback.is_seen	= ' . $seenStatus;
+		$join	= array(
+			'ext_comment_comment.id_task = ext_project_task.id',
+			'ext_comment_feedback.id_comment = ext_comment_comment.id'
+		);
 
 		$queryParts	= array(
 			'tables'=> $tables,
-			'where'	=> $where
+			'where'	=> $where,
+			'join'	=> $join
 		);
 
 		return $queryParts;
@@ -61,8 +64,8 @@ class TodoyuCommentTaskFilter {
 
 	/**
 	 * Filters all unseen feedbacks off current user
-	 * 
-	 * 
+	 *
+	 *
 	 * @param	Integer		$idPerson
 	 * @param	Boolean		$negate
 	 */
@@ -84,21 +87,25 @@ class TodoyuCommentTaskFilter {
 		$idPerson	= personid($idPerson);
 		$seenStatus	= $negate ? 1 : 0 ;
 
+
 		if( $idPerson !== 0 ) {
 			$tables	= array(
 				'ext_project_task',
 				'ext_comment_comment',
 				'ext_comment_feedback'
 			);
-			$where	= '		ext_comment_comment.id_task 			= ext_project_task.id'
-					. '	AND	ext_comment_comment.deleted 			= 0'
-					. '	AND	ext_comment_feedback.id_comment 		= ext_comment_comment.id'
+			$where	= '		ext_comment_comment.deleted 			= 0'
 					. '	AND ext_comment_feedback.is_seen			= ' . $seenStatus
 					. ' AND	ext_comment_feedback.id_person_feedback	= ' . $idPerson;
+			$join	= array(
+				'ext_comment_comment.id_task = ext_project_task.id',
+				'ext_comment_feedback.id_comment = ext_comment_comment.id'
+			);
 
 			$queryParts	= array(
 				'tables'=> $tables,
-				'where'	=> $where
+				'where'	=> $where,
+				'join'	=> $join
 			);
 		}
 
@@ -125,15 +132,18 @@ class TodoyuCommentTaskFilter {
 				'ext_comment_feedback',
 				'ext_contact_mm_person_role'
 			);
-			$where	= '		ext_comment_comment.id_task 			= ext_project_task.id'
-					. '	AND	ext_comment_comment.deleted 			= 0'
-					. '	AND	ext_comment_feedback.id_comment 		= ext_comment_comment.id'
+			$where	= '		ext_comment_comment.deleted 			= 0'
 					. '	AND ext_comment_feedback.id_person_feedback	= ext_contact_mm_person_role.id_person'
 					. '	AND ext_contact_mm_person_role.id_role IN(' . implode(',', $groupIDs) . ')';
+			$join	= array(
+				'ext_comment_comment.id_task = ext_project_task.id',
+				'ext_comment_feedback.id_comment = ext_comment_comment.id'
+			);
 
 			$queryParts	= array(
 				'tables'=> $tables,
-				'where'	=> $where
+				'where'	=> $where,
+				'join'	=> $join
 			);
 		}
 
@@ -166,15 +176,16 @@ class TodoyuCommentTaskFilter {
 			$negator	= $negate ? 'NOT ' : '';
 
 
-			$where	= '( ext_comment_comment.id_task	= ext_project_task.id'
-					. ' AND ' . $negator . Todoyu::db()->buildLikeQuery($keywords, $fields)
-					. ')'
-					. ' AND ext_comment_comment.deleted	= 0'
-			;
+			$where	= $negator . Todoyu::db()->buildLikeQuery($keywords, $fields)
+					. ' AND ext_comment_comment.deleted	= 0';
+			$join	= array(
+				'ext_comment_comment.id_task = ext_project_task.id'
+			);
 
 			$queryParts	= array(
 				'tables'=> $tables,
-				'where'	=> $where
+				'where'	=> $where,
+				'join'	=> $join
 			);
 		}
 
