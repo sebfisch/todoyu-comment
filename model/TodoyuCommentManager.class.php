@@ -64,7 +64,7 @@ class TodoyuCommentManager {
 	 * @return	String
 	 */
 	public static function filterHtmlTags($text) {
-		return strip_tags($text, Todoyu::$CONFIG['EXT']['contact']['allowabletags']);
+		return strip_tags($text, Todoyu::$CONFIG['EXT']['comment']['allowedtags']);
 	}
 
 
@@ -101,6 +101,7 @@ class TodoyuCommentManager {
 
 			// Update comment in database
 		self::updateComment($idComment, $data);
+
 
 			// Clear record cache
 		TodoyuRecordManager::removeRecordCache('TodoyuComment', $idComment);
