@@ -169,11 +169,15 @@ class TodoyuCommentFeedbackManager {
 	public static function getCommentIDs($idPerson = 0) {
 		$idPerson	= personid($idPerson);
 
-		$field	= 'id_comment';
-		$table	= self::TABLE;
-		$where	= '		id_person_feedback	= ' . $idPerson
-				. ' AND	is_seen				= 0';
-		$order	= 'date_create';
+		$field	= 'f.id_comment';
+		$table	= self::TABLE . ' as f,
+					ext_comment_comment as c';
+		$where	= '	f.id_person_feedback	= ' . $idPerson
+				. ' AND	f.is_seen				= 0
+					AND c.id = f.id_comment
+					AND c.deleted = 0
+					AND c.id_task != 0';
+		$order	= 'f.date_create';
 
 		return Todoyu::db()->getColumn($field, $table, $where, '', $order);
 	}
@@ -213,12 +217,18 @@ class TodoyuCommentFeedbackManager {
 		$idComment	= intval($idComment);
 		$idPerson	= personid($idPerson);
 
-		$field	= 'id';
-		$table	= self::TABLE;
-		$where	= '		id_comment			= ' . $idComment
-				. ' AND	id_person_feedback	= ' . $idPerson
-				. ' AND	is_seen				= 0';
-
+		$field	= self::TABLE . '.id';
+		$table	= self::TABLE . ' as f,
+					ext_comment_comment as c';
+		$where	= '		f.id_comment			= ' . $idComment
+				. ' AND	f.id_person_feedback	= ' . $idPerson
+				. ' AND	f.is_seen				= 0
+					AND c.id = f.id_comment
+					AND c.deleted = 0
+					AND c.id_task != 0';
+		
+		TodoyuDebug::printInFirebug($where);
+		
 		return Todoyu::db()->hasResult($field, $table, $where);
 	}
 

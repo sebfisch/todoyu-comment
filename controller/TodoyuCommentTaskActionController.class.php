@@ -77,7 +77,7 @@ class TodoyuCommentTaskActionController extends TodoyuActionController {
 
 		TodoyuCommentFeedbackManager::setAsSeen($idComment);
 
-		$numOpenFeedbacks = sizeof(TodoyuCommentFeedbackManager::getCommentIDs());
+		$numOpenFeedbacks = sizeof(TodoyuCommentManager::getFeedbackTaskIDs());
 
 		TodoyuHeader::sendTodoyuHeader('feedback', $numOpenFeedbacks);
 	}
