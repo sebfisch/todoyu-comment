@@ -111,9 +111,7 @@ class TodoyuCommentManager {
 		TodoyuCommentFeedbackManager::setTaskCommentsAsSeen($data['id_task']);
 
 			// Register feedback for current comment
-		if( sizeof($personsFeedback) > 0 ) {
-			TodoyuCommentFeedbackManager::updateFeedbacks($idComment, $personsFeedback);
-		}
+		TodoyuCommentFeedbackManager::updateFeedbacks($idComment, $personsFeedback);
 
 			// Call saved hook
 		TodoyuHookManager::callHook('comment', 'saved', array($idComment));
