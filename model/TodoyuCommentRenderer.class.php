@@ -196,9 +196,7 @@ class TodoyuCommentRenderer {
 		$label	= TodoyuLanguage::getLabel('comment.portal.tab.feedback');
 
 		if( $count ) {
-			$taskIDs= TodoyuCommentManager::getFeedbackTaskIDs();
-
-			$label	= $label . ' (' . sizeof($taskIDs) . ')';
+			$label	= $label . ' (' . sizeof(TodoyuCommentFeedbackManager::getCommentIDs()) . ')';
 		}
 
 		return $label;
