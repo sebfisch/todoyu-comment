@@ -81,14 +81,13 @@ Todoyu.Ext.comment.Edit = {
 	 */
 	onSaved: function(idTask, response) {
 		var idComment	=	response.getTodoyuHeader('idComment');
-		var tabLabel	=	response.getTodoyuHeader('tabLabel');
 
 		if( response.hasTodoyuError() ) {
 			$('comment-' + idTask + '-' + idComment + '-form').replace(response.responseText);
 			Todoyu.notifyError('[LLL:comment.js.commentSavingFailed]');
 		} else {
 			Todoyu.Ext.comment.List.refresh(idTask);
-			Todoyu.Ext.comment.setTabLabel(idTask, tabLabel);
+			Todoyu.Ext.comment.setTabLabel(idTask, response.getTodoyuHeader('tabLabel'));
 			Todoyu.notifySuccess('[LLL:comment.js.commentSaved]');
 
 			if( response.getTodoyuHeader('sentEmail') ) {
