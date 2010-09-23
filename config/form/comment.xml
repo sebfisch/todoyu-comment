@@ -46,7 +46,7 @@
 
 				<field type="checkbox" name="sendasemail">
 					<label>comment.edit.sendasemail</label>
-					<onclick>Todoyu.Ext.comment.Edit.onClickSendAsEmail(this.id.split('-')[1])</onclick>
+					<onclick>Todoyu.Ext.comment.Edit.onClickSendAsEmail(this)</onclick>
 					<restrict>
 						<allow ext="comment" right="comment:sendAsEmail" />
 					</restrict>
