@@ -389,7 +389,7 @@
 		<label index="history.feedbackrequestseen">Odpověď přečtena</label>
 		<label index="history.mailedto">Komentář odeslán</label>
 		<label index="portal.tab.feedbacks">Odpovědi</label>
-	</labels>
+	</labels>	
 	<labels lang="sr_RS">
 		<label index="ext.title">Коментар задатка</label>
 		<label index="id">Број коментара</label>
