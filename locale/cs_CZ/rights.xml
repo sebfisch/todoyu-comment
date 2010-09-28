@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<labels>
+	<label index="general">Obecné nastavení</label>
+	<label index="general.use">Používat komentáře</label>
+	<label index="comment">Komentář</label>
+	<label index="comment.seeAll">Prohlížet všechny komentáře (neveřejné)</label>
+	<label index="comment.editOwn">Upravovat vlastní komentáře</label>
+	<label index="comment.editAll">Upravovat všechny komentáře</label>
+	<label index="comment.requestFeedback">Vyžadovat odpověď</label>
+	<label index="comment.delete">Odstraňovat komentáře</label>
+	<label index="comment.sendAsEmail">Odeslat komentář emailem</label>
+	<label index="comment.makePublic">Označit komentář jako veřejný</label>
+</labels>

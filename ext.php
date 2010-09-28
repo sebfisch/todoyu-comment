@@ -30,7 +30,7 @@ define('EXTID_COMMENT', 105);
 define('PATH_EXT_COMMENT', PATH_EXT . '/comment');
 
 	// Register module locales
-TodoyuLanguage::register('comment', PATH_EXT_COMMENT . '/locale/ext.xml');
+TodoyuLabelManager::register('comment', 'comment', 'ext.xml');
 
 	// Request configurations
 	// @notice	Auto-loaded configs if available: admin, assets, create, contextmenu, extinfo, filters, form, page, panelwidgets, rights, search

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<labels>
+	<label index="general">Allgemeine Einstellungen</label>
+	<label index="general.use">Benutze Kommentare</label>
+	<label index="comment">Kommentar</label>
+	<label index="comment.seeAll">Sieht alle Kommentare</label>
+	<label index="comment.editOwn">Kann eigene Kommentare bearbeiten</label>
+	<label index="comment.editAll">Kann alle Kommentare bearbeiten</label>
+	<label index="comment.requestFeedback">Feedback von anderen anfordern</label>
+	<label index="comment.sendAsEmail">Kommentar als Email versenden</label>
+	<label index="comment.delete">Kommentare löschen</label>
+	<label index="comment.makePublic">Kommentare öffentlich schalten</label>
+</labels>
