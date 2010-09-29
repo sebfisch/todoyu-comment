@@ -29,7 +29,9 @@ CREATE TABLE `ext_comment_feedback` (
 	`id_person_feedback` int(10) unsigned NOT NULL,
 	`id_comment` int(10) unsigned NOT NULL,
 	`is_seen` tinyint(1) unsigned NOT NULL,
-	PRIMARY KEY (`id`)
+	PRIMARY KEY (`id`),
+	 KEY `comment` (`id_comment`),
+	 KEY `personseen` (`id_person_feedback`,`is_seen`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
