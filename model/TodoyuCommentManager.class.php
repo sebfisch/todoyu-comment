@@ -118,7 +118,6 @@ class TodoyuCommentManager {
 
 		// Send emails
 		if( $sendAsEmail && sizeof($personsEmail) > 0 ) {
-
 			TodoyuCommentMailer::sendEmails($idComment, $personsEmail);
 			TodoyuHeader::sendTodoyuHeader('sentEmail', true);
 		}
