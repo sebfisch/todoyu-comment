@@ -76,10 +76,12 @@
 
 				<field type="cancelButton" name="cancel">
 					<onclick>Todoyu.Ext.comment.Edit.cancel(#id_task#, #id#)</onclick>
+					<disable />
 				</field>
 
 				<field type="saveButton" name="save">
 					<onclick>Todoyu.Ext.comment.Edit.save(this.form)</onclick>
+					<disable />
 				</field>
 
 			</elements>
