@@ -45,7 +45,7 @@ class TodoyuCommentMailer {
 				// @todo	make hiding of sender email and comment authors' emails optional and configurable
 			$result = self::sendMail($idComment, $idPerson, false, true);
 
-			if ( $result === false ) {
+			if( $result === false ) {
 				$succeeded	= false;
 			}
 
