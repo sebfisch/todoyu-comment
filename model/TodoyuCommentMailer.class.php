@@ -42,19 +42,16 @@ class TodoyuCommentMailer {
 
 		$succeeded	= true;
 		foreach($personIDs as $idPerson) {
-				// @todo	make hiding of sender email and comment authors' emails optional and configurable
 			$result = self::sendMail($idComment, $idPerson, false, true);
 
 			if( $result === false ) {
 				$succeeded	= false;
 			}
 
-			/*
 			// NOT IN USE AT THE MOMENT
-			if( $result !== false ) {
-				TodoyuCommentMailManager::saveMailSent($idComment, $idPerson);
-			}
-			*/
+//			if( $result !== false ) {
+//				TodoyuCommentMailManager::saveMailSent($idComment, $idPerson);
+//			}			
 		}
 
 		return $succeeded;
@@ -84,28 +81,29 @@ class TodoyuCommentMailer {
 		$mail->CharSet	= 'utf-8';
 
 //
-//			// Change mail programm
+//			// Change mail program
 //		if( PHP_OS !== 'Linux' ) {
 //				// Windows Server: use 'mail' instead of 'sendmail'
 //			$mail->Mailer	= 'mail';
 //		}
 
-		if( $setSenderFromPersonMail === true ) {
-			$mail->From	= Todoyu::person()->getEmail();
-		} else {
-			$mail->From	= Todoyu::$CONFIG['SYSTEM']['email'];
-		}
+			// Set "from" (sender) name and email address
+		$fromName		= Todoyu::person()->getFullName() . ' (todoyu)';
+		$fromAddress	= $setSenderFromPersonMail ? Todoyu::person()->getEmail() : Todoyu::$CONFIG['SYSTEM']['email'];
+		$mail->SetFrom($fromAddress, $fromName);
 
-		$mail->set('ReplyTo', Todoyu::person()->getEmail());
-		$mail->FromName	= Todoyu::person()->getFullName() . ' (todoyu)';
+			// Set "replyTo", "subject"
+		$mail->AddReplyTo(Todoyu::person()->getEmail(), Todoyu::person()->getFullName());
 		$mail->Subject	= Label('comment.mail.subject') . ': ' . $comment->getTask()->getTitle() . ' (#' . $comment->getTask()->getTaskNumber(true) . ')';
 
+			// Add message body as HTML and plain text
 		$htmlBody		= self::getMailContentHtml($idComment, $idPerson, $hideEmails);
 		$textBody		= self::getMailContentText($idComment, $idPerson, $hideEmails);
 
 		$mail->MsgHTML($htmlBody, PATH_EXT_COMMENT);
 		$mail->AltBody	= $textBody;
 
+			// Add "to" (recipient) address
 		$mail->AddAddress($person->getEmail(), $person->getFullName());
 
 
