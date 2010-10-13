@@ -149,7 +149,7 @@ class TodoyuComment extends TodoyuBaseObject {
 			$this->loadForeignData();
 		}
 
-		return parent::getTemplateData();;
+		return parent::getTemplateData();
 	}
 }
 

@@ -60,6 +60,4 @@ if( allowed('comment', 'general:use') ) {
 	TodoyuContextMenuManager::addFunction('Task', 'TodoyuCommentManager::getTaskContextMenuItems', 150);
 }
 
-
-
 ?>

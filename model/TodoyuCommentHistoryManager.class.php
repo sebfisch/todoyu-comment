@@ -83,7 +83,7 @@ class TodoyuCommentHistoryManager {
 				$data['table']	= $table1;
 				$log[ $data['date_create'] ][]	= $data;
 			}
-			foreach($log2 as $num	=> $data) {
+			foreach($log2 as $data) {
 				$data['table']	= $table2;
 				$log[ $data['date_create'] ][]	= $data;
 			}
