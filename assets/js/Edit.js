@@ -108,7 +108,9 @@ Todoyu.Ext.comment.Edit = {
 	 * @param	{Number}	idComment
 	 */
 	cancel: function(idTask, idComment) {
-		$('task-' + idTask + '-commentform-' + idComment).remove();
+		var area = 'task-' + idTask + '-commentform-' + idComment;
+		Todoyu.Ui.closeRTE(area);
+		$(area).remove();
 		Todoyu.Ext.comment.List.refresh(idTask, true);
 	},
 
