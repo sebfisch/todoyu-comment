@@ -18,8 +18,14 @@
 *****************************************************************************/
 
 /**
- * Comment editing methods
- * Note:	there is the method 'edit' and the sub object 'Edit' (case-sensitive) with its own methods
+ * @module	Comment
+ */
+
+/**
+ * Comment editing
+ *
+ * @class		Edit
+ * @namespace	Todoyu.Ext.comment
  */
 Todoyu.Ext.comment.Edit = {
 
