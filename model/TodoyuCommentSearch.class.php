@@ -53,7 +53,7 @@ class TodoyuCommentSearch implements TodoyuSearchEngineIf {
 		$ids	= array();
 
 		foreach($find as $sword) {
-			$sword	= str_replace('k', '', strtolower($sword));
+			$sword	= str_replace('c', '', strtolower($sword));
 			$id		= intval($sword);
 
 			if( $id > 0 ) {
@@ -111,19 +111,14 @@ class TodoyuCommentSearch implements TodoyuSearchEngineIf {
 			$comments = Todoyu::db()->getArray($fields, $table, $where, '', $order);
 
 			foreach($comments as $comment) {
-				if(
-//	@todo	check - problem: worker can comment tasks which he's assigned to, and can find the comment in searches, but cannot view them in projects area if not allowed to see the whole project
-//					TodoyuProjectRights::isSeeAllowed($comment['id_project']) &&
-//					TodoyuTaskRights::isSeeAllowed($comment['taskid']) &&
-					TodoyuCommentRights::isSeeAllowed($comment['id'])
-				) {
+				if(	TodoyuCommentRights::isSeeAllowed($comment['id']) ) {
 					$textLong	= TodoyuString::getSubstring(strip_tags($comment['comment']), $find[0], 50, 60);
 					$textShort	= TodoyuString::getSubstring(strip_tags($comment['comment']), $find[0], 20, 30);
 					$textShort	= str_ireplace($find[0], '<strong>' . $find[0] . '</strong>', $textShort);
 					$taskTitle	= substr($comment['tasktitle'], 0, 40);
 
 					$suggestions[] = array(
-						'labelTitle'=> TodoyuTime::format($comment['date_create'], 'D2M2Y2') . ': ' . $taskTitle . ' [K ' . $comment['id'] . ' / ' . $comment['id_project'] . '.' . $comment['tasknumber'] . ']',
+						'labelTitle'=> TodoyuTime::format($comment['date_create'], 'D2M2Y2') . ': ' . $taskTitle . ' [c' . $comment['id'] . ' / ' . $comment['id_project'] . '.' . $comment['tasknumber'] . ']',
 						'labelInfo'	=> $textShort,
 						'title'		=> $comment['firstname'] . ' ' . $comment['lastname'] . ', ' . $comment['company'] . ': ' . $comment['projecttitle'] . ' # ' . $textLong,
 						'onclick'	=> 'location.href=\'?ext=project&amp;project=' . $comment['id_project'] . '&amp;task=' . $comment['taskid'] . '&amp;tab=comment#task-comment-' . $comment['id'] . '\''

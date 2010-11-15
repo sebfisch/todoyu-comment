@@ -46,6 +46,20 @@ class TodoyuCommentManager {
 
 
 	/**
+	 * Get task ID the given comment belongs to
+	 *
+	 * @param	Integer		$idComment
+	 * @return	Integer
+	 */
+	public static function getTaskID($idComment) {
+		$idComment	= intval($idComment);
+
+		return self::getComment($idComment)->getTaskID();
+	}
+
+
+
+	/**
 	 * Get a comment as an array
 	 *
 	 * @param	Integer		$idComment
@@ -393,6 +407,24 @@ class TodoyuCommentManager {
 		return intval($idPerson);
 	}
 
+
+
+	/**
+	 * Link comment IDs in given text
+	 *
+	 * @param	String		$text
+	 * @return	String
+	 */
+	public static function linkCommentIDsInText($text) {
+		if( allowed('project', 'general:area') ) {
+			$pattern	= '/(<p>|<span>|\s|^)c(\d+)(<\/p>|<\/span>|\s|$)/';
+			$replace	= '$1<a href="javascript:void(0)" onclick="Todoyu.Ext.comment.goToCommentInTaskByCommentNumber(\'$2\')">c$2</a>$3';
+
+			$text	= preg_replace($pattern, $replace, $text);
+		}
+
+		return $text;
+	}
 }
 
 ?>

@@ -8,7 +8,7 @@
 		<span id="task-comment-{$id}-person" class="comment-person">
 			{personLabel idPrefix="comment-personcreate" idRecord=$id idPerson=$person_create.id}
 		</span>
-		<span id="task-comment-{$id}-id" class="comment-id" title="{Label comment.id}">K{$id}</span>
+		<span id="task-comment-{$id}-id" class="comment-id" title="{Label comment.id}">c{$id}</span>
 		<span id="task-comment-{$id}-options" class="comment-options">
 		{* --------------------------- Edit ------------------------- *}
 		{if !$locked && (allowed('comment', 'comment:editAll') || allowedAndOwn('comment','comment:editOwn', $id_person_create))}
@@ -49,7 +49,7 @@
 		{/foreach}
 		</div>
 		{* --------------------------- Comment itself --------------- *}
-		<div class="comment">{linkTasks(linkUrls(cleanHtml($comment)))}</div>
+		<div class="comment">{substituteLinkableElements(cleanHtml($comment))}</div>
 	</div>
 	<div class="clear"><!-- clear --></div>
 	<div id="task-comment-log-{$id}-details" class="comment-history" style="display:none;"></div>

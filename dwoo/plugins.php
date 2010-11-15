@@ -41,4 +41,15 @@ function Dwoo_Plugin_limitHTMLwordsLen(Dwoo $dwoo, $string, $maxLen = 45) {
 	return TodoyuHtmlFilter::entitySafeLimitWordsLen($string, $maxLen);
 }
 
+
+
+/**
+ * @param	Dwoo_Compiler	$compiler
+ * @param	String			$text
+ * @return	String
+ */
+function Dwoo_Plugin_linkComments_compile(Dwoo_Compiler $compiler, $text) {
+	return 'TodoyuCommentManager::linkCommentIDsInText(' . $text . ')';
+}
+
 ?>

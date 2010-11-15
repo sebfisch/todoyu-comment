@@ -38,6 +38,40 @@ class TodoyuCommentTaskActionController extends TodoyuActionController {
 
 
 	/**
+	 * Get IDs of project and task of comment number
+	 *
+	 * @param	Array		$params
+	 * @return	Integer
+	 */
+	public function getcommentprojecttaskidsAction(array $params) {
+		$idComment	= trim($params['commentnumber']);
+
+			// Get IDs of task containing the comment and its project
+		$idTask		= TodoyuCommentManager::getTaskID($idComment);
+		$idProject	= TodoyuTaskManager::getProjectID($idTask);
+
+			// Send IDs as todoyu header
+		TodoyuHeader::sendTodoyuHeader('project', $idProject);
+		TodoyuHeader::sendTodoyuHeader('task', $idTask);
+	}
+
+
+
+	/**
+	 * Get task ID to comment number
+	 *
+	 * @param	Array		$params
+	 * @return	Integer
+	 */
+	public function getcommenttaskidAction(array $params) {
+		$idComment	= trim($params['commentnumber']);
+
+		return TodoyuCommentManager::getTaskID($idComment);
+	}
+
+
+
+	/**
 	 * Get comment list for tasktab
 	 *
 	 * @param	Array		$params

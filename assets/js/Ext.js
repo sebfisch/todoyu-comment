@@ -224,6 +224,11 @@ Todoyu.Ext.comment = {
 
 
 
+	/**
+	 * Update toggler icon of task comment log
+	 *
+	 * @param	{Number}	idComment
+	 */
 	updateToggleLogIcon: function(idComment) {
 		Todoyu.Ui.updateToggleIcon('task-comment-log-', idComment);
 	},
@@ -272,7 +277,7 @@ Todoyu.Ext.comment = {
 	 * Handler when empty edit form to add comment loaded
 	 *
 	 * @param	{Number}			idTask
-	 * @param	{Ajax.Response}	response
+	 * @param	{Ajax.Response}		response
 	 */
 	onAdd: function(idTask, response) {
 
@@ -313,6 +318,44 @@ Todoyu.Ext.comment = {
 	 */
 	onEdit: function(idTask, idComment, response) {
 		$('task-' + idTask + '-commentform-' + idComment).removeClassName('taskOptionBlock');
+	},
+
+
+
+	/**
+	 * Go to a comment of a task in project view, by comment number
+	 * Gets the task ID by AJAX and redirects the browser
+	 *
+	 * @param	{Number}	commentNumber
+	 */
+	goToCommentInTaskByCommentNumber: function(commentNumber) {
+		var url		= Todoyu.getUrl('comment', 'task');
+		var options	= {
+			parameters: {
+				action:		'getcommentprojecttaskids',
+				commentnumber: commentNumber
+			},
+			onComplete: this.onGoToCommentInTaskByCommentNumber.bind(this, commentNumber)
+		};
+
+		Todoyu.send(url, options);
+	},
+
+
+
+	/**
+	 * Handler for comment IDs request
+	 * responseText is the task ID
+	 *
+	 * @param	{Number}	commentNumber
+	 */
+	onGoToCommentInTaskByCommentNumber: function(commentNumber, response) {
+		var idTask		= parseInt(response.getTodoyuHeader('task'), 10);
+		var idProject	= parseInt(response.getTodoyuHeader('project'), 10);
+
+		if( idTask > 0 && idProject > 0 ) {
+			location.href='?ext=project&project=' + idProject + '&task=' + idTask + '&tab=comment#task-comment-' + commentNumber;
+		}
 	},
 
 
