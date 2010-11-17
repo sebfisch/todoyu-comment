@@ -7,7 +7,6 @@
 	<label index="comment.editOwn">自分のコメントを編集</label>
 	<label index="comment.editAll">全コメントを編集</label>
 	<label index="comment.requestFeedback">フィードバックの要求</label>
-	<label index="comment.delete">コメントの削除</label>
 	<label index="comment.sendAsEmail">メールでのコメント送信</label>
 	<label index="comment.makePublic">コメントを公開する</label>
 </labels>

@@ -8,6 +8,7 @@
 	<label index="comment.editAll">Kann alle Kommentare bearbeiten</label>
 	<label index="comment.requestFeedback">Feedback von anderen anfordern</label>
 	<label index="comment.sendAsEmail">Kommentar als Email versenden</label>
-	<label index="comment.delete">Kommentare löschen</label>
+	<label index="comment.deleteAll">Alle Kommentare löschen</label>
+	<label index="comment.deleteOwn">Eigene Kommentare löschen</label>
 	<label index="comment.makePublic">Kommentare öffentlich schalten</label>
 </labels>

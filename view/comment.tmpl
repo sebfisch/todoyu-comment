@@ -23,7 +23,7 @@
 			</a>
 		{/if}
 		{* -------------------------- Delete ------------------------ *}
-		{if !$locked && allowed('comment','comment:delete')}
+		{if !$locked && ( allowed('comment','comment:deleteAll') || (allowed('comment','comment:deleteOwn') && $id_person_create == personid()))}
 			<a href="javascript:void(0)" onclick="Todoyu.Ext.comment.remove({$id})" class="icon comment-remove" title="{Label comment.icon.remove}">
 				<span class="hidden">{Label comment.icon.remove}</span>
 			</a>

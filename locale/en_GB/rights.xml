@@ -7,7 +7,8 @@
 	<label index="comment.editOwn">Edit Own Comments</label>
 	<label index="comment.editAll">Edit All Comments</label>
 	<label index="comment.requestFeedback">Request Feedback</label>
-	<label index="comment.delete">Delete Comment</label>
+	<label index="comment.deleteAll">Delete All Comments</label>
+	<label index="comment.deleteOwn">Delete Own Comments</label>
 	<label index="comment.sendAsEmail">Send comment by e-mail</label>
 	<label index="comment.makePublic">Make Comment Public</label>
 </labels>

@@ -7,7 +7,8 @@
 	<label index="comment.editOwn">Upravovat vlastní komentáře</label>
 	<label index="comment.editAll">Upravovat všechny komentáře</label>
 	<label index="comment.requestFeedback">Vyžadovat odpověď</label>
-	<label index="comment.delete">Odstraňovat komentáře</label>
+	<label index="comment.deleteAll">Odstraňovat všechny komentáře</label>
+	<label index="comment.deleteOwn">Odstraňovat vlastní komentáře</label>
 	<label index="comment.sendAsEmail">Odeslat komentář emailem</label>
 	<label index="comment.makePublic">Označit komentář jako veřejný</label>
 </labels>

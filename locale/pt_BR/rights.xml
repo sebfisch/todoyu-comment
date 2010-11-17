@@ -7,7 +7,8 @@
 	<label index="comment.editOwn">Editar Minhas Notas</label>
 	<label index="comment.editAll">Editar Todas as Notas</label>
 	<label index="comment.requestFeedback">Requisitar Feedback</label>
-	<label index="comment.delete">Apagar Nota</label>
+	<label index="comment.deleteAll">Apagar Todas as Notas</label>
+	<label index="comment.deleteOwn">Apagar Minhas Notas</label>
 	<label index="comment.sendAsEmail">Enviar Nota por Email</label>
 	<label index="comment.makePublic">Tornar Nota Pública</label>
 </labels>

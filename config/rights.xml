@@ -11,7 +11,8 @@
 		<right name="editAll" />
 		<right name="requestFeedback" />
 		<right name="sendAsEmail" />
-		<right name="delete" />
+		<right name="deleteOwn" />
+		<right name="deleteAll" />
 		<right name="makePublic" />
 	</section>
 

@@ -7,7 +7,8 @@
 	<label index="comment.editOwn">Уреди своје коментаре</label>
 	<label index="comment.editAll">Уреди све коментаре</label>
 	<label index="comment.requestFeedback">Захтевај повратне информације</label>
-	<label index="comment.delete">Избриши коментар</label>
+	<label index="comment.deleteAll">Избриши све коментарe</label>
+	<label index="comment.deleteOwn">Избриши своје коментарe</label>
 	<label index="comment.sendAsEmail">Пошаљи коментар путем е-маил-а</label>
 	<label index="comment.makePublic">Јавни коментар</label>
 </labels>

@@ -80,17 +80,20 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 	 * @param	Array		$params
 	 */
 	public function deleteAction(array $params) {
-		restrict('comment', 'comment:delete');
+		restrict('comment', 'comment:deleteOwn');
 
-		$idComment	= intval($params['comment']);
-		$comment	= TodoyuCommentManager::getComment($idComment);
+		$idComment		= intval($params['comment']);
+		$comment		= TodoyuCommentManager::getComment($idComment);
+		$isOwnComment	= TodoyuAuth::getPersonID() == $comment->getPersonID('create');
 
-		TodoyuCommentManager::deleteComment($idComment);
+		if( $isOwnComment ||  allowed('comment', 'comment:deleteAll') ) {
+			TodoyuCommentManager::deleteComment($idComment);
 
-		$idTask	= $comment->getTaskID();
+			$idTask	= $comment->getTaskID();
 
-		TodoyuHeader::sendTodoyuHeader('idTask', $idTask);
-		TodoyuHeader::sendTodoyuHeader('tabLabel', TodoyuCommentTask::getLabel($idTask));
+			TodoyuHeader::sendTodoyuHeader('idTask', $idTask);
+			TodoyuHeader::sendTodoyuHeader('tabLabel', TodoyuCommentTask::getLabel($idTask));
+		}
 	}
 
 
