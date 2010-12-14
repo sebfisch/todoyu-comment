@@ -25,39 +25,6 @@
  * @subpackage	Admin
  */
 
-	// System name and email to be used in sender attribute inside emails
-Todoyu::$CONFIG['EXT']['comment']['infomail']['fromname'] 		= Todoyu::$CONFIG['SYSTEM']['name'];
-Todoyu::$CONFIG['EXT']['comment']['infomail']['email'] 			= Todoyu::$CONFIG['SYSTEM']['email'];
 
-
-
-	// Allowable tags inside comments text when saving
-Todoyu::$CONFIG['EXT']['comment']['allowedtags']	= '<p><b><strong><em><span><i><u><strike><ol><ul><li><br><pre><a>';
-
-
-/**
- * Configuration for 'feedback' tab in portal
- */
-Todoyu::$CONFIG['EXT']['comment']['feedbackTabFilters'] = array(
-	array(
-		'filter'	=> 'unseenFeedbackPerson',
-		'value'		=> 0,
-		'negate'	=> false
-	)
-);
-
-
-
-/**
- * Add comments related tabs, context menu items
- */
-if( allowed('comment', 'general:use') ) {
-
-		// Add task tab for comments
-	TodoyuTaskManager::addTaskTab('comment', 'TodoyuCommentTask::getLabel', 'TodoyuCommentTask::getContent', 30);
-
-		// Add task contextmenu to add comments to task
-	TodoyuContextMenuManager::addFunction('Task', 'TodoyuCommentManager::getTaskContextMenuItems', 150);
-}
 
 ?>

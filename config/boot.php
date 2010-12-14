@@ -18,12 +18,15 @@
 * This copyright notice MUST APPEAR in all copies of the script.
 *****************************************************************************/
 
-/**
- * Hooks config for Resources extension
- *
- * @package		Todoyu
- * @subpackage	Comment
- */
+	// Declare ext ID, path
+define('EXTID_COMMENT', 105);
+define('PATH_EXT_COMMENT', PATH_EXT . '/comment');
+
+	// Register module locales
+TodoyuLabelManager::register('comment', 'comment', 'ext.xml');
+
+require_once( PATH_EXT_COMMENT . '/dwoo/plugins.php');
+
 
 	// Substitute comment identifiers in text by hyperlinks
 TodoyuHookManager::registerHook('core', 'substituteLinkableElements', 'TodoyuCommentManager::linkCommentIDsInText');
