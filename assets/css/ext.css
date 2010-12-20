@@ -81,13 +81,13 @@ h1.extIconComment .title {
 }
 
 .task-comments .comment-details {
-	padding:2px
+	padding:2px;
 }
 
 .task-comments div.comment ul {
-	list-style-type:square;
-	list-style-position:inside;
-	padding-left:10px;
+	list-style-position:outside;
+	list-style-type:disc;
+	padding-left:14px;
 }
 
 .task-comments div.comment a {
