@@ -81,7 +81,7 @@ h1.extIconComment .title {
 }
 
 .task-comments .comment-details {
-	padding:2px;
+	padding-bottom:7px;
 }
 
 .task-comments div.comment ul {
@@ -99,7 +99,7 @@ h1.extIconComment .title {
 	width:300px !important;
 }
 
-.task-comments .comment-details .comment{
+.task-comments .comment-details .comment {
 	padding:5px !important;
 }
 
@@ -217,31 +217,20 @@ h1.extIconComment .title {
 	background-color:#fff;
 }
 
-
+/* -------------------------
+	comment task tab
+   ------------------------- */
+.tabContent .commentButtons {
+	padding:10px 10px 5px 10px;
+}
+.tabContent ul.task-comments {
+	background-color:#fff;
+	padding:5px;
+}
 
 /* --------------------
 	Comment form
    -------------------- */
-.commentform {
-	padding:10px 20px 10px 10px;
-}
-
-.commentform .formLabel {
-	width:20%;
-}
-
-.commentform .formField {
-	width:78%;
-}
-
-.commentform .fieldDefTextarea {
-	display:block;
-	position:absolute;
-	top:65px;
-	right:76%;
-	width:24%;
-	text-align:right;
-}
 
 
 
@@ -338,4 +327,24 @@ input.deleteButtonOwnComment {
 #contextmenu .taskContextMenu.task-add-comment {
 	background-image:url(../img/icons.png);
 	background-position:3px 3px;
+}
+
+/* ------------------------
+	task tab comment
+   ------------------------ */
+.commentform .fForm {
+	padding:0;
+	background:none;
+}
+.contextmenuComment .commentform .fForm {
+	background:white;
+	padding:0;
+}
+.contextmenuComment .commentform .fForm legend {
+	left:-5px;
+	text-indent:5px;
+	border:none;
+}
+.contextmenuComment .commentform .fForm fieldset {
+	padding-left:5px;
 }
