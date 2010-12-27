@@ -49,7 +49,7 @@ if( allowed('comment', 'general:use') ) {
 		// Add task tab for comments
 	TodoyuTaskManager::addTaskTab('comment', 'TodoyuCommentTask::getLabel', 'TodoyuCommentTask::getContent', 30);
 
-		// Add task contextmenu to add comments to task
+		// Add task context menu to add comments to task
 	TodoyuContextMenuManager::addFunction('Task', 'TodoyuCommentManager::getTaskContextMenuItems', 150);
 }
 
