@@ -319,7 +319,7 @@ class TodoyuCommentFeedbackManager {
 	/**
 	 * Get persons whom feedback to given comment is requested from
 	 *
-	 * @param	Interger	$idComment
+	 * @param	Integer	$idComment
 	 * @return	Array
 	 */
 	public static function getFeedbackPersons($idComment) {

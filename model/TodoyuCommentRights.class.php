@@ -155,7 +155,7 @@ class TodoyuCommentRights {
 	public static function restrictAddInTask($idTask) {
 		$idTask	= intval($idTask);
 
-		if( ! self::isAddAllowed($idTask) ) {
+		if( ! self::isAddInTaskAllowed($idTask) ) {
 			self::deny('comment:add');
 		}
 	}
