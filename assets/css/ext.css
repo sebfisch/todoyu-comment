@@ -126,7 +126,9 @@ h1.extIconComment .title {
 	padding-left:13px;
 	white-space:nowrap;
 }
-
+.task-comments .comment-details .persons span.commentperson-approved {
+	background:transparent url('../img/icons.png') no-repeat 0 -480px;
+}
 .task-comments .comment-details .persons span.commentperson-unapproved {
 	background:transparent url('../img/icons.png') no-repeat 0 -330px;
 }

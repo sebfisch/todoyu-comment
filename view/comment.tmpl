@@ -40,7 +40,7 @@
 
 			{/if}
 
-			{if $feedbackPerson.is_seen}{$class=''}{else}{$class='commentperson-unapproved'}{/if}
+			{if $feedbackPerson.is_seen}{$class='commentperson-approved'}{else}{$class='commentperson-unapproved'}{/if}
 			{personLabel idPrefix="comment-personfeedback" idRecord=$id idPerson=$feedbackPerson.id class=$class}
 			{if $dwoo.foreach.personsFeedback.last}
 				<div class="divider"> </div>
