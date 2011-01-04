@@ -226,9 +226,7 @@ class TodoyuCommentFeedbackManager {
 					AND c.id = f.id_comment
 					AND c.deleted = 0
 					AND c.id_task != 0';
-		
-		TodoyuDebug::printInFirebug($where);
-		
+
 		return Todoyu::db()->hasResult($field, $table, $where);
 	}
 
