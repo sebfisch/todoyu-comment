@@ -357,7 +357,7 @@ class TodoyuCommentManager {
 		$task	= TodoyuTaskManager::getTask($idTask);
 		$allowed= array();
 
-		if( $task->isTask() && !$task->isLocked() ) {
+		if( $task->isTask() && ! $task->isLocked() ) {
 			$ownItems	=& Todoyu::$CONFIG['EXT']['comment']['ContextMenu']['Task'];
 
 			if( array_key_exists('add', $items) ) {
