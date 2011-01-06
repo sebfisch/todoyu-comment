@@ -63,7 +63,7 @@ Todoyu.Ext.comment = {
 	 *
 	 * @param	{Number}	idComment
 	 */
-	setSeenStatus: function(idComment, idPerson)	{
+	setSeenStatus: function(idComment, idPerson) {
 		var url		= Todoyu.getUrl('comment', 'task');
 		var options	= {
 			'parameters': {
