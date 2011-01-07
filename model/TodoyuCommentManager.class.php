@@ -301,7 +301,6 @@ class TodoyuCommentManager {
 
 		$taskPersons	= TodoyuTaskManager::getTaskPersons($idTask);
 		$projectPersons	= TodoyuProjectManager::getProjectPersons($idProject);
-		$internalPersons= TodoyuPersonManager::getInternalPersons();
 
 		$persons = array();
 
@@ -320,9 +319,13 @@ class TodoyuCommentManager {
 		}
 
 			// Add internal Persons
-		foreach($internalPersons as $person) {
-			if( ! empty($person['email']) ) {
-				$persons[$person['id']] = $person;
+		if( allowed('contact', 'person:seeAllInternalPersons') ) {
+			$internalPersons= TodoyuPersonManager::getInternalPersons();
+
+			foreach($internalPersons as $person) {
+				if( ! empty($person['email']) ) {
+					$persons[$person['id']] = $person;
+				}
 			}
 		}
 
