@@ -99,7 +99,7 @@ class TodoyuCommentRenderer {
 				'feedback'	=> $idFeedbackPerson
 			);
 		} else {
-			// Edit comment
+				// Edit comment
 			$comment	= TodoyuCommentManager::getComment($idComment);
 			$data		= $comment->getTemplateData(true);
 			$data['feedback'] = TodoyuArray::getColumn($data['persons_feedback'], 'id');
