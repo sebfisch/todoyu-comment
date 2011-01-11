@@ -333,7 +333,7 @@ class TodoyuCommentFeedbackManager {
 					ext_comment_feedback f';
 		$where	= '		f.id_comment 		= ' . $idComment .
 				  ' AND	f.id_person_feedback= p.id
-				    AND	p.deleted			= 0';
+					AND	p.deleted			= 0';
 		$group	= '	p.id';
 		$order	= '	p.lastname,
 					p.firstname';
