@@ -43,7 +43,7 @@ class TodoyuCommentTaskFilter {
 			'ext_comment_comment',
 			'ext_comment_feedback'
 		);
-		$where	=	'	ext_comment_comment.deleted 	= 0'
+		$where	= '		ext_comment_comment.deleted 	= 0'
 				. '	AND ext_comment_feedback.is_seen	= ' . $seenStatus;
 		$join	= array(
 			'ext_comment_comment.id_task = ext_project_task.id',

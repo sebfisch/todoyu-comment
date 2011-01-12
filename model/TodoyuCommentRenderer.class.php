@@ -193,7 +193,7 @@ class TodoyuCommentRenderer {
 		$label	= TodoyuLabelManager::getLabel('comment.portal.tab.feedback');
 
 		if( $count ) {
-			$taskIDs	=	TodoyuCommentManager::getFeedbackTaskIDs();
+			$taskIDs= TodoyuCommentManager::getFeedbackTaskIDs();
 			$label	= $label . ' (' . sizeof($taskIDs) . ')';
 		}
 

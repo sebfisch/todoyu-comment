@@ -89,7 +89,7 @@ Todoyu.Ext.comment.Edit = {
 	 * @param	{Object}	response
 	 */
 	onSaved: function(idTask, response) {
-		var idComment	=	response.getTodoyuHeader('idComment');
+		var idComment	= response.getTodoyuHeader('idComment');
 
 		if( response.hasTodoyuError() ) {
 			$('comment-' + idTask + '-' + idComment + '-form').replace(response.responseText);
@@ -129,8 +129,8 @@ Todoyu.Ext.comment.Edit = {
 	 * @param	{Object}	response
 	 */
 	onRemoved: function(response){
-		var tabLabel	=	response.getTodoyuHeader('tabLabel');
-		var idTask		=	response.getTodoyuHeader('idTask');
+		var tabLabel	= response.getTodoyuHeader('tabLabel');
+		var idTask		= response.getTodoyuHeader('idTask');
 
 		Todoyu.Ext.comment.setTabLabel(idTask, tabLabel);
 	}
