@@ -85,8 +85,8 @@ Todoyu.Ext.comment.Edit = {
 	/**
 	 * Evoked after completion of saving comment
 	 *
-	 * @param	{Number}	idTask
-	 * @param	{Object}	response
+	 * @param	{Number}			idTask
+	 * @param	{Ajax.Response}		response
 	 */
 	onSaved: function(idTask, response) {
 		var idComment	= response.getTodoyuHeader('idComment');
@@ -125,8 +125,8 @@ Todoyu.Ext.comment.Edit = {
 	/**
 	 * Evoked after completion of removing comment
 	 *
-	 * @param	{Number}	idTask
-	 * @param	{Object}	response
+	 * @param	{Number}			idTask
+	 * @param	{Ajax.Response}		response
 	 */
 	onRemoved: function(response){
 		var tabLabel	= response.getTodoyuHeader('tabLabel');
