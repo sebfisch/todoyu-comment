@@ -104,9 +104,9 @@ class TodoyuCommentManager {
 		$data	= self::saveCommentForeignRecords($data, $idComment);
 
 			// Extract feedback and email data
-		$sendAsEmail	= intval($data['sendasemail']) === 1;
-		$personsEmail	= array_unique(TodoyuArray::intExplode(',', $data['emailreceivers'], true, true));
-		$personsFeedback= array_unique(TodoyuArray::intExplode(',', $data['feedback'], true, true));
+		$sendAsEmail			= intval($data['sendasemail']) === 1;
+		$mailReceiverPersonIDs	= array_unique(TodoyuArray::intExplode(',', $data['emailreceivers'], true, true));
+		$personIDsFeedback		= array_unique(TodoyuArray::intExplode(',', $data['feedback'], true, true));
 
 			// Remove special handled fields
 		unset($data['sendasemail']);
@@ -125,14 +125,15 @@ class TodoyuCommentManager {
 		TodoyuCommentFeedbackManager::setTaskCommentsAsSeen($data['id_task']);
 
 			// Register feedback for current comment
-		TodoyuCommentFeedbackManager::updateFeedbacks($idComment, $personsFeedback);
+		TodoyuCommentFeedbackManager::updateFeedbacks($idComment, $personIDsFeedback);
 
 			// Call saved hook
 		TodoyuHookManager::callHook('comment', 'saved', array($idComment));
 
 		// Send emails
-		if( $sendAsEmail && sizeof($personsEmail) > 0 ) {
-			TodoyuCommentMailer::sendEmails($idComment, $personsEmail);
+		if( $sendAsEmail && sizeof($mailReceiverPersonIDs) > 0 ) {
+			TodoyuCommentMailer::sendEmails($idComment, $mailReceiverPersonIDs);
+			TodoyuCommentMailManager::saveMailsSent($idComment, $mailReceiverPersonIDs);
 			TodoyuHeader::sendTodoyuHeader('sentEmail', true);
 		}
 

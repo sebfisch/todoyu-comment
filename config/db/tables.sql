@@ -19,6 +19,7 @@ CREATE TABLE `ext_comment_comment` (
 
 --
 -- Table structure for table `ext_comment_feedback`
+-- @todo	rename to ext_comment_mm_comment_personfeedback
 --
 
 CREATE TABLE `ext_comment_feedback` (
@@ -37,15 +38,16 @@ CREATE TABLE `ext_comment_feedback` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ext_comment_mailed`
+-- Table structure for table `ext_comment_mm_comment_personemail`
 --
 
-CREATE TABLE `ext_comment_mailed` (
+CREATE TABLE `ext_comment_mm_comment_personemail` (
 	`id` int(10) NOT NULL AUTO_INCREMENT,
 	`date_create` int(10) unsigned NOT NULL,
 	`date_update` int(10) unsigned NOT NULL,
 	`id_person_create` int(10) unsigned NOT NULL,
 	`id_comment` int(10) unsigned NOT NULL,
-	`id_person_mailed` int(10) unsigned NOT NULL,
-	PRIMARY KEY (`id`)
+	`id_person_email` int(10) unsigned NOT NULL,
+	PRIMARY KEY (`id`),
+	KEY `comment` (`id_comment`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;

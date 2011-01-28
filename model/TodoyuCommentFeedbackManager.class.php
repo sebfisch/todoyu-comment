@@ -337,8 +337,9 @@ class TodoyuCommentFeedbackManager {
 		$group	= '	p.id';
 		$order	= '	p.lastname,
 					p.firstname';
+		$indexField	= 'id';
 
-		return Todoyu::db()->getArray($fields, $tables, $where, $group, $order);
+		return Todoyu::db()->getArray($fields, $tables, $where, $group, $order, '', $indexField);
 	}
 
 

@@ -132,7 +132,12 @@ class TodoyuComment extends TodoyuBaseObject {
 	 */
 	protected function loadForeignData() {
 		$this->data['person_create']	= $this->getCreatePerson()->getTemplateData(false);
+
 		$this->data['persons_feedback']	= TodoyuCommentFeedbackManager::getFeedbackPersons($this->getID());
+		$this->data['persons_email']	= TodoyuCommentMailManager::getEmailPersons($this->getID());
+			// Persons that the comment has been mailed to without a feedback request?
+		$this->data['person_ids_mailonly']	= array_diff(array_keys($this->data['persons_email']), array_keys($this->data['persons_feedback']));
+
 		$this->data['unapproved']		= TodoyuCommentFeedbackManager::isCommentUnapproved($this->getID());
 		$this->data['locked']			= $this->isLocked();
 	}

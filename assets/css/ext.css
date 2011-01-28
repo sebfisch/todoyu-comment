@@ -20,6 +20,8 @@ h1.extIconComment .title {
 	background-position:6px -356px;
 }
 
+
+
 /* --------------
 	Search
    -------------- */
@@ -36,7 +38,6 @@ h1.extIconComment .title {
 #portal-tab-feedback span.icon {
 	background:url(../img/icons.png) no-repeat 0 -356px;
 }
-
 
 
 
@@ -70,7 +71,6 @@ h1.extIconComment .title {
 	font-weight:bold;
 	background:#E5E8DA url(../../../../core/assets/img/bg-tabheader.png) repeat-x 0 top;
 }
-
 
 
 
@@ -112,6 +112,11 @@ h1.extIconComment .title {
 	width:285px;
 }
 
+
+
+/* -----------------------------------------------------------
+	Feedback and email receiver persons in comment header
+   ----------------------------------------------------------- */
 .task-comments .comment-details .persons {
 	padding:0 5px;
 }
@@ -126,12 +131,31 @@ h1.extIconComment .title {
 	padding-left:13px;
 	white-space:nowrap;
 }
+	/* Person has acknowledged feedback */
 .task-comments .comment-details .persons span.commentperson-approved {
 	background:transparent url('../img/icons.png') no-repeat 0 -480px;
 }
+	/* Person has only received the comment via mail */
+.task-comments .comment-details .persons span.emailperson {
+	background:transparent url('../img/icons.png') no-repeat 0 -511px;
+}
+	/* Person has acknowledged feedback AND received it via email */
+.task-comments .comment-details .persons span.commentperson-approved-email {
+	background:transparent url('../img/icons.png') no-repeat 0 -567px;
+	padding-left:23px;
+}
+	/* Person has NOT acknowledged feedback */
 .task-comments .comment-details .persons span.commentperson-unapproved {
 	background:transparent url('../img/icons.png') no-repeat 0 -330px;
 }
+	/* Person has NOT acknowledged feedback AND received it via email */
+.task-comments .comment-details .persons span.commentperson-unapproved-email {
+	background:transparent url('../img/icons.png') no-repeat 0 -535px;
+	padding-left:23px;
+}
+
+
+
 
 .task-comments li.isPublic {
 	border:solid #FF0000 !important;

@@ -35,6 +35,7 @@
 	<label index="icon.toggleCustomerVisibility">Switch visibility of this comment</label>
 	<label index="icon.togglelog">Show/Hide Communication Log</label>
 	<label index="comment.feedbackPersons">Feedback Requested From:</label>
+	<label index="comment.emailPersons">Sent only by email to:</label>
 	<label index="mail.subject">New Comment</label>
 	<label index="mail.newcomment">A new comment was created</label>
 	<label index="mail.commentlink">Open Comment</label>

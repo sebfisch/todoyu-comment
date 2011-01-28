@@ -36,17 +36,24 @@
 		{foreach $persons_feedback feedbackPerson name=personsFeedback}
 			{if $dwoo.foreach.personsFeedback.first}
 				{Label comment.comment.feedbackPersons}
-			{else}
-
 			{/if}
 
 			{if $feedbackPerson.is_seen}{$class='commentperson-approved'}{else}{$class='commentperson-unapproved'}{/if}
+			{if in_array($feedbackPerson.id, array_keys($persons_email))}{$class.='-email'}{/if}
 			{personLabel idPrefix="comment-personfeedback" idRecord=$id idPerson=$feedbackPerson.id class=$class}
 			{if $dwoo.foreach.personsFeedback.last}
 				<div class="divider"> </div>
 			{/if}
-
 		{/foreach}
+
+		{if sizeof($person_ids_mailonly) > 0}
+			{Label comment.comment.emailPersons}
+			{foreach $persons_email emailPerson name=personsEmail}
+				{personLabel idPrefix="comment-personemail" idRecord=$id idPerson=$emailPerson.id class="emailperson"}
+			{/foreach}
+			<div class="divider"> </div>
+		{/if}
+
 		</div>
 		{* --------------------------- Comment itself --------------- *}
 		<div class="comment">{substituteLinkableElements(cleanHtml($comment))}</div>

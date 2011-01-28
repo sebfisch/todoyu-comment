@@ -29,52 +29,75 @@ class TodoyuCommentMailManager {
 	/**
 	 * @var	String		Default table for database requests
 	 */
-	const TABLE = 'ext_comment_mailed';
+	const TABLE = 'ext_comment_mm_comment_personemail';
 
 
 
 	/**
-	 * Save log record about comment having been mailed when to which person
+	 * Save log record about persons the given mail has been sent to
 	 *
 	 * @param	Integer		$idComment
-	 * @param	Integer		$idPersonMailed
-	 * @return	Integer		New record ID
+	 * @param	Array		$personIDs			Persons the comment has been sent to
 	 */
-	public static function saveMailSent($idComment, $idPersonMailed) {
+	public static function saveMailsSent($idComment, array $personIDs = array() ) {
 		$idComment		= intval($idComment);
-		$idPersonMailed	= intval($idPersonMailed);
+		$personIDs		= TodoyuArray::intval($personIDs);
 
-		$data	= array(
-			'id_comment'		=> $idComment,
-			'id_person_mailed'	=> $idPersonMailed,
-		);
-
-		return TodoyuRecordManager::addRecord(self::TABLE, $data);
+		foreach($personIDs as $idPerson) {
+			self::addMailSent($idComment, $idPerson);
+		}
 	}
 
 
 
 	/**
-	 * Get all mail sent log entries
+	 * log sent comment email of given comment to given person
 	 *
 	 * @param	Integer		$idComment
-	 * @param	Integer		$idPersonCreate
-	 * @param	Integer		$idPersonMailed
+	 * @param	Integer		$idPerson
+	 */
+	public static function addMailSent($idComment, $idPerson) {
+		$idComment	= intval($idComment);
+		$idPerson	= intval($idPerson);
+
+		$data	= array(
+			'id_person_create'	=> personid(),
+			'date_create'		=> NOW,
+			'id_comment'		=> $idComment,
+			'id_person_email'	=> $idPerson,
+		);
+
+		TodoyuRecordManager::addRecord(self::TABLE, $data);
+	}
+
+
+
+	/**
+	 * Get persons the given comment has been sent to by email
+	 *
+	 * @param	Integer		$idComment
 	 * @return	Array
 	 */
-	public static function getAllSent($idComment, $idPersonCreate = 0, $idPersonMailed = 0) {
-		$idComment		= intval($idComment);
-		$idPersonCreate	= intval($idPersonCreate);
-		$idPersonMailed	= intval($idPersonMailed);
+	public static function getEmailPersons($idComment) {
+		$idComment	= intval($idComment);
 
-		$fields	= '*';
-		$where	= 'id_comment = ' . $idComment .
-				 ($idPersonCreate !== 0 ? ' AND id_person_create = ' . $idPersonCreate : '') .
-				 ($idPersonMailed !== 0 ? ' AND id_person_mailed IN (' . $idPersonMailed . ')' : '');
-		$groupBy	= 'id';
-		$orderBy	= 'date_create';
+		$fields	= '	p.id,
+					p.username,
+					p.email,
+					p.firstname,
+					p.lastname,
+					e.date_create';
+		$tables	= '	ext_contact_person p,
+					ext_comment_mm_comment_personemail e';
+		$where	= '		e.id_comment 		= ' . $idComment .
+				  ' AND	e.id_person_email	= p.id
+					AND	p.deleted			= 0';
+		$group	= '	p.id';
+		$order	= '	p.lastname,
+					p.firstname';
+		$indexField	= 'id';
 
-		return Todoyu::db()->getArray($fields, self::TABLE, $where, $groupBy, $orderBy);
+		return Todoyu::db()->getArray($fields, $tables, $where, $group, $order, '', $indexField);
 	}
 
 }
