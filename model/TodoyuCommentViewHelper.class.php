@@ -29,7 +29,7 @@ class TodoyuCommentViewHelper {
 	/**
 	 * Get option array of persons which can receive the comment email (project members)
 	 *
-	 * @param	Array		$formData
+	 * @param	TodoyuFormElement	$field
 	 * @return	Array
 	 */
 	public static function getEmailReceiverOptions(TodoyuFormElement $field) {
@@ -52,7 +52,7 @@ class TodoyuCommentViewHelper {
 	/**
 	 * Get option of task owner as comment email receiver
 	 *
-	 * @param	Array		$formData
+	 * @param	TodoyuFormElement	$field
 	 * @return	Array
 	 */
 	public static function getTaskOwnerEmailOption(TodoyuFormElement $field) {
@@ -66,7 +66,7 @@ class TodoyuCommentViewHelper {
 	 * The options are grouped in main groups with contain the options for
 	 * the persons
 	 *
-	 * @param	Array		$formData
+	 * @param	TodoyuFormElement	$field
 	 * @return	Array
 	 */
 	public static function getFeedbackPersonsGroupedOptions(TodoyuFormElement $field) {
@@ -114,7 +114,7 @@ class TodoyuCommentViewHelper {
 	/**
 	 * Get task owner option for feedback select
 	 *
-	 * @param	Array		$formData
+	 * @param	TodoyuFormElement	$field
 	 * @return	Array
 	 */
 	public static function getFeedbackOwnerOption(TodoyuFormElement $field) {
