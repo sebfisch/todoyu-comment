@@ -25,6 +25,7 @@ Todoyu.Ext.comment.List = {
 	/**
 	 * Refresh list of comments of given task, optionally toggle sorting order
 	 *
+	 * @method	refresh
 	 * @param	{Number}	idTask
 	 * @param	{Number}	desc	(0 or 1)
 	 */
@@ -47,6 +48,9 @@ Todoyu.Ext.comment.List = {
 
 	/**
 	 * Toggle comments list visibility
+	 *
+	 * @method	toggle
+	 * @param	{Number}	idTask
 	 */
 	toggle: function(idTask) {
 		Todoyu.Ui.toggle('task-' + idTask + '-comments');

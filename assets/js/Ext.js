@@ -22,7 +22,12 @@
  */
 Todoyu.Ext.comment = {
 
+	/**
+	 * @property	PanelWidget
+	 * @type		Object
+	 */
 	PanelWidget: {},
+
 
 
 	/**

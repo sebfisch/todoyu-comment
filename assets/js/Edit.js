@@ -41,6 +41,7 @@ Todoyu.Ext.comment.Edit = {
 	/**
 	 * 'Email changed' event handler
 	 *
+	 * @method	onClickSendAsEmail
 	 * @param	{Element}	checkbox
 	 */
 	onClickSendAsEmail: function(checkbox) {
@@ -62,6 +63,7 @@ Todoyu.Ext.comment.Edit = {
 	/**
 	 * Save comment
 	 *
+	 * @method	save
 	 * @param	{String}	form
 	 * @return	{Boolean}
 	 */
@@ -85,6 +87,7 @@ Todoyu.Ext.comment.Edit = {
 	/**
 	 * Evoked after completion of saving comment
 	 *
+	 * @method	onSaved
 	 * @param	{Number}			idTask
 	 * @param	{Ajax.Response}		response
 	 */
@@ -110,6 +113,7 @@ Todoyu.Ext.comment.Edit = {
 	/**
 	 * Cancel editing of comment (close comment edit box)
 	 *
+	 * @method	cancel
 	 * @param	{Number}	idTask
 	 * @param	{Number}	idComment
 	 */
@@ -125,6 +129,7 @@ Todoyu.Ext.comment.Edit = {
 	/**
 	 * Evoked after completion of removing comment
 	 *
+	 * @method	onRemoved
 	 * @param	{Number}			idTask
 	 * @param	{Ajax.Response}		response
 	 */
