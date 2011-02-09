@@ -35,7 +35,7 @@ class TodoyuCommentTaskFilter {
 	 * @param	Boolean		$negate
 	 * @return	Array
 	 */
-	public static function Filter_unseenFeedback($value, $negate = false)	{
+	public static function Filter_unseenFeedback($value, $negate = false) {
 		$seenStatus	= $negate ? 1 : 0 ;
 
 		$tables	= array(

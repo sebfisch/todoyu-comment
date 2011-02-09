@@ -39,7 +39,7 @@ Todoyu.Ext.comment.Edit = {
 
 
 	/**
-	 * 'Email changed' event handler
+	 * Handler when changing "send as email" option checkbox
 	 *
 	 * @method	onClickSendAsEmail
 	 * @param	{Element}	checkbox
@@ -52,7 +52,7 @@ Todoyu.Ext.comment.Edit = {
 		var emailEl	= $('formElement-comment-' + idTask + '-' + idComment + '-field-emailreceivers');
 
 		if( checkbox.checked ) {
-			emailEl.show();
+			Todoyu.show();
 		} else {
 			emailEl.hide();
 		}

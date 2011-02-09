@@ -350,7 +350,7 @@ class TodoyuCommentFeedbackManager {
 	 * @param	Integer		$idComment
 	 * @return	Boolean		Open feedback request found
 	 */
-	public static function isCommentUnapproved($idComment)	{
+	public static function isCommentUnapproved($idComment) {
 		$idComment	= intval($idComment);
 		$idPerson		= personid();
 

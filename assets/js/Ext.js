@@ -182,7 +182,7 @@ Todoyu.Ext.comment = {
 		var elementID	= 'task-' + idTask + '-comments';
 		var isDesc = false;
 
-		if(elementID) {
+		if( elementID ) {
 			isDesc	= $(elementID).hasClassName('desc');
 		}
 
