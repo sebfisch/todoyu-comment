@@ -43,7 +43,11 @@
 					<label>comment.edit.is_public</label>
 					<restrictInternal />
 				</field>
+			</elements>
+		</fieldset>
 
+		<fieldset name="email">
+			<elements>
 				<field type="checkbox" name="sendasemail">
 					<label>comment.edit.sendasemail</label>
 					<onclick>Todoyu.Ext.comment.Edit.onClickSendAsEmail(this)</onclick>
@@ -65,7 +69,6 @@
 						<allow ext="comment" right="comment:sendAsEmail" />
 					</restrict>
 				</field>
-
 			</elements>
 		</fieldset>
 

@@ -173,8 +173,8 @@ class TodoyuCommentRenderer {
 		$roles		= explode(',', $extConf['automailcommenttoowner']);
 
 		if( TodoyuPersonManager::hasAnyRole($roles) ) {
-			$form->getFieldset('main')->removeField('sendasemail', true);
-			$form->getFieldset('main')->removeField('emailreceivers', true);
+			$form->getFieldset('email')->removeField('sendasemail', true);
+			$form->getFieldset('email')->removeField('emailreceivers', true);
 			$form->getFieldset('main')->addElementsFromXML('ext/comment/config/form/comment-automailtoowner.xml');
 		}
 

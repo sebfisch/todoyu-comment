@@ -1,11 +1,12 @@
 todoyu comment extension changelog
 
 comment 1.1.0 (requires core >= 2.1) - not released yet
+	* Changed: Moved comment emailing options into separate fieldset of comment form
 	* Feature: Cleanup (topical order and readability) of extension config (init.php) file
 	* Feature: Forms restyled
-   	* Changed: Updated loading structure: (core: boot.php, init: request,) extensions: init.php
-   	* Feature: Comments identifier is now "C" (not "K") - header, comment detail, search, linkage
-   	* Feature: Changed locale format
+	* Changed: Updated loading structure: (core: boot.php, init: request,) extensions: init.php
+	* Feature: Comments identifier is now "C" (not "K") - header, comment detail, search, linkage
+	* Feature: Changed locale format
 
 comment 1.0.8 - not released yet
 	* Feature: Added changelog
@@ -59,6 +60,7 @@ comment 1.0.1 to 1.0.7 - 1.0.7 released 2011-01-17
 	* Changed: Moved the global $CONFIG variable to Todoyu class. Is now a public static member variable
 	* Feature: New filter for comments
 	* Feature: Added Rights
+
 
 comment 0.0.1 to 1.0.0 - 1.0.0 released on 2010-05-10
 	* Bugfix: Tab loading fixed
