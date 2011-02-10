@@ -291,7 +291,7 @@ class TodoyuCommentManager {
 
 
 	/**
-	 * Get Persons which could receive a comment email
+	 * Get details of persons which could receive a comment email
 	 *
 	 * @param	Integer		$idTask
 	 * @return	Array

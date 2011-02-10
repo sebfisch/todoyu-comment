@@ -52,7 +52,7 @@ Todoyu.Ext.comment.Edit = {
 		var emailEl	= $('formElement-comment-' + idTask + '-' + idComment + '-field-emailreceivers');
 
 		if( checkbox.checked ) {
-			Todoyu.show();
+			emailEl.show();
 		} else {
 			emailEl.hide();
 		}

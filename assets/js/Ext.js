@@ -33,6 +33,7 @@ Todoyu.Ext.comment = {
 	/**
 	 * Toggle customer visibility of given comment
 	 *
+	 * @method	togglePublic
 	 * @param	{Number}	idComment
 	 */
 	togglePublic: function(idComment) {
@@ -53,6 +54,7 @@ Todoyu.Ext.comment = {
 	/**
 	 * Handler for togglePublic
 	 *
+	 * @method	onToggledPublic
 	 * @param	{Number}			idComment
 	 * @param	{Ajax.Response}	response
 	 */
@@ -66,7 +68,9 @@ Todoyu.Ext.comment = {
 	/**
 	 * Toggle 'seen' status of given comment
 	 *
+	 * @method	setSeenStatus
 	 * @param	{Number}	idComment
+	 * @param	{Number}	idPerson
 	 */
 	setSeenStatus: function(idComment, idPerson) {
 		var url		= Todoyu.getUrl('comment', 'task');
@@ -86,6 +90,7 @@ Todoyu.Ext.comment = {
 	/**
 	 * Handler for setSeenStatus
 	 *
+	 * @method	onSeenStatusSet
 	 * @param	{Number}			idComment
 	 * @param	{Number}			idPerson
 	 * @param	{Ajax.Response}	response
@@ -110,6 +115,7 @@ Todoyu.Ext.comment = {
 	/**
 	 * Remove given comment
 	 *
+	 * @method	remove
 	 * @param	{Number}	idComment
 	 */
 	remove: function(idComment) {
@@ -140,6 +146,7 @@ Todoyu.Ext.comment = {
 	/**
 	 * Add new comment to given task
 	 *
+	 * @method	addTaskComment
 	 * @param	{Number}	idTask
 	 */
 	addTaskComment: function(idTask) {
@@ -149,7 +156,8 @@ Todoyu.Ext.comment = {
 
 	/**
 	 * Handler when task comment tab is loaded
-	 * 
+	 *
+	 * @method	onTaskCommentTabLoaded
 	 * @param	{Number}	idTask
 	 * @param	{String}	tab
 	 */
@@ -164,6 +172,7 @@ Todoyu.Ext.comment = {
 	/**
 	 * Set Label (on adding or removing comment)
 	 *
+	 * @method	setTabLabel
 	 * @param	{Number} idTask
 	 * @param	{String}	label
 	 */
@@ -175,6 +184,7 @@ Todoyu.Ext.comment = {
 	/**
 	 * Check whether sorting of comments of given task is desc (true) or asc (false)
 	 *
+	 * @method	checkSortingIsDesc
 	 * @param	{Number}	idTask
 	 * @return	{Boolean}
 	 */
@@ -194,6 +204,7 @@ Todoyu.Ext.comment = {
 	/**
 	 * Toggle display of comment (feedbacks and mailing) log
 	 *
+	 * @method	toggleLog
 	 * @param	{Number}	idTask
 	 */
 	toggleLog: function(idComment) {
@@ -232,6 +243,7 @@ Todoyu.Ext.comment = {
 	/**
 	 * Update toggler icon of task comment log
 	 *
+	 * @method	updateToggleLogIcon
 	 * @param	{Number}	idComment
 	 */
 	updateToggleLogIcon: function(idComment) {
@@ -243,6 +255,7 @@ Todoyu.Ext.comment = {
 	/**
 	 * Toggle sorting of comments of given task
 	 *
+	 * @method	toggleSorting
 	 * @param	{Number}	idTask
 	 */
 	toggleSorting: function(idTask) {
@@ -257,6 +270,7 @@ Todoyu.Ext.comment = {
 	/**
 	 * Add a new comment, open empty edit form
 	 *
+	 * @method	add
 	 * @param	{Number}		idTask
 	 */
 	add: function(idTask) {
@@ -281,6 +295,7 @@ Todoyu.Ext.comment = {
 	/**
 	 * Handler when empty edit form to add comment loaded
 	 *
+	 * @method	onAdd
 	 * @param	{Number}			idTask
 	 * @param	{Ajax.Response}		response
 	 */
@@ -294,6 +309,7 @@ Todoyu.Ext.comment = {
 	 * Evoke comment editor (of given comment of given task)
 	 * Note:	there is the method 'edit' and the sub object 'Edit' (case-sensitive) with its own methods
 	 *
+	 * @method	edit
 	 * @param	{Number}	idTask
 	 * @param	{Number}	idComment
 	 */
@@ -317,6 +333,7 @@ Todoyu.Ext.comment = {
 	/**
 	 * Handler when comment edit form loaded
 	 *
+	 * @method	onEdit
 	 * @param	{Number}			idTask
 	 * @param	{Number}			idComment
 	 * @param	{Ajax.Response}	response
@@ -331,6 +348,7 @@ Todoyu.Ext.comment = {
 	 * Go to a comment of a task in project view, by comment number
 	 * Gets the task ID by AJAX and redirects the browser
 	 *
+	 * @method	goToCommentInTaskByCommentNumber
 	 * @param	{Number}	commentNumber
 	 */
 	goToCommentInTaskByCommentNumber: function(commentNumber) {
@@ -352,6 +370,7 @@ Todoyu.Ext.comment = {
 	 * Handler for comment IDs request
 	 * responseText is the task ID
 	 *
+	 * @method	onGoToCommentInTaskByCommentNumber
 	 * @param	{Number}	commentNumber
 	 */
 	onGoToCommentInTaskByCommentNumber: function(commentNumber, response) {
@@ -368,6 +387,7 @@ Todoyu.Ext.comment = {
 	/**
 	 * Remove all open edit forms for comment
 	 *
+	 * @method	removeForms
 	 * @param	{Number}		idTask
 	 */
 	removeForms: function(idTask) {
