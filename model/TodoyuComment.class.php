@@ -84,28 +84,6 @@ class TodoyuComment extends TodoyuBaseObject {
 
 
 	/**
-	 * Get ID of the person which added the comment
-	 *
-	 * @return	Integer
-	 */
-	public function getCreatePersonID() {
-		return $this->getPersonID('create');
-	}
-
-
-
-	/**
-	 * Get the person which added the comment
-	 *
-	 * @return	TodoyuPerson
-	 */
-	public function getCreatePerson() {
-		return $this->getPerson('create');
-	}
-
-
-
-	/**
 	 * Get persons being stored to have a feedback requested from to this comment
 	 *
 	 * @return	Array

@@ -130,7 +130,7 @@ class TodoyuCommentManager {
 			// Call saved hook
 		TodoyuHookManager::callHook('comment', 'saved', array($idComment));
 
-		// Send emails
+			// Send emails
 		if( $sendAsEmail && sizeof($mailReceiverPersonIDs) > 0 ) {
 			TodoyuCommentMailer::sendEmails($idComment, $mailReceiverPersonIDs);
 			TodoyuCommentMailManager::saveMailsSent($idComment, $mailReceiverPersonIDs);

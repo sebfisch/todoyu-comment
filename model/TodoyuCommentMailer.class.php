@@ -32,7 +32,6 @@ class TodoyuCommentMailer {
 	/**
 	 * Send comment information email to the persons
 	 *
-	 * @todo	(re)implement logging of sent mails!
 	 * @param	Integer		$idComment
 	 * @param	Array		$personIDs
 	 */
@@ -47,11 +46,6 @@ class TodoyuCommentMailer {
 			if( $result === false ) {
 				$succeeded	= false;
 			}
-
-			// NOT IN USE AT THE MOMENT
-//			if( $result !== false ) {
-//				TodoyuCommentMailManager::saveMailSent($idComment, $idPerson);
-//			}			
 		}
 
 		return $succeeded;
@@ -60,7 +54,7 @@ class TodoyuCommentMailer {
 
 
 	/**
-	 * Send a comment email to an person
+	 * Send a comment email to a person
 	 *
 	 * @param	Integer		$idComment
 	 * @param	Integer		$idPerson
@@ -79,7 +73,6 @@ class TodoyuCommentMailer {
 		$mail			= new PHPMailerLite(true);
 		$mail->Mailer	= 'mail';
 		$mail->CharSet	= 'utf-8';
-
 //
 //			// Change mail program
 //		if( PHP_OS !== 'Linux' ) {

@@ -289,7 +289,7 @@ class TodoyuCommentFeedbackManager {
 
 
 	/**
-	 * Set all comments in a task as seen by an person
+	 * Set all comments in a task as seen by a person
 	 *
 	 * @param	Integer		$idTask
 	 * @param	Integer		$idPerson
