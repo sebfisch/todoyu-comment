@@ -1,6 +1,7 @@
 todoyu comment extension changelog
 
 comment 1.1.0 (requires core >= 2.1) - not released yet
+	* Changed: Removed TodoyuComment::getCreatePersonID() and getCreatePerson() methods (in baseObject now)
 	* Bugfix: fixed toggle email receivers of comment
 	* Changed: Moved comment emailing options into separate fieldset of comment form
 	* Feature: Cleanup (topical order and readability) of extension config (init.php) file

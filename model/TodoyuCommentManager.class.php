@@ -132,9 +132,11 @@ class TodoyuCommentManager {
 
 			// Send emails
 		if( $sendAsEmail && sizeof($mailReceiverPersonIDs) > 0 ) {
-			TodoyuCommentMailer::sendEmails($idComment, $mailReceiverPersonIDs);
-			TodoyuCommentMailManager::saveMailsSent($idComment, $mailReceiverPersonIDs);
-			TodoyuHeader::sendTodoyuHeader('sentEmail', true);
+			$sent	= TodoyuCommentMailer::sendEmails($idComment, $mailReceiverPersonIDs);
+			if( $sent ) {
+				TodoyuCommentMailManager::saveMailsSent($idComment, $mailReceiverPersonIDs);
+				TodoyuHeader::sendTodoyuHeader('sentEmail', true);
+			}
 		}
 
 		return $idComment;
