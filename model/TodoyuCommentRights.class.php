@@ -50,7 +50,7 @@ class TodoyuCommentRights {
 		$comment	= TodoyuCommentManager::getComment($idComment);
 		$idTask		= $comment->getTaskID();
 
-		return self::isEditInTaskAllowed($idTask);
+		return self::isEditInTaskAllowed($idTask, $comment->isCurrentPersonCreator());
 	}
 
 
@@ -61,16 +61,16 @@ class TodoyuCommentRights {
 	 * @param	Integer		$idTask
 	 * @return	Boolean
 	 */
-	public static function isEditInTaskAllowed($idTask) {
+	public static function isEditInTaskAllowed($idTask, $isCreator = false) {
 		$idTask	= intval($idTask);
 
-		if( TodoyuTaskRights::isSeeAllowed($idTask) ) {
+		if( TodoyuTaskRights::isSeeAllowed($idTask) && !TodoyuTaskManager::isLocked($idTask) ) {
 			if( allowed('comment', 'comment:editAll')) {
 				return true;
-			} else {
-				$task	= TodoyuTaskManager::getTask($idTask);
+			}
 
-				return $task->isEditable();
+			if( allowed('comment', 'comment;editOwn') && $isCreator) {
+				return true;
 			}
 		}
 
@@ -88,7 +88,7 @@ class TodoyuCommentRights {
 	public static function isAddInTaskAllowed($idTask) {
 		$idTask	= intval($idTask);
 
-		return TodoyuTaskRights::isSeeAllowed($idTask) && allowed('comment', 'general:use');
+		return TodoyuTaskRights::isSeeAllowed($idTask) && !TodoyuTaskManager::isLocked($idTask) && allowed('comment', 'general:use');
 	}
 
 
@@ -110,6 +110,33 @@ class TodoyuCommentRights {
 			} else {
 				$idPerson	= personid();
 				return $comment->isCurrentPersonCreator() || in_array( $idPerson, $comment->getFeedbackPersons() );
+			}
+		}
+
+		return false;
+	}
+
+
+
+	/**
+	 * Check a person can delete the given comment
+	 *
+	 * @static
+	 * @param	Integer	$idComment
+	 * @return	
+	 */
+	public static function isDeleteAllowed( $idComment ) {
+		$idComment	= intval($idComment);
+		$comment	= TodoyuCommentManager::getComment($idComment);
+		$idTask		= $comment->getTaskID();
+
+		if( TodoyuTaskRights::isSeeAllowed($idTask) && !TodoyuTaskManager::isLocked($idTask)) {
+			if( allowed('comment', 'comment:deleteAll') ) {
+				return true;
+			}
+
+			if( allowed('comment', 'comment:deleteOwn') && $comment->isCurrentPersonCreator() ) {
+				return true;
 			}
 		}
 
@@ -173,6 +200,23 @@ class TodoyuCommentRights {
 
 		if( ! self::isSeeAllowed($idComment) ) {
 			self::deny('comment:see');
+		}
+	}
+
+
+
+	/**
+	 * Restrict delete to person which are allowed to delete comment
+	 *
+	 * @static
+	 * @param  $idComment
+	 * @return void
+	 */
+	public static function restrictDelete($idComment) {
+		$idComment	= intval($idComment);
+
+		if( ! self::isDeleteAllowed($idComment)) {
+			self::deny('comment:delete');
 		}
 	}
 

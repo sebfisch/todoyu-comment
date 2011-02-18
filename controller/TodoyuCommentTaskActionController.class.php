@@ -46,6 +46,8 @@ class TodoyuCommentTaskActionController extends TodoyuActionController {
 	public function getcommentprojecttaskidsAction(array $params) {
 		$idComment	= trim($params['commentnumber']);
 
+		TodoyuCommentRights::restrictSee($idComment);
+
 			// Get IDs of task containing the comment and its project
 		$idTask		= TodoyuCommentManager::getTaskID($idComment);
 		$idProject	= TodoyuTaskManager::getProjectID($idTask);
@@ -66,6 +68,8 @@ class TodoyuCommentTaskActionController extends TodoyuActionController {
 	public function getcommenttaskidAction(array $params) {
 		$idComment	= trim($params['commentnumber']);
 
+		TodoyuCommentRights::restrictSee($idComment);
+
 		return TodoyuCommentManager::getTaskID($idComment);
 	}
 
@@ -80,6 +84,8 @@ class TodoyuCommentTaskActionController extends TodoyuActionController {
 	public function listAction(array $params) {
 		$idTask	= intval($params['task']);
 		$desc	= intval($params['desc']) === 1;
+
+		TodoyuTaskRights::restrictSee($idTask);
 
 		return TodoyuCommentRenderer::renderCommentList($idTask, $desc);
 	}
@@ -108,6 +114,8 @@ class TodoyuCommentTaskActionController extends TodoyuActionController {
 	 */
 	public function seenAction(array $params) {
 		$idComment	= intval($params['comment']);
+
+		TodoyuCommentRights::restrictSee($idComment);
 
 		TodoyuCommentFeedbackManager::setAsSeen($idComment);
 
