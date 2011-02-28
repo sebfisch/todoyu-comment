@@ -29,7 +29,7 @@ class TodoyuCommentFeedbackManager {
 	/**
 	 * @var	String		Default table for database requests
 	 */
-	const TABLE = 'ext_comment_feedback';
+	const TABLE = 'ext_comment_mm_comment_feedback';
 
 
 	/**
@@ -329,8 +329,8 @@ class TodoyuCommentFeedbackManager {
 					p.firstname,
 					p.lastname,
 					f.is_seen';
-		$tables	= '	ext_contact_person p,
-					ext_comment_feedback f';
+		$tables	= '	ext_contact_person				p,
+					ext_comment_mm_comment_feedback	f';
 		$where	= '		f.id_comment 		= ' . $idComment .
 				  ' AND	f.id_person_feedback= p.id
 					AND	p.deleted			= 0';

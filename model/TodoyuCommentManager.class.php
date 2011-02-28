@@ -400,8 +400,8 @@ class TodoyuCommentManager {
 		$idTask	= intval($idTask);
 
 		$field	= '	fb.id_person_create';
-		$tables	= '	ext_comment_feedback fb,
-					ext_comment_comment co';
+		$tables	= '	ext_comment_mm_comment_feedback	fb,
+					ext_comment_comment				co';
 		$where	= '		fb.id_comment			= co.id'
 				. ' AND co.id_task				= ' . $idTask
 				. ' AND	fb.id_person_feedback	= ' . TodoyuAuth::getPersonID()

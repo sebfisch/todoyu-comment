@@ -1,6 +1,7 @@
 todoyu comment extension changelog
 
 comment 1.1.0 (requires core >= 2.1) - not released yet
+	* Changed: Renamed DB table ext_comment_feedback to ext_comment_mm_comment_feedback
 	* Feature: Cleanup of Rights Management
 	* Changed: Removed TodoyuComment::getCreatePersonID() and getCreatePerson() methods (in baseObject now)
 	* Bugfix: fixed toggle email receivers of comment

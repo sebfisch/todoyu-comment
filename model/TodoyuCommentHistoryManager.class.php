@@ -65,7 +65,7 @@ class TodoyuCommentHistoryManager {
 	 * @param	String	$table2
 	 * @return	Array
 	 */
-	private static function mergeAndSortLogEntries($log1, $log2, $table1 = 'ext_comment_feedback', $table2 = 'ext_comment_mailed') {
+	private static function mergeAndSortLogEntries($log1, $log2, $table1 = 'ext_comment_mm_comment_feedback', $table2 = 'ext_comment_mailed') {
 		if( count($log1) == 0 && count($log2) == 0 ) {
 				// Both logs empty
 			$log	= array();

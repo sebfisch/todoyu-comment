@@ -14,7 +14,7 @@
 	{foreach $timestampEntry logEntry}
 		{$curTimestamp	= $logEntry.date_create}
 		{* --------------------- List feedback requests --------------------- *}
-		{if $logEntry.table == 'ext_comment_feedback'}
+		{if $logEntry.table == 'ext_comment_mm_comment_feedback'}
 	<dt>{dateFormat $logEntry.date_update datetime}</dt>
 	<dd class="person">
 		<span class="person">{$logEntry.person_create}</span>

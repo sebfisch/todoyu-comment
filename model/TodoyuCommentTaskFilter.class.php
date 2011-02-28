@@ -41,13 +41,13 @@ class TodoyuCommentTaskFilter {
 		$tables	= array(
 			'ext_project_task',
 			'ext_comment_comment',
-			'ext_comment_feedback'
+			'ext_comment_mm_comment_feedback'
 		);
-		$where	= '		ext_comment_comment.deleted 	= 0'
-				. '	AND ext_comment_feedback.is_seen	= ' . $seenStatus;
+		$where	= '		ext_comment_comment.deleted 			= 0'
+				. '	AND ext_comment_mm_comment_feedback.is_seen	= ' . $seenStatus;
 		$join	= array(
-			'ext_comment_comment.id_task = ext_project_task.id',
-			'ext_comment_feedback.id_comment = ext_comment_comment.id'
+			'ext_comment_comment.id_task				= ext_project_task.id',
+			'ext_comment_mm_comment_feedback.id_comment	= ext_comment_comment.id'
 		);
 
 		$queryParts	= array(
@@ -91,14 +91,14 @@ class TodoyuCommentTaskFilter {
 			$tables	= array(
 				'ext_project_task',
 				'ext_comment_comment',
-				'ext_comment_feedback'
+				'ext_comment_mm_comment_feedback'
 			);
-			$where	= '		ext_comment_comment.deleted 			= 0'
-					. '	AND ext_comment_feedback.is_seen			= ' . $seenStatus
-					. ' AND	ext_comment_feedback.id_person_feedback	= ' . $idPerson;
+			$where	= '		ext_comment_comment.deleted 						= 0'
+					. '	AND ext_comment_mm_comment_feedback.is_seen				= ' . $seenStatus
+					. ' AND	ext_comment_mm_comment_feedback.id_person_feedback	= ' . $idPerson;
 			$join	= array(
-				'ext_comment_comment.id_task = ext_project_task.id',
-				'ext_comment_feedback.id_comment = ext_comment_comment.id'
+				'ext_comment_comment.id_task				= ext_project_task.id',
+				'ext_comment_mm_comment_feedback.id_comment	= ext_comment_comment.id'
 			);
 
 			$queryParts	= array(
@@ -128,15 +128,15 @@ class TodoyuCommentTaskFilter {
 			$tables	= array(
 				'ext_project_task',
 				'ext_comment_comment',
-				'ext_comment_feedback',
+				'ext_comment_mm_comment_feedback',
 				'ext_contact_mm_person_role'
 			);
-			$where	= '		ext_comment_comment.deleted 			= 0'
-					. '	AND ext_comment_feedback.id_person_feedback	= ext_contact_mm_person_role.id_person'
-					. '	AND ext_contact_mm_person_role.id_role IN(' . implode(',', $groupIDs) . ')';
+			$where	= '		ext_comment_comment.deleted 						= 0'
+					. '	AND ext_comment_mm_comment_feedback.id_person_feedback	= ext_contact_mm_person_role.id_person'
+					. '	AND ext_contact_mm_person_role.id_role					IN(' . implode(',', $groupIDs) . ')';
 			$join	= array(
-				'ext_comment_comment.id_task = ext_project_task.id',
-				'ext_comment_feedback.id_comment = ext_comment_comment.id'
+				'ext_comment_comment.id_task				= ext_project_task.id',
+				'ext_comment_mm_comment_feedback.id_comment	= ext_comment_comment.id'
 			);
 
 			$queryParts	= array(

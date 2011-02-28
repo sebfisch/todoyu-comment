@@ -18,11 +18,10 @@ CREATE TABLE `ext_comment_comment` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ext_comment_feedback`
--- @todo	rename to ext_comment_mm_comment_personfeedback
+-- Table structure for table `ext_comment_mm_comment_feedback`
 --
 
-CREATE TABLE `ext_comment_feedback` (
+CREATE TABLE `ext_comment_mm_comment_feedback` (
 	`id` int(10) unsigned NOT NULL AUTO_INCREMENT,
 	`date_create` int(10) unsigned NOT NULL,
 	`date_update` int(10) unsigned NOT NULL,
