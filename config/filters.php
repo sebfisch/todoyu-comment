@@ -39,9 +39,9 @@ Todoyu::$CONFIG['FILTERS']['TASK']['widgets']['unseenFeedbackPerson'] = array(
 	'widget'	=> 'text',
 	'wConf' => array(
 		'autocomplete'	=> true,
-		'FuncRef'		=> 'TodoyuPersonFilterDataSource::autocompletePersons',
+		'FuncRef'		=> 'TodoyuContactPersonFilterDataSource::autocompletePersons',
 		'FuncParams'	=> array(),
-		'LabelFuncRef'	=> 'TodoyuPersonFilterDataSource::getLabel',
+		'LabelFuncRef'	=> 'TodoyuContactPersonFilterDataSource::getLabel',
 		'negation'	=> 'default'
 	)
 );
@@ -75,7 +75,7 @@ Todoyu::$CONFIG['FILTERS']['TASK']['widgets']['commentFulltext'] = array(
 	'widget'	=> 'text',
 	'wConf' => array(
 		'autocomplete'	=> false,
-		'LabelFuncRef'	=> 'TodoyuPersonFilterDataSource::getLabel',
+		'LabelFuncRef'	=> 'TodoyuContactPersonFilterDataSource::getLabel',
 		'negation'	=> 'default'
 	)
 );
@@ -88,9 +88,9 @@ Todoyu::$CONFIG['FILTERS']['TASK']['widgets']['commentWrittenPerson'] = array(
 	'widget'	=> 'text',
 	'wConf' => array(
 		'autocomplete'	=> true,
-		'FuncRef'		=> 'TodoyuPersonFilterDataSource::autocompletePersons',
+		'FuncRef'		=> 'TodoyuContactPersonFilterDataSource::autocompletePersons',
 		'FuncParams'	=> array(),
-		'LabelFuncRef'	=> 'TodoyuPersonFilterDataSource::getLabel',
+		'LabelFuncRef'	=> 'TodoyuContactPersonFilterDataSource::getLabel',
 		'negation'		=> 'default'
 	)
 );

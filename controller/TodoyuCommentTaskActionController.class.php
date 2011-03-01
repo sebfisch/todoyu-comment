@@ -50,7 +50,7 @@ class TodoyuCommentTaskActionController extends TodoyuActionController {
 
 			// Get IDs of task containing the comment and its project
 		$idTask		= TodoyuCommentManager::getTaskID($idComment);
-		$idProject	= TodoyuTaskManager::getProjectID($idTask);
+		$idProject	= TodoyuProjectTaskManager::getProjectID($idTask);
 
 			// Send IDs as todoyu header
 		TodoyuHeader::sendTodoyuHeader('project', $idProject);
@@ -85,7 +85,7 @@ class TodoyuCommentTaskActionController extends TodoyuActionController {
 		$idTask	= intval($params['task']);
 		$desc	= intval($params['desc']) === 1;
 
-		TodoyuTaskRights::restrictSee($idTask);
+		TodoyuProjectTaskRights::restrictSee($idTask);
 
 		return TodoyuCommentRenderer::renderCommentList($idTask, $desc);
 	}

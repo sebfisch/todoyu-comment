@@ -67,7 +67,7 @@ class TodoyuCommentMailer {
 		$idPerson	= intval($idPerson);
 
 		$comment	= TodoyuCommentManager::getComment($idComment);
-		$person		= TodoyuPersonManager::getPerson($idPerson);
+		$person		= TodoyuContactPersonManager::getPerson($idPerson);
 
 			// Set mail config
 		$mail			= new PHPMailerLite(true);
@@ -138,7 +138,7 @@ class TodoyuCommentMailer {
 		$task			= $comment->getTask();
 		$project		= $comment->getProject();
 
-		$personReceive	= TodoyuPersonManager::getPerson($idPerson);
+		$personReceive	= TodoyuContactPersonManager::getPerson($idPerson);
 		$personWrite	= $comment->getCreatePerson();
 		$personSend		= TodoyuAuth::getPerson();
 

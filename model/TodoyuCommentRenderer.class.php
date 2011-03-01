@@ -62,7 +62,7 @@ class TodoyuCommentRenderer {
 			'desc'		=> $desc,
 			'descClass'	=> $desc ? 'desc' : 'asc',
 			'comments'	=> array(),
-			'locked'	=> TodoyuTaskManager::isLocked($idTask)
+			'locked'	=> TodoyuProjectTaskManager::isLocked($idTask)
 		);
 
 		$commentIDs	= TodoyuCommentManager::getTaskCommentIDs($idTask, $desc);
@@ -148,10 +148,10 @@ class TodoyuCommentRenderer {
 	 * @return	TodoyuForm		$form
 	 */
 	public static function extendEditFormWithAutoRequestedFeedbackFromOwner(TodoyuForm $form, $idComment = 0) {
-		$extConf= TodoyuExtConfManager::getExtConf('comment');
+		$extConf= TodoyuSysmanagerExtConfManager::getExtConf('comment');
 		$roles	= explode(',', $extConf['autorequestownerfeedback']);
 
-		if( TodoyuPersonManager::hasAnyRole($roles) ) {
+		if( TodoyuContactPersonManager::hasAnyRole($roles) ) {
 			$form->getFieldset('main')->removeField('feedback', true);
 			$form->getFieldset('main')->addElementsFromXML('ext/comment/config/form/comment-autofeedbackfromowner.xml');
 		}
@@ -169,10 +169,10 @@ class TodoyuCommentRenderer {
 	 * @return	TodoyuForm	$form
 	 */
 	public static function extendEditFormWithAutoMailedCommentToOwner(TodoyuForm $form, $idComment = 0) {
-		$extConf	= TodoyuExtConfManager::getExtConf('comment');
+		$extConf	= TodoyuSysmanagerExtConfManager::getExtConf('comment');
 		$roles		= explode(',', $extConf['automailcommenttoowner']);
 
-		if( TodoyuPersonManager::hasAnyRole($roles) ) {
+		if( TodoyuContactPersonManager::hasAnyRole($roles) ) {
 			$form->getFieldset('email')->removeField('sendasemail', true);
 			$form->getFieldset('email')->removeField('emailreceivers', true);
 			$form->getFieldset('main')->addElementsFromXML('ext/comment/config/form/comment-automailtoowner.xml');
@@ -212,7 +212,7 @@ class TodoyuCommentRenderer {
 
 		TodoyuProjectPreferences::setForcedTaskTab('comment');
 
-		return TodoyuTaskRenderer::renderTaskListing($taskIDs);
+		return TodoyuProjectTaskRenderer::renderTaskListing($taskIDs);
 	}
 
 }

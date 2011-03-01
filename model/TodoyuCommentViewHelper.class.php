@@ -40,7 +40,7 @@ class TodoyuCommentViewHelper {
 		foreach($persons as $person) {
 			$options[] 	= array(
 				'value'	=> $person['id'],
-				'label'	=> TodoyuPersonManager::getLabel($person['id'], true, true)
+				'label'	=> TodoyuContactPersonManager::getLabel($person['id'], true, true)
 			);
 		}
 
@@ -56,7 +56,7 @@ class TodoyuCommentViewHelper {
 	 * @return	Array
 	 */
 	public static function getTaskOwnerEmailOption(TodoyuFormElement $field) {
-		return TodoyuTaskViewHelper::getOwnerEmailOption($field);
+		return TodoyuProjectTaskViewHelper::getOwnerEmailOption($field);
 	}
 
 
@@ -73,29 +73,29 @@ class TodoyuCommentViewHelper {
 		$formData	= $field->getForm()->getFormData();
 
 		$idTask		= intval($formData['id_task']);
-		$idProject	= TodoyuTaskManager::getProjectID($idTask);
+		$idProject	= TodoyuProjectTaskManager::getProjectID($idTask);
 		$options	= array();
 
 			// Task persons
 		$groupLabel	= Label('comment.group.taskmembers');
-		$taskPersons= TodoyuTaskManager::getTaskPersons($idTask, true);
+		$taskPersons= TodoyuProjectTaskManager::getTaskPersons($idTask, true);
 		foreach($taskPersons as $person) {
 			if( $person['id'] != personid() ) {
 				$options[$groupLabel][$person['id']] = array(
 					'value'	=> $person['id'],
-					'label'	=> TodoyuPersonManager::getLabel($person['id'], false, true)
+					'label'	=> TodoyuContactPersonManager::getLabel($person['id'], false, true)
 				);
 			}
 		}
 
 			// Get project persons
 		$groupLabel		= Label('comment.group.projectmembers');
-		$projectPersons	= TodoyuProjectManager::getProjectPersons($idProject, true, true);
+		$projectPersons	= TodoyuProjectProjectManager::getProjectPersons($idProject, true, true);
 		foreach($projectPersons as $person) {
 			if( $person['id'] != personid() ) {
 				$options[$groupLabel][$person['id']] = array(
 					'value'	=> $person['id'],
-					'label'	=> TodoyuPersonManager::getLabel($person['id'])
+					'label'	=> TodoyuContactPersonManager::getLabel($person['id'])
 				);
 			}
 		}
@@ -119,12 +119,12 @@ class TodoyuCommentViewHelper {
 	 */
 	public static function getFeedbackOwnerOption(TodoyuFormElement $field) {
 		$idTask		= intval($field->getForm()->getHiddenField('id_task'));
-		$taskOwner	= TodoyuTaskManager::getTaskOwner($idTask);
+		$taskOwner	= TodoyuProjectTaskManager::getTaskOwner($idTask);
 
 		$option = array(
 			0 => array(
 				'value'	=> $taskOwner[0]['id'],
-				'label'	=> TodoyuPersonManager::getLabel($taskOwner[0]['id'])
+				'label'	=> TodoyuContactPersonManager::getLabel($taskOwner[0]['id'])
 			)
 		);
 

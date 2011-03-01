@@ -300,10 +300,10 @@ class TodoyuCommentManager {
 	 */
 	public static function getEmailReceivers($idTask) {
 		$idTask		= intval($idTask);
-		$idProject	= TodoyuTaskManager::getProjectID($idTask);
+		$idProject	= TodoyuProjectTaskManager::getProjectID($idTask);
 
-		$taskPersons	= TodoyuTaskManager::getTaskPersons($idTask);
-		$projectPersons	= TodoyuProjectManager::getProjectPersons($idProject);
+		$taskPersons	= TodoyuProjectTaskManager::getTaskPersons($idTask);
+		$projectPersons	= TodoyuProjectProjectManager::getProjectPersons($idProject);
 
 		$persons = array();
 
@@ -323,7 +323,7 @@ class TodoyuCommentManager {
 
 			// Add internal Persons
 		if( allowed('contact', 'person:seeAllInternalPersons') ) {
-			$internalPersons= TodoyuPersonManager::getInternalPersons();
+			$internalPersons= TodoyuContactPersonManager::getInternalPersons();
 
 			foreach($internalPersons as $person) {
 				if( ! empty($person['email']) ) {
@@ -360,7 +360,7 @@ class TodoyuCommentManager {
 	 */
 	public static function getTaskContextMenuItems($idTask, array $items) {
 		$idTask	= intval($idTask);
-		$task	= TodoyuTaskManager::getTask($idTask);
+		$task	= TodoyuProjectTaskManager::getTask($idTask);
 		$allowed= array();
 
 		if( $task->isTask() && ! $task->isLocked() ) {
@@ -383,7 +383,7 @@ class TodoyuCommentManager {
 	 */
 	public static function getFeedbackTaskIDs() {
 		$conditions	= Todoyu::$CONFIG['EXT']['comment']['feedbackTabFilters'];
-		$taskFilter	= new TodoyuTaskFilter($conditions);
+		$taskFilter	= new TodoyuProjectTaskFilter($conditions);
 
 		return $taskFilter->getTaskIDs('ext_comment_comment.date_create');
 	}

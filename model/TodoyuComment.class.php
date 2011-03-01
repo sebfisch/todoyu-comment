@@ -53,10 +53,10 @@ class TodoyuComment extends TodoyuBaseObject {
 	/**
 	 * Get task the comment is added to
 	 *
-	 * @return	TodoyuTask
+	 * @return	TodoyuProjectTask
 	 */
 	public function getTask() {
-		return TodoyuTaskManager::getTask($this->getTaskID());
+		return TodoyuProjectTaskManager::getTask($this->getTaskID());
 	}
 
 
@@ -75,7 +75,7 @@ class TodoyuComment extends TodoyuBaseObject {
 	/**
 	 * Get project of the task the comment is added to
 	 *
-	 * @return	TodoyuProject
+	 * @return	TodoyuProjectProject
 	 */
 	public function getProject() {
 		return $this->getTask()->getProject();
@@ -100,7 +100,7 @@ class TodoyuComment extends TodoyuBaseObject {
 	 * @return	Boolean
 	 */
 	public function isLocked() {
-		return TodoyuTaskManager::isLocked($this->getTaskID());
+		return TodoyuProjectTaskManager::isLocked($this->getTaskID());
 	}
 
 

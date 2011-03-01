@@ -64,7 +64,7 @@ class TodoyuCommentRights {
 	public static function isEditInTaskAllowed($idTask, $isCreator = false) {
 		$idTask	= intval($idTask);
 
-		if( TodoyuTaskRights::isSeeAllowed($idTask) && !TodoyuTaskManager::isLocked($idTask) ) {
+		if( TodoyuProjectTaskRights::isSeeAllowed($idTask) && !TodoyuProjectTaskManager::isLocked($idTask) ) {
 			if( allowed('comment', 'comment:editAll')) {
 				return true;
 			}
@@ -88,7 +88,7 @@ class TodoyuCommentRights {
 	public static function isAddInTaskAllowed($idTask) {
 		$idTask	= intval($idTask);
 
-		return TodoyuTaskRights::isSeeAllowed($idTask) && !TodoyuTaskManager::isLocked($idTask) && allowed('comment', 'general:use');
+		return TodoyuProjectTaskRights::isSeeAllowed($idTask) && !TodoyuProjectTaskManager::isLocked($idTask) && allowed('comment', 'general:use');
 	}
 
 
@@ -104,7 +104,7 @@ class TodoyuCommentRights {
 		$comment	= TodoyuCommentManager::getComment($idComment);
 		$idTask		= $comment->getTaskID();
 
-		if( TodoyuTaskRights::isSeeAllowed($idTask) ) {
+		if( TodoyuProjectTaskRights::isSeeAllowed($idTask) ) {
 			if( allowed('comment', 'comment:seeAll')) {
 				return true;
 			} else {
@@ -123,14 +123,14 @@ class TodoyuCommentRights {
 	 *
 	 * @static
 	 * @param	Integer	$idComment
-	 * @return	
+	 * @return
 	 */
 	public static function isDeleteAllowed( $idComment ) {
 		$idComment	= intval($idComment);
 		$comment	= TodoyuCommentManager::getComment($idComment);
 		$idTask		= $comment->getTaskID();
 
-		if( TodoyuTaskRights::isSeeAllowed($idTask) && !TodoyuTaskManager::isLocked($idTask)) {
+		if( TodoyuProjectTaskRights::isSeeAllowed($idTask) && !TodoyuProjectTaskManager::isLocked($idTask)) {
 			if( allowed('comment', 'comment:deleteAll') ) {
 				return true;
 			}
