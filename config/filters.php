@@ -58,7 +58,7 @@ Todoyu::$CONFIG['FILTERS']['TASK']['widgets']['unseenFeedbackRoles'] = array(
 	'wConf'		=> array(
 		'multiple'	=> true,
 		'size'		=> 5,
-//		'FuncRef'	=> 'TodoyuTaskFilterDataSource::getRoleOptions'
+//		'FuncRef'	=> 'TodoyuProjectTaskFilterDataSource::getRoleOptions'
 		'FuncRef'	=> 'TodoyuRoleDatasource::getRoleOptions'
 	)
 );
