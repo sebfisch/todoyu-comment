@@ -79,11 +79,11 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 		restrict('comment', 'comment:deleteOwn');
 
 		$idComment		= intval($params['comment']);
-		$comment		= TodoyuCommentManager::getComment($idComment);
+		$comment		= TodoyuCommentCommentManager::getComment($idComment);
 
 		TodoyuCommentRights::restrictDelete($idComment);
 
-		TodoyuCommentManager::deleteComment($idComment);
+		TodoyuCommentCommentManager::deleteComment($idComment);
 
 		$idTask	= $comment->getTaskID();
 
@@ -136,8 +136,8 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 		if( $form->isValid() ) {
 			$data	= $form->getStorageData();
 
-				// Store comment and send email if mail-option activated 
-			TodoyuCommentManager::saveComment($data);
+				// Store comment and send email if mail-option activated
+			TodoyuCommentCommentManager::saveComment($data);
 
 			TodoyuHeader::sendTodoyuHeader('tabLabel', TodoyuCommentTask::getLabel($data['id_task']));
 		} else {

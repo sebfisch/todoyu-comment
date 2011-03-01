@@ -49,7 +49,7 @@ function Dwoo_Plugin_limitHTMLwordsLen(Dwoo $dwoo, $string, $maxLen = 45) {
  * @return	String
  */
 function Dwoo_Plugin_linkComments_compile(Dwoo_Compiler $compiler, $text) {
-	return 'TodoyuCommentManager::linkCommentIDsInText(' . $text . ')';
+	return 'TodoyuCommentCommentManager::linkCommentIDsInText(' . $text . ')';
 }
 
 ?>

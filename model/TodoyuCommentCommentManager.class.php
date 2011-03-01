@@ -24,7 +24,7 @@
  * @package		Todoyu
  * @subpackage	Comment
  */
-class TodoyuCommentManager {
+class TodoyuCommentCommentManager {
 
 	/**
 	 * @var	String		Default table for database requests
@@ -37,10 +37,10 @@ class TodoyuCommentManager {
 	 * Get a comment
 	 *
 	 * @param	Integer		$idComment
-	 * @return	TodoyuComment
+	 * @return	TodoyuCommentComment
 	 */
 	public static function getComment($idComment) {
-		return TodoyuRecordManager::getRecord('TodoyuComment', $idComment);
+		return TodoyuRecordManager::getRecord('TodoyuCommentComment', $idComment);
 	}
 
 
@@ -97,7 +97,7 @@ class TodoyuCommentManager {
 			$idComment = self::addComment();
 		}
 
-		$data['comment']	= TodoyuCommentManager::filterHtmlTags($data['comment']);
+		$data['comment']	= TodoyuCommentCommentManager::filterHtmlTags($data['comment']);
 
 			// Call hooked save data functions
 		$data	= TodoyuFormHook::callSaveData($xmlPath, $data, $idComment);
@@ -118,7 +118,7 @@ class TodoyuCommentManager {
 
 
 			// Clear record cache
-		TodoyuRecordManager::removeRecordCache('TodoyuComment', $idComment);
+		TodoyuRecordManager::removeRecordCache('TodoyuCommentComment', $idComment);
 		TodoyuRecordManager::removeRecordQueryCache(self::TABLE, $idComment);
 
 			// Set all comments in task as send

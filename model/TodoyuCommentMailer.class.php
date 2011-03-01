@@ -66,7 +66,7 @@ class TodoyuCommentMailer {
 		$idComment	= intval($idComment);
 		$idPerson	= intval($idPerson);
 
-		$comment	= TodoyuCommentManager::getComment($idComment);
+		$comment	= TodoyuCommentCommentManager::getComment($idComment);
 		$person		= TodoyuContactPersonManager::getPerson($idPerson);
 
 			// Set mail config
@@ -133,7 +133,7 @@ class TodoyuCommentMailer {
 		$idComment		= intval($idComment);
 		$idPerson		= intval($idPerson);
 
-		$comment		= TodoyuCommentManager::getComment($idComment);
+		$comment		= TodoyuCommentCommentManager::getComment($idComment);
 
 		$task			= $comment->getTask();
 		$project		= $comment->getProject();

@@ -24,7 +24,7 @@
  * @package		Todoyu
  * @subpackage	Comment
  */
-class TodoyuComment extends TodoyuBaseObject {
+class TodoyuCommentComment extends TodoyuBaseObject {
 
 	/**
 	 * Initialize comment

@@ -35,7 +35,7 @@ class TodoyuCommentTask {
 	public static function getLabel($idTask) {
 		$idTask	= intval($idTask);
 
-		$numComments = TodoyuCommentManager::getNumberOfTaskComments($idTask);
+		$numComments = TodoyuCommentCommentManager::getNumberOfTaskComments($idTask);
 
 		if( $numComments === 0 ) {
 			return Label('comment.tab.noComments');
@@ -56,7 +56,7 @@ class TodoyuCommentTask {
 	 */
 	public static function getContent($idTask) {
 		$idTask		= intval($idTask);
-		$numComments= TodoyuCommentManager::getNumberOfTaskComments($idTask);
+		$numComments= TodoyuCommentCommentManager::getNumberOfTaskComments($idTask);
 
 			// If no comments
 		if( $numComments === 0 && TodoyuProjectTaskManager::isLocked($idTask) === false ) {

@@ -47,7 +47,7 @@ class TodoyuCommentRights {
 	 */
 	public static function isEditAllowed($idComment) {
 		$idComment	= intval($idComment);
-		$comment	= TodoyuCommentManager::getComment($idComment);
+		$comment	= TodoyuCommentCommentManager::getComment($idComment);
 		$idTask		= $comment->getTaskID();
 
 		return self::isEditInTaskAllowed($idTask, $comment->isCurrentPersonCreator());
@@ -101,7 +101,7 @@ class TodoyuCommentRights {
 	 */
 	public static function isSeeAllowed($idComment) {
 		$idComment	= intval($idComment);
-		$comment	= TodoyuCommentManager::getComment($idComment);
+		$comment	= TodoyuCommentCommentManager::getComment($idComment);
 		$idTask		= $comment->getTaskID();
 
 		if( TodoyuProjectTaskRights::isSeeAllowed($idTask) ) {
@@ -127,7 +127,7 @@ class TodoyuCommentRights {
 	 */
 	public static function isDeleteAllowed( $idComment ) {
 		$idComment	= intval($idComment);
-		$comment	= TodoyuCommentManager::getComment($idComment);
+		$comment	= TodoyuCommentCommentManager::getComment($idComment);
 		$idTask		= $comment->getTaskID();
 
 		if( TodoyuProjectTaskRights::isSeeAllowed($idTask) && !TodoyuProjectTaskManager::isLocked($idTask)) {

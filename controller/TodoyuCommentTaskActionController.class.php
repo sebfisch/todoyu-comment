@@ -49,7 +49,7 @@ class TodoyuCommentTaskActionController extends TodoyuActionController {
 		TodoyuCommentRights::restrictSee($idComment);
 
 			// Get IDs of task containing the comment and its project
-		$idTask		= TodoyuCommentManager::getTaskID($idComment);
+		$idTask		= TodoyuCommentCommentManager::getTaskID($idComment);
 		$idProject	= TodoyuProjectTaskManager::getProjectID($idTask);
 
 			// Send IDs as todoyu header
@@ -70,7 +70,7 @@ class TodoyuCommentTaskActionController extends TodoyuActionController {
 
 		TodoyuCommentRights::restrictSee($idComment);
 
-		return TodoyuCommentManager::getTaskID($idComment);
+		return TodoyuCommentCommentManager::getTaskID($idComment);
 	}
 
 
@@ -103,7 +103,7 @@ class TodoyuCommentTaskActionController extends TodoyuActionController {
 		restrict('comment', 'comment:makePublic');
 		TodoyuCommentRights::restrictEdit($idComment);
 
-		TodoyuCommentManager::togglePublic($idComment);
+		TodoyuCommentCommentManager::togglePublic($idComment);
 	}
 
 
@@ -120,7 +120,7 @@ class TodoyuCommentTaskActionController extends TodoyuActionController {
 
 		TodoyuCommentFeedbackManager::setAsSeen($idComment);
 
-		$numOpenFeedbacks = sizeof(TodoyuCommentManager::getFeedbackTaskIDs());
+		$numOpenFeedbacks = sizeof(TodoyuCommentCommentManager::getFeedbackTaskIDs());
 
 		TodoyuHeader::sendTodoyuHeader('feedback', $numOpenFeedbacks);
 	}

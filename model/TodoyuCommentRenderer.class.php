@@ -35,7 +35,7 @@ class TodoyuCommentRenderer {
 	public static function renderComment($idComment) {
 		$idComment	= intval($idComment);
 
-		$comment	= TodoyuCommentManager::getComment($idComment);
+		$comment	= TodoyuCommentCommentManager::getComment($idComment);
 
 		$tmpl		= 'ext/comment/view/comment.tmpl';
 		$data		= $comment->getTemplateData(true);
@@ -65,7 +65,7 @@ class TodoyuCommentRenderer {
 			'locked'	=> TodoyuProjectTaskManager::isLocked($idTask)
 		);
 
-		$commentIDs	= TodoyuCommentManager::getTaskCommentIDs($idTask, $desc);
+		$commentIDs	= TodoyuCommentCommentManager::getTaskCommentIDs($idTask, $desc);
 
 		foreach($commentIDs as $idComment) {
 			$data['comments'][$idComment] = self::renderComment($idComment);
@@ -92,7 +92,7 @@ class TodoyuCommentRenderer {
 
 		if( $idComment === 0 ) {
 				// New comment
-			$idFeedbackPerson	= TodoyuCommentManager::getOpenFeedbackRequestPersonID($idTask);
+			$idFeedbackPerson	= TodoyuCommentCommentManager::getOpenFeedbackRequestPersonID($idTask);
 			$data	= array(
 				'id'		=> 0,
 				'id_task'	=> $idTask,
@@ -100,7 +100,7 @@ class TodoyuCommentRenderer {
 			);
 		} else {
 				// Edit comment
-			$comment	= TodoyuCommentManager::getComment($idComment);
+			$comment	= TodoyuCommentCommentManager::getComment($idComment);
 			$data		= $comment->getTemplateData(true);
 			$data['feedback'] = TodoyuArray::getColumn($data['persons_feedback'], 'id');
 		}
@@ -193,7 +193,7 @@ class TodoyuCommentRenderer {
 		$label	= TodoyuLabelManager::getLabel('comment.portal.tab.feedback');
 
 		if( $count ) {
-			$taskIDs= TodoyuCommentManager::getFeedbackTaskIDs();
+			$taskIDs= TodoyuCommentCommentManager::getFeedbackTaskIDs();
 			$label	= $label . ' (' . sizeof($taskIDs) . ')';
 		}
 
@@ -208,7 +208,7 @@ class TodoyuCommentRenderer {
 	 * @return	String
 	 */
 	public static function renderPortalFeedbackTabContent() {
-		$taskIDs= TodoyuCommentManager::getFeedbackTaskIDs();
+		$taskIDs= TodoyuCommentCommentManager::getFeedbackTaskIDs();
 
 		TodoyuProjectPreferences::setForcedTaskTab('comment');
 

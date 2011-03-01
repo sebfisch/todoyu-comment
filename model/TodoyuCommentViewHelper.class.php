@@ -35,7 +35,7 @@ class TodoyuCommentViewHelper {
 	public static function getEmailReceiverOptions(TodoyuFormElement $field) {
 		$idTask		= intval($field->getForm()->getHiddenField('id_task'));
 		$options	= array();
-		$persons	= TodoyuCommentManager::getEmailReceivers($idTask);
+		$persons	= TodoyuCommentCommentManager::getEmailReceivers($idTask);
 
 		foreach($persons as $person) {
 			$options[] 	= array(
