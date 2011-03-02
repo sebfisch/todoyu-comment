@@ -133,24 +133,24 @@ h1.extIconComment .title {
 }
 	/* Person has acknowledged feedback */
 .task-comments .comment-details .persons span.commentperson-approved {
-	background:transparent url('../img/icons.png') no-repeat 0 -480px;
+	background:transparent url('../../../../core/assets/img/icons.png') no-repeat 0 -1314px;
 }
 	/* Person has only received the comment via mail */
 .task-comments .comment-details .persons span.emailperson {
-	background:transparent url('../img/icons.png') no-repeat 0 -511px;
+	background:transparent url('../../../../core/assets/img/icons.png') no-repeat 0 -1344px;
 }
 	/* Person has acknowledged feedback AND received it via email */
 .task-comments .comment-details .persons span.commentperson-approved-email {
-	background:transparent url('../img/icons.png') no-repeat 0 -567px;
+	background:transparent url('../../../../core/assets/img/icons.png') no-repeat 0 -1402px;
 	padding-left:23px;
 }
 	/* Person has NOT acknowledged feedback */
 .task-comments .comment-details .persons span.commentperson-unapproved {
-	background:transparent url('../img/icons.png') no-repeat 0 -330px;
+	background:transparent url('../../../../core/assets/img/icons.png') no-repeat 0 -1288px;
 }
 	/* Person has NOT acknowledged feedback AND received it via email */
 .task-comments .comment-details .persons span.commentperson-unapproved-email {
-	background:transparent url('../img/icons.png') no-repeat 0 -535px;
+	background:transparent url('../../../../core/assets/img/icons.png') no-repeat 0 -1368px;
 	padding-left:23px;
 }
 
@@ -178,7 +178,7 @@ h1.extIconComment .title {
 	margin-right:10px;
 	height:16px;
 	width:16px;
-	background:url(../img/icons.png) no-repeat 0 -300px;
+	background:transparent url('../../../../core/assets/img/icons.png') no-repeat 0 -1258px;
 }
 
 .task-comments .comment-person {
