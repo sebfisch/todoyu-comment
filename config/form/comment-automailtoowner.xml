@@ -14,7 +14,7 @@
 			<elements>
 
 				<field type="checkbox" name="sendasemail">
-					<label>comment.edit.sendasemail</label>
+					<label>comment.ext.edit.sendasemail</label>
 					<onchange>Todoyu.Ext.comment.Edit.onChangeEmail(#id_task#, #id#)</onchange>
 					<checked>1</checked>
 					<disabled>1</disabled>
@@ -22,7 +22,7 @@
 				</field>
 
 				<field type="select" name="emailreceivers">
-					<label>comment.edit.autoSentEmailToTaskOwner</label>
+					<label>comment.ext.edit.autoSentEmailToTaskOwner</label>
 					<source type="function">
 						<function>TodoyuCommentViewHelper::getTaskOwnerEmailOption</function>
 						<lazyInit/>

@@ -10,7 +10,7 @@
 			<elements>
 
 				<field type="select" name="autorequestownerfeedback">
-					<label>comment.extconf.autorequestownerfeedback.label</label>
+					<label>comment.ext.extconf.autorequestownerfeedback.label</label>
 					<source type="function">
 						<function>TodoyuRoleViewHelper::getRoleOptions</function>
 						<lazyInit/>
@@ -19,7 +19,7 @@
 				</field>
 
 				<field type="select" name="automailcommenttoowner">
-					<label>comment.extconf.automailcommenttoowner.label</label>
+					<label>comment.ext.extconf.automailcommenttoowner.label</label>
 					<source type="function">
 						<function>TodoyuRoleViewHelper::getRoleOptions</function>
 						<lazyInit/>

@@ -14,7 +14,7 @@
 			<elements>
 
 				<field type="select" name="feedback">
-					<label>comment.edit.autoFeedbackFromOwner</label>
+					<label>comment.ext.edit.autoFeedbackFromOwner</label>
 					<source type="function">
 						<function>TodoyuCommentViewHelper::getFeedbackOwnerOption</function>
 						<lazyInit/>

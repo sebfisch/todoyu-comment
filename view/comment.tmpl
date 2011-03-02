@@ -8,24 +8,24 @@
 		<span id="task-comment-{$id}-person" class="comment-person">
 			{personLabel idPrefix="comment-personcreate" idRecord=$id idPerson=$person_create.id}
 		</span>
-		<span id="task-comment-{$id}-id" class="comment-id" title="{Label comment.id}">c{$id}</span>
+		<span id="task-comment-{$id}-id" class="comment-id" title="{Label comment.ext.id}">c{$id}</span>
 		<span id="task-comment-{$id}-options" class="comment-options">
 		{* --------------------------- Edit ------------------------- *}
 		{if !$locked && (allowed('comment', 'comment:editAll') || allowedAndOwn('comment','comment:editOwn', $id_person_create))}
-			<a href="javascript:void(0)" onclick="Todoyu.Ext.comment.edit({$id_task}, {$id})" class="icon comment-edit" title="{Label comment.icon.edit}">
-				<span class="hidden">{Label comment.icon.edit}</span>
+			<a href="javascript:void(0)" onclick="Todoyu.Ext.comment.edit({$id_task}, {$id})" class="icon comment-edit" title="{Label comment.ext.icon.edit}">
+				<span class="hidden">{Label comment.ext.icon.edit}</span>
 			</a>
 		{/if}
 		{* ------------------------ Make public ---------------------- *}
 		{if !$locked && allowed('comment','comment:makePublic')}
-			<a href="javascript:void(0)" onclick="Todoyu.Ext.comment.togglePublic({$id})" class="icon public-trigger {if $is_public}comment-public{/if}" title="{Label comment.icon.toggleCustomerVisibility}" id="public-trigger-{$id}">
-				<span class="hidden">{Label comment.icon.toggleCustomerVisibility}</span>
+			<a href="javascript:void(0)" onclick="Todoyu.Ext.comment.togglePublic({$id})" class="icon public-trigger {if $is_public}comment-public{/if}" title="{Label comment.ext.icon.toggleCustomerVisibility}" id="public-trigger-{$id}">
+				<span class="hidden">{Label comment.ext.icon.toggleCustomerVisibility}</span>
 			</a>
 		{/if}
 		{* -------------------------- Delete ------------------------ *}
 		{if !$locked && ( allowed('comment','comment:deleteAll') || (allowed('comment','comment:deleteOwn') && $id_person_create == personid()))}
-			<a href="javascript:void(0)" onclick="Todoyu.Ext.comment.remove({$id})" class="icon comment-remove" title="{Label comment.icon.remove}">
-				<span class="hidden">{Label comment.icon.remove}</span>
+			<a href="javascript:void(0)" onclick="Todoyu.Ext.comment.remove({$id})" class="icon comment-remove" title="{Label comment.ext.icon.remove}">
+				<span class="hidden">{Label comment.ext.icon.remove}</span>
 			</a>
 		{/if}
 		</span>
@@ -35,7 +35,7 @@
 		<div class="persons">
 		{foreach $persons_feedback feedbackPerson name=personsFeedback}
 			{if $dwoo.foreach.personsFeedback.first}
-				{Label comment.comment.feedbackPersons}
+				{Label comment.ext.comment.feedbackPersons}
 			{/if}
 
 			{if $feedbackPerson.is_seen}{$class='commentperson-approved'}{else}{$class='commentperson-unapproved'}{/if}
@@ -47,7 +47,7 @@
 		{/foreach}
 
 		{if sizeof($person_ids_mailonly) > 0}
-			{Label comment.comment.emailPersons}
+			{Label comment.ext.comment.emailPersons}
 			{foreach $persons_email emailPerson name=personsEmail}
 				{personLabel idPrefix="comment-personemail" idRecord=$id idPerson=$emailPerson.id class="emailperson"}
 			{/foreach}

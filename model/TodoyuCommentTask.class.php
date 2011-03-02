@@ -38,11 +38,11 @@ class TodoyuCommentTask {
 		$numComments = TodoyuCommentCommentManager::getNumberOfTaskComments($idTask);
 
 		if( $numComments === 0 ) {
-			return Label('comment.tab.noComments');
+			return Label('comment.ext.tab.noComments');
 		} elseif( $numComments === 1 ) {
-			return '1 ' . Label('comment.tab.comment');
+			return '1 ' . Label('comment.ext.tab.comment');
 		} else {
-			return $numComments . ' ' . Label('comment.tab.comments');
+			return $numComments . ' ' . Label('comment.ext.tab.comments');
 		}
 	}
 

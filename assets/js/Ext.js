@@ -119,7 +119,7 @@ Todoyu.Ext.comment = {
 	 * @param	{Number}	idComment
 	 */
 	remove: function(idComment) {
-		if( ! confirm('[LLL:comment.delete.confirm]') ) {
+		if( ! confirm('[LLL:comment.ext.delete.confirm]') ) {
 			return false;
 		}
 

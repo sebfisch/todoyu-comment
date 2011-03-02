@@ -1,24 +1,24 @@
-{Label comment.mail.newcomment}
+{Label comment.ext.mail.newcomment}
 
 ========================================================================
-{Label project.project}:	{htmlencode $project.title}
-{Label task.task}:	{htmlencode $task.title} ({$task.id_project}.{$task.tasknumber})
-{Label comment.mail.commentfrom}:	{$personWrite.firstname} {$personWrite.lastname}{if $hideEmails != true} <{$personWrite.email}>{/if}
-{if $personWrite.id !== $personSend.id}{Label comment.mail.commentsentby}:	{$personSend.firstname} {$personSend.lastname}{if $hideEmails != true} <{$personSend.email}>{/if}{/if}
+{Label project.ext.project}:	{htmlencode $project.title}
+{Label project.task.task}:	{htmlencode $task.title} ({$task.id_project}.{$task.tasknumber})
+{Label comment.ext.mail.commentfrom}:	{$personWrite.firstname} {$personWrite.lastname}{if $hideEmails != true} <{$personWrite.email}>{/if}
+{if $personWrite.id !== $personSend.id}{Label comment.ext.mail.commentsentby}:	{$personSend.firstname} {$personSend.lastname}{if $hideEmails != true} <{$personSend.email}>{/if}{/if}
 ========================================================================
 {html2text $comment.comment}
 
 ========================================================================
-{Label comment.mail.showcommentinprojectview}:
+{Label comment.ext.mail.showcommentinprojectview}:
 {$commentlink}
 
 {if sizeof($feedback_persons) > 0}
 ========================================================================
-{Label comment.mail.feedbackexpected}:
+{Label comment.ext.mail.feedbackexpected}:
 {foreach $feedback_persons feedbackPerson}
  - {$feedbackPerson.firstname} {$feedbackPerson.lastname} {if $hideEmails != true}<{$feedbackPerson.email}>{/if}
 {/foreach}
 {/if}
 ========================================================================
-{Label task.description}:
+{Label project.task.description}:
 {html2text $task.description}

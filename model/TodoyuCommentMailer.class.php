@@ -87,7 +87,7 @@ class TodoyuCommentMailer {
 
 			// Set "replyTo", "subject"
 		$mail->AddReplyTo(Todoyu::person()->getEmail(), Todoyu::person()->getFullName());
-		$mail->Subject	= Label('comment.mail.subject') . ': ' . $comment->getTask()->getTitle() . ' (#' . $comment->getTask()->getTaskNumber(true) . ')';
+		$mail->Subject	= Label('comment.ext.mail.subject') . ': ' . $comment->getTask()->getTitle() . ' (#' . $comment->getTask()->getTaskNumber(true) . ')';
 
 			// Add message body as HTML and plain text
 		$htmlBody		= self::getMailContentHtml($idComment, $idPerson, $hideEmails);

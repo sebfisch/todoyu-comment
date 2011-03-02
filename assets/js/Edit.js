@@ -96,14 +96,14 @@ Todoyu.Ext.comment.Edit = {
 
 		if( response.hasTodoyuError() ) {
 			$('comment-' + idTask + '-' + idComment + '-form').replace(response.responseText);
-			Todoyu.notifyError('[LLL:comment.js.commentSavingFailed]');
+			Todoyu.notifyError('[LLL:comment.ext.js.commentSavingFailed]');
 		} else {
 			Todoyu.Ext.comment.List.refresh(idTask);
 			Todoyu.Ext.comment.setTabLabel(idTask, response.getTodoyuHeader('tabLabel'));
-			Todoyu.notifySuccess('[LLL:comment.js.commentSaved]');
+			Todoyu.notifySuccess('[LLL:comment.ext.js.commentSaved]');
 
 			if( response.getTodoyuHeader('sentEmail') ) {
-				Todoyu.notifySuccess('[LLL:comment.js.emailSent]');
+				Todoyu.notifySuccess('[LLL:comment.ext.js.emailSent]');
 			}
 		}
 	},
