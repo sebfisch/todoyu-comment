@@ -23,12 +23,7 @@ define('EXTID_COMMENT', 105);
 define('PATH_EXT_COMMENT', PATH_EXT . '/comment');
 
 require_once(PATH_EXT_COMMENT . '/config/constants.php');
-
-	// Register module locales
-//TodoyuLabelManager::register('comment', 'comment', 'ext.xml');
-
 require_once( PATH_EXT_COMMENT . '/dwoo/plugins.php');
-
 
 	// Substitute comment identifiers in text by hyperlinks
 TodoyuHookManager::registerHook('core', 'substituteLinkableElements', 'TodoyuCommentCommentManager::linkCommentIDsInText');
