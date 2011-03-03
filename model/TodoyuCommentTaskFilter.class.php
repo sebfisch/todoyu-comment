@@ -26,8 +26,6 @@
  */
 class TodoyuCommentTaskFilter {
 
-
-
 	/**
 	 * Filters for unseen feedbacks
 	 *
