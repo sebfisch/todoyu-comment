@@ -130,7 +130,6 @@ Todoyu.Ext.comment.Edit = {
 	 * Evoked after completion of removing comment
 	 *
 	 * @method	onRemoved
-	 * @param	{Number}			idTask
 	 * @param	{Ajax.Response}		response
 	 */
 	onRemoved: function(response){

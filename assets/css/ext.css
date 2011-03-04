@@ -85,8 +85,7 @@ h1.extIconComment .title {
 }
 
 .task-comments div.comment ul {
-	list-style-position:outside;
-	list-style-type:disc;
+	list-style:disc outside;
 	padding-left:14px;
 }
 
@@ -158,8 +157,7 @@ h1.extIconComment .title {
 
 
 .task-comments li.isPublic {
-	border:solid #FF0000 !important;
-	border-width:1px !important;
+	border:1px solid #ff0000;
 }
 
 .task-comments .hasicon {
@@ -271,9 +269,8 @@ li.comment .comment-history {
 
 	.comment-history .log-head {
 		cursor:pointer;
-		background:url(../img/icons.png) no-repeat 6px -447px;
+		background:#e8e8e8 url(../img/icons.png) no-repeat 6px -447px;
 		padding:4px 0 4px 26px;
-		background-color:#e8e8e8;
 	}
 
 	.comment-history dl {
@@ -351,8 +348,7 @@ input.deleteButtonOwnComment {
 	Context menu task
    ------------------------ */
 #contextmenu .taskContextMenu.task-add-comment {
-	background-image:url(../img/icons.png);
-	background-position:3px 3px;
+	background:url(../img/icons.png) 3px 3px;
 }
 
 /* ------------------------
