@@ -157,7 +157,8 @@ h1.extIconComment .title {
 
 
 .task-comments li.isPublic {
-	border:1px solid #ff0000;
+	border:solid #ff0000 !important;
+	border-width:1px !important;
 }
 
 .task-comments .hasicon {
