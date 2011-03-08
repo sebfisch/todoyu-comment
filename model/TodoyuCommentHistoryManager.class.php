@@ -59,7 +59,7 @@ class TodoyuCommentHistoryManager {
 	/**
 	 * Merge and sort (by creation timestamp) log record entries of two tables
 	 *
-	 * @param 	Array	$log1
+	 * @param	Array	$log1
 	 * @param	Array	$log2
 	 * @param	String	$table1
 	 * @param	String	$table2

@@ -208,9 +208,7 @@ class TodoyuCommentRights {
 	/**
 	 * Restrict delete to person which are allowed to delete comment
 	 *
-	 * @static
-	 * @param  $idComment
-	 * @return void
+	 * @param	Integer		$idComment
 	 */
 	public static function restrictDelete($idComment) {
 		$idComment	= intval($idComment);

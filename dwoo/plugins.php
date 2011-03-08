@@ -33,8 +33,8 @@
  * @package		Todoyu
  * @subpackage	Template
  *
- * @param 		Dwoo_Compiler 	$compiler
- * @param 		Integer			$idEventIndex
+ * @param		Dwoo_Compiler	$compiler
+ * @param		Integer			$idEventIndex
  * @return		String
  */
 function Dwoo_Plugin_limitHTMLwordsLen(Dwoo $dwoo, $string, $maxLen = 45) {
