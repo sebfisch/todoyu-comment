@@ -30,9 +30,10 @@
 Todoyu.Ext.comment.Edit = {
 
 	/**
-	 * Extension backlink
+	 * Reference to extension
 	 *
-	 * @var	{Object}	ext
+	 * @property	ext
+	 * @type		Object
 	 */
 	ext: Todoyu.Ext.comment,
 
