@@ -18,6 +18,10 @@
 *****************************************************************************/
 
 /**
+ * @module	Comment
+ */
+
+/**
  *	List comments of task methods
  */
 Todoyu.Ext.comment.List = {

@@ -18,7 +18,14 @@
 *****************************************************************************/
 
 /**
- * Ext: comment
+ * @module	Comment
+ */
+
+/**
+ * Main comment object
+ *
+ * @class		Comment
+ * @namespace	Todoyu.Ext
  */
 Todoyu.Ext.comment = {
 
