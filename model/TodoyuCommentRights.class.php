@@ -69,7 +69,7 @@ class TodoyuCommentRights {
 				return true;
 			}
 
-			if( allowed('comment', 'comment;editOwn') && $isCreator) {
+			if( allowed('comment', 'comment:editOwn') && $isCreator) {
 				return true;
 			}
 		}

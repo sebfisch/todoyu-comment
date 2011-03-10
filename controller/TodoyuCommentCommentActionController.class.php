@@ -62,7 +62,7 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 		$idTask		= intval($params['task']);
 		$idComment	= intval($params['comment']);
 
-			// Person is the creator or has right editAll
+			// Person is the creator + has right editOwn or has right editAll
 		TodoyuCommentRights::restrictEdit($idComment);
 
 		return TodoyuCommentRenderer::renderEdit($idTask, $idComment);
