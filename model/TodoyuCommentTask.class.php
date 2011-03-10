@@ -59,7 +59,7 @@ class TodoyuCommentTask {
 		$numComments= TodoyuCommentCommentManager::getNumberOfTaskComments($idTask);
 
 			// If no comments
-		if( $numComments === 0 && TodoyuProjectTaskManager::isLocked($idTask) === false ) {
+		if( $numComments === 0 ) {
 				// Show form to add first task if allowed
 			return TodoyuCommentRenderer::renderEdit($idTask, 0);
 		} else {
