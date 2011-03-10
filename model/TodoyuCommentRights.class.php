@@ -65,7 +65,7 @@ class TodoyuCommentRights {
 		$idTask	= intval($idTask);
 
 		if( TodoyuProjectTaskRights::isSeeAllowed($idTask) && !TodoyuProjectTaskManager::isLocked($idTask) ) {
-			if( allowed('comment', 'comment:editAll')) {
+			if( allowed('comment', 'comment:editAll') ) {
 				return true;
 			}
 
