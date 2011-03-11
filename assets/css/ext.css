@@ -71,6 +71,12 @@ h1.extIconComment .title {
 	font-weight:bold;
 	background:#E5E8DA url(../../../../core/assets/img/bg-tabheader.png) repeat-x 0 top;
 }
+.taskTabs .formComment {
+}
+.taskTabs .formComment fieldset {
+	margin-top: 5px;
+	border-color: #e3eace;
+}
 
 
 
@@ -242,15 +248,8 @@ h1.extIconComment .title {
 	background-color:#fff;
 }
 
-/* -------------------------
-	comment task tab
-   ------------------------- */
-.tabContent .commentButtons {
-	padding:10px 10px 5px 10px;
-}
 .tabContent ul.task-comments {
-	background-color:#fff;
-	padding:5px;
+	padding-top: 5px;
 }
 
 /* --------------------
