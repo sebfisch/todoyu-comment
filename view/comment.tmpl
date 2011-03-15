@@ -48,8 +48,8 @@
 
 		{if sizeof($person_ids_mailonly) > 0}
 			{Label comment.ext.comment.emailPersons}
-			{foreach $persons_email emailPerson name=personsEmail}
-				{personLabel idPrefix="comment-personemail" idRecord=$id idPerson=$emailPerson.id class="emailperson"}
+			{foreach $person_ids_mailonly emailPersonID}
+				{personLabel idPrefix="comment-personemail" idRecord=$emailPersonID idPerson=$emailPersonID class="emailperson"}
 			{/foreach}
 			<div class="divider"> </div>
 		{/if}

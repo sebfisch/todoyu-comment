@@ -113,8 +113,11 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 
 		$this->data['persons_feedback']	= TodoyuCommentFeedbackManager::getFeedbackPersons($this->getID());
 		$this->data['persons_email']	= TodoyuCommentMailManager::getEmailPersons($this->getID());
+
 			// Persons that the comment has been mailed to without a feedback request?
-		$this->data['person_ids_mailonly']	= array_diff(array_keys($this->data['persons_email']), array_keys($this->data['persons_feedback']));
+		$personIDsEmailedTo	= array_keys($this->data['persons_email']);
+		$personIDsFeedback	= array_keys($this->data['persons_feedback']);
+		$this->data['person_ids_mailonly']	= array_diff($personIDsEmailedTo, $personIDsFeedback);
 
 		$this->data['unapproved']		= TodoyuCommentFeedbackManager::isCommentUnapproved($this->getID());
 		$this->data['locked']			= $this->isLocked();
@@ -125,7 +128,8 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 	/**
 	 * Prepare comments rendering template data (creation person, having been seen status, feedback persons)
 	 *
-	 * @return Array
+	 * @param	Boolean		$loadForeignRecords
+	 * @return	Array
 	 */
 	public function getTemplateData($loadForeignRecords = false) {
 		if( $loadForeignRecords ) {
