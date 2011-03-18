@@ -53,11 +53,11 @@ h1.extIconComment .title {
 }
 
 .task .tabContent .commentButtons button.reverseOrder.asc .icon {
-	background:url(../../../../core/assets/img/icons.png) no-repeat 0 -476px;
+	background:url(../../../../core/asset/img/icons.png) no-repeat 0 -476px;
 }
 
 .task .tabContent .commentButtons button.reverseOrder.desc .icon {
-	background:url(../../../../core/assets/img/icons.png) no-repeat 0 -506px;
+	background:url(../../../../core/asset/img/icons.png) no-repeat 0 -506px;
 }
 
 .task-comments {
@@ -69,7 +69,7 @@ h1.extIconComment .title {
 	margin:0 0 5px 0;
 	padding:7px 5px;
 	font-weight:bold;
-	background:#E5E8DA url(../../../../core/assets/img/bg-tabheader.png) repeat-x 0 top;
+	background:#E5E8DA url(../../../../core/asset/img/bg-tabheader.png) repeat-x 0 top;
 }
 .taskTabs .formComment {
 }
@@ -138,24 +138,24 @@ h1.extIconComment .title {
 }
 	/* Person has acknowledged feedback */
 .task-comments .comment-details .persons span.commentperson-approved {
-	background:transparent url('../../../../core/assets/img/icons.png') no-repeat 0 -1314px;
+	background:transparent url('../../../../core/asset/img/icons.png') no-repeat 0 -1314px;
 }
 	/* Person has only received the comment via mail */
 .task-comments .comment-details .persons span.emailperson {
-	background:transparent url('../../../../core/assets/img/icons.png') no-repeat 0 -1344px;
+	background:transparent url('../../../../core/asset/img/icons.png') no-repeat 0 -1344px;
 }
 	/* Person has acknowledged feedback AND received it via email */
 .task-comments .comment-details .persons span.commentperson-approved-email {
-	background:transparent url('../../../../core/assets/img/icons.png') no-repeat 0 -1402px;
+	background:transparent url('../../../../core/asset/img/icons.png') no-repeat 0 -1402px;
 	padding-left:23px;
 }
 	/* Person has NOT acknowledged feedback */
 .task-comments .comment-details .persons span.commentperson-unapproved {
-	background:transparent url('../../../../core/assets/img/icons.png') no-repeat 0 -1288px;
+	background:transparent url('../../../../core/asset/img/icons.png') no-repeat 0 -1288px;
 }
 	/* Person has NOT acknowledged feedback AND received it via email */
 .task-comments .comment-details .persons span.commentperson-unapproved-email {
-	background:transparent url('../../../../core/assets/img/icons.png') no-repeat 0 -1368px;
+	background:transparent url('../../../../core/asset/img/icons.png') no-repeat 0 -1368px;
 	padding-left:23px;
 }
 
@@ -183,7 +183,7 @@ h1.extIconComment .title {
 	margin-right:10px;
 	height:16px;
 	width:16px;
-	background:transparent url('../../../../core/assets/img/icons.png') no-repeat 0 -1258px;
+	background:transparent url('../../../../core/asset/img/icons.png') no-repeat 0 -1258px;
 }
 
 .task-comments .comment-person {

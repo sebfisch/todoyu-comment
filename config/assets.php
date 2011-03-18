@@ -28,21 +28,21 @@
 Todoyu::$CONFIG['EXT']['comment']['assets'] = array(
 	'js' => array(
 		array(
-			'file'		=> 'ext/comment/assets/js/Ext.js',
+			'file'		=> 'ext/comment/asset/js/Ext.js',
 			'position'	=> 100
 		),
 		array(
-			'file'		=> 'ext/comment/assets/js/List.js',
+			'file'		=> 'ext/comment/asset/js/List.js',
 			'position'	=> 101
 		),
 		array(
-			'file'		=> 'ext/comment/assets/js/Edit.js',
+			'file'		=> 'ext/comment/asset/js/Edit.js',
 			'position'	=> 102
 		)
 	),
 	'css' => array(
 		array(
-			'file'		=> 'ext/comment/assets/css/ext.css',
+			'file'		=> 'ext/comment/asset/css/ext.css',
 			'position'	=> 100
 		)
 	)
