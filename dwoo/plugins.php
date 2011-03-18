@@ -28,22 +28,6 @@
 
 
 /**
- * Limit maximum length of words in text (break with space character if longer)
- *
- * @package		Todoyu
- * @subpackage	Template
- *
- * @param		Dwoo_Compiler	$compiler
- * @param		Integer			$idEventIndex
- * @return		String
- */
-function Dwoo_Plugin_limitHTMLwordsLen(Dwoo $dwoo, $string, $maxLen = 45) {
-	return TodoyuHtmlFilter::entitySafeLimitWordsLen($string, $maxLen);
-}
-
-
-
-/**
  * @param	Dwoo_Compiler	$compiler
  * @param	String			$text
  * @return	String
