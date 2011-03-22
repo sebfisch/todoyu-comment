@@ -39,7 +39,7 @@ class TodoyuCommentMailManager {
 
 
 	/**
-	 * log sent comment email of given comment to given person
+	 * Log sent comment email of given comment to given person
 	 *
 	 * @param	Integer		$idComment
 	 * @param	Integer		$idPerson

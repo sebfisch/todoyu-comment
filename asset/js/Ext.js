@@ -161,6 +161,7 @@ Todoyu.Ext.comment = {
 	},
 
 
+
 	/**
 	 * Handler when task comment tab is loaded
 	 *
@@ -188,6 +189,7 @@ Todoyu.Ext.comment = {
 	},
 
 
+
 	/**
 	 * Check whether sorting of comments of given task is desc (true) or asc (false)
 	 *
@@ -204,57 +206,6 @@ Todoyu.Ext.comment = {
 		}
 
 		return isDesc;
-	},
-
-
-
-	/**
-	 * Toggle display of comment (feedbacks and mailing) log
-	 *
-	 * @method	toggleLog
-	 * @param	{Number}	idTask
-	 */
-	toggleLog: function(idComment) {
-		var logDiv	= $('task-comment-log-' + idComment + '-details');
-
-		if( ! logDiv.visible() ) {
-			if( logDiv.empty() ) {
-
-				var url		= Todoyu.getUrl('comment', 'comment');
-				var options	= {
-					'parameters': {
-						'action':	'log',
-						'comment':	idComment
-					},
-					'onComplete': Todoyu.Ext.comment.onLogToggled.bind(this)
-				};
-
-				Todoyu.Ui.update(logDiv, url, options);
-			}
-			logDiv.show();
-		} else {
-			logDiv.hide();
-		}
-
-		this.updateToggleLogIcon(idComment);
-	},
-
-
-
-	onLogToggled: function(idComment, response) {
-//		Todoyu.log('OnComplete erreicht');
-	},
-
-
-
-	/**
-	 * Update toggler icon of task comment log
-	 *
-	 * @method	updateToggleLogIcon
-	 * @param	{Number}	idComment
-	 */
-	updateToggleLogIcon: function(idComment) {
-		Todoyu.Ui.updateToggleIcon('task-comment-log-', idComment);
 	},
 
 

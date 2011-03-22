@@ -122,25 +122,6 @@ class TodoyuCommentRenderer {
 
 
 	/**
-	 * Render comment feedback and mailing log
-	 *
-	 * @param	Integer		$idTask
-	 * @param	Integer		$idComment
-	 * @return	String
-	 */
-	public static function renderLog($idTask, $idComment = 0) {
-		$idComment	= intval($idComment);
-
-			// Render
-		$tmpl	= 'ext/comment/view/history.tmpl';
-		$data	= TodoyuCommentHistoryManager::getHistory($idComment);
-
-		return render($tmpl, $data);
-	}
-
-
-
-	/**
 	 * Extend comment edit form with attribute to auto-request feedback from task owner for persons of configured groups
 	 *
 	 * @param	TodoyuForm		$form
