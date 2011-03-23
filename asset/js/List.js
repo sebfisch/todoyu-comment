@@ -38,8 +38,8 @@ Todoyu.Ext.comment.List = {
 		var target			= 'task-' + idTask + '-tabcontent-comment';
 
 		var options	= {
-			'parameters': {
-				'action':	'list',
+			parameters: {
+				action:	'list',
 				'task':		idTask,
 				'desc':		desc
 			}

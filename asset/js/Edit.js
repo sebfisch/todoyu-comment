@@ -74,10 +74,10 @@ Todoyu.Ext.comment.Edit = {
 		var idTask	= $(form).up('.task').readAttribute('id').split('-').last();
 
 		$(form).request({
-			'parameters': {
-				'action':	'save'
+			parameters: {
+				action:	'save'
 			},
-			'onComplete': this.onSaved.bind(this, idTask)
+			onComplete: this.onSaved.bind(this, idTask)
 		});
 
 		return false;

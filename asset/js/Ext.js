@@ -46,11 +46,11 @@ Todoyu.Ext.comment = {
 	togglePublic: function(idComment) {
 		var url		= Todoyu.getUrl('comment', 'task');
 		var options	= {
-			'parameters': {
-				'action':	'togglepublic',
+			parameters: {
+				action:	'togglepublic',
 				'comment':	idComment
 			},
-			'onComplete': this.onToggledPublic.bind(this, idComment)
+			onComplete: this.onToggledPublic.bind(this, idComment)
 		};
 
 		Todoyu.send(url , options);
@@ -82,11 +82,11 @@ Todoyu.Ext.comment = {
 	setSeenStatus: function(idComment, idPerson) {
 		var url		= Todoyu.getUrl('comment', 'task');
 		var options	= {
-			'parameters': {
-				'action':	'seen',
+			parameters: {
+				action:	'seen',
 				'comment':	idComment
 			},
-			'onComplete': this.onSeenStatusSet.bind(this, idComment, idPerson)
+			onComplete: this.onSeenStatusSet.bind(this, idComment, idPerson)
 		};
 
 		Todoyu.send(url, options);
@@ -132,11 +132,11 @@ Todoyu.Ext.comment = {
 
 		var url		= Todoyu.getUrl('comment', 'comment');
 		var options	= {
-			'parameters': {
-				'action':	'delete',
+			parameters: {
+				action:	'delete',
 				'comment':	idComment
 			},
-			'onComplete': Todoyu.Ext.comment.Edit.onRemoved.bind(this)
+			onComplete: Todoyu.Ext.comment.Edit.onRemoved.bind(this)
 		};
 
 		Todoyu.send(url, options);
@@ -236,12 +236,12 @@ Todoyu.Ext.comment = {
 
 		var url		= Todoyu.getUrl('comment', 'comment');
 		var options = {
-			'parameters': {
-				'action': 	'add',
+			parameters: {
+				action: 	'add',
 				'task':		idTask
 			},
 			'insertion':	'after',
-			'onComplete': this.onAdd.bind(this, idTask)
+			onComplete: this.onAdd.bind(this, idTask)
 		};
 		var target	= 'task-' + idTask + '-comment-commands';
 
@@ -274,12 +274,12 @@ Todoyu.Ext.comment = {
 	edit: function(idTask, idComment) {
 		var url		= Todoyu.getUrl('comment', 'comment');
 		var options = {
-			'parameters': {
-				'action': 	'edit',
+			parameters: {
+				action: 	'edit',
 				'task':		idTask,
 				'comment':	idComment
 			},
-			'onComplete':	this.onEdit.bind(this, idTask, idComment)
+			onComplete:	this.onEdit.bind(this, idTask, idComment)
 		};
 		var target	= 'task-comment-' + idComment + '-text';
 
