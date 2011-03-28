@@ -25,9 +25,11 @@ h1.extIconComment .title {
 /* --------------
 	Search
    -------------- */
-#todoyusearchheadletquicksearch form.searchmodeComment a.mode,
 #todoyusearchheadletquicksearch-modes li.searchmodeComment a {
 	background:url(../img/icons.png) no-repeat 3px -115px !important;
+}
+#todoyusearchheadletquicksearch form.searchmodeComment a.mode {
+	background:url(../img/icons.png) no-repeat 3px -472px !important;
 }
 
 
