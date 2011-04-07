@@ -1,20 +1,19 @@
 todoyu comment extension changelog
 
-comment 1.1.0 (requires core >= 2.1) - not released yet
-	* Changed: moved globally used icons (unacknowledged/acknowledged, etc.) to core
+comment  1.1.0 - beta release
+	* Changed: Requires core 2.1
+	* Changed: Structure for 2.1
+	* Changed: All classes are prefixed with extension name
+ 	* Changed: moved globally used icons (unacknowledged/acknowledged, etc.) to core
 	* Changed: Moved logging of sent comment mails into TodoyuMailManager of core / table system_log_email table
 	* Changed: Renamed DB table ext_comment_feedback to ext_comment_mm_comment_feedback
-	* Feature: Cleanup of Rights Management
 	* Changed: Removed TodoyuComment::getCreatePersonID() and getCreatePerson() methods (in baseObject now)
-	* Bugfix: fixed toggle email receivers of comment
 	* Changed: Moved comment emailing options into separate fieldset of comment form
-	* Feature: Cleanup (topical order and readability) of extension config (init.php) file
-	* Feature: Forms restyled
-	* Changed: Updated loading structure: (core: boot.php, init: request,) extensions: init.php
-	* Feature: Comments identifier is now "C" (not "K") - header, comment detail, search, linkage
-	* Feature: Changed locale format
+	* Changed: Comments identifier is now "C" (not "K") - header, comment detail, search, linkage
+	* Bugfix: fixed toggle email receivers of comment
 
-comment 1.0.8 - not released yet
+
+ comment 1.0.8 - not released yet
 	* Feature: Added changelog
 	* Feature: Implemented logging of emailed comments and listed it in comments header
 	* Feature: Added marking of seen feedbacks in comments header
