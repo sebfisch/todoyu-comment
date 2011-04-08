@@ -63,7 +63,7 @@ Todoyu.Ext.comment = {
 	 *
 	 * @method	onToggledPublic
 	 * @param	{Number}			idComment
-	 * @param	{Ajax.Response}	response
+	 * @param	{Ajax.Response}		response
 	 */
 	onToggledPublic: function(idComment, response) {
 		$('task-comment-' + idComment).toggleClassName('isPublic');
@@ -151,7 +151,7 @@ Todoyu.Ext.comment = {
 
 
 	/**
-	 * Add new comment to given task
+	 * Add new comment to given task: expand task details and open comments tab with new comment form
 	 *
 	 * @method	addTaskComment
 	 * @param	{Number}	idTask
@@ -172,6 +172,10 @@ Todoyu.Ext.comment = {
 	onTaskCommentTabLoaded: function(idTask, tab) {
 		if( ! Todoyu.exists('task-' + idTask + '-commentform-0') ) {
 			this.add(idTask);
+		} else {
+			if( ! Todoyu.Ext.project.Task.isDetailsVisible(idTask) ) {
+				$('task-' + idTask + '-details').toggle();
+			}
 		}
 	},
 
@@ -241,7 +245,7 @@ Todoyu.Ext.comment = {
 				'task':		idTask
 			},
 			'insertion':	'after',
-			onComplete: this.onAdd.bind(this, idTask)
+			onComplete:		this.onAdd.bind(this, idTask)
 		};
 		var target	= 'task-' + idTask + '-comment-commands';
 
