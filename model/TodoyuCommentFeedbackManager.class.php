@@ -244,7 +244,7 @@ class TodoyuCommentFeedbackManager {
 
 		$where	= 'id_comment = ' . $idComment . ($onlyUnseen === true ? ' AND is_seen = 0' : '');
 
-		return	TodoyuRecordManager::getAllRecords(self::TABLE, $where, '');
+		return TodoyuRecordManager::getAllRecords(self::TABLE, $where, '');
 	}
 
 
@@ -260,7 +260,7 @@ class TodoyuCommentFeedbackManager {
 
 		$where	= 'id_comment = ' . $idComment . ' AND is_seen = 1';
 
-		return	TodoyuRecordManager::getAllRecords(self::TABLE, $where, '');
+		return TodoyuRecordManager::getAllRecords(self::TABLE, $where, '');
 	}
 
 
