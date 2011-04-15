@@ -18,9 +18,6 @@
 * This copyright notice MUST APPEAR in all copies of the script.
 *****************************************************************************/
 
-	// Include mail library
-require_once( PATH_LIB . '/php/phpmailer/class.phpmailer-lite.php' );
-
 /**
  * Send comment mails
  *
@@ -69,48 +66,30 @@ class TodoyuCommentMailer {
 		$comment	= TodoyuCommentCommentManager::getComment($idComment);
 		$person		= TodoyuContactPersonManager::getPerson($idPerson);
 
-			// Set mail config
-		$mail			= new PHPMailerLite(true);
-		$mail->Mailer	= 'mail';
-		$mail->CharSet	= 'utf-8';
-//
-//			// Change mail program
-//		if( PHP_OS !== 'Linux' ) {
-//				// Windows Server: use 'mail' instead of 'sendmail'
-//			$mail->Mailer	= 'mail';
-//		}
+			// Get mailer
+		$mailer	= TodoyuMailManager::getPHPMailerLite(true);
 
 			// Set "from" (sender) name and email address
 		$fromName		= Todoyu::person()->getFullName() . ' (todoyu)';
 		$fromAddress	= $setSenderFromPersonMail ? Todoyu::person()->getEmail() : Todoyu::$CONFIG['SYSTEM']['email'];
-		$mail->SetFrom($fromAddress, $fromName);
+		$mailer->SetFrom($fromAddress, $fromName);
 
 			// Set "replyTo", "subject"
-		$mail->AddReplyTo(Todoyu::person()->getEmail(), Todoyu::person()->getFullName());
-		$mail->Subject	= Label('comment.ext.mail.subject') . ': ' . $comment->getTask()->getTitle() . ' (#' . $comment->getTask()->getTaskNumber(true) . ')';
+		$mailer->AddReplyTo(Todoyu::person()->getEmail(), Todoyu::person()->getFullName());
+		$mailer->Subject	= Label('comment.ext.mail.subject') . ': ' . $comment->getTask()->getTitle() . ' (#' . $comment->getTask()->getTaskNumber(true) . ')';
 
 			// Add message body as HTML and plain text
 		$htmlBody		= self::getMailContentHtml($idComment, $idPerson, $hideEmails);
 		$textBody		= self::getMailContentText($idComment, $idPerson, $hideEmails);
 
-		$mail->MsgHTML($htmlBody, PATH_EXT_COMMENT);
-		$mail->AltBody	= $textBody;
+		$mailer->MsgHTML($htmlBody, PATH_EXT_COMMENT);
+		$mailer->AltBody	= $textBody;
 
 			// Add "to" (recipient) address
-		$mail->AddAddress($person->getEmail(), $person->getFullName());
-
-
-//	@todo	verify
-//		if( DIR_SEP !== '\\' ) {
-				// Non-Windows (e.g Linux)
-//			$mail->AddAddress($person->getEmail(), $person->getFullName());
-//		} else {
-//				// Windows
-//			$mail->AddAddress($person->getEmail(), '');
-//		}
+		$mailer->AddAddress($person->getEmail(), $person->getFullName());
 
 		try {
-			$sendStatus	= $mail->Send();
+			$sendStatus	= $mailer->Send();
 		} catch(phpmailerException $e) {
 			Todoyu::log($e->getMessage(), TodoyuLogger::LEVEL_ERROR);
 		} catch(Exception $e) {
