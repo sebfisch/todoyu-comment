@@ -64,37 +64,20 @@ class TodoyuCommentMailer {
 		$idPerson	= intval($idPerson);
 
 		$comment	= TodoyuCommentCommentManager::getComment($idComment);
-		$person		= TodoyuContactPersonManager::getPerson($idPerson);
 
-			// Get mailer
-		$mailer	= TodoyuMailManager::getPHPMailerLite(true);
-
-			// Set "from" (sender) name and email address
-		$fromName		= Todoyu::person()->getFullName() . ' (todoyu)';
+					// Setup mail data
+		$mailSubject	= Label('comment.ext.mail.subject') . ': ' . $comment->getTask()->getTitle() . ' (#' . $comment->getTask()->getTaskNumber(true) . ')';
 		$fromAddress	= $setSenderFromPersonMail ? Todoyu::person()->getEmail() : Todoyu::$CONFIG['SYSTEM']['email'];
-		$mailer->SetFrom($fromAddress, $fromName);
-
-			// Set "replyTo", "subject"
-		$mailer->AddReplyTo(Todoyu::person()->getEmail(), Todoyu::person()->getFullName());
-		$mailer->Subject	= Label('comment.ext.mail.subject') . ': ' . $comment->getTask()->getTitle() . ' (#' . $comment->getTask()->getTaskNumber(true) . ')';
-
-			// Add message body as HTML and plain text
+		$fromName		= Todoyu::person()->getFullName() . ' (todoyu)';
+		$toAddress		= Todoyu::person()->getEmail();
+		$toName			= Todoyu::person()->getFullName();
 		$htmlBody		= self::getMailContentHtml($idComment, $idPerson, $hideEmails);
 		$textBody		= self::getMailContentText($idComment, $idPerson, $hideEmails);
 
-		$mailer->MsgHTML($htmlBody, PATH_EXT_COMMENT);
-		$mailer->AltBody	= $textBody;
+		$baseURL	= PATH_EXT_COMMENT;
 
-			// Add "to" (recipient) address
-		$mailer->AddAddress($person->getEmail(), $person->getFullName());
-
-		try {
-			$sendStatus	= $mailer->Send();
-		} catch(phpmailerException $e) {
-			Todoyu::log($e->getMessage(), TodoyuLogger::LEVEL_ERROR);
-		} catch(Exception $e) {
-			Todoyu::log($e->getMessage(), TodoyuLogger::LEVEL_ERROR);
-		}
+			// Send mail
+		$sendStatus	= TodoyuMailManager::sendMail($mailSubject, $fromAddress, $fromName, $toAddress, $toName, $htmlBody, $textBody, $baseURL);
 
 		return $sendStatus;
 	}
