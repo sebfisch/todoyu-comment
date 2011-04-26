@@ -76,8 +76,8 @@ h1.extIconComment .title {
 .taskTabs .formComment {
 }
 .taskTabs .formComment fieldset {
-	margin-top: 5px;
-	border-color: #e3eace;
+	margin-top:5px;
+	border-color:#e3eace;
 }
 
 
@@ -251,7 +251,7 @@ h1.extIconComment .title {
 }
 
 .tabContent ul.task-comments {
-	padding-top: 5px;
+	padding-top:5px;
 }
 
 /* --------------------
