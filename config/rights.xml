@@ -8,11 +8,11 @@
 	<section name="comment" require="general:use">
 		<right name="seeAll" />
 		<right name="editOwn" />
-		<right name="editAll" />
+		<right name="editAll" require="comment:seeAll" />
 		<right name="requestFeedback" />
 		<right name="sendAsEmail" />
 		<right name="deleteOwn" />
-		<right name="deleteAll" />
+		<right name="deleteAll" require="comment:seeAll" />
 		<right name="makePublic" />
 	</section>
 
