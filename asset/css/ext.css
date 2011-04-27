@@ -111,7 +111,7 @@ h1.extIconComment .title {
 }
 
 .task-comments .comment-details .persons .divider {
-	border-bottom:1px dotted #bec5ab;
+	border-bottom:1px solid #ddd;
 }
 
 .task-comments .comment-details .right {
