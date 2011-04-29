@@ -119,11 +119,10 @@ class TodoyuCommentRights {
 
 
 	/**
-	 * Check a person can delete the given comment
+	 * Check whether person can delete the given comment
 	 *
-	 * @static
 	 * @param	Integer	$idComment
-	 * @return
+	 * @return	Boolean
 	 */
 	public static function isDeleteAllowed( $idComment ) {
 		$idComment	= intval($idComment);
