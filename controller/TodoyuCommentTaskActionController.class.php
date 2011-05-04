@@ -101,7 +101,7 @@ class TodoyuCommentTaskActionController extends TodoyuActionController {
 		$idComment	= intval($params['comment']);
 
 		restrict('comment', 'comment:makePublic');
-		TodoyuCommentRights::restrictEdit($idComment);
+		TodoyuCommentRights::restrictSee($idComment);
 
 		TodoyuCommentCommentManager::togglePublic($idComment);
 	}

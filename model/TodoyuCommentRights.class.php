@@ -109,7 +109,7 @@ class TodoyuCommentRights {
 				return true;
 			} else {
 				$idPerson	= personid();
-				return $comment->isCurrentPersonCreator() || in_array( $idPerson, $comment->getFeedbackPersons() );
+				return ( $comment->isCurrentPersonCreator() || array_key_exists( $idPerson, $comment->getFeedbackPersons() ) || $comment->isPublic() );
 			}
 		}
 

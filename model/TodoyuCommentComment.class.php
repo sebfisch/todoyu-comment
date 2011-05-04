@@ -106,6 +106,15 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 
 
 	/**
+	 * @return bool
+	 */
+	public function isPublic() {
+		return intval($this->data['is_public']) === 1;
+	}
+
+
+
+	/**
 	 * Load comment foreign data: creator, feedback persons, approval state
 	 */
 	protected function loadForeignData() {
