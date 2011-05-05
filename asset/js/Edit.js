@@ -136,8 +136,31 @@ Todoyu.Ext.comment.Edit = {
 	onRemoved: function(response){
 		var tabLabel	= response.getTodoyuHeader('tabLabel');
 		var idTask		= response.getTodoyuHeader('idTask');
+		var idComment	= response.getTodoyuHeader('idComment');
 
 		Todoyu.Ext.comment.setTabLabel(idTask, tabLabel);
+
+			// Fade out the removed task
+		Effect.Fade($('task-comment-' + idComment), {
+			'duration':		0.5,
+			'from':			1,
+			'to':			0,
+			'afterFinish':	function(effect) {
+					// Less than 2 comments left? remove button to toggle sorting
+				var tabContentElement		= effect.element.up('div.tabContent');
+				var commentsContainerElement= tabContentElement.down('.task-comments');
+
+				effect.element.remove();
+				var amountComments		= commentsContainerElement.select('li').length;
+
+				if( amountComments < 2 ) {
+					var button	= tabContentElement.select('button.reverseOrder')[0];
+					if( button ) {
+						button.hide();
+					}
+				}
+			}
+		});
 	}
 
 };

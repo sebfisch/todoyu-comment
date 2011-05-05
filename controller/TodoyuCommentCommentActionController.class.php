@@ -88,6 +88,7 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 		$idTask	= $comment->getTaskID();
 
 		TodoyuHeader::sendTodoyuHeader('idTask', $idTask);
+		TodoyuHeader::sendTodoyuHeader('idComment', $idComment);
 		TodoyuHeader::sendTodoyuHeader('tabLabel', TodoyuCommentTask::getLabel($idTask));
 	}
 

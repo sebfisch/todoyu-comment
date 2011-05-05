@@ -133,19 +133,13 @@ Todoyu.Ext.comment = {
 		var url		= Todoyu.getUrl('comment', 'comment');
 		var options	= {
 			parameters: {
-				action:	'delete',
+				action:		'delete',
 				'comment':	idComment
 			},
 			onComplete: Todoyu.Ext.comment.Edit.onRemoved.bind(this)
 		};
 
 		Todoyu.send(url, options);
-
-		Effect.Fade($('task-comment-' + idComment), {
-			'duration':	0.5,
-			'from':		1,
-			'to':		0
-		});
 	},
 
 
