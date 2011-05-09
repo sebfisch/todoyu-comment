@@ -230,9 +230,9 @@ class TodoyuCommentCommentManager {
 		$order	= 'date_create ' . $sortDir;
 
 			// Limit comment it own and public if person can't see ALL comments
-		if( ! allowed('comment', 'comment:seeAll') ) {
+		if( ! Todoyu::allowed('comment', 'comment:seeAll') ) {
 			$where .= ' AND	(
-							id_person_create	= ' . personid() . ' OR
+							id_person_create	= ' . Todoyu::personid() . ' OR
 							is_public		= 1
 						)';
 		}
@@ -281,7 +281,7 @@ class TodoyuCommentCommentManager {
 	 */
 	public static function isCreator($idComment, $idPerson = 0) {
 		$idComment	= intval($idComment);
-		$idPerson	= personid($idPerson);
+		$idPerson	= Todoyu::personid($idPerson);
 
 		$fields	= 'id';
 		$table	= self::TABLE;
@@ -322,7 +322,7 @@ class TodoyuCommentCommentManager {
 		}
 
 			// Add internal Persons
-		if( allowed('contact', 'person:seeAllInternalPersons') ) {
+		if( Todoyu::allowed('contact', 'person:seeAllInternalPersons') ) {
 			$internalPersons= TodoyuContactPersonManager::getInternalPersons();
 
 			foreach($internalPersons as $person) {
@@ -424,7 +424,7 @@ class TodoyuCommentCommentManager {
 	 * @return	String
 	 */
 	public static function linkCommentIDsInText($text) {
-		if( allowed('project', 'general:area') ) {
+		if( Todoyu::allowed('project', 'general:area') ) {
 			$pattern	= '/(<p>|<span>|\s|^)c(\d+)(<\/p>|<\/span>|\s|$)/';
 			$replace	= '$1<a href="javascript:void(0)" onclick="Todoyu.Ext.comment.goToCommentInTaskByCommentNumber(\'$2\')">c$2</a>$3';
 

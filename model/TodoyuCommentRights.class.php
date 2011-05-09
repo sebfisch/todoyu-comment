@@ -65,11 +65,11 @@ class TodoyuCommentRights {
 		$idTask	= intval($idTask);
 
 		if( TodoyuProjectTaskRights::isSeeAllowed($idTask) && !TodoyuProjectTaskManager::isLocked($idTask) ) {
-			if( allowed('comment', 'comment:editAll') ) {
+			if( Todoyu::allowed('comment', 'comment:editAll') ) {
 				return true;
 			}
 
-			if( allowed('comment', 'comment:editOwn') && $isCreator) {
+			if( Todoyu::allowed('comment', 'comment:editOwn') && $isCreator) {
 				return true;
 			}
 		}
@@ -88,7 +88,7 @@ class TodoyuCommentRights {
 	public static function isAddInTaskAllowed($idTask) {
 		$idTask	= intval($idTask);
 
-		return TodoyuProjectTaskRights::isSeeAllowed($idTask) && !TodoyuProjectTaskManager::isLocked($idTask) && allowed('comment', 'general:use');
+		return TodoyuProjectTaskRights::isSeeAllowed($idTask) && !TodoyuProjectTaskManager::isLocked($idTask) && Todoyu::allowed('comment', 'general:use');
 	}
 
 
@@ -105,10 +105,10 @@ class TodoyuCommentRights {
 		$idTask		= $comment->getTaskID();
 
 		if( TodoyuProjectTaskRights::isSeeAllowed($idTask) ) {
-			if( allowed('comment', 'comment:seeAll')) {
+			if( Todoyu::allowed('comment', 'comment:seeAll')) {
 				return true;
 			} else {
-				$idPerson	= personid();
+				$idPerson	= Todoyu::personid();
 				return ( $comment->isCurrentPersonCreator() || array_key_exists( $idPerson, $comment->getFeedbackPersons() ) || $comment->isPublic() );
 			}
 		}
@@ -130,11 +130,11 @@ class TodoyuCommentRights {
 		$idTask		= $comment->getTaskID();
 
 		if( TodoyuProjectTaskRights::isSeeAllowed($idTask) && !TodoyuProjectTaskManager::isLocked($idTask)) {
-			if( allowed('comment', 'comment:deleteAll') ) {
+			if( Todoyu::allowed('comment', 'comment:deleteAll') ) {
 				return true;
 			}
 
-			if( allowed('comment', 'comment:deleteOwn') && $comment->isCurrentPersonCreator() ) {
+			if( Todoyu::allowed('comment', 'comment:deleteOwn') && $comment->isCurrentPersonCreator() ) {
 				return true;
 			}
 		}

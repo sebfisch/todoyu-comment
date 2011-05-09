@@ -32,7 +32,7 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 	 * @param	Array	$params
 	 */
 	public function init(array $params) {
-		restrict('comment', 'general:use');
+		Todoyu::restrict('comment', 'general:use');
 	}
 
 
@@ -76,7 +76,7 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 	 * @param	Array		$params
 	 */
 	public function deleteAction(array $params) {
-		restrict('comment', 'comment:deleteOwn');
+		Todoyu::restrict('comment', 'comment:deleteOwn');
 
 		$idComment		= intval($params['comment']);
 		$comment		= TodoyuCommentCommentManager::getComment($idComment);

@@ -77,10 +77,10 @@ class TodoyuCommentViewHelper {
 		$options	= array();
 
 			// Task persons
-		$groupLabel	= Label('comment.ext.group.taskmembers');
+		$groupLabel	= Todoyu::Label('comment.ext.group.taskmembers');
 		$taskPersons= TodoyuProjectTaskManager::getTaskPersons($idTask, true);
 		foreach($taskPersons as $person) {
-			if( $person['id'] != personid() ) {
+			if( $person['id'] != Todoyu::personid() ) {
 				$options[$groupLabel][$person['id']] = array(
 					'value'	=> $person['id'],
 					'label'	=> TodoyuContactPersonManager::getLabel($person['id'], false, true)
@@ -89,10 +89,10 @@ class TodoyuCommentViewHelper {
 		}
 
 			// Get project persons
-		$groupLabel		= Label('comment.ext.group.projectmembers');
+		$groupLabel		= Todoyu::Label('comment.ext.group.projectmembers');
 		$projectPersons	= TodoyuProjectProjectManager::getProjectPersons($idProject, true, true);
 		foreach($projectPersons as $person) {
-			if( $person['id'] != personid() ) {
+			if( $person['id'] != Todoyu::personid() ) {
 				$options[$groupLabel][$person['id']] = array(
 					'value'	=> $person['id'],
 					'label'	=> TodoyuContactPersonManager::getLabel($person['id'])
@@ -101,8 +101,8 @@ class TodoyuCommentViewHelper {
 		}
 
 			// Get staff persons (employees of internal company)
-		if( allowed('contact', 'person:seeAllInternalPersons') ) {
-			$groupLabel	= Label('comment.ext.group.employees');
+		if( Todoyu::allowed('contact', 'person:seeAllInternalPersons') ) {
+			$groupLabel	= Todoyu::Label('comment.ext.group.employees');
 			$options[$groupLabel]	= TodoyuContactViewHelper::getInternalPersonOptions($field);
 		}
 

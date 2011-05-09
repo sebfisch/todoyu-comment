@@ -167,7 +167,7 @@ class TodoyuCommentFeedbackManager {
 	 * @return	Array
 	 */
 	public static function getCommentIDs($idPerson = 0) {
-		$idPerson	= personid($idPerson);
+		$idPerson	= Todoyu::personid($idPerson);
 
 		$field	= 'f.id_comment';
 		$table	= self::TABLE . ' as f,
@@ -191,7 +191,7 @@ class TodoyuCommentFeedbackManager {
 	 * @return	Array
 	 */
 	public static function getTaskIDs($idPerson = 0) {
-		$idPerson	= personid($idPerson);
+		$idPerson	= Todoyu::personid($idPerson);
 
 		$field	= '	c.id_task';
 		$table	= 	self::TABLE . ' f,
@@ -215,7 +215,7 @@ class TodoyuCommentFeedbackManager {
 	 */
 	public static function hasFeedbackRequest($idComment, $idPerson = 0) {
 		$idComment	= intval($idComment);
-		$idPerson	= personid($idPerson);
+		$idPerson	= Todoyu::personid($idPerson);
 
 		$field	= self::TABLE . '.id';
 		$table	= self::TABLE . ' as f,
@@ -273,7 +273,7 @@ class TodoyuCommentFeedbackManager {
 	 */
 	public static function setAsSeen($idComment, $idPerson = 0) {
 		$idComment	= intval($idComment);
-		$idPerson	= personid($idPerson);
+		$idPerson	= Todoyu::personid($idPerson);
 
 		$table	= self::TABLE;
 		$where	= '		id_comment 			= ' . $idComment
@@ -297,7 +297,7 @@ class TodoyuCommentFeedbackManager {
 	 */
 	public static function setTaskCommentsAsSeen($idTask, $idPerson = 0) {
 		$idTask	= intval($idTask);
-		$idPerson	= personid($idPerson);
+		$idPerson	= Todoyu::personid($idPerson);
 
 		$tables	= 	self::TABLE . ' f,
 					ext_comment_comment c';
@@ -352,7 +352,7 @@ class TodoyuCommentFeedbackManager {
 	 */
 	public static function isCommentUnapproved($idComment) {
 		$idComment	= intval($idComment);
-		$idPerson		= personid();
+		$idPerson		= Todoyu::personid();
 
 		$field	= 'is_seen';
 		$table	= self::TABLE;

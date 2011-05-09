@@ -40,7 +40,7 @@ class TodoyuCommentRenderer {
 		$tmpl		= 'ext/comment/view/comment.tmpl';
 		$data		= $comment->getTemplateData(true);
 
-		return render($tmpl, $data);
+		return Todoyu::render($tmpl, $data);
 	}
 
 
@@ -71,7 +71,7 @@ class TodoyuCommentRenderer {
 			$data['comments'][$idComment] = self::renderComment($idComment);
 		}
 
-		return render($tmpl, $data);
+		return Todoyu::render($tmpl, $data);
 	}
 
 
@@ -116,7 +116,7 @@ class TodoyuCommentRenderer {
 			'formhtml'	=> $form->render()
 		);
 
-		return render($tmpl, $data);
+		return Todoyu::render($tmpl, $data);
 	}
 
 
@@ -171,7 +171,7 @@ class TodoyuCommentRenderer {
 	 * @return	String
 	 */
 	public static function renderPortalFeedbackTabLabel($count = true) {
-		$label	= Label('comment.ext.portal.tab.feedback');
+		$label	= Todoyu::Label('comment.ext.portal.tab.feedback');
 
 		if( $count ) {
 			$taskIDs= TodoyuCommentCommentManager::getFeedbackTaskIDs();

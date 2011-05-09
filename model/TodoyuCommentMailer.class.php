@@ -66,7 +66,7 @@ class TodoyuCommentMailer {
 		$comment	= TodoyuCommentCommentManager::getComment($idComment);
 
 					// Setup mail data
-		$subject	= Label('comment.ext.mail.subject') . ': ' . $comment->getTask()->getTitle() . ' (#' . $comment->getTask()->getTaskNumber(true) . ')';
+		$subject	= Todoyu::Label('comment.ext.mail.subject') . ': ' . $comment->getTask()->getTitle() . ' (#' . $comment->getTask()->getTaskNumber(true) . ')';
 		$fromAddress= $setSenderFromPersonMail ? Todoyu::person()->getEmail() : Todoyu::$CONFIG['SYSTEM']['email'];
 		$fromName	= Todoyu::person()->getFullName() . ' (todoyu)';
 		$toAddress	= Todoyu::person()->getEmail();
@@ -149,7 +149,7 @@ class TodoyuCommentMailer {
 		$data				= self::getMailData($idComment, $idPerson);
 		$data['hideEmails']	= $hideEmails;
 
-		return render($tmpl, $data);
+		return Todoyu::render($tmpl, $data);
 	}
 
 
@@ -170,7 +170,7 @@ class TodoyuCommentMailer {
 		$data				= self::getMailData($idComment, $idPerson);
 		$data['hideEmails']	= $hideEmails;
 
-		return render($tmpl, $data);
+		return Todoyu::render($tmpl, $data);
 	}
 
 }
