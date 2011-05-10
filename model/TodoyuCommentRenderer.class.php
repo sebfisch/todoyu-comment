@@ -191,6 +191,8 @@ class TodoyuCommentRenderer {
 	public static function renderPortalFeedbackTabContent() {
 		$taskIDs= TodoyuCommentCommentManager::getFeedbackTaskIDs();
 
+		TodoyuHeader::sendTodoyuHeader('items', sizeof($taskIDs));
+
 		TodoyuProjectPreferences::setForcedTaskTab('comment');
 
 		return TodoyuProjectTaskRenderer::renderTaskListing($taskIDs);

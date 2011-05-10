@@ -25,13 +25,4 @@ define('PATH_EXT_COMMENT', PATH_EXT . '/comment');
 require_once(PATH_EXT_COMMENT . '/config/constants.php');
 require_once( PATH_EXT_COMMENT . '/dwoo/plugins.php');
 
-	// Substitute comment identifiers in text by hyperlinks
-TodoyuHookManager::registerHook('core', 'substituteLinkableElements', 'TodoyuCommentCommentManager::linkCommentIDsInText');
-
-	// Extend comments form
-TodoyuFormHook::registerBuildForm('ext/comment/config/form/comment.xml',	'TodoyuCommentRenderer::extendEditFormWithAutoRequestedFeedbackFromOwner', 20);
-TodoyuFormHook::registerBuildForm('ext/comment/config/form/comment.xml',	'TodoyuCommentRenderer::extendEditFormWithAutoMailedCommentToOwner', 30);
-
-//TodoyuHookManager::registerHook('project', 'renderTasks', 'TodoyuCommentCommentManager::onTasksRender');
-
 ?>
