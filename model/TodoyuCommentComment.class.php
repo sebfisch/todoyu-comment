@@ -106,7 +106,7 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 
 
 	/**
-	 * @return bool
+	 * @return	Boolean
 	 */
 	public function isPublic() {
 		return intval($this->data['is_public']) === 1;
