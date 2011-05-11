@@ -4,7 +4,7 @@
 {Label project.ext.project}:	{htmlencode $project.title}
 {Label project.task.task}:	{htmlencode $task.title} ({$task.id_project}.{$task.tasknumber})
 {Label comment.ext.mail.commentfrom}:	{$personWrite.firstname} {$personWrite.lastname}{if $hideEmails != true} <{$personWrite.email}>{/if}
-{if $personWrite.id !== $personSend.id}{Label comment.ext.mail.commentsentby}:	{$personSend.firstname} {$personSend.lastname}{if $hideEmails != true} <{$personSend.email}>{/if}{/if}
+{if $personWrite.id !== $personSend.id}{Label comment.ext.mail.commentsentby}: {$personSend.firstname} {$personSend.lastname}{if $hideEmails != true} <{$personSend.email}>{/if}{/if}
 ========================================================================
 {html2text $comment.comment}
 

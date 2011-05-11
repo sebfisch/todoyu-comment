@@ -5,7 +5,7 @@
 	<label index="tab.comment">Komentář</label>
 	<label index="tab.comments">Komentáře</label>
 	<label index="tab.noComments">Přidat komentář</label>
-	<label index="tab.toggle">Vyp./Zap. komentáře </label>
+	<label index="tab.toggle">Vyp./Zap. komentáře</label>
 	<label index="edit.comment">Komentář</label>
 	<label index="edit.feedback">Vyžadovat odpověď</label>
 	<label index="edit.autoFeedbackFromOwner">Vyžadovaná odpověď vlastníkem úkolu</label>
@@ -40,7 +40,7 @@
 	<label index="mail.commentlink">Otevřít komentář</label>
 	<label index="mail.showcommentinprojectview">Zobrazit komentář v projektovém náhledu</label>
 	<label index="mail.commentfrom">Komentář od</label>
-	<label index="mail.commentsentby">Komentář odeslal </label>
+	<label index="mail.commentsentby">Komentář odeslal</label>
 	<label index="mail.feedbackexpected">Vyžadovaná odpověď</label>
 	<label index="portal.tab.feedback">Odpovědi</label>
 	<label index="js.commentSaved">Komentář uložen</label>
