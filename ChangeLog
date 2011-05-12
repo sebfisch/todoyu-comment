@@ -1,6 +1,7 @@
 todoyu comment extension changelog
 
 comment  1.1.0 - beta release
+	* Bugfix: (UI) expanding task on add comment after collapse after adding comment failed
 	* Changed: Requires core 2.1
 	* Changed: Structure for 2.1
 	* Changed: All classes are prefixed with extension name
@@ -13,7 +14,7 @@ comment  1.1.0 - beta release
 	* Bugfix: fixed toggle email receivers of comment
 
 
- comment 1.0.8 - not released yet
+comment 1.0.8 - not released yet
 	* Feature: Added changelog
 	* Feature: Implemented logging of emailed comments and listed it in comments header
 	* Feature: Added marking of seen feedbacks in comments header
