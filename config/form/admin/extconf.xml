@@ -6,9 +6,8 @@
 	<fieldsets>
 
 		<fieldset name="config">
-
+			<legend>comment.form.legend.admin.basics</legend>
 			<elements>
-
 				<field type="select" name="autorequestownerfeedback">
 					<label>comment.ext.extconf.autorequestownerfeedback.label</label>
 					<source type="function">

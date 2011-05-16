@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <labels>
 	<label index="general">General Settings</label>
-	<label index="general.use">Use Comments</label>
+	<label index="general.use">Use Comments Functionality</label>
 	<label index="comment">Comment</label>
-	<label index="comment.seeAll">See all comments (not public)</label>
+	<label index="comment.seeAll">See All Comments (not public)</label>
 	<label index="comment.editOwn">Edit Own Comments</label>
 	<label index="comment.editAll">Edit All Comments</label>
 	<label index="comment.requestFeedback">Request Feedback</label>
 	<label index="comment.deleteAll">Delete All Comments</label>
 	<label index="comment.deleteOwn">Delete Own Comments</label>
-	<label index="comment.sendAsEmail">Send comment by email</label>
+	<label index="comment.sendAsEmail">Send Comment By Email</label>
 	<label index="comment.makePublic">Make Comment Public</label>
 </labels>
