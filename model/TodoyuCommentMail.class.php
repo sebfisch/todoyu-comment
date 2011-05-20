@@ -67,6 +67,7 @@ class TodoyuCommentMail extends TodoyuMail {
 		$this->setMailSubject();
 		$this->setSystemAsSender();
 		$this->addReceiver($this->person->getID());
+		$this->setHeadline('comment.ext.mail.newcomment');
 
 		$this->setHtmlContent($this->getContent(true));
 		$this->setTextContent($this->getContent(false));
