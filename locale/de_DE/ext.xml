@@ -23,8 +23,8 @@
 	<label index="nocomments">Keine Kommentare</label>
 	<label index="search.mode.label">Kommentare finden</label>
 	<label index="filter.unseenFeedback">Feedback verlangt</label>
-	<label index="filter.unseenFeedbackPerson">Feedback verlangt von Person</label>
-	<label index="filter.unseenFeedbackRoles">Feedback verlangt von Rollen</label>
+	<label index="filter.unseenFeedbackPerson">Feedback von Person ausstehend</label>
+	<label index="filter.unseenFeedbackRoles">Offenes Feedback, Forderung von Rollen</label>
 	<label index="filter.commentFulltext">Kommentar Volltext</label>
 	<label index="filter.commentWrittenPerson">Kommentar geschrieben</label>
 	<label index="filter.commentWrittenRoles">Kommentar geschrieben von Rollen</label>
