@@ -266,9 +266,9 @@ class TodoyuCommentFeedbackManager {
 
 
 	/**
-	 * Set a feedback request as seen
+	 * Set a comment's feedback request as seen
 	 *
-	 * @param	Integer		$idFeedback
+	 * @param	Integer		$idComment
 	 * @param	Integer		$idPerson
 	 * @return	Boolean
 	 */
