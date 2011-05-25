@@ -65,6 +65,7 @@ class TodoyuCommentTaskFilter {
 	 *
 	 * @param	Integer		$idPerson
 	 * @param	Boolean		$negate
+	 * @reutrn	Array
 	 */
 	public static function Filter_unseenFeedbackCurrentPerson($idPerson, $negate = false) {
 		return self::Filter_unseenFeedbackPerson(Todoyu::personid(), $negate);
@@ -75,7 +76,7 @@ class TodoyuCommentTaskFilter {
 	/**
 	 * Filter for tasks which have unseen comments (with feedback request) for a person
 	 *
-	 * @param	Integer		$value		ID person
+	 * @param	Integer		$idPerson
 	 * @param	Boolean		$negate
 	 * @return	Array
 	 */
@@ -152,7 +153,7 @@ class TodoyuCommentTaskFilter {
 	/**
 	 * Filter condition: Tasks which have comments which contain the given text
 	 *
-	 * @param	String		$value		Keyword to search for
+	 * @param	String		$keyword
 	 * @param	Boolean		$negate
 	 * @return	Array
 	 */

@@ -31,6 +31,7 @@ class TodoyuCommentMailer {
 	 *
 	 * @param	Integer		$idComment
 	 * @param	Array		$personIDs
+	 * @return	Boolean
 	 */
 	public static function sendEmails($idComment, array $personIDs) {
 		$idComment	= intval($idComment);

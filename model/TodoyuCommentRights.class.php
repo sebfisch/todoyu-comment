@@ -59,6 +59,7 @@ class TodoyuCommentRights {
 	 * Check whether person can edit comments in this task
 	 *
 	 * @param	Integer		$idTask
+	 * @param	Boolean		$isCreator
 	 * @return	Boolean
 	 */
 	public static function isEditInTaskAllowed($idTask, $isCreator = false) {
@@ -161,8 +162,8 @@ class TodoyuCommentRights {
 	/**
 	 * Restrict access to persons who are allowed to edit comments in
 	 *
+	 * @param	Integer		$idTask
 	 * @todo	state deny message more precisely
-	 * @param	Integer		$idComment
 	 */
 	public static function restrictEditInTask($idTask) {
 		if( ! self::isEditInTaskAllowed($idTask) ) {
@@ -175,8 +176,8 @@ class TodoyuCommentRights {
 	/**
 	 * Restrict access to persons who are allowed to add comments in this task
 	 *
+	 * @param	Integer		$idTask
 	 * @todo	state deny message more precisely
-	 * @param	Integer		$idParentTask
 	 */
 	public static function restrictAddInTask($idTask) {
 		$idTask	= intval($idTask);

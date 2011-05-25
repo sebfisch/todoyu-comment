@@ -269,6 +269,7 @@ class TodoyuCommentFeedbackManager {
 	 * Set a feedback request as seen
 	 *
 	 * @param	Integer		$idFeedback
+	 * @param	Integer		$idPerson
 	 * @return	Boolean
 	 */
 	public static function setAsSeen($idComment, $idPerson = 0) {
