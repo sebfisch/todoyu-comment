@@ -65,7 +65,7 @@ class TodoyuCommentTaskFilter {
 	 *
 	 * @param	Integer		$idPerson
 	 * @param	Boolean		$negate
-	 * @reutrn	Array
+	 * @return	Array
 	 */
 	public static function Filter_unseenFeedbackCurrentPerson($idPerson, $negate = false) {
 		return self::Filter_unseenFeedbackPerson(Todoyu::personid(), $negate);
