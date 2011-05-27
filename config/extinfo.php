@@ -38,7 +38,8 @@ Todoyu::$CONFIG['EXT']['comment']['info'] = array(
 		),
 		'conflicts' => array(
 		)
-	)
+	),
+	'urlDocumentation'	=> 'http://doc.todoyu.com/?comment'
 );
 
 ?>
