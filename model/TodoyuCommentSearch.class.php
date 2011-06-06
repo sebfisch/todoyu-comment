@@ -118,7 +118,7 @@ class TodoyuCommentSearch implements TodoyuSearchEngineIf {
 					$taskTitle	= substr($comment['tasktitle'], 0, 40);
 
 					$suggestions[] = array(
-						'labelTitle'=> TodoyuTime::format($comment['date_create'], 'D2M2Y2') . ': ' . $taskTitle . ' [c' . $comment['id'] . ' / ' . $comment['id_project'] . '.' . $comment['tasknumber'] . ']',
+						'labelTitle'=> TodoyuString::wrap($comment['tasktitle'], '<span class="keyword">|</span>') . ' | ' .  $comment['id_project'] . '.' . $comment['tasknumber'] . ' | ' . 'c' . $comment['id'],
 						'labelInfo'	=> $textShort,
 						'title'		=> $comment['firstname'] . ' ' . $comment['lastname'] . ', ' . $comment['company'] . ': ' . $comment['projecttitle'] . ' # ' . $textLong,
 						'onclick'	=> 'location.href=\'?ext=project&amp;project=' . $comment['id_project'] . '&amp;task=' . $comment['taskid'] . '&amp;tab=comment#task-comment-' . $comment['id'] . '\''
