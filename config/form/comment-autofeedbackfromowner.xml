@@ -17,7 +17,7 @@
 					<label>comment.ext.edit.autoFeedbackFromOwner</label>
 					<source type="function">
 						<function>TodoyuCommentViewHelper::getFeedbackOwnerOption</function>
-						<lazyInit/>
+						<lazyInit />
 					</source>
 					<size>1</size>
 					<disabled />

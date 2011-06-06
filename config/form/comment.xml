@@ -28,11 +28,11 @@
 					<label>comment.ext.edit.feedback</label>
 					<source type="function">
 						<function>TodoyuCommentViewHelper::getFeedbackPersonsGroupedOptions</function>
-						<lazyInit/>
+						<lazyInit />
 					</source>
 					<fieldClass>selectgrouped</fieldClass>
 					<size>7</size>
-					<multiple/>
+					<multiple />
 					<restrict>
 						<allow ext="comment" right="comment:requestFeedback" />
 					</restrict>
@@ -59,10 +59,10 @@
 					<label>comment.ext.edit.sentEmailTo</label>
 					<source type="function">
 						<function>TodoyuCommentViewHelper::getEmailReceiverOptions</function>
-						<lazyInit/>
+						<lazyInit />
 					</source>
 					<size>5</size>
-					<multiple/>
+					<multiple />
 					<style>display:none</style>
 					<restrict>
 						<allow ext="comment" right="comment:sendAsEmail" />

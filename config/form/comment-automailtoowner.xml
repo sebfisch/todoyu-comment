@@ -25,7 +25,7 @@
 					<label>comment.ext.edit.autoSentEmailToTaskOwner</label>
 					<source type="function">
 						<function>TodoyuCommentViewHelper::getTaskOwnerEmailOption</function>
-						<lazyInit/>
+						<lazyInit />
 					</source>
 					<size>1</size>
 					<multiple>0</multiple>
