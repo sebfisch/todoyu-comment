@@ -298,41 +298,50 @@ class TodoyuCommentCommentManager {
 	 * @param	Integer		$idTask
 	 * @return	Array
 	 */
-	public static function getEmailReceivers($idTask) {
+	public static function getEmailReceiverIDs($idTask) {
 		$idTask		= intval($idTask);
 		$idProject	= TodoyuProjectTaskManager::getProjectID($idTask);
 
-		$taskPersons	= TodoyuProjectTaskManager::getTaskPersons($idTask);
-		$projectPersons	= TodoyuProjectProjectManager::getProjectPersons($idProject);
+		$taskPersonIDs		= TodoyuProjectTaskManager::getTaskPersonIDs($idTask);
+		$projectPersonIDs	= TodoyuProjectProjectManager::getProjectPersonIDs($idProject);
 
-		$persons = array();
+		$personIDs	= array();
 
 			// Add task Persons
-		foreach($taskPersons as $person) {
-			if( ! empty($person['email']) ) {
-				$persons[$person['id']] = $person;
+		foreach($taskPersonIDs as $idPerson) {
+			$person	= TodoyuContactPersonManager::getPerson($idPerson);
+			$email	= $person->getEmail(true);
+
+			if( $email !== false ) {
+				$personIDs[] = $idPerson;
 			}
 		}
 
 			// Add project Persons
-		foreach($projectPersons as $person) {
-			if( ! empty($person['email']) ) {
-				$persons[$person['id']] = $person;
+		foreach($projectPersonIDs as $idPerson) {
+			$person	= TodoyuContactPersonManager::getPerson($idPerson);
+			$email	= $person->getEmail(true);
+
+			if( $email !== false ) {
+				$personIDs[] = $idPerson;
 			}
 		}
 
 			// Add internal Persons
 		if( Todoyu::allowed('contact', 'person:seeAllInternalPersons') ) {
-			$internalPersons= TodoyuContactPersonManager::getInternalPersons();
+			$internalPersonIDs= TodoyuContactPersonManager::getInternalPersonIDs();
 
-			foreach($internalPersons as $person) {
-				if( ! empty($person['email']) ) {
-					$persons[$person['id']] = $person;
+			foreach($internalPersonIDs as $idPerson) {
+				$person	= TodoyuContactPersonManager::getPerson($idPerson);
+				$email	= $person->getEmail(true);
+
+				if( $email !== false ) {
+					$personIDs[] = $idPerson;
 				}
 			}
 		}
 
-		return $persons;
+		return array_unique($personIDs);
 	}
 
 

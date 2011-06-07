@@ -35,14 +35,17 @@ class TodoyuCommentViewHelper {
 	public static function getEmailReceiverOptions(TodoyuFormElement $field) {
 		$idTask		= intval($field->getForm()->getHiddenField('id_task'));
 		$options	= array();
-		$persons	= TodoyuCommentCommentManager::getEmailReceivers($idTask);
+		$personIDs	= TodoyuCommentCommentManager::getEmailReceiverIDs($idTask);
 
-		foreach($persons as $person) {
+		foreach($personIDs as $idPerson) {
+			$person	= TodoyuContactPersonManager::getPerson($idPerson);
 			$options[] 	= array(
-				'value'	=> $person['id'],
-				'label'	=> TodoyuContactPersonManager::getLabel($person['id'], true, true)
+				'value'	=> $idPerson['id'],
+				'label'	=> $person->getLabel(true, true)
 			);
 		}
+
+		$options	= TodoyuArray::sortByLabel($options, 'label');
 
 		return $options;
 	}
