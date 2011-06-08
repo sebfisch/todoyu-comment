@@ -35,6 +35,7 @@
 	<label index="icon.toggleCustomerVisibility">このコメントの表示方法を切替</label>
 	<label index="icon.togglelog">コミュニケーションログの表示/非表示</label>
 	<label index="comment.feedbackPersons">要求されたフィードバック:</label>
+	<label index="comment.emailPersons">メールでのみ送信：</label>
 	<label index="mail.subject">新しいコメント</label>
 	<label index="mail.newcomment">新しいコメントが作成されました</label>
 	<label index="mail.commentlink">コメントを開く</label>
