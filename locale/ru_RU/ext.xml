@@ -35,6 +35,7 @@
 	<label index="icon.toggleCustomerVisibility">Изменить видимость этого комментария</label>
 	<label index="icon.togglelog">Показать/скрыть историю общения</label>
 	<label index="comment.feedbackPersons">Ответ запрошен от:</label>
+	<label index="comment.emailPersons">Посылать только по электронной почте:</label>
 	<label index="mail.subject">Новый комментарий</label>
 	<label index="mail.newcomment">Создан новый комментарий</label>
 	<label index="mail.commentlink">Открыть комментарий</label>
