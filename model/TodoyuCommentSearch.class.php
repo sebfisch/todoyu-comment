@@ -111,16 +111,16 @@ class TodoyuCommentSearch implements TodoyuSearchEngineIf {
 			$comments = Todoyu::db()->getArray($fields, $table, $where, '', $order);
 
 			foreach($comments as $comment) {
-				if(	TodoyuCommentRights::isSeeAllowed($comment['id']) ) {
-					$textLong	= TodoyuString::getSubstring(strip_tags($comment['comment']), $find[0], 50, 60);
+				if( TodoyuCommentRights::isSeeAllowed($comment['id']) ) {
 					$textShort	= TodoyuString::getSubstring(strip_tags($comment['comment']), $find[0], 20, 30);
 					$textShort	= str_ireplace($find[0], '<strong>' . $find[0] . '</strong>', $textShort);
-					$taskTitle	= substr($comment['tasktitle'], 0, 40);
+
+					$labelTitle = TodoyuString::wrap($comment['tasktitle'], '<span class="keyword">|</span>') . ' | ' . $comment['id_project'] . '.' . $comment['tasknumber'] . ' | ' . 'c' . $comment['id'];
 
 					$suggestions[] = array(
-						'labelTitle'=> TodoyuString::wrap($comment['tasktitle'], '<span class="keyword">|</span>') . ' | ' .  $comment['id_project'] . '.' . $comment['tasknumber'] . ' | ' . 'c' . $comment['id'],
+						'labelTitle'=> $labelTitle,
 						'labelInfo'	=> $textShort,
-						'title'		=> $comment['firstname'] . ' ' . $comment['lastname'] . ', ' . $comment['company'] . ': ' . $comment['projecttitle'] . ' # ' . $textLong,
+						'title'		=> strip_tags($labelTitle),
 						'onclick'	=> 'location.href=\'?ext=project&amp;project=' . $comment['id_project'] . '&amp;task=' . $comment['taskid'] . '&amp;tab=comment#task-comment-' . $comment['id'] . '\''
 					);
 				}
