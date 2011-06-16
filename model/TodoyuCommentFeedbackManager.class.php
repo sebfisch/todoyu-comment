@@ -304,7 +304,7 @@ class TodoyuCommentFeedbackManager {
 					ext_comment_comment c';
 		$where	= '		f.id_comment 		= c.id'
 				. '	AND	f.id_person_feedback= ' . $idPerson
-				. ' AND	c.id_task			= ' . $idTask ;
+				. ' AND	c.id_task			= ' . $idTask;
 		$data	= array(
 			'f.is_seen'		=> 1,
 			'f.date_update'	=> NOW

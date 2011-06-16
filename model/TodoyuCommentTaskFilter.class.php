@@ -34,7 +34,7 @@ class TodoyuCommentTaskFilter {
 	 * @return	Array
 	 */
 	public static function Filter_unseenFeedback($value, $negate = false) {
-		$seenStatus	= $negate ? 1 : 0 ;
+		$seenStatus	= $negate ? 1 : 0;
 
 		$tables	= array(
 			'ext_project_task',
@@ -83,7 +83,7 @@ class TodoyuCommentTaskFilter {
 	public static function Filter_unseenFeedbackPerson($idPerson, $negate = false) {
 		$queryParts	= false;
 		$idPerson	= Todoyu::personid($idPerson);
-		$seenStatus	= $negate ? 1 : 0 ;
+		$seenStatus	= $negate ? 1 : 0;
 
 
 		if( $idPerson !== 0 ) {
