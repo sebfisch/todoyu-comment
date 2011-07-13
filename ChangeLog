@@ -1,6 +1,9 @@
 todoyu comment extension changelog
 
-comment  1.1.0 - beta release
+comment 1.1.1 - ???
+	* Change: Allow request feedback from myself when writing a comment
+
+comment  1.1.0 - 2011-06-17
 	* Bugfix: (UI) expanding task on add comment after collapse after adding comment failed
 	* Changed: Requires core 2.1
 	* Changed: Structure for 2.1

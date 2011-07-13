@@ -83,24 +83,20 @@ class TodoyuCommentViewHelper {
 		$groupLabel	= Todoyu::Label('comment.ext.group.taskmembers');
 		$taskPersons= TodoyuProjectTaskManager::getTaskPersons($idTask, true);
 		foreach($taskPersons as $person) {
-			if( $person['id'] != Todoyu::personid() ) {
-				$options[$groupLabel][$person['id']] = array(
-					'value'	=> $person['id'],
-					'label'	=> TodoyuContactPersonManager::getLabel($person['id'], false, true)
-				);
-			}
+			$options[$groupLabel][$person['id']] = array(
+				'value'	=> $person['id'],
+				'label'	=> TodoyuContactPersonManager::getLabel($person['id'], false, true)
+			);
 		}
 
 			// Get project persons
 		$groupLabel		= Todoyu::Label('comment.ext.group.projectmembers');
 		$projectPersons	= TodoyuProjectProjectManager::getProjectPersons($idProject, true, true);
 		foreach($projectPersons as $person) {
-			if( $person['id'] != Todoyu::personid() ) {
-				$options[$groupLabel][$person['id']] = array(
-					'value'	=> $person['id'],
-					'label'	=> TodoyuContactPersonManager::getLabel($person['id'])
-				);
-			}
+			$options[$groupLabel][$person['id']] = array(
+				'value'	=> $person['id'],
+				'label'	=> TodoyuContactPersonManager::getLabel($person['id'])
+			);
 		}
 
 			// Get staff persons (employees of internal company)
