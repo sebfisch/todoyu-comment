@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<labels>
+	<label index="unseenFeedback">Feedback verlangt</label>
+	<label index="unseenFeedbackPerson">Feedback von Person ausstehend</label>
+	<label index="unseenFeedbackRoles">Offenes Feedback, Forderung von Rollen</label>
+	<label index="commentFulltext">Kommentar Volltext</label>
+	<label index="commentWrittenPerson">Kommentar geschrieben von Person</label>
+	<label index="commentWrittenRoles">Kommentar geschrieben von Rollen</label>
+	<label index="commentCreatedate">Kommentar Zeitpunkt</label>
+</labels>

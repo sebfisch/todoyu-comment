@@ -22,12 +22,6 @@
 	<label index="search.label">Коментари</label>
 	<label index="nocomments">Нема коментара</label>
 	<label index="search.mode.label">Пронађи коментар</label>
-	<label index="filter.unseenFeedback">Повратна информација је потражена</label>
-	<label index="filter.unseenFeedbackPerson">Повратна информација потражена од особе</label>
-	<label index="filter.unseenFeedbackRoles">Повратна информација је потражена од улоге</label>
-	<label index="filter.commentFulltext">Коментар цео текст</label>
-	<label index="filter.commentWrittenPerson">Коментар написан</label>
-	<label index="filter.commentWrittenRoles">Коментар уписан од улога</label>
 	<label index="button.addComment">Додај нови коментар</label>
 	<label index="button.reverseOrder">Промени сортирање</label>
 	<label index="icon.remove">Избриши коментар</label>

@@ -22,12 +22,6 @@
 	<label index="search.label">Opmerkingen</label>
 	<label index="nocomments">Geen opmerkingen</label>
 	<label index="search.mode.label">Opmerkingen zoeken</label>
-	<label index="filter.unseenFeedback">Terugkoppelingverzoeken</label>
-	<label index="filter.unseenFeedbackPerson">Terugkoppelingverzoeken per persoon</label>
-	<label index="filter.unseenFeedbackRoles">Terugkoppelingverzoeken per rol</label>
-	<label index="filter.commentFulltext">Opmerking full-text</label>
-	<label index="filter.commentWrittenPerson">Opmerking geschreven per persoon</label>
-	<label index="filter.commentWrittenRoles">Opmerking geschreven per rol</label>
 	<label index="button.addComment">Nieuwe opmerking toeveogen</label>
 	<label index="button.reverseOrder">Volgorde omkeren</label>
 	<label index="icon.remove">Opmerking verwijderen</label>

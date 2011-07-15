@@ -22,12 +22,6 @@
 	<label index="search.label">Комментарии</label>
 	<label index="nocomments">Нет комментариев</label>
 	<label index="search.mode.label">Найти комментарии</label>
-	<label index="filter.unseenFeedback">Запросы на ответ</label>
-	<label index="filter.unseenFeedbackPerson">Ответ запрошен</label>
-	<label index="filter.unseenFeedbackRoles">Запросы на ответ по ролям</label>
-	<label index="filter.commentFulltext">Полный текст комментария</label>
-	<label index="filter.commentWrittenPerson">Коментарии, написаные участником</label>
-	<label index="filter.commentWrittenRoles">Кментарии, написаные ролями</label>
 	<label index="button.addComment">Добавить комментарий</label>
 	<label index="button.reverseOrder">Обратный порядок</label>
 	<label index="icon.remove">Удалить комментарий</label>

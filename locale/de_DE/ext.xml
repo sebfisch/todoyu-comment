@@ -22,21 +22,10 @@
 	<label index="search.label">Kommentare</label>
 	<label index="nocomments">Keine Kommentare</label>
 	<label index="search.mode.label">Kommentare finden</label>
-	<label index="filter.unseenFeedback">Feedback verlangt</label>
-	<label index="filter.unseenFeedbackPerson">Feedback von Person ausstehend</label>
-	<label index="filter.unseenFeedbackRoles">Offenes Feedback, Forderung von Rollen</label>
-	<label index="filter.commentFulltext">Kommentar Volltext</label>
-	<label index="filter.commentWrittenPerson">Kommentar geschrieben</label>
-	<label index="filter.commentWrittenRoles">Kommentar geschrieben von Rollen</label>
-	<label index="button.addComment">Neuen Kommentar hinzufügen</label>
-	<label index="button.reverseOrder">Sortierung ändern</label>
-	<label index="icon.remove">Kommentar löschen</label>
-	<label index="icon.edit">Kommentar bearbeiten</label>
-	<label index="icon.toggleCustomerVisibility">Sichtbarkeit ändern</label>
-	<label index="icon.togglelog">Kommunikations-historie anzeigen / ausblenden</label>
-	<label index="comment.feedbackPersons">Feedback verlangt von:</label>
-	<label index="comment.emailPersons">Nur per Email gesendet an:</label>
-	<label index="mail.subject">Neuer Kommentar</label>
+	<label index="button.addComment">Neuen Kommentar hinzufügen</label>	<label index="button.reverseOrder">Sortierung ändern</label>
+	<label index="icon.remove">Kommentar löschen</label>	<label index="icon.edit">Kommentar bearbeiten</label>	<label index="icon.toggleCustomerVisibility">Sichtbarkeit ändern</label>
+	<label index="icon.togglelog">Kommunikations-historie anzeigen / ausblenden</label>	<label index="comment.feedbackPersons">Feedback verlangt von:</label>
+	<label index="comment.emailPersons">Nur per Email gesendet an:</label>	<label index="mail.subject">Neuer Kommentar</label>
 	<label index="mail.newcomment">Ein neuer Kommentar wurde in todoyu gespeichert</label>
 	<label index="mail.commentlink">Offener Kommentar</label>
 	<label index="mail.showcommentinprojectview">Zeige Kommentar in der Projektansicht</label>

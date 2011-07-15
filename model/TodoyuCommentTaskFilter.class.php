@@ -27,6 +27,13 @@
 class TodoyuCommentTaskFilter {
 
 	/**
+	 * @var	String		Default table for database requests
+	 */
+	const TABLE = 'ext_comment_comment';
+
+
+
+	/**
 	 * Filters for unseen feedbacks
 	 *
 	 * @param	Mixed		$value
@@ -252,6 +259,34 @@ class TodoyuCommentTaskFilter {
 		}
 
 		return $queryParts;
+	}
+
+
+
+	/**
+	 * Filter condition: comment creation date
+	 *
+	 * @param	String		$dateField
+	 * @param	String		$date
+	 * @param	Boolean		$negate
+	 * @return	Array
+	 */
+	public static function Filter_commentDateCreate($date, $negate = false) {
+		$timestamp	= TodoyuTime::parseDate($date);
+		if( $timestamp == 0 ) {
+			return false;
+		}
+
+		$tables	= array(self::TABLE);
+		$compare= TodoyuSearchFilterHelper::getTimeAndLogicForDate($timestamp, $negate);
+		$where	=           self::TABLE . '.id_task 			= ext_project_task.id'
+				. ' AND ' . self::TABLE . '.deleted				= 0 '
+				. ' AND ' .	self::TABLE .	'.date_create' . 	$compare['logic'] . ' ' . $compare['timestamp'];
+
+		return array(
+			'tables'	=> $tables,
+			'where'		=> $where
+		);
 	}
 
 }

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<labels>
+	<label index="unseenFeedback">Požadované odpovědi</label>
+	<label index="unseenFeedbackPerson">Požadované odpovědi dle osoby</label>
+	<label index="unseenFeedbackRoles">Požadované odpovědi dle role</label>
+	<label index="commentFulltext">Celý komentář</label>
+	<label index="commentWrittenPerson">Komentář napsán dle osoby</label>
+	<label index="commentWrittenRoles">Komentář napsán dle role</label>
+</labels>

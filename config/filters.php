@@ -18,11 +18,13 @@
 * This copyright notice MUST APPEAR in all copies of the script.
 *****************************************************************************/
 
-
+/**
+ * Unseen feedback requests
+ */
 Todoyu::$CONFIG['FILTERS']['TASK']['widgets']['unseenFeedback'] = array(
 	'funcRef'	=> 'TodoyuCommentTaskFilter::Filter_unseenFeedback',
-	'label'		=> 'LLL:comment.ext.filter.unseenFeedback',
-	'optgroup'	=> 'LLL:comment.ext.search.label',
+	'label'		=> 'comment.filter.unseenFeedback',
+	'optgroup'	=> 'comment.ext.search.label',
 	'widget'	=> 'checkbox',
 	'wConf'		=> array(
 		'checked'	=> true
@@ -34,8 +36,8 @@ Todoyu::$CONFIG['FILTERS']['TASK']['widgets']['unseenFeedback'] = array(
  */
 Todoyu::$CONFIG['FILTERS']['TASK']['widgets']['unseenFeedbackPerson'] = array(
 	'funcRef'	=> 'TodoyuCommentTaskFilter::Filter_unseenFeedbackPerson',
-	'label'		=> 'LLL:comment.ext.filter.unseenFeedbackPerson',
-	'optgroup'	=> 'LLL:comment.ext.search.label',
+	'label'		=> 'comment.filter.unseenFeedbackPerson',
+	'optgroup'	=> 'comment.ext.search.label',
 	'widget'	=> 'text',
 	'internal'	=> true,
 	'wConf' => array(
@@ -51,10 +53,13 @@ Todoyu::$CONFIG['FILTERS']['TASK']['filters']['unseenFeedbackCurrentPerson'] = a
 	'funcRef'	=> 'TodoyuCommentTaskFilter::Filter_unseenFeedbackCurrentPerson'
 );
 
+/**
+ * Unseen comment feedback request for roles
+ */
 Todoyu::$CONFIG['FILTERS']['TASK']['widgets']['unseenFeedbackRoles'] = array(
 	'funcRef'	=> 'TodoyuCommentTaskFilter::Filter_unseenFeedbackRoles',
-	'label'		=> 'LLL:comment.ext.filter.unseenFeedbackRoles',
-	'optgroup'	=> 'LLL:comment.ext.search.label',
+	'label'		=> 'comment.filter.unseenFeedbackRoles',
+	'optgroup'	=> 'comment.ext.search.label',
 	'widget'	=> 'select',
 	'internal'	=> true,
 	'wConf'		=> array(
@@ -65,15 +70,13 @@ Todoyu::$CONFIG['FILTERS']['TASK']['widgets']['unseenFeedbackRoles'] = array(
 	)
 );
 
-
-
 /**
  * Comment full-text search
  */
 Todoyu::$CONFIG['FILTERS']['TASK']['widgets']['commentFulltext'] = array(
 	'funcRef'	=> 'TodoyuCommentTaskFilter::Filter_fulltext',
-	'label'		=> 'LLL:comment.ext.filter.commentFulltext',
-	'optgroup'	=> 'LLL:comment.ext.search.label',
+	'label'		=> 'comment.filter.commentFulltext',
+	'optgroup'	=> 'comment.ext.search.label',
 	'widget'	=> 'text',
 	'wConf' => array(
 		'autocomplete'	=> false,
@@ -82,11 +85,13 @@ Todoyu::$CONFIG['FILTERS']['TASK']['widgets']['commentFulltext'] = array(
 	)
 );
 
-
+/**
+ * Comment author person
+ */
 Todoyu::$CONFIG['FILTERS']['TASK']['widgets']['commentWrittenPerson'] = array(
 	'funcRef'	=> 'TodoyuCommentTaskFilter::Filter_commentWrittenPerson',
-	'label'		=> 'LLL:comment.ext.filter.commentWrittenPerson',
-	'optgroup'	=> 'LLL:comment.ext.search.label',
+	'label'		=> 'comment.filter.commentWrittenPerson',
+	'optgroup'	=> 'comment.ext.search.label',
 	'widget'	=> 'text',
 	'wConf' => array(
 		'autocomplete'	=> true,
@@ -97,16 +102,32 @@ Todoyu::$CONFIG['FILTERS']['TASK']['widgets']['commentWrittenPerson'] = array(
 	)
 );
 
+/**
+ * Comment author roles
+ */
 Todoyu::$CONFIG['FILTERS']['TASK']['widgets']['commentWrittenRoles'] = array(
 	'funcRef'	=> 'TodoyuCommentTaskFilter::Filter_commentWrittenRoles',
-	'label'		=> 'LLL:comment.ext.filter.commentWrittenRoles',
-	'optgroup'	=> 'LLL:comment.ext.search.label',
+	'label'		=> 'comment.filter.commentWrittenRoles',
+	'optgroup'	=> 'comment.ext.search.label',
 	'widget'	=> 'select',
 	'internal'	=> true,
 	'wConf'		=> array(
 		'multiple'	=> true,
 		'size'		=> 5,
 		'FuncRef'	=> 'TodoyuRoleDatasource::getRoleOptions'
+	)
+);
+
+/**
+ * Comment creation date
+ */
+Todoyu::$CONFIG['FILTERS']['TASK']['widgets']['commentCreatedate'] = array(
+	'funcRef'	=> 'TodoyuCommentTaskFilter::Filter_commentDateCreate',
+	'label'		=> 'comment.filter.commentCreatedate',
+	'optgroup'	=> 'comment.ext.search.label',
+	'widget'	=> 'date',
+	'wConf'		=> array(
+		'negation'	=> 'datetime'
 	)
 );
 

@@ -22,12 +22,6 @@
 	<label index="search.label">コメント</label>
 	<label index="nocomments">コメントなし</label>
 	<label index="search.mode.label">コメントの検索</label>
-	<label index="filter.unseenFeedback">要求されたフィードバック</label>
-	<label index="filter.unseenFeedbackPerson">個人が要求したフィードバック</label>
-	<label index="filter.unseenFeedbackRoles">ロールが要求したフィードバック</label>
-	<label index="filter.commentFulltext">コメント全文</label>
-	<label index="filter.commentWrittenPerson">個人が書いたコメント</label>
-	<label index="filter.commentWrittenRoles">ロールが書いたコメント</label>
 	<label index="button.addComment">新しいコメントの追加</label>
 	<label index="button.reverseOrder">逆順</label>
 	<label index="icon.remove">コメントの削除</label>

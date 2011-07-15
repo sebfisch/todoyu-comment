@@ -22,12 +22,6 @@
 	<label index="search.label">Comments</label>
 	<label index="nocomments">No Comments</label>
 	<label index="search.mode.label">Find Comments</label>
-	<label index="filter.unseenFeedback">Feedback requests</label>
-	<label index="filter.unseenFeedbackPerson">Person's feedback still due</label>
-	<label index="filter.unseenFeedbackRoles">Due feedback requested by roles</label>
-	<label index="filter.commentFulltext">Comment Full Text</label>
-	<label index="filter.commentWrittenPerson">Comment written by person</label>
-	<label index="filter.commentWrittenRoles">Comment written by roles</label>
 	<label index="button.addComment">Add New Comment</label>
 	<label index="button.reverseOrder">Reverse Order</label>
 	<label index="icon.remove">Delete Comment</label>

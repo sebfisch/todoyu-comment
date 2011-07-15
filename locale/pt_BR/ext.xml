@@ -22,11 +22,6 @@
 	<label index="search.label">Notas</label>
 	<label index="nocomments">Nenhuma Nota</label>
 	<label index="search.mode.label">Procurar Notas</label>
-	<label index="filter.unseenFeedbackPerson">Feedback Requisitado</label>
-	<label index="filter.unseenFeedbackRoles">Feedback Requisitado Pelos Integrantes</label>
-	<label index="filter.commentFulltext">Nota</label>
-	<label index="filter.commentWrittenPerson">Nota do Usuário</label>
-	<label index="filter.commentWrittenRoles">Nota dos Integrantes</label>
 	<label index="button.addComment">Adicionar nova nota</label>
 	<label index="button.reverseOrder">Ordem Inversa</label>
 	<label index="icon.remove">Excluir Nota</label>

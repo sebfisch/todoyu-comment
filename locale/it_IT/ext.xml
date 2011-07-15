@@ -22,12 +22,6 @@
 	<label index="search.label">Commenti</label>
 	<label index="nocomments">Nessun commento</label>
 	<label index="search.mode.label">Trova commenti</label>
-	<label index="filter.unseenFeedback">Richieste di feedback</label>
-	<label index="filter.unseenFeedbackPerson">Richieste di feedback per persona</label>
-	<label index="filter.unseenFeedbackRoles">Richieste di feedback per ruolo</label>
-	<label index="filter.commentFulltext">Testo completo del commento</label>
-	<label index="filter.commentWrittenPerson">Commento scritto per persona</label>
-	<label index="filter.commentWrittenRoles">Commento scritto per ruolo</label>
 	<label index="button.addComment">Aggiungi un nuovo commento</label>
 	<label index="button.reverseOrder">Inverti ordine</label>
 	<label index="icon.remove">Elimina commento</label>
