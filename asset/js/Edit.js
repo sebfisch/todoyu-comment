@@ -93,15 +93,16 @@ Todoyu.Ext.comment.Edit = {
 	 * @param	{Ajax.Response}		response
 	 */
 	onSaved: function(idTask, response) {
-		var idComment	= response.getTodoyuHeader('idComment');
+		var idComment				= response.getTodoyuHeader('idComment');
+		var notificationIdentifier	= 'comment.edit.saved';
 
 		if( response.hasTodoyuError() ) {
 			$('comment-' + idTask + '-' + idComment + '-form').replace(response.responseText);
-			Todoyu.notifyError('[LLL:comment.ext.js.commentSavingFailed]');
+			Todoyu.notifyError('[LLL:comment.ext.js.commentSavingFailed]', notificationIdentifier);
 		} else {
 			Todoyu.Ext.comment.List.refresh(idTask);
 			Todoyu.Ext.comment.setTabLabel(idTask, response.getTodoyuHeader('tabLabel'));
-			Todoyu.notifySuccess('[LLL:comment.ext.js.commentSaved]');
+			Todoyu.notifySuccess('[LLL:comment.ext.js.commentSaved]', notificationIdentifier);
 
 			if( response.getTodoyuHeader('sentEmail') ) {
 				Todoyu.notifySuccess('[LLL:comment.ext.js.emailSent]');
