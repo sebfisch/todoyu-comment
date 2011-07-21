@@ -1,6 +1,8 @@
 todoyu comment extension changelog
 
-comment 1.1.1 - ???
+comment 1.1.1 - not released yet
+	* Added: New comment task filter for comment creation date
+	* Change: Separated comment filter locales from comment ext locales
 	* Change: Allow request feedback from myself when writing a comment
 
 comment  1.1.0 - 2011-06-17
