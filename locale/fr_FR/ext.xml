@@ -22,6 +22,11 @@
 	<label index="search.label">Commentaires</label>
 	<label index="nocomments">Aucun Commentaire</label>
 	<label index="search.mode.label">Rechercher dans les commentaires</label>
+	<label index="filter.unseenFeedbackPerson">Requêtes de suivi</label>
+	<label index="filter.unseenFeedbackRoles">Requêtes de suivi par rôles</label>
+	<label index="filter.commentFulltext">Commentaire textuel</label>
+	<label index="filter.commentWrittenPerson">Commentaire écrit par cette personne</label>
+	<label index="filter.commentWrittenRoles">ommentaire écrit selon ce rôle</label>
 	<label index="button.addComment">Ajouter un commentaire</label>
 	<label index="button.reverseOrder">Inverser l'ordre</label>
 	<label index="icon.remove">Effacer le commentaire</label>
