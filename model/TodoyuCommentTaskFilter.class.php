@@ -266,7 +266,6 @@ class TodoyuCommentTaskFilter {
 	/**
 	 * Filter condition: comment creation date
 	 *
-	 * @param	String		$dateField
 	 * @param	String		$date
 	 * @param	Boolean		$negate
 	 * @return	Array
