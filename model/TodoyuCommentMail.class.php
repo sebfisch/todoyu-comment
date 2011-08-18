@@ -61,7 +61,6 @@ class TodoyuCommentMail extends TodoyuMail {
 
 	/**
 	 * Init mail
-	 *
 	 */
 	private function init() {
 		$this->setMailSubject();
@@ -77,7 +76,6 @@ class TodoyuCommentMail extends TodoyuMail {
 
 	/**
 	 * Set mail subject
-	 *
 	 */
 	private function setMailSubject() {
 		$subject	= Todoyu::Label('comment.ext.mail.subject') . ': ' . $this->comment->getTask()->getTitle() . ' (#' . $this->comment->getTask()->getTaskNumber(true) . ')';
