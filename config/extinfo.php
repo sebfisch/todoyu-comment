@@ -33,11 +33,11 @@ Todoyu::$CONFIG['EXT']['comment']['info'] = array(
 	'state' 		=> 'stable',
 	'version'		=> '1.1.1',
 	'constraints'	=> array(
+		'core'		=> '2.1.2',
 		'depends'	=> array(
 			'project' 	=> '1.1.0',
 		),
-		'conflicts' => array(
-		)
+		'conflicts' => array()
 	),
 	'urlDocumentation'	=> 'http://doc.todoyu.com/?comment'
 );

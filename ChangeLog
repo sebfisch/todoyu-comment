@@ -4,6 +4,7 @@ comment 1.1.1 - ???
 	* Added: New comment task filter for comment creation date
 	* Change: Separated comment filter locales from comment ext locales
 	* Change: Allow request feedback from myself when writing a comment
+	* Change: Set the current user as sender of comment emails. So replies go to the correct address
 
 comment  1.1.0 - 2011-06-17
 	* Bugfix: (UI) expanding task on add comment after collapse after adding comment failed
