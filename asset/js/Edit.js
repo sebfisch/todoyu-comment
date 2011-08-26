@@ -61,7 +61,7 @@ Todoyu.Ext.comment.Edit = {
 	showEmailReceiversOnCheckboxActive: function(idForm) {
 		var idParts	= idForm.split('-');
 		if( $(idForm).down('.fieldnameSendasemail :checkbox').checked ) {
-			this.Edit.toggleEmailReceivers(idParts[1], idParts[2], true);
+			this.toggleEmailReceivers(idParts[1], idParts[2], true);
 		}
 	},
 
