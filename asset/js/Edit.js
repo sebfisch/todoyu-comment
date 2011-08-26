@@ -40,6 +40,34 @@ Todoyu.Ext.comment.Edit = {
 
 
 	/**
+	 * Hook when comment form is displayed
+	 *
+	 * @param	{Number}	idForm
+	 * @param	{String}	name
+	 * @param	{Number}	idComment
+	 */
+	onFormDisplay: function(idForm, name, idComment) {
+		this.showEmailReceiversOnCheckboxActive(idForm);
+	},
+
+	
+
+	/**
+	 * Show email receivers box when checkbox is activated in form
+	 * This happens on reload when form was invalid
+	 *
+	 * @param	{String}	idForm
+	 */
+	showEmailReceiversOnCheckboxActive: function(idForm) {
+		var idParts	= idForm.split('-');
+		if( $(idForm).down('.fieldnameSendasemail :checkbox').checked ) {
+			this.Edit.toggleEmailReceivers(idParts[1], idParts[2], true);
+		}
+	},
+
+
+
+	/**
 	 * Handler when changing "send as email" option checkbox
 	 *
 	 * @method	onClickSendAsEmail
@@ -50,13 +78,23 @@ Todoyu.Ext.comment.Edit = {
 		var idTask		= parts[1];
 		var idComment	= parts[2];
 
-		var emailEl	= $('formElement-comment-' + idTask + '-' + idComment + '-field-emailreceivers');
+		this.toggleEmailReceivers(idTask, idComment, checkbox.checked);
+	},
 
-		if( checkbox.checked ) {
-			emailEl.show();
-		} else {
-			emailEl.hide();
-		}
+
+
+	/**
+	 * Toggle the email receivers field
+	 *
+	 * @param	{Number}	idTask
+	 * @param	{Number}	idComment
+	 * @param	{Boolean}	show
+	 */
+	toggleEmailReceivers: function(idTask, idComment, show) {
+		var inputDiv= $('formElement-comment-' + idTask + '-' + idComment + '-field-emailreceivers');
+		var method	= show ? 'show' : 'hide';
+
+		inputDiv[method]();
 	},
 
 
