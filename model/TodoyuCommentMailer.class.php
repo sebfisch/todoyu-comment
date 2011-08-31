@@ -64,6 +64,8 @@ class TodoyuCommentMailer {
 
 		$mail		= new TodoyuCommentMail($idComment, $idPerson);
 
+		TodoyuHookManager::callHook('comment', 'comment.email', array($idComment, $idPerson));
+
 		return $mail->send();
 	}
 

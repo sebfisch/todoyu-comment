@@ -97,11 +97,10 @@ class TodoyuCommentCommentManager {
 			$idComment = self::addComment();
 		}
 
-		$data['comment']	= TodoyuCommentCommentManager::filterHtmlTags($data['comment']);
+		$data['comment']	= self::filterHtmlTags($data['comment']);
 
 			// Call hooked save data functions
 		$data	= TodoyuFormHook::callSaveData($xmlPath, $data, $idComment);
-		$data	= self::saveCommentForeignRecords($data, $idComment);
 
 			// Extract feedback and email data
 		$sendAsEmail			= intval($data['sendasemail']) === 1;
@@ -128,7 +127,7 @@ class TodoyuCommentCommentManager {
 		TodoyuCommentFeedbackManager::updateFeedbacks($idComment, $personIDsFeedback);
 
 			// Call saved hook
-		TodoyuHookManager::callHook('comment', 'saved', array($idComment));
+		TodoyuHookManager::callHook('comment', 'comment.save', array($idComment));
 
 			// Send emails
 		if( $sendAsEmail && sizeof($mailReceiverPersonIDs) > 0 ) {
@@ -151,7 +150,11 @@ class TodoyuCommentCommentManager {
 	 * @return	Integer
 	 */
 	public static function addComment(array $data = array()) {
-		return TodoyuRecordManager::addRecord(self::TABLE, $data);
+		$idComment = TodoyuRecordManager::addRecord(self::TABLE, $data);
+
+		TodoyuHookManager::callHook('comment', 'comment.add', array($idComment));
+
+		return $idComment;
 	}
 
 
@@ -161,10 +164,11 @@ class TodoyuCommentCommentManager {
 	 *
 	 * @param	Integer		$idComment
 	 * @param	Array		$data
-	 * @return	Boolean
 	 */
 	public static function updateComment($idComment, array $data) {
-		return TodoyuRecordManager::updateRecord(self::TABLE, $idComment, $data);
+		TodoyuRecordManager::updateRecord(self::TABLE, $idComment, $data);
+
+		TodoyuHookManager::callHook('comment', 'comment.update', array($idComment, $data));
 	}
 
 
@@ -176,21 +180,8 @@ class TodoyuCommentCommentManager {
 	 */
 	public static function deleteComment($idComment) {
 		TodoyuRecordManager::deleteRecord(self::TABLE, $idComment);
-	}
 
-
-
-	/**
-	 * Save extra comment data
-	 *
-	 * @param	Array		$data
-	 * @param	Integer		$idComment
-	 * @return	Array
-	 * @todo	check / remove
-	 */
-	public static function saveCommentForeignRecords(array $data, $idComment) {
-
-		return $data;
+		TodoyuHookManager::callHook('comment', 'comment.delete', array($idComment));
 	}
 
 
@@ -259,7 +250,6 @@ class TodoyuCommentCommentManager {
 	 *
 	 * @param	Integer		$idComment
 	 * @param	Boolean		$public
-	 * @return	Boolean
 	 */
 	public static function setPublic($idComment, $public = true) {
 		$idComment	= intval($idComment);
@@ -267,7 +257,7 @@ class TodoyuCommentCommentManager {
 			'is_public' => ($public ? 1 : 0)
 		);
 
-		return self::updateComment($idComment, $data);
+		self::updateComment($idComment, $data);
 	}
 
 

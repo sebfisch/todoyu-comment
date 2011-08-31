@@ -138,7 +138,11 @@ class TodoyuCommentFeedbackManager {
 			'is_seen'			=> 0
 		);
 
-		return TodoyuRecordManager::addRecord(self::TABLE, $data);
+		$idFeedback = TodoyuRecordManager::addRecord(self::TABLE, $data);
+
+		TodoyuHookManager::callHook('comment', 'feedback.add', array($idFeedback, $idComment, $idFeedbackPerson));
+
+		return $idFeedback;
 	}
 
 
@@ -270,7 +274,6 @@ class TodoyuCommentFeedbackManager {
 	 *
 	 * @param	Integer		$idComment
 	 * @param	Integer		$idPerson
-	 * @return	Boolean
 	 */
 	public static function setAsSeen($idComment, $idPerson = 0) {
 		$idComment	= intval($idComment);
@@ -284,7 +287,9 @@ class TodoyuCommentFeedbackManager {
 			'is_seen' 		=> 1
 		);
 
-		return Todoyu::db()->doUpdate($table, $where, $data) === 1;
+		Todoyu::db()->doUpdate($table, $where, $data);
+
+		TodoyuHookManager::callHook('comment', 'feedback.seen', array($idComment, $idPerson));
 	}
 
 
@@ -294,7 +299,6 @@ class TodoyuCommentFeedbackManager {
 	 *
 	 * @param	Integer		$idTask
 	 * @param	Integer		$idPerson
-	 * @return	Integer		Number of updated comments
 	 */
 	public static function setTaskCommentsAsSeen($idTask, $idPerson = 0) {
 		$idTask	= intval($idTask);
@@ -310,7 +314,9 @@ class TodoyuCommentFeedbackManager {
 			'f.date_update'	=> NOW
 		);
 
-		return Todoyu::db()->doUpdate($tables, $where, $data);
+		Todoyu::db()->doUpdate($tables, $where, $data);
+
+		TodoyuHookManager::callHook('comment', 'task.seen', array($idTask, $idPerson));
 	}
 
 
