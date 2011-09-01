@@ -18,6 +18,12 @@
 * This copyright notice MUST APPEAR in all copies of the script.
 *****************************************************************************/
 
+/**
+ * Comment search
+ *
+ * @package		Todoyu
+ * @subpackage	Comment
+ */
 class TodoyuCommentSearch implements TodoyuSearchEngineIf {
 
 	/**
