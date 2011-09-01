@@ -96,7 +96,7 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 
 
 	/**
-	 * Save (update) comment
+	 * Save (update) comment (+save comment mail if option activated)
 	 *
 	 * @param	Array		$params
 	 * @return	Void|String				Failure returns re-rendered form with error messages
@@ -108,6 +108,9 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 		$idComment	= intval($data['id']);
 		$idTask		= intval($data['id_task']);
 
+		$sendAsEmail			= intval($data['sendasemail']) === 1;
+		$mailReceiverPersonIDs	= array_unique(TodoyuArray::intval($data['emailreceivers'], true, true));
+
 			// Check editing rights for existing comments
 		if( $idComment !== 0 ) {
 			TodoyuCommentRights::restrictEdit($idComment);
@@ -118,14 +121,23 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 		$form	= TodoyuFormManager::getForm($xmlPath, $idComment);
 		$form->setFormData($data);
 
-			// Validate comment and save / notify about failure
+			// Validate comment and save + send mail if activated / notify about failure
 		if( $form->isValid() ) {
 			$data	= $form->getStorageData();
 
-				// Store comment and send email if mail-option activated
+				// Store comment
 			TodoyuCommentCommentManager::saveComment($data);
-
 			TodoyuHeader::sendTodoyuHeader('tabLabel', TodoyuCommentTask::getLabel($data['id_task']));
+
+				// Send email(s) if mail option activated
+			if( $sendAsEmail && sizeof($mailReceiverPersonIDs) > 0 ) {
+				$sent	= TodoyuCommentMailer::sendEmails($idComment, $mailReceiverPersonIDs);
+				if( $sent ) {
+					TodoyuCommentMailManager::saveMailsSent($idComment, $mailReceiverPersonIDs);
+					TodoyuHeader::sendTodoyuHeader('sentEmail', true);
+				}
+			}
+			// Form data is invalid
 		} else {
 			TodoyuHeader::sendTodoyuErrorHeader();
 			TodoyuHeader::sendTodoyuHeader('idComment', $idComment);

@@ -103,9 +103,7 @@ class TodoyuCommentCommentManager {
 		$data	= TodoyuFormHook::callSaveData($xmlPath, $data, $idComment);
 
 			// Extract feedback and email data
-		$sendAsEmail			= intval($data['sendasemail']) === 1;
-		$mailReceiverPersonIDs	= array_unique(TodoyuArray::intExplode(',', $data['emailreceivers'], true, true));
-		$personIDsFeedback		= array_unique(TodoyuArray::intExplode(',', $data['feedback'], true, true));
+		$personIDsFeedback	= array_unique(TodoyuArray::intExplode(',', $data['feedback'], true, true));
 
 			// Remove special handled fields
 		unset($data['sendasemail']);
@@ -115,12 +113,11 @@ class TodoyuCommentCommentManager {
 			// Update comment in database
 		self::updateComment($idComment, $data);
 
-
 			// Clear record cache
 		TodoyuRecordManager::removeRecordCache('TodoyuCommentComment', $idComment);
 		TodoyuRecordManager::removeRecordQueryCache(self::TABLE, $idComment);
 
-			// Set all comments in task as send
+			// Set all comments in task as seen
 		TodoyuCommentFeedbackManager::setTaskCommentsAsSeen($data['id_task']);
 
 			// Register feedback for current comment
@@ -128,15 +125,6 @@ class TodoyuCommentCommentManager {
 
 			// Call saved hook
 		TodoyuHookManager::callHook('comment', 'comment.save', array($idComment));
-
-			// Send emails
-		if( $sendAsEmail && sizeof($mailReceiverPersonIDs) > 0 ) {
-			$sent	= TodoyuCommentMailer::sendEmails($idComment, $mailReceiverPersonIDs);
-			if( $sent ) {
-				TodoyuCommentMailManager::saveMailsSent($idComment, $mailReceiverPersonIDs);
-				TodoyuHeader::sendTodoyuHeader('sentEmail', true);
-			}
-		}
 
 		return $idComment;
 	}
