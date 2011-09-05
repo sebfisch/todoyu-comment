@@ -1,6 +1,7 @@
 todoyu comment extension changelog
 
 comment 1.1.1 - not released yet
+	* Bugfix: Sending new created comment by email failed
 	* Added: New comment task filter for comment creation date
 	* Added: Hooks: comment.save, comment.add, comment.update, comment.delete, feedback.add, feedback.seen, task.seen, comment.email
 	* Change: Separated comment filter locales from comment ext locales
