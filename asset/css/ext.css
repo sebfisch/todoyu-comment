@@ -54,13 +54,16 @@ h1.extIconComment .title {
 	background:url(../img/icons.png) no-repeat 0 2px;
 }
 
-.task .tabContent .commentButtons button.reverseOrder.asc .icon {
-	background:url(../../../../core/asset/img/icons.png) no-repeat 0 -476px;
+.task .tabContent .commentButtons button.reverseOrder .icon {
+	width:22px;
 }
+	.task .tabContent .commentButtons button.reverseOrder.asc .icon {
+		background:url(../../../../core/asset/img/icons.png) no-repeat 0 -476px;
+	}
 
-.task .tabContent .commentButtons button.reverseOrder.desc .icon {
-	background:url(../../../../core/asset/img/icons.png) no-repeat 0 -506px;
-}
+	.task .tabContent .commentButtons button.reverseOrder.desc .icon {
+		background:url(../../../../core/asset/img/icons.png) no-repeat 0 -506px;
+	}
 
 .task-comments {
 	display:block;
