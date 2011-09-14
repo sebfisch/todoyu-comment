@@ -52,7 +52,7 @@ comment 1.0.1 to 1.0.7 - 1.0.7 released 2011-01-17
 	* Bugfix: Updating amount of feedback tasks in portal's tab-label
 	* Bugfix: Feedback query did not exclude deleted comments and such with id_task = 0
 	* Feature: Added <pre> and <a> tag to RTE allowed tags list
-	* Changed: Renamed tag config to allowedtags
+	* Changed: Renamed tag config to "allowedtags"
 	* Changed: Removed word len splitter for comments
 	* Feature: Added use of system default email as comment emails sender address
 	* Feature: Substitution of URLs by hyperlinks in project description, task description, comments
