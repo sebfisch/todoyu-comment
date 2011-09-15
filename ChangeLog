@@ -1,13 +1,13 @@
 todoyu comment extension changelog
 
-comment 1.1.1 - not released yet
+comment 1.1.1 - 2011-09-15
 	* Bugfix: Sending new created comment by email failed
 	* Added: New comment task filter for comment creation date
 	* Added: Hooks: comment.save, comment.add, comment.update, comment.delete, feedback.add, feedback.seen, task.seen, comment.email
-	* Change: Separated comment filter locales from comment ext locales
-	* Change: Allow request feedback from myself when writing a comment
-	* Change: Set the current user as sender of comment emails. So replies go to the correct address
-	* Change: Use from display hook to fix problem with hidden email receivers field on invalid form submit/reload
+	* Changed: Separated comment filter locales from comment ext locales
+	* Changed: Allow request feedback from myself when writing a comment
+	* Changed: Set the current user as sender of comment emails. So replies go to the correct address
+	* Changed: Use from display hook to fix problem with hidden email receivers field on invalid form submit/reload
 
 comment  1.1.0 - 2011-06-17
 	* Bugfix: (UI) expanding task on add comment after collapse after adding comment failed
@@ -24,7 +24,6 @@ comment  1.1.0 - 2011-06-17
 
 
 comment 1.0.8
-	* Feature: Added changelog
 	* Feature: Implemented logging of emailed comments and listed it in comments header
 	* Feature: Added marking of seen feedbacks in comments header
 	* Feature: Added placeholders for to-be spanish locale files
