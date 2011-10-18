@@ -1,5 +1,8 @@
 todoyu comment extension changelog
 
+comment 1.1.2 - not released yet
+	* Translation: Polish
+
 comment 1.1.1 - 2011-09-15
 	* Bugfix: Sending new created comment by email failed
 	* Added: New comment task filter for comment creation date
