@@ -98,8 +98,8 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 	/**
 	 * Save (update) comment (+save comment mail if option activated)
 	 *
-	 * @param	Array		$params
-	 * @return	Void|String				Failure returns re-rendered form with error messages
+	 * @param	Array			$params
+	 * @return	Void|String		Failure returns re-rendered form with error messages
 	 */
 	public function saveAction(array $params) {
 		$xmlPath= 'ext/comment/config/form/comment.xml';
