@@ -1,6 +1,7 @@
 todoyu comment extension changelog
 
 comment 1.1.2 - not released yet
+	* Changed: Decrement feedback-count on answering a feedback
 	* Changed: Adding of comment doesn't check for lock status of the task
 	* Translation: Polish
 

@@ -145,6 +145,8 @@ Todoyu.Ext.comment.Edit = {
 			if( response.getTodoyuHeader('sentEmail') ) {
 				Todoyu.notifySuccess('[LLL:comment.ext.js.emailSent]');
 			}
+
+			Todoyu.Ext.comment.updateFeedbackTab(response.getTodoyuHeader('feedback'));
 		}
 	},
 

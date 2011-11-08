@@ -133,9 +133,18 @@ Todoyu.Ext.comment = {
 			// Remove class which marks the name unseen
 		$('comment-personfeedback-' + idComment + '-' + idPerson).removeClassName('commentperson-unapproved');
 
-			// Count down the feedback counter
+		this.updateFeedbackTab(response.getTodoyuHeader('feedback'));
+	},
+
+
+
+	/**
+	 * 
+	 * @param	Integer		numFeedbacks
+	 */
+	updateFeedbackTab: function(numFeedbacks) {
+		// Count down the feedback counter
 		if( Todoyu.getArea() === 'portal' && Todoyu.exists('portal-tab-feedback') ) {
-			var numFeedbacks	= response.getTodoyuHeader('feedback');
 			var labelElement	= $('portal-tab-feedback').down('span.labeltext');
 
 			labelElement.update(labelElement.innerHTML.replace(/\(\d\)/, '(' + numFeedbacks + ')'));
