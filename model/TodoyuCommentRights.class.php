@@ -65,7 +65,7 @@ class TodoyuCommentRights {
 	public static function isEditInTaskAllowed($idTask, $isCreator = false) {
 		$idTask	= intval($idTask);
 
-		if( TodoyuProjectTaskRights::isSeeAllowed($idTask) && !TodoyuProjectTaskManager::isLocked($idTask) ) {
+		if( TodoyuProjectTaskRights::isSeeAllowed($idTask) ) {
 			if( Todoyu::allowed('comment', 'comment:editAll') ) {
 				return true;
 			}
@@ -89,7 +89,7 @@ class TodoyuCommentRights {
 	public static function isAddInTaskAllowed($idTask) {
 		$idTask	= intval($idTask);
 
-		return TodoyuProjectTaskRights::isSeeAllowed($idTask) && !TodoyuProjectTaskManager::isLocked($idTask) && Todoyu::allowed('comment', 'general:use');
+		return TodoyuProjectTaskRights::isSeeAllowed($idTask) && Todoyu::allowed('comment', 'general:use');
 	}
 
 

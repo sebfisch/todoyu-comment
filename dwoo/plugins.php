@@ -36,4 +36,16 @@ function Dwoo_Plugin_linkComments_compile(Dwoo_Compiler $compiler, $text) {
 	return 'TodoyuCommentCommentManager::linkCommentIDsInText(' . $text . ')';
 }
 
+
+
+/**
+ * @param	Dwoo		$dwoo
+ * @param	Integer		$idTask
+ * @return	Boolean
+ */
+function Dwoo_Plugin_isAddInTaskAllowed(Dwoo $dwoo, $idTask) {
+	$idTask	= intval($idTask);
+	return TodoyuCommentRights::isAddInTaskAllowed($idTask);
+}
+
 ?>
