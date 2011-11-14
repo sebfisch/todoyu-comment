@@ -88,7 +88,7 @@ class TodoyuCommentRenderer {
 		$idComment	= intval($idComment);
 		$xmlPath	= 'ext/comment/config/form/comment.xml';
 
-		$form		= TodoyuFormManager::getForm($xmlPath, $idComment);
+		$form	= TodoyuFormManager::getForm($xmlPath, $idComment);
 
 		if( $idComment === 0 ) {
 				// New comment

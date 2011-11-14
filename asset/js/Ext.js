@@ -139,7 +139,6 @@ Todoyu.Ext.comment = {
 
 
 	/**
-	 * 
 	 * @param	{Number}		numFeedbacks
 	 */
 	updateFeedbackTab: function(numFeedbacks) {
@@ -273,7 +272,7 @@ Todoyu.Ext.comment = {
 				'task':		idTask
 			},
 			'insertion':	'after',
-			onComplete:		this.onAdd.bind(this, idTask)
+			onComplete:		this.onAdded.bind(this, idTask)
 		};
 		var target	= 'task-' + idTask + '-comment-commands';
 
@@ -289,7 +288,7 @@ Todoyu.Ext.comment = {
 	 * @param	{Number}			idTask
 	 * @param	{Ajax.Response}		response
 	 */
-	onAdd: function(idTask, response) {
+	onAdded: function(idTask, response) {
 
 	},
 
