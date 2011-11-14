@@ -140,7 +140,7 @@ Todoyu.Ext.comment = {
 
 	/**
 	 * 
-	 * @param	Integer		numFeedbacks
+	 * @param	{Number}		numFeedbacks
 	 */
 	updateFeedbackTab: function(numFeedbacks) {
 		// Count down the feedback counter
