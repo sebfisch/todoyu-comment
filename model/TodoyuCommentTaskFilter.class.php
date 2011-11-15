@@ -94,27 +94,24 @@ class TodoyuCommentTaskFilter {
 		$idPerson	= Todoyu::personid($idPerson);
 		$seenStatus	= $negate ? 1 : 0;
 
+		$tables	= array(
+			'ext_project_task',
+			'ext_comment_comment',
+			'ext_comment_mm_comment_feedback'
+		);
+		$where	= '		ext_comment_comment.deleted 						= 0'
+				. '	AND ext_comment_mm_comment_feedback.is_seen				= ' . $seenStatus
+				. ' AND	ext_comment_mm_comment_feedback.id_person_feedback	= ' . $idPerson;
+		$join	= array(
+			'ext_comment_comment.id_task				= ext_project_task.id',
+			'ext_comment_mm_comment_feedback.id_comment	= ext_comment_comment.id'
+		);
 
-		if( $idPerson !== 0 ) {
-			$tables	= array(
-				'ext_project_task',
-				'ext_comment_comment',
-				'ext_comment_mm_comment_feedback'
-			);
-			$where	= '		ext_comment_comment.deleted 						= 0'
-					. '	AND ext_comment_mm_comment_feedback.is_seen				= ' . $seenStatus
-					. ' AND	ext_comment_mm_comment_feedback.id_person_feedback	= ' . $idPerson;
-			$join	= array(
-				'ext_comment_comment.id_task				= ext_project_task.id',
-				'ext_comment_mm_comment_feedback.id_comment	= ext_comment_comment.id'
-			);
-
-			$queryParts	= array(
-				'tables'=> $tables,
-				'where'	=> $where,
-				'join'	=> $join
-			);
-		}
+		$queryParts	= array(
+			'tables'=> $tables,
+			'where'	=> $where,
+			'join'	=> $join
+		);
 
 		return $queryParts;
 	}
