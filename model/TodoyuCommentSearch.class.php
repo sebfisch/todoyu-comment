@@ -42,7 +42,7 @@ class TodoyuCommentSearch implements TodoyuSearchEngineIf {
 		$commentIDs	= TodoyuSearch::searchTable($table, $fields, $find, $ignore, $limit);
 
 			// Find more IDs via extraction of comment numbers contained in search words
-		$commentIDs	= array_merge($commentIDs, self::getCommentIdNumsFromSearchWords($find) );
+		$commentIDs	= array_merge($commentIDs, self::getCommentIdNumsFromSearchWords($find));
 
 		return array_unique($commentIDs);
 	}
