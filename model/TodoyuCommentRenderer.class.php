@@ -165,7 +165,7 @@ class TodoyuCommentRenderer {
 
 
 	/**
-	 * Get tab label for portal feedback task
+	 * Get tab label for portal feedback task: label and amount of feedbacks
 	 *
 	 * @param	Boolean		$count
 	 * @return	String
@@ -174,8 +174,8 @@ class TodoyuCommentRenderer {
 		$label	= Todoyu::Label('comment.ext.portal.tab.feedback');
 
 		if( $count ) {
-			$taskIDs= TodoyuCommentCommentManager::getFeedbackTaskIDs();
-			$label	= $label . ' (' . sizeof($taskIDs) . ')';
+			$feedbackIDs= TodoyuCommentCommentManager::getOpenFeedbackCommentIDs(Todoyu::personid());
+			$label	= $label . ' (' . sizeof($feedbackIDs) . ')';
 		}
 
 		return $label;

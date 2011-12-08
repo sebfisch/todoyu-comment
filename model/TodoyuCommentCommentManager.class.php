@@ -27,9 +27,14 @@
 class TodoyuCommentCommentManager {
 
 	/**
-	 * @var	String		Default table for database requests
+	 * @var	String		Default database table
 	 */
 	const TABLE = 'ext_comment_comment';
+
+	/**
+	 * @var	String
+	 */
+	const TABLE_FEEDBACK = 'ext_comment_mm_comment_feedback';
 
 
 
@@ -234,6 +239,37 @@ class TodoyuCommentCommentManager {
 
 
 	/**
+	 * Get IDs of open requests for feedbacks to be given from given person
+	 *
+	 * @param	Integer		$idPerson
+	 * @param	Boolean		$desc    	Sort ascending/descending (creation date)
+	 * @return	Array
+	 */
+	public static function getOpenFeedbackCommentIDs($idPerson = 0, $desc = false) {
+		$idPerson	= Todoyu::personid($idPerson);
+
+		$field	= 'co.id id_comment';
+
+		$tables	=		self::TABLE_FEEDBACK			. ' fe'
+				. ',' . self::TABLE						. ' co '
+				. ',' . TodoyuProjectTaskManager::TABLE . ' task';
+
+		$where	= '		fe.id_person_feedback	= ' . $idPerson
+				. ' AND fe.is_seen				= 0 '
+				. ' AND co.id					= fe.id_comment '
+				. ' AND co.id_task				> 0'
+				. ' AND co.deleted				= 0'
+				. ' AND task.id					= co.id_task'
+				. ' AND task.deleted			= 0';
+
+		$order	= 'co.date_create ' . ( $desc ? 'DESC' : 'ASC' );
+
+		return array_keys(Todoyu::db()->getArray($field, $tables, $where, '', $order, '', 'id_comment'));
+	}
+
+
+
+	/**
 	 * Change comments public flag
 	 *
 	 * @param	Integer		$idComment
@@ -387,8 +423,8 @@ class TodoyuCommentCommentManager {
 		$idTask	= intval($idTask);
 
 		$field	= '	fb.id_person_create';
-		$tables	= '	ext_comment_mm_comment_feedback	fb,
-					ext_comment_comment				co';
+		$tables	= 		self::TABLE_FEEDBACK . ' fb'
+				. ',' . self::TABLE . ' co';
 		$where	= '		fb.id_comment			= co.id'
 				. ' AND co.id_task				= ' . $idTask
 				. ' AND	fb.id_person_feedback	= ' . TodoyuAuth::getPersonID()
