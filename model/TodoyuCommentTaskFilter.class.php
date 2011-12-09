@@ -332,7 +332,7 @@ class TodoyuCommentTaskFilter extends TodoyuSearchFilterBase {
 	 * @return array
 	 */
 	public static function Sorting_commentLastAdd($desc = false) {
-		return self::Sorting_commentLastAddBase($desc, false);
+		return self::Sorting_commentLastAddBase($desc, $desc);
 	}
 
 
@@ -363,8 +363,7 @@ class TodoyuCommentTaskFilter extends TodoyuSearchFilterBase {
 
 			// Inject public order at second position
 		$extraOrders = array(
-			'IF(SUM(ext_comment_comment.is_public)=0,1,0) DESC',
-			'ext_comment_comment.is_public DESC'
+			'IF(SUM(ext_comment_comment.is_public)=0,1,0)' . self::getSortDir($desc)
 		);
 		array_splice($queryParts['order'], 1, 0, $extraOrders);
 
@@ -384,7 +383,7 @@ class TodoyuCommentTaskFilter extends TodoyuSearchFilterBase {
 	 * @return	Array
 	 */
 	public static function Sorting_commentLastAddPublic($desc = false) {
-		return self::Sorting_commentLastAddPublicBase($desc, false);
+		return self::Sorting_commentLastAddPublicBase($desc, $desc);
 	}
 
 
