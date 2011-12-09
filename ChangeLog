@@ -1,7 +1,7 @@
 todoyu comment extension changelog
 
 comment 1.1.3 - Not released yet
-	* Bugfix: Tablabel (portal) feedbacks count was count of tasks with feedbacks not feedbacks count
+	* Bugfix: Tab label (portal) feedbacks count was count of tasks with feedbacks not feedbacks count
 
 comment 1.1.2 - 2011-11-17
 	* Changed: Decrement feedback-count on answering a feedback
