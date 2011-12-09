@@ -189,6 +189,18 @@ class TodoyuCommentFeedbackManager {
 
 
 	/**
+	 * Get amount of open feedbacks requested to be answered by given person
+	 *
+	 * @param	Integer		$idPerson
+	 * @return	Integer
+	 */
+	public static function getAmountOpenFeedbacks($idPerson = 0) {
+		return count(self::getCommentIDs($idPerson));
+	}
+
+
+
+	/**
 	 * Get task IDs which have comments which need a feedback from the person
 	 *
 	 * @param	Integer		$idPerson
@@ -211,7 +223,7 @@ class TodoyuCommentFeedbackManager {
 
 
 	/**
-	 * Check whether a comment has a feedback request
+	 * Check whether the given comment has a feedback request from the given person
 	 *
 	 * @param	Integer		$idComment
 	 * @param	Integer		$idPerson
@@ -357,7 +369,7 @@ class TodoyuCommentFeedbackManager {
 	 * @param	Integer		$idComment
 	 * @return	Boolean		Open feedback request found
 	 */
-	public static function isCommentUnapproved($idComment) {
+	public static function isCommentUnseen($idComment) {
 		$idComment	= intval($idComment);
 		$idPerson		= Todoyu::personid();
 
@@ -370,6 +382,7 @@ class TodoyuCommentFeedbackManager {
 
 		return sizeof($isSeen) !== 0 && intval($isSeen[0]) === 0;
 	}
+
 }
 
 ?>

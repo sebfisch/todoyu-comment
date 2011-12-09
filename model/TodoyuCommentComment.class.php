@@ -128,7 +128,7 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 		$personIDsFeedback	= array_keys($this->data['persons_feedback']);
 		$this->data['person_ids_mailonly']	= array_diff($personIDsEmailedTo, $personIDsFeedback);
 
-		$this->data['unapproved']		= TodoyuCommentFeedbackManager::isCommentUnapproved($this->getID());
+		$this->data['unapproved']		= TodoyuCommentFeedbackManager::isCommentUnseen($this->getID());
 		$this->data['locked']			= $this->isLocked();
 	}
 
