@@ -2,6 +2,7 @@ todoyu comment extension changelog
 
 comment 1.1.3 - Not released yet
 	* Bugfix: Tab label (portal) feedbacks count was count of tasks with feedbacks not feedbacks count
+	* Added: Added support for filter result sorting of search 1.2 (task)
 
 comment 1.1.2 - 2011-11-17
 	* Changed: Decrement feedback-count on answering a feedback

@@ -7,4 +7,8 @@
 	<label index="commentWrittenPerson">Comment written by person</label>
 	<label index="commentWrittenRoles">Comment written by roles</label>
 	<label index="commentCreatedate">Comment Creation Date</label>
+	<label index="sorting.commentLastAdd">Date last comment</label>
+	<label index="sorting.commentLastAddNoneFirst">Date last comment (no comment = top)</label>
+	<label index="sorting.commentLastAddPublic">Date last PUBLIC comment</label>
+	<label index="sorting.commentLastAddPublicNoneFirst">Date last PUBLIC comment (no comment = top)</label>
 </labels>
