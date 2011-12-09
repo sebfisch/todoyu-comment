@@ -10,5 +10,5 @@
 	<label index="sorting.commentLastAdd">Date last comment</label>
 	<label index="sorting.commentLastAddNoneFirst">Date last comment (no comment = top)</label>
 	<label index="sorting.commentLastAddPublic">Date last PUBLIC comment</label>
-	<label index="sorting.commentLastAddPublicNoneFirst">Date last PUBLIC comment (no comment = top)</label>
+	<label index="sorting.commentLastAddPublicNoneFirst">Date last PUBLIC comment (no [public] comment = top)</label>
 </labels>

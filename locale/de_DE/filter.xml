@@ -10,5 +10,5 @@
 	<label index="sorting.commentLastAdd">Datum letzer Kommentar</label>
 	<label index="sorting.commentLastAddNoneFirst">Datum letzer Kommentar (kein Kommentar = zuoberst)</label>
 	<label index="sorting.commentLastAddPublic">Datum letzer ÖFFENTLICHER Kommentar</label>
-	<label index="sorting.commentLastAddPublicNoneFirst">Datum letzer ÖFFENTLICHER Kommentar (kein Kommentar = zuoberst)</label>
+	<label index="sorting.commentLastAddPublicNoneFirst">Datum letzer ÖFFENTLICHER Kommentar (kein [öffentlicher] Kommentar = zuoberst)</label>
 </labels>

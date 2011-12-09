@@ -362,11 +362,15 @@ class TodoyuCommentTaskFilter extends TodoyuSearchFilterBase {
 		$queryParts	= self::Sorting_commentLastAddBase($desc, $noneDesc);
 
 			// Inject public order at second position
-		$publicOrder= 'ext_comment_comment.is_public DESC';
-		array_splice($queryParts['order'], 1, 0, array($publicOrder));
+		$extraOrders = array(
+			'commentTotalPublic ASC',
+			'ext_comment_comment.is_public DESC'
+		);
+		array_splice($queryParts['order'], 1, 0, $extraOrders);
 
 			// Add a IF() statement into the MAX() field to make sure only public comments are checked
-		$queryParts['fields']['commentLastAdded'] = 'MAX(IF(ext_comment_comment.is_public, ext_comment_comment.date_create, 0)) as commentLastAdded';
+		$queryParts['fields']['commentLastAdded'] 	= 'MAX(IF(ext_comment_comment.is_public, ext_comment_comment.date_create, 0)) as commentLastAdded';
+		$queryParts['fields']['commentTotalPublic']	= 'SUM(ext_comment_comment.is_public) as commentTotalPublic';
 
 		return $queryParts;
 	}
