@@ -144,25 +144,11 @@ Todoyu::$CONFIG['FILTERS']['TASK']['sorting']['commentLastAdd'] = array(
 	'funcRef'	=> 'TodoyuCommentTaskFilter::Sorting_commentLastAdd'
 );
 
-	// Last comment added, no comment = top
-Todoyu::$CONFIG['FILTERS']['TASK']['sorting']['commentLastAddNoneFirst'] = array(
-	'label'		=> 'comment.filter.sorting.commentLastAddNoneFirst',
-	'optgroup'	=> 'comment.ext.search.label',
-	'funcRef'	=> 'TodoyuCommentTaskFilter::Sorting_commentLastAddNoneFirst'
-);
-
 	// Last public comment added, no comment = top
 Todoyu::$CONFIG['FILTERS']['TASK']['sorting']['commentLastAddPublic'] = array(
 	'label'		=> 'comment.filter.sorting.commentLastAddPublic',
 	'optgroup'	=> 'comment.ext.search.label',
 	'funcRef'	=> 'TodoyuCommentTaskFilter::Sorting_commentLastAddPublic'
-);
-
-	// Last public comment added, no comment = bottom
-Todoyu::$CONFIG['FILTERS']['TASK']['sorting']['commentLastAddPublicNoneFirst'] = array(
-	'label'		=> 'comment.filter.sorting.commentLastAddPublicNoneFirst',
-	'optgroup'	=> 'comment.ext.search.label',
-	'funcRef'	=> 'TodoyuCommentTaskFilter::Sorting_commentLastAddPublicNoneFirst'
 );
 
 ?>

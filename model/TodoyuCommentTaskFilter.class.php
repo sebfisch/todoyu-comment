@@ -297,13 +297,12 @@ class TodoyuCommentTaskFilter extends TodoyuSearchFilterBase {
 	 * Add order clause for not existing comments (task with no comments)
 	 * Add field which get the maximum date of a comment (MAX()
 	 *
-	 * This is a base method and not used directly as sorting flag
-	 *
-	 * @param	Boolean		$desc			Order direction
-	 * @param	Boolean		$noneDesc		Order direction for tasks without comments
-	 * @return	Array
+	 * @param	Boolean		$desc
+	 * @return array
 	 */
-	private static function Sorting_commentLastAddBase($desc, $noneDesc = false) {
+	public static function Sorting_commentLastAdd($desc = false) {
+		$sortDir = self::getSortDir($desc);
+
 		return array(
 			'tables' => array(
 				'ext_project_task LEFT JOIN ext_comment_comment ON ext_project_task.id = ext_comment_comment.id_task'
@@ -312,8 +311,9 @@ class TodoyuCommentTaskFilter extends TodoyuSearchFilterBase {
 				'ext_project_task'
 			),
 			'order'	=> array(
-				'ISNULL(ext_comment_comment.id)' . self::getSortDir($noneDesc), // No comments => top/bottom
-				'commentLastAdded' . self::getSortDir($desc) // last date added by MAX() in fields
+				'commentLastAdded' . $sortDir, // last date added by MAX() in fields
+				'ISNULL(ext_comment_comment.id)' . $sortDir, // No comments
+				'ext_project_task.id' . $sortDir // Make sure sorting is consistent
 			),
 			'fields' => array(
 				'commentLastAdded' => 'MAX(ext_comment_comment.date_create) as commentLastAdded'
@@ -324,42 +324,13 @@ class TodoyuCommentTaskFilter extends TodoyuSearchFilterBase {
 
 
 	/**
-	 * Order tasks by date of last added comment
-	 * Tasks with no comments are on top
-	 *
-	 * @see		Sorting_commentLastAddBase
-	 * @param	Boolean		$desc
-	 * @return array
-	 */
-	public static function Sorting_commentLastAdd($desc = false) {
-		return self::Sorting_commentLastAddBase($desc, $desc);
-	}
-
-
-
-	/**
-	 * Order tasks by date of last added comment, set tasks with no comments on top
-	 *
-	 * @see		Sorting_commentLastAddBase
-	 * @param	Boolean		$desc
-	 * @return	Array
-	 */
-	public static function Sorting_commentLastAddNoneFirst($desc = false) {
-		return self::Sorting_commentLastAddBase($desc, true);
-	}
-
-
-
-	/**
 	 * Get query parts to sort for last PUBLIC comment of task
 	 *
-	 * @see		Sorting_commentLastAddBase
 	 * @param	Boolean		$desc
-	 * @param	Boolean		$noneDesc
 	 * @return	Array
 	 */
-	private static function Sorting_commentLastAddPublicBase($desc = false, $noneDesc = false) {
-		$queryParts	= self::Sorting_commentLastAddBase($desc, $noneDesc);
+	public static function Sorting_commentLastAddPublic($desc = false) {
+		$queryParts	= self::Sorting_commentLastAdd($desc);
 
 			// Inject public order at second position
 		$extraOrders = array(
@@ -371,32 +342,6 @@ class TodoyuCommentTaskFilter extends TodoyuSearchFilterBase {
 		$queryParts['fields']['commentLastAdded'] 	= 'MAX(IF(ext_comment_comment.is_public, ext_comment_comment.date_create, 0)) as commentLastAdded';
 
 		return $queryParts;
-	}
-
-
-
-	/**
-	 * Get query parts to sort for last PUBLIC comment of task
-	 *
-	 * @see		Sorting_commentLastAddPublicBase
-	 * @param	Boolean		$desc
-	 * @return	Array
-	 */
-	public static function Sorting_commentLastAddPublic($desc = false) {
-		return self::Sorting_commentLastAddPublicBase($desc, $desc);
-	}
-
-
-
-	/**
-	 * Get query parts to sort for last PUBLIC comment of task, set tasks with no comments on top
-	 *
-	 * @see		Sorting_commentLastAddPublicBase
-	 * @param	Boolean		$desc
-	 * @return	Array
-	 */
-	public static function Sorting_commentLastAddPublicNoneFirst($desc = false) {
-		return self::Sorting_commentLastAddPublicBase($desc, true);
 	}
 
 }

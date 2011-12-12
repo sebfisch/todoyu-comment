@@ -8,7 +8,5 @@
 	<label index="commentWrittenRoles">Kommentar geschrieben von Rollen</label>
 	<label index="commentCreatedate">Kommentar Zeitpunkt</label>
 	<label index="sorting.commentLastAdd">Datum letzer Kommentar</label>
-	<label index="sorting.commentLastAddNoneFirst">Datum letzer Kommentar (kein Kommentar = zuoberst)</label>
 	<label index="sorting.commentLastAddPublic">Datum letzer öffentlicher Kommentar</label>
-	<label index="sorting.commentLastAddPublicNoneFirst">Datum letzer öffentlicher Kommentar (kein [öffentlicher] Kommentar = zuoberst)</label>
 </labels>
