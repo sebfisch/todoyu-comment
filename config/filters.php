@@ -141,14 +141,15 @@ Todoyu::$CONFIG['FILTERS']['TASK']['widgets']['commentCreatedate'] = array(
 Todoyu::$CONFIG['FILTERS']['TASK']['sorting']['commentLastAdd'] = array(
 	'label'		=> 'comment.filter.sorting.commentLastAdd',
 	'optgroup'	=> 'comment.ext.search.label',
-	'funcRef'	=> 'TodoyuCommentTaskFilter::Sorting_commentLastAdd'
+	'funcRef'	=> 'TodoyuCommentTaskFilter::Sorting_commentLastAdd',
 );
 
 	// Last public comment added, no comment = top
 Todoyu::$CONFIG['FILTERS']['TASK']['sorting']['commentLastAddPublic'] = array(
 	'label'		=> 'comment.filter.sorting.commentLastAddPublic',
 	'optgroup'	=> 'comment.ext.search.label',
-	'funcRef'	=> 'TodoyuCommentTaskFilter::Sorting_commentLastAddPublic'
+	'funcRef'	=> 'TodoyuCommentTaskFilter::Sorting_commentLastAddPublic',
+	'right'		=> 'comment:comment.seeAll'
 );
 
 ?>
