@@ -174,16 +174,20 @@ class TodoyuCommentFeedbackManager {
 		$idPerson	= Todoyu::personid($idPerson);
 
 		$field	= 'f.id_comment';
-		$table	= self::TABLE . ' as f,
-					ext_comment_comment as c';
+		$table	= self::TABLE . ' 		as f,
+					ext_comment_comment as c,
+					ext_project_task	as t';
 		$where	= '	f.id_person_feedback	= ' . $idPerson
-				. ' AND	f.is_seen				= 0
-					AND c.id = f.id_comment
-					AND c.deleted = 0
-					AND c.id_task != 0';
+				. ' AND	f.is_seen			= 0
+					AND c.id 				= f.id_comment
+					AND c.deleted 			= 0
+					AND c.id_task 			!= 0
+					AND t.id				= c.id_task
+					AND t.deleted			= 0';
+		$group	= 'c.id';
 		$order	= 'f.date_create';
 
-		return Todoyu::db()->getColumn($field, $table, $where, '', $order);
+		return Todoyu::db()->getColumn($field, $table, $where, $group, $order);
 	}
 
 
