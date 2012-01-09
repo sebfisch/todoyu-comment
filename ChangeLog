@@ -3,6 +3,7 @@ todoyu comment extension changelog
 comment 1.1.3 - 2011-12-13
 	* Bugfix: Tab label (portal) feedbacks count was count of tasks with feedbacks not feedbacks count
 	* Added: Added support for filter result sorting of search 1.2 (task)
+	* Changed: Used task type differentiated task tabs registration, incremented project dependency to 1.3.0
 	* Changed: Current user is no longer excluded from the employee list for feedbacks
 
 comment 1.1.2 - 2011-11-17
