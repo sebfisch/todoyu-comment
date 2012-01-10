@@ -107,8 +107,8 @@ class TodoyuCommentSearch implements TodoyuSearchEngineIf {
 						ext_contact_company comp';
 
 			$where	= '	c.id IN(' . implode(',', $commentIDs) . ')
-						AND c.id_task 			= t.id
-						AND c.id_person_create 	= u.id
+						AND c.id_task			= t.id
+						AND c.id_person_create	= u.id
 						AND t.id_project		= p.id
 						AND p.id_company		= comp.id';
 

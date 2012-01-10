@@ -392,7 +392,7 @@ class TodoyuCommentCommentManager {
 		$idTask	= intval($idTask);
 
 		$field	= '	fb.id_person_create';
-		$tables	= 		self::TABLE_FEEDBACK . ' fb'
+		$tables	=		self::TABLE_FEEDBACK . ' fb'
 				. ',' . self::TABLE . ' co';
 		$where	= '		fb.id_comment			= co.id'
 				. ' AND co.id_task				= ' . $idTask

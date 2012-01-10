@@ -50,7 +50,7 @@ class TodoyuCommentTaskFilter extends TodoyuSearchFilterBase {
 			'ext_comment_comment',
 			'ext_comment_mm_comment_feedback'
 		);
-		$where	= '		ext_comment_comment.deleted 			= 0'
+		$where	= '		ext_comment_comment.deleted				= 0'
 				. '	AND ext_comment_mm_comment_feedback.is_seen	= ' . $seenStatus;
 		$join	= array(
 			'ext_comment_comment.id_task				= ext_project_task.id',
@@ -99,7 +99,7 @@ class TodoyuCommentTaskFilter extends TodoyuSearchFilterBase {
 			'ext_comment_comment',
 			'ext_comment_mm_comment_feedback'
 		);
-		$where	= '		ext_comment_comment.deleted 						= 0'
+		$where	= '		ext_comment_comment.deleted							= 0'
 				. '	AND ext_comment_mm_comment_feedback.is_seen				= ' . $seenStatus
 				. ' AND	ext_comment_mm_comment_feedback.id_person_feedback	= ' . $idPerson;
 		$join	= array(
@@ -136,7 +136,7 @@ class TodoyuCommentTaskFilter extends TodoyuSearchFilterBase {
 				'ext_comment_mm_comment_feedback',
 				'ext_contact_mm_person_role'
 			);
-			$where	= '		ext_comment_comment.deleted 						= 0'
+			$where	= '		ext_comment_comment.deleted							= 0'
 					. '	AND ext_comment_mm_comment_feedback.id_person_feedback	= ext_contact_mm_person_role.id_person'
 					. '	AND ext_contact_mm_person_role.id_role					IN(' . implode(',', $groupIDs) . ')';
 			$join	= array(
@@ -214,8 +214,8 @@ class TodoyuCommentTaskFilter extends TodoyuSearchFilterBase {
 				'ext_project_task',
 				'ext_comment_comment'
 			);
-			$where	= '		ext_comment_comment.id_task 		= ext_project_task.id'
-					. '	AND	ext_comment_comment.deleted 		= 0'
+			$where	= '		ext_comment_comment.id_task			= ext_project_task.id'
+					. '	AND	ext_comment_comment.deleted			= 0'
 					. '	AND	ext_comment_comment.id_person_create= ' . $idPerson;
 
 			$queryParts	= array(
@@ -246,7 +246,7 @@ class TodoyuCommentTaskFilter extends TodoyuSearchFilterBase {
 				'ext_comment_comment',
 				'ext_contact_mm_person_role'
 			);
-			$where	= '		ext_comment_comment.id_task 		= ext_project_task.id'
+			$where	= '		ext_comment_comment.id_task			= ext_project_task.id'
 					. '	AND	ext_comment_comment.deleted			= 0'
 					. '	AND	ext_comment_comment.id_person_create= ext_contact_mm_person_role.id_person'
 					. '	AND	ext_contact_mm_person_role.id_role IN(' . implode(',', $roleIDs) . ')';
@@ -279,9 +279,9 @@ class TodoyuCommentTaskFilter extends TodoyuSearchFilterBase {
 			self::TABLE
 		);
 		$compare= TodoyuSearchFilterHelper::getTimeAndLogicForDate($timestamp, $negate);
-		$where	=           self::TABLE . '.id_task 			= ext_project_task.id'
+		$where	=           self::TABLE . '.id_task				= ext_project_task.id'
 				. ' AND ' . self::TABLE . '.deleted				= 0 '
-				. ' AND ' .	self::TABLE .	'.date_create' . 	$compare['logic'] . ' ' . $compare['timestamp'];
+				. ' AND ' .	self::TABLE .	'.date_create' .	$compare['logic'] . ' ' . $compare['timestamp'];
 
 		return array(
 			'tables'	=> $tables,
@@ -339,7 +339,7 @@ class TodoyuCommentTaskFilter extends TodoyuSearchFilterBase {
 		array_splice($queryParts['order'], 1, 0, $extraOrders);
 
 			// Add a IF() statement into the MAX() field to make sure only public comments are checked
-		$queryParts['fields']['commentLastAdded'] 	= 'MAX(IF(ext_comment_comment.is_public, ext_comment_comment.date_create, 0)) as commentLastAdded';
+		$queryParts['fields']['commentLastAdded']	= 'MAX(IF(ext_comment_comment.is_public, ext_comment_comment.date_create, 0)) as commentLastAdded';
 
 		return $queryParts;
 	}

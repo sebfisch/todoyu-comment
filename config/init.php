@@ -29,8 +29,8 @@ TodoyuFormHook::registerBuildForm('ext/comment/config/form/comment.xml',	'Todoyu
 
 
 	// System name and email to be used in sender attribute inside emails
-Todoyu::$CONFIG['EXT']['comment']['infomail']['fromname'] 		= Todoyu::$CONFIG['SYSTEM']['name'];
-Todoyu::$CONFIG['EXT']['comment']['infomail']['email'] 			= Todoyu::$CONFIG['SYSTEM']['email'];
+Todoyu::$CONFIG['EXT']['comment']['infomail']['fromname']		= Todoyu::$CONFIG['SYSTEM']['name'];
+Todoyu::$CONFIG['EXT']['comment']['infomail']['email']			= Todoyu::$CONFIG['SYSTEM']['email'];
 
 	// Allowable tags inside comments text when saving
 Todoyu::$CONFIG['EXT']['comment']['allowedtags']	= '<p><b><strong><em><span><i><u><strike><ol><ul><li><br><pre><a>';
@@ -55,7 +55,7 @@ Todoyu::$CONFIG['EXT']['comment']['feedbackTabFilters'] = array(
    -------------------------------------------- */
 if( Todoyu::allowed('comment', 'general:use') ) {
 		// Add task tab for comments
-	TodoyuProjectTaskManager::addTaskTab(TASK_TYPE_TASK, 'comment', 'TodoyuCommentTask::getLabel', 'TodoyuCommentTask::getContent', 30);
+	TodoyuContentItemTabManager::registerTab('project', 'task', 'comment', 'TodoyuCommentTask::getLabel', 'TodoyuCommentTask::getContent', 30);
 		// Add "Add New > Comment" to task context menu
 	TodoyuContextMenuManager::addFunction('Task', 'TodoyuCommentCommentManager::getTaskContextMenuItems', 150);
 }

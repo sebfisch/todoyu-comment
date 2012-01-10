@@ -174,14 +174,14 @@ class TodoyuCommentFeedbackManager {
 		$idPerson	= Todoyu::personid($idPerson);
 
 		$field	= 'f.id_comment';
-		$table	= self::TABLE . ' 		as f,
+		$table	= self::TABLE . '		as f,
 					ext_comment_comment as c,
 					ext_project_task	as t';
 		$where	= '	f.id_person_feedback	= ' . $idPerson
 				. ' AND	f.is_seen			= 0
-					AND c.id 				= f.id_comment
-					AND c.deleted 			= 0
-					AND c.id_task 			!= 0
+					AND c.id				= f.id_comment
+					AND c.deleted			= 0
+					AND c.id_task			!= 0
 					AND t.id				= c.id_task
 					AND t.deleted			= 0';
 		$group	= 'c.id';
@@ -214,7 +214,7 @@ class TodoyuCommentFeedbackManager {
 		$idPerson	= Todoyu::personid($idPerson);
 
 		$field	= '	c.id_task';
-		$table	= 	self::TABLE . ' f,
+		$table	=	self::TABLE . ' f,
 					ext_comment_comment c';
 		$where	= '		f.id_comment		= c.id'
 				. '	AND	f.id_person_feedback= ' . $idPerson
@@ -296,11 +296,11 @@ class TodoyuCommentFeedbackManager {
 		$idPerson	= Todoyu::personid($idPerson);
 
 		$table	= self::TABLE;
-		$where	= '		id_comment 			= ' . $idComment
-				. ' AND	id_person_feedback 	= ' . $idPerson;
+		$where	= '		id_comment			= ' . $idComment
+				. ' AND	id_person_feedback	= ' . $idPerson;
 		$data	= array(
 			'date_update'	=> NOW,
-			'is_seen' 		=> 1
+			'is_seen'		=> 1
 		);
 
 		Todoyu::db()->doUpdate($table, $where, $data);
@@ -320,9 +320,9 @@ class TodoyuCommentFeedbackManager {
 		$idTask	= intval($idTask);
 		$idPerson	= Todoyu::personid($idPerson);
 
-		$tables	= 	self::TABLE . ' f,
+		$tables	=	self::TABLE . ' f,
 					ext_comment_comment c';
-		$where	= '		f.id_comment 		= c.id'
+		$where	= '		f.id_comment		= c.id'
 				. '	AND	f.id_person_feedback= ' . $idPerson
 				. ' AND	c.id_task			= ' . $idTask;
 		$data	= array(
@@ -354,7 +354,7 @@ class TodoyuCommentFeedbackManager {
 					f.is_seen';
 		$tables	= '	ext_contact_person				p,
 					ext_comment_mm_comment_feedback	f';
-		$where	= '		f.id_comment 		= ' . $idComment .
+		$where	= '		f.id_comment		= ' . $idComment .
 				  ' AND	f.id_person_feedback= p.id
 					AND	p.deleted			= 0';
 		$group	= '	p.id';

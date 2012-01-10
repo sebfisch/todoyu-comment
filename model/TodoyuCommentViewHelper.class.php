@@ -39,7 +39,7 @@ class TodoyuCommentViewHelper {
 
 		foreach($personIDs as $idPerson) {
 			$person	= TodoyuContactPersonManager::getPerson($idPerson);
-			$options[] 	= array(
+			$options[]	= array(
 				'value'	=> $idPerson,
 				'label'	=> $person->getLabel(true, true)
 			);

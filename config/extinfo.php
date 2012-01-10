@@ -24,18 +24,18 @@
 
 Todoyu::$CONFIG['EXT']['comment']['info'] = array(
 	'title'			=> 'Task Comment Management',
-	'description' 	=> 'Task Comment Management',
-	'author' 		=> array(
+	'description'	=> 'Task Comment Management',
+	'author'		=> array(
 		'name'		=> 'todoyu Core Developer Team',
 		'email'		=> 'team@todoyu.com',
 		'company'	=> 'snowflake productions GmbH, Zurich'
 	),
-	'state' 		=> 'stable',
+	'state'			=> 'stable',
 	'version'		=> '1.1.3',
 	'constraints'	=> array(
 		'core'		=> '2.1.2',
 		'depends'	=> array(
-			'project' 	=> '1.3.0',
+			'project'	=> '1.3.0',
 		),
 		'conflicts' => array()
 	),

@@ -131,7 +131,7 @@ class TodoyuCommentMail extends TodoyuMail {
 
 		$data	= array(
 			'comment'			=> $this->comment->getTemplateData(),
-			'project' 			=> $project->getTemplateData(true),
+			'project'			=> $project->getTemplateData(true),
 			'task'				=> $task->getTemplateData(),
 			'personReceive'		=> $this->person->getTemplateData(),
 			'personWrite'		=> $personWrite->getTemplateData(),
