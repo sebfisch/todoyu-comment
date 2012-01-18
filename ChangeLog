@@ -33,12 +33,10 @@ comment  1.1.0 - 2011-06-17
 	* Changed: Moved comment emailing options into separate fieldset of comment form
 	* Changed: Comments identifier is now "C" (not "K") - header, comment detail, search, linkage
 
-
 comment 1.0.8
 	* Feature: Implemented logging of emailed comments and listed it in comments header
 	* Feature: Added marking of seen feedbacks in comments header
 	* Feature: Added placeholders for to-be spanish locale files
-
 
 comment 1.0.1 to 1.0.7 - 1.0.7 released 2011-01-17
 	* Bugfix: Limited comments feedback person options to allowed to be seen persons
@@ -85,7 +83,6 @@ comment 1.0.1 to 1.0.7 - 1.0.7 released 2011-01-17
 	* Translation: Dutch
 	* Translation: Parts of French translation
 	* Translation: Russian
-
 
 comment 0.0.1 to 1.0.0 - 1.0.0 released on 2010-05-10
 	* Bugfix: Tab loading fixed
