@@ -21,9 +21,11 @@
 	// Substitute comment identifiers in text by hyperlinks
 TodoyuHookManager::registerHook('core', 'substituteLinkableElements', 'TodoyuCommentCommentManager::linkCommentIDsInText');
 
-	// Extend comments form
-TodoyuFormHook::registerBuildForm('ext/comment/config/form/comment.xml',	'TodoyuCommentRenderer::extendEditFormWithAutoRequestedFeedbackFromOwner', 20);
-TodoyuFormHook::registerBuildForm('ext/comment/config/form/comment.xml',	'TodoyuCommentRenderer::extendEditFormWithAutoMailedCommentToOwner', 30);
+	// Add auto feedback and auto email to comment form
+TodoyuFormHook::registerBuildForm('ext/comment/config/form/comment.xml',	'TodoyuCommentManager::hookAddAutoFeedbackFields');
+TodoyuFormHook::registerBuildForm('ext/comment/config/form/comment.xml',	'TodoyuCommentManager::hookAddAutoMailFields');
+TodoyuFormHook::registerLoadData('ext/comment/config/form/comment.xml',	'TodoyuCommentManager::hookLoadDataAutoFeedback');
+TodoyuFormHook::registerLoadData('ext/comment/config/form/comment.xml',	'TodoyuCommentManager::hookLoadDataAutoMail');
 
 //TodoyuHookManager::registerHook('project', 'renderTasks', 'TodoyuCommentCommentManager::onTasksRender');
 

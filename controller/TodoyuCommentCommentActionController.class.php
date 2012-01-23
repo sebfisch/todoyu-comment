@@ -102,7 +102,6 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 	 * @return	Void|String		Failure returns re-rendered form with error messages
 	 */
 	public function saveAction(array $params) {
-		$xmlPath= 'ext/comment/config/form/comment.xml';
 		$data	= $params['comment'];
 
 		$idComment	= intval($data['id']);
@@ -118,8 +117,7 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 			TodoyuCommentRights::restrictAddInTask($idTask);
 		}
 
-		$form	= TodoyuFormManager::getForm($xmlPath, $idComment);
-		$form->setFormData($data);
+		$form	= TodoyuCommentManager::getCommentForm($idComment, $idTask, $data);
 
 			// Validate comment and save + send mail if activated / notify about failure
 		if( $form->isValid() ) {

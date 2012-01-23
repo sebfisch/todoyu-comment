@@ -86,9 +86,7 @@ class TodoyuCommentRenderer {
 	public static function renderEdit($idTask, $idComment = 0) {
 		$idTask		= intval($idTask);
 		$idComment	= intval($idComment);
-		$xmlPath	= 'ext/comment/config/form/comment.xml';
-
-		$form	= TodoyuFormManager::getForm($xmlPath, $idComment);
+		$form		= TodoyuCommentManager::getCommentForm($idComment, $idTask);
 
 		if( $idComment === 0 ) {
 				// New comment
@@ -96,7 +94,7 @@ class TodoyuCommentRenderer {
 			$data	= array(
 				'id'		=> 0,
 				'id_task'	=> $idTask,
-				'feedback'	=> $idFeedbackPerson
+				'feedback'	=> array($idFeedbackPerson)
 			);
 		} else {
 				// Edit comment
@@ -104,6 +102,11 @@ class TodoyuCommentRenderer {
 			$data		= $comment->getTemplateData(true);
 			$data['feedback'] = TodoyuArray::getColumn($data['persons_feedback'], 'id');
 		}
+
+		$xmlPath= 'ext/comment/config/form/comment.xml';
+		$data	= TodoyuFormHook::callLoadData($xmlPath, $data, $idComment, array(
+			'task' => $idTask
+		));
 
 		$form->setFormData($data);
 		$form->setRecordID($idTask . '-' . $idComment);
@@ -117,49 +120,6 @@ class TodoyuCommentRenderer {
 		);
 
 		return Todoyu::render($tmpl, $data);
-	}
-
-
-
-	/**
-	 * Extend comment edit form with attribute to auto-request feedback from task owner for persons of configured groups
-	 *
-	 * @param	TodoyuForm		$form
-	 * @param	Integer			$idComment
-	 * @return	TodoyuForm		$form
-	 */
-	public static function extendEditFormWithAutoRequestedFeedbackFromOwner(TodoyuForm $form, $idComment = 0) {
-		$extConf= TodoyuSysmanagerExtConfManager::getExtConf('comment');
-		$roles	= explode(',', $extConf['autorequestownerfeedback']);
-
-		if( TodoyuContactPersonManager::hasAnyRole($roles) ) {
-			$form->getFieldset('main')->removeField('feedback', true);
-			$form->getFieldset('main')->addElementsFromXML('ext/comment/config/form/comment-autofeedbackfromowner.xml');
-		}
-
-		return $form;
-	}
-
-
-
-	/**
-	 * Extend comment edit form with attribute to auto-mail comment by email to task owner for persons of configured groups
-	 *
-	 * @param	TodoyuForm	$form
-	 * @param	Integer		$idComment
-	 * @return	TodoyuForm	$form
-	 */
-	public static function extendEditFormWithAutoMailedCommentToOwner(TodoyuForm $form, $idComment = 0) {
-		$extConf	= TodoyuSysmanagerExtConfManager::getExtConf('comment');
-		$roles		= explode(',', $extConf['automailcommenttoowner']);
-
-		if( TodoyuContactPersonManager::hasAnyRole($roles) ) {
-			$form->getFieldset('email')->removeField('sendasemail', true);
-			$form->getFieldset('email')->removeField('emailreceivers', true);
-			$form->getFieldset('main')->addElementsFromXML('ext/comment/config/form/comment-automailtoowner.xml');
-		}
-
-		return $form;
 	}
 
 

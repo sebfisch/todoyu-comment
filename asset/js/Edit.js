@@ -47,7 +47,23 @@ Todoyu.Ext.comment.Edit = {
 	 * @param	{Number}	idComment
 	 */
 	onFormDisplay: function(idForm, name, idComment) {
-		this.showEmailReceiversOnCheckboxActive(idForm);
+		idComment	= idComment || 0;
+		var idTask	= idForm.split('-')[1];
+
+		this.showEmailReceiversOnCheckboxActive(idTask, idComment);
+	},
+
+
+
+	/**
+	 * Check whether auto email field is present
+	 *
+	 * @param	{Number}	idTask
+	 * @param	{Number}	idComment
+	 * @return	{Boolean}
+	 */
+	hasAutoMailInfo: function(idTask, idComment) {
+		return Todoyu.exists('formElement-comment-' + idTask + '-' + idComment + '-field-mailinfo');
 	},
 
 	
@@ -56,13 +72,29 @@ Todoyu.Ext.comment.Edit = {
 	 * Show email receivers box when checkbox is activated in form
 	 * This happens on reload when form was invalid
 	 *
-	 * @param	{String}	idForm
+	 * @param	{Number}	idTask
+	 * @param	{Number}	idComment
 	 */
-	showEmailReceiversOnCheckboxActive: function(idForm) {
-		var idParts	= idForm.split('-');
-		if( $(idForm).down('.fieldnameSendasemail :checkbox').checked ) {
-			this.toggleEmailReceivers(idParts[1], idParts[2], true);
+	showEmailReceiversOnCheckboxActive: function(idTask, idComment) {
+		if( this.hasAutoMailInfo(idTask, idComment) ) {
+			return;
 		}
+		if( this.isMailActive(idTask, idComment) ) {
+			this.toggleEmailReceivers(idTask, idComment, true);
+		}
+	},
+
+
+
+	/**
+	 * Check whether send mail option is enabled
+	 *
+	 * @param	{Number}	idTask
+	 * @param	{Number}	idComment
+	 * @return	{Boolean}
+	 */
+	isMailActive: function(idTask, idComment) {
+		return $('comment-' + idTask + '-' + idComment + '-field-sendasemail').checked;
 	},
 
 
