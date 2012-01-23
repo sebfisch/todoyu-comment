@@ -1,5 +1,8 @@
 todoyu comment extension changelog
 
+comment 1.1.4 - not released yet
+	* Bugfix: Auto email and auto feedback for selected roles didn't work properly
+
 comment 1.1.3 - 2011-12-13
 	* Bugfix: Tab label (portal) feedbacks count was count of tasks with feedbacks not feedbacks count
 	* Added: Added support for filter result sorting of search 1.2 (task)
