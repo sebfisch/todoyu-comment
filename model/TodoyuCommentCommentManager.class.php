@@ -279,9 +279,10 @@ class TodoyuCommentCommentManager {
 	 * Get details of persons which could receive a comment email
 	 *
 	 * @param	Integer		$idTask
+	 * @param	Boolean		$forceTaskMembers
 	 * @return	Array
 	 */
-	public static function getEmailReceiverIDs($idTask) {
+	public static function getEmailReceiverIDs($idTask, $forceTaskMembers = false) {
 		$idTask		= intval($idTask);
 		$idProject	= TodoyuProjectTaskManager::getProjectID($idTask);
 
@@ -322,6 +323,14 @@ class TodoyuCommentCommentManager {
 					$personIDs[] = $idPerson;
 				}
 			}
+		}
+
+			// Add task members, ignore view rights
+		if( $forceTaskMembers ) {
+			$task	= TodoyuProjectTaskManager::getTask($idTask);
+			$personIDs[] = $task->getPersonID('assigned');
+			$personIDs[] = $task->getPersonID('owner');
+			$personIDs[] = $task->getPersonID('create');
 		}
 
 		return array_unique($personIDs);

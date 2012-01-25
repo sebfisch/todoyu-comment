@@ -149,7 +149,7 @@ class TodoyuCommentManager {
 		if( self::hasCurrentUserAutoFeedbackRole() ) {
 			$idTask	= intval($params['task']);
 			$task	= TodoyuProjectTaskManager::getTask($idTask);
-			$idOwner= $task->getOwnerPersonID();
+			$idOwner= $task->getPersonID('owner'); // project 1.3 $task->getOwnerPersonID();
 
 			$data['feedback'] = array($idOwner);
 		}
@@ -172,7 +172,7 @@ class TodoyuCommentManager {
 		if( self::hasCurrentUserAutoMailRole() ) {
 			$idTask	= intval($params['task']);
 			$task	= TodoyuProjectTaskManager::getTask($idTask);
-			$idOwner= $task->getOwnerPersonID();
+			$idOwner= $task->getPersonID('owner'); // project 1.3 $task->getOwnerPersonID();
 
 			$data['sendasemail'] = 1;
 			$data['emailreceivers'] = array($idOwner);
