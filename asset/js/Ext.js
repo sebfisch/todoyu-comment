@@ -72,8 +72,8 @@ Todoyu.Ext.comment = {
 		var url		= Todoyu.getUrl('comment', 'task');
 		var options	= {
 			parameters: {
-				action:	'togglepublic',
-				'comment':	idComment
+				action:		'togglepublic',
+				comment:	idComment
 			},
 			onComplete: this.onToggledPublic.bind(this, idComment)
 		};
@@ -109,7 +109,7 @@ Todoyu.Ext.comment = {
 		var options	= {
 			parameters: {
 				action:	'seen',
-				'comment':	idComment
+				comment:	idComment
 			},
 			onComplete: this.onSeenStatusSet.bind(this, idComment, idPerson)
 		};
@@ -167,7 +167,7 @@ Todoyu.Ext.comment = {
 		var options	= {
 			parameters: {
 				action:		'delete',
-				'comment':	idComment
+				comment:	idComment
 			},
 			onComplete: Todoyu.Ext.comment.Edit.onRemoved.bind(this)
 		};
@@ -268,10 +268,10 @@ Todoyu.Ext.comment = {
 		var url		= Todoyu.getUrl('comment', 'comment');
 		var options = {
 			parameters: {
-				action: 	'add',
-				'task':		idTask
+				action: 'add',
+				task:	idTask
 			},
-			'insertion':	'after',
+			insertion:	'after',
 			onComplete:		this.onAdded.bind(this, idTask)
 		};
 		var target	= 'task-' + idTask + '-comment-commands';
@@ -307,8 +307,8 @@ Todoyu.Ext.comment = {
 		var options = {
 			parameters: {
 				action: 	'edit',
-				'task':		idTask,
-				'comment':	idComment
+				task:		idTask,
+				comment:	idComment
 			},
 			onComplete:	this.onEdit.bind(this, idTask, idComment)
 		};

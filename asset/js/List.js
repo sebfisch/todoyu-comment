@@ -40,8 +40,8 @@ Todoyu.Ext.comment.List = {
 		var options	= {
 			parameters: {
 				action:	'list',
-				'task':		idTask,
-				'desc':		desc
+				task:	idTask,
+				desc:	desc
 			}
 		};
 
