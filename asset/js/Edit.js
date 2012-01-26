@@ -44,11 +44,12 @@ Todoyu.Ext.comment.Edit = {
 	 *
 	 * @param	{Number}	idForm
 	 * @param	{String}	name
-	 * @param	{Number}	idComment
+	 * @param	{Number}	recordID
 	 */
-	onFormDisplay: function(idForm, name, idComment) {
-		idComment	= idComment || 0;
-		var idTask	= idForm.split('-')[1];
+	onFormDisplay: function(idForm, name, recordID) {
+		var parts		= recordID.split('-');
+		var idComment	= parts[1];
+		var idTask		= parts[0];
 
 		this.showEmailReceiversOnCheckboxActive(idTask, idComment);
 	},

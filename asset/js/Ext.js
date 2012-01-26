@@ -52,11 +52,11 @@ Todoyu.Ext.comment = {
 	 *
 	 * @param	{String}	idForm
 	 * @param	{String}	name
-	 * @param	{Number}	idComment
+	 * @param	{String}	recordID		idTask-idComment
 	 */
-	onFormDisplay: function(idForm, name, idComment) {
+	onFormDisplay: function(idForm, name, recordID) {
 		if( name === 'comment' ) {
-			this.Edit.onFormDisplay(idForm, name, idComment)
+			this.Edit.onFormDisplay(idForm, name, recordID)
 		}
 	},
 
