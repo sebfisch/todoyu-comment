@@ -1,5 +1,8 @@
 todoyu comment extension changelog
 
+comment 1.2 - not released yet
+	* Change: Use core button icon class for sorting button
+
 comment 1.1.4 - not released yet
 	* Bugfix: Auto email and auto feedback for selected roles didn't work properly
 

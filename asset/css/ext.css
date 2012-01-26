@@ -55,17 +55,6 @@ h1.extIconComment .title {
 	width:21px;
 }
 
-.task .tabContent .commentButtons button.reverseOrder .icon {
-	width:27px;
-}
-	.task .tabContent .commentButtons button.reverseOrder.asc .icon {
-		background:url(../../../../core/asset/img/icons.png) no-repeat 3px -475px;
-	}
-
-	.task .tabContent .commentButtons button.reverseOrder.desc .icon {
-		background:url(../../../../core/asset/img/icons.png) no-repeat 3px -505px;
-	}
-
 .task-comments {
 	display:block;
 }
