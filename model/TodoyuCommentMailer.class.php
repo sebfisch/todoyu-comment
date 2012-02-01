@@ -41,7 +41,7 @@ class TodoyuCommentMailer {
 		foreach($personIDs as $idPerson) {
 			$result = self::sendMail($idComment, $idPerson);
 
-			if( $result === false ) {
+			if( !$result ) {
 				$succeeded	= false;
 			}
 		}
