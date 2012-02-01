@@ -254,7 +254,7 @@ Todoyu.Ext.comment = {
 			list.insert(commentElement);
 		});
 
-		$('task-' + idTask + '-comment-commands').down('button.order').toggleClassName('desc');
+		$('task-' + idTask + '-tabcontent-comment').select('button.order').invoke('toggleClassName', 'desc');
 	},
 
 
@@ -275,9 +275,9 @@ Todoyu.Ext.comment = {
 				task:	idTask
 			},
 			insertion:	'after',
-			onComplete:		this.onAdded.bind(this, idTask)
+			onComplete:	this.onAdded.bind(this, idTask)
 		};
-		var target	= 'task-' + idTask + '-comment-commands';
+		var target	= 'task-' + idTask + '-comment-commands-top';
 
 		Todoyu.Ui.update(target, url, options);
 	},
@@ -292,7 +292,7 @@ Todoyu.Ext.comment = {
 	 * @param	{Ajax.Response}		response
 	 */
 	onAdded: function(idTask, response) {
-
+		$('task-' + idTask + '-comment-commands-top').scrollToElement();
 	},
 
 
