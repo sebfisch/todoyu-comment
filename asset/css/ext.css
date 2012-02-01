@@ -112,6 +112,11 @@ h1.extIconComment .title {
 	width:285px;
 }
 
+.task-comments .comment-details .updateinfo {
+	color:#999;
+	margin-left: 5px;
+	font-size: 10px;
+}
 
 
 /* -----------------------------------------------------------

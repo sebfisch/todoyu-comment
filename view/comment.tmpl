@@ -1,29 +1,32 @@
 <li id="task-comment-{$id}" class="tabBlock comment contextmenuComment {if $is_public}isPublic{/if}">
 	<a name="task-comment-{$id}"></a>
 	<div class="comment-properties">
-	{if $unapproved}
-		<a href="javascript:void(0)" id="comment-{$id}-seenstatus" onclick="Todoyu.Ext.comment.setSeenStatus({$id}, {personid()})" class="comment-personapproval hasicon"></a>
-	{/if}
+		{if $isUnapproved}
+			<a href="javascript:void(0)" id="comment-{$id}-seenstatus" onclick="Todoyu.Ext.comment.setSeenStatus({$id}, {personid()})" class="comment-personapproval hasicon"></a>
+		{/if}
 		<span id="task-comment-{$id}-crdate" class="comment-crdate">{dateFormat $date_create datetime}</span> -
 		<span id="task-comment-{$id}-person" class="comment-person">
 			{personLabel idPrefix="comment-personcreate" idRecord=$id idPerson=$person_create.id}
 		</span>
 		<span id="task-comment-{$id}-id" class="comment-id" title="{Label comment.ext.id}">c{$id}</span>
 		<span id="task-comment-{$id}-options" class="comment-options">
+
 		{* --------------------------- Edit ------------------------- *}
-		{if ! $locked && (allowed('comment', 'comment:editAll') || allowedAndOwn('comment','comment:editOwn', $id_person_create))}
+		{if $canEdit}
 			<a href="javascript:void(0)" onclick="Todoyu.Ext.comment.edit({$id_task}, {$id})" class="icon comment-edit" title="{Label comment.ext.icon.edit}">
 				<span class="hidden">{Label comment.ext.icon.edit}</span>
 			</a>
 		{/if}
+
 		{* ------------------------ Make public ---------------------- *}
-		{if ! $locked && allowed('comment','comment:makePublic')}
+		{if $canMakePublic}
 			<a href="javascript:void(0)" onclick="Todoyu.Ext.comment.togglePublic({$id})" class="icon public-trigger {if $is_public}comment-public{/if}" title="{Label comment.ext.icon.toggleCustomerVisibility}" id="public-trigger-{$id}">
 				<span class="hidden">{Label comment.ext.icon.toggleCustomerVisibility}</span>
 			</a>
 		{/if}
+
 		{* -------------------------- Delete ------------------------ *}
-		{if ! $locked && ( allowed('comment','comment:deleteAll') || (allowed('comment','comment:deleteOwn') && $id_person_create == personid()))}
+		{if $canDelete}
 			<a href="javascript:void(0)" onclick="Todoyu.Ext.comment.remove({$id})" class="icon comment-remove" title="{Label comment.ext.icon.remove}">
 				<span class="hidden">{Label comment.ext.icon.remove}</span>
 			</a>
@@ -38,8 +41,14 @@
 				{Label comment.ext.comment.feedbackPersons}
 			{/if}
 
-			{if $feedbackPerson.is_seen}{$class='commentperson-approved'}{else}{$class='commentperson-unapproved'}{/if}
-			{if in_array($feedbackPerson.id, array_keys($persons_email))}{$class.='-email'}{/if}
+			{if $feedbackPerson.is_seen}
+				{$class = 'commentperson-approved'}
+			{else}
+				{$class = 'commentperson-unapproved'}
+			{/if}
+			{if in_array($feedbackPerson.id, array_keys($persons_email))}
+				{$class .= '-email'}
+			{/if}
 			{personLabel idPrefix="comment-personfeedback" idRecord=$id idPerson=$feedbackPerson.id class=$class}
 			{if $dwoo.foreach.personsFeedback.last}
 				<div class="divider"> </div>
@@ -57,6 +66,10 @@
 		</div>
 		{* --------------------------- Comment itself --------------- *}
 		<div class="comment">{substituteLinkableElements(cleanHtml($comment))}</div>
+
+		{if $updateInfo}
+			<div class="updateinfo">{$updateInfo}</div>
+		{/if}
 	</div>
 	<div class="clear"><!-- clear --></div>
 	<div id="task-comment-log-{$id}-details" class="comment-history" style="display:none;"></div>

@@ -95,6 +95,38 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 
 
 	/**
+	 * Get update person ID
+	 *
+	 * @return	Integer
+	 */
+	public function getUpdatePersonID() {
+		return $this->getInt('id_person_update');
+	}
+
+
+
+	/**
+	 * Get update person
+	 *
+	 * @return	TodoyuContactPerson
+	 */
+	public function getUpdatePerson() {
+		return TodoyuContactPersonManager::getPerson($this->getUpdatePersonID());
+	}
+
+
+	/**
+	 * Check whether comment has an update person
+	 *
+	 * @return	Boolean
+	 */
+	public function hasUpdatePerson() {
+		return $this->getUpdatePersonID() !== 0;
+	}
+
+
+
+	/**
 	 * Check if comment is locked because of its task
 	 *
 	 * @return	Boolean
@@ -115,6 +147,66 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 
 
 	/**
+	 * Check whether current person can delete this comment
+	 *
+	 * @return	Boolean
+	 */
+	public function canCurrentUserDelete() {
+		$deleteAll	= Todoyu::allowed('comment', 'comment:deleteAll');
+		$deleteOwn	= Todoyu::allowed('comment','comment:deleteOwn') && $this->isCurrentPersonCreator();
+
+		return !$this->isLocked() && $deleteAll || $deleteOwn;
+	}
+
+
+
+	/**
+	 * Check whether the current user can edit the comment
+	 *
+	 * @return	Boolean
+	 */
+	public function canCurrentUserEdit() {
+		$editAll	= Todoyu::allowed('comment', 'comment:editAll');
+		$editOwn	= Todoyu::allowed('comment','comment:editOwn') && $this->isCurrentPersonCreator();
+
+		return !$this->isLocked() && $editAll || $editOwn;
+	}
+
+
+
+	/**
+	 * Check whether the current user can make the comment public
+	 *
+	 * @return	Boolean
+	 */
+	public function canCurrentUserMakePublic() {
+		return $this->canCurrentUserEdit();
+	}
+
+
+
+	/**
+	 * Get label for update info
+	 *
+	 * @return	String|Boolean
+	 */
+	public function getUpdateInfoLabel() {
+		$label	= false;
+
+		if( $this->hasUpdatePerson() ) {
+			$person = $this->getUpdatePerson();
+			$data	= array(
+				$this->getUpdatePerson()->getFullName(),
+				TodoyuTime::format($this->getDateUpdate(), 'datetime')
+			);
+			$label	= TodoyuLabelManager::getFormatLabel('comment.ext.updateinfo', $data);
+		}
+
+		return $label;
+	}
+
+
+	/**
 	 * Load comment foreign data: creator, feedback persons, approval state
 	 */
 	protected function loadForeignData() {
@@ -128,8 +220,12 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 		$personIDsFeedback	= array_keys($this->data['persons_feedback']);
 		$this->data['person_ids_mailonly']	= array_diff($personIDsEmailedTo, $personIDsFeedback);
 
-		$this->data['unapproved']		= TodoyuCommentFeedbackManager::isCommentUnseen($this->getID());
-		$this->data['locked']			= $this->isLocked();
+		$this->data['isUnapproved']	= TodoyuCommentFeedbackManager::isCommentUnseen($this->getID());
+		$this->data['locked']		= $this->isLocked();
+		$this->data['canDelete']	= $this->canCurrentUserDelete();
+		$this->data['canEdit']		= $this->canCurrentUserEdit();
+		$this->data['canMakePublic']= $this->canCurrentUserMakePublic();
+		$this->data['updateInfo']	= $this->getUpdateInfoLabel();
 	}
 
 

@@ -49,4 +49,5 @@
 	<label index="history.feedbackrequestseen">Feedback Request Seen</label>
 	<label index="history.mailedto">Comment Mailed To</label>
 	<label index="portal.tab.feedbacks">Feedback</label>
+	<label index="updateinfo">Last updated by %1$s on %2$s</label>
 </labels>

@@ -121,11 +121,11 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 
 			// Validate comment and save + send mail if activated / notify about failure
 		if( $form->isValid() ) {
-			$data	= $form->getStorageData();
+			$storageData = $form->getStorageData();
 
 				// Store comment
-			$idComment = TodoyuCommentCommentManager::saveComment($data);
-			TodoyuHeader::sendTodoyuHeader('tabLabel', TodoyuCommentTask::getLabel($data['id_task']));
+			$idComment = TodoyuCommentCommentManager::saveComment($storageData);
+			TodoyuHeader::sendTodoyuHeader('tabLabel', TodoyuCommentTask::getLabel($storageData['id_task']));
 			TodoyuHeader::sendTodoyuHeader('feedback', TodoyuCommentFeedbackManager::getAmountOpenFeedbacks());
 
 				// Send email(s) if mail option activated

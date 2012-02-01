@@ -100,6 +100,8 @@ class TodoyuCommentCommentManager {
 
 		if( $idComment === 0 ) {
 			$idComment = self::addComment();
+		} else {
+			$data['id_person_update']	= TodoyuAuth::getPersonID();
 		}
 
 		$data['comment']	= self::filterHtmlTags($data['comment']);
