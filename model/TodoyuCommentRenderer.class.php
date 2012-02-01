@@ -60,7 +60,6 @@ class TodoyuCommentRenderer {
 		$data	= array(
 			'idTask'	=> $idTask,
 			'desc'		=> $desc,
-			'descClass'	=> $desc ? 'desc' : 'asc',
 			'comments'	=> array(),
 			'locked'	=> TodoyuProjectTaskManager::isLocked($idTask)
 		);

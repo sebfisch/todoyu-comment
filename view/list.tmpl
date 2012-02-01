@@ -3,7 +3,7 @@
 		{Button label="comment.ext.button.addComment" class="addComment" onclick="Todoyu.Ext.comment.add($idTask)"}
 	{/if}
 	{if sizeof($comments) > 1}
-		{Button label="comment.ext.button.reverseOrder" class="order $descClass" onclick="Todoyu.Ext.comment.toggleSorting($idTask)"}
+		{Button label="comment.ext.button.reverseOrder" class="order {if $desc}desc{/if}" onclick="Todoyu.Ext.comment.toggleSorting($idTask)"}
 	{/if}
 </div>
 

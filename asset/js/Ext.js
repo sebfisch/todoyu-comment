@@ -248,10 +248,13 @@ Todoyu.Ext.comment = {
 	 * @param	{Number}	idTask
 	 */
 	toggleSorting: function(idTask) {
-		var sortingIsDesc	= this.checkSortingIsDesc(idTask);
-		var desc 			= sortingIsDesc ? 0 : 1;
+		var list 	= $('task-' + idTask + '-comments');
 
-		Todoyu.Ext.comment.List.refresh(idTask, desc);
+		list.select('li.comment').reverse().each(function(commentElement){
+			list.insert(commentElement);
+		});
+
+		$('task-' + idTask + '-comment-commands').down('button.order').toggleClassName('desc');
 	},
 
 
