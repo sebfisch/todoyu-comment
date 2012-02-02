@@ -126,7 +126,7 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 				// Store comment
 			$idComment = TodoyuCommentCommentManager::saveComment($storageData);
 			TodoyuHeader::sendTodoyuHeader('tabLabel', TodoyuCommentTask::getLabel($storageData['id_task']));
-			TodoyuHeader::sendTodoyuHeader('feedback', TodoyuCommentFeedbackManager::getAmountOpenFeedbacks());
+			TodoyuHeader::sendTodoyuHeader('feedback', TodoyuCommentFeedbackManager::getOpenFeedbackCount());
 
 				// Send email(s) if mail option activated
 			if( $sendAsEmail && sizeof($mailReceiverPersonIDs) > 0 ) {

@@ -67,9 +67,14 @@
 		{* --------------------------- Comment itself --------------- *}
 		<div class="comment">{substituteLinkableElements(cleanHtml($comment))}</div>
 
-		{if $updateInfo}
-			<div class="updateinfo">{$updateInfo}</div>
+		{if $publicFeedbackWarning}
+			<div class="publicFeedbackWarning">{$publicFeedbackWarning}</div>
 		{/if}
+
+		{if $updateInfo}
+			<div class="updateInfo">{$updateInfo}</div>
+		{/if}
+
 	</div>
 	<div class="clear"><!-- clear --></div>
 	<div id="task-comment-log-{$id}-details" class="comment-history" style="display:none;"></div>

@@ -44,9 +44,10 @@ Todoyu::$CONFIG['EXT']['comment']['allowedtags']	= '<p><b><strong><em><span><i><
    ------------------------------------------------ */
 Todoyu::$CONFIG['EXT']['comment']['feedbackTabFilters'] = array(
 	array(
-		'filter'	=> 'unseenFeedbackPerson',
-		'value'		=> 0,
-		'negate'	=> false
+		'filter' => 'unseenFeedbackPerson'
+	),
+	array(
+		'filter' => 'commentIsPublicForExternals'
 	)
 );
 

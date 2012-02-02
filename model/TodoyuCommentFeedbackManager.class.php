@@ -187,19 +187,23 @@ class TodoyuCommentFeedbackManager {
 		$group	= 'c.id';
 		$order	= 'f.date_create';
 
+		if( TodoyuAuth::isExternal() ) {
+			$where .= ' AND c.is_public = 1';
+		}
+
 		return Todoyu::db()->getColumn($field, $table, $where, $group, $order);
 	}
 
 
 
 	/**
-	 * Get amount of open feedbacks requested to be answered by given person
+	 * Get number of open feedbacks
 	 *
 	 * @param	Integer		$idPerson
 	 * @return	Integer
 	 */
-	public static function getAmountOpenFeedbacks($idPerson = 0) {
-		return count(self::getCommentIDs($idPerson));
+	public static function getOpenFeedbackCount($idPerson = 0 ) {
+		return sizeof(self::getCommentIDs($idPerson));
 	}
 
 

@@ -133,8 +133,8 @@ class TodoyuCommentRenderer {
 		$label	= Todoyu::Label('comment.ext.portal.tab.feedback');
 
 		if( $count ) {
-			$feedbackIDs= TodoyuCommentFeedbackManager::getCommentIDs(Todoyu::personid());
-			$label	= $label . ' (' . sizeof($feedbackIDs) . ')';
+			$numFeedbacks	= TodoyuCommentFeedbackManager::getOpenFeedbackCount();
+			$label			= $label . ' (' . $numFeedbacks . ')';
 		}
 
 		return $label;
@@ -148,12 +148,14 @@ class TodoyuCommentRenderer {
 	 * @return	String
 	 */
 	public static function renderPortalFeedbackTabContent() {
-		$amountFeedbackRequests	= TodoyuCommentFeedbackManager::getAmountOpenFeedbacks();
+		$amountFeedbackRequests	= TodoyuCommentFeedbackManager::getOpenFeedbackCount();
 		TodoyuHeader::sendTodoyuHeader('items', $amountFeedbackRequests);
 
 		TodoyuProjectPreferences::setForcedTaskTab('comment');
 
-		return TodoyuProjectTaskRenderer::renderTaskListing(TodoyuCommentCommentManager::getFeedbackTaskIDs());
+		$taskIDs	= TodoyuCommentCommentManager::getFeedbackTaskIDs();
+
+		return TodoyuProjectTaskRenderer::renderTaskListing($taskIDs);
 	}
 
 }

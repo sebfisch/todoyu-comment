@@ -292,6 +292,48 @@ class TodoyuCommentTaskFilter extends TodoyuSearchFilterBase {
 
 
 	/**
+	 * Filter condition: Comment is public
+	 *
+	 * @param	Integer		$value
+	 * @param	Boolean		$negate
+	 * @return	Array
+	 */
+	public static function Filter_commentIsPublic($value, $negate = false) {
+		$compare= $negate ? 0 : 1;
+		$where	= 'ext_comment_comment.is_public = ' . $compare;
+		$join	= array('ext_project_task.id = ext_comment_comment.id_task');
+		$tables	= array(
+			'ext_project_task',
+			'ext_comment_comment'
+		);
+
+		return array(
+			'tables' => $tables,
+			'where'	=> $where,
+			'join'	=> $join
+		);
+	}
+
+
+
+	/**
+	 * Filter condition: Comment is public if current user is external
+	 *
+	 * @param	Integer		$value
+	 * @param	Boolean		$negate
+	 * @return	Array|Boolean
+	 */
+	public static function Filter_commentIsPublicForExternals($value, $negate = false) {
+		if( TodoyuAuth::isExternal() ) {
+			return self::Filter_commentIsPublic($value, $negate);
+		} else {
+			return false;
+		}
+	}
+
+
+
+	/**
 	 * Get query parts to sort for last comment of task
 	 * Add an extra join from task to comment task. To keep the query valid, we have to remove the task table.
 	 * Add order clause for not existing comments (task with no comments)

@@ -385,10 +385,20 @@ class TodoyuCommentCommentManager {
 	 * @return	Array
 	 */
 	public static function getFeedbackTaskIDs() {
-		$conditions	= Todoyu::$CONFIG['EXT']['comment']['feedbackTabFilters'];
-		$taskFilter	= new TodoyuProjectTaskFilter($conditions);
+		return self::getFeedbackTaskFilter()->getTaskIDs('ext_comment_comment.date_create');
+	}
 
-		return $taskFilter->getTaskIDs('ext_comment_comment.date_create');
+
+
+	/**
+	 * Get feedback task filter
+	 *
+	 * @return	TodoyuProjectTaskFilter
+	 */
+	public static function getFeedbackTaskFilter() {
+		$conditions	= TodoyuArray::assure(Todoyu::$CONFIG['EXT']['comment']['feedbackTabFilters']);
+
+		return new TodoyuProjectTaskFilter($conditions);
 	}
 
 

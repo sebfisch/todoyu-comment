@@ -100,7 +100,7 @@ h1.extIconComment .title {
 }
 
 .task-comments .comment-details .comment {
-	padding:5px !important;
+	padding:5px;
 }
 
 .task-comments .comment-details .persons .divider {
@@ -112,11 +112,23 @@ h1.extIconComment .title {
 	width:285px;
 }
 
-.task-comments .comment-details .updateinfo {
+.task-comments .comment-details .updateInfo {
 	color:#999;
 	margin-left: 5px;
+	margin-top:5px;
 	font-size: 10px;
 }
+
+.task-comments .comment-details .publicFeedbackWarning {
+	background-color: #FFAC00;
+	box-shadow: 2px 2px 7px #999;
+	border:1px solid #CCC;
+	padding:7px;
+	margin-left: 5px;
+	font-weight: bold;
+	margin-bottom: 5px;
+}
+
 
 
 /* -----------------------------------------------------------
@@ -249,7 +261,7 @@ h1.extIconComment .title {
 }
 
 .tabContent ul.task-comments {
-	padding-top:5px;
+	padding:5px 0;
 }
 
 

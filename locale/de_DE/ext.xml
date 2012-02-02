@@ -49,5 +49,7 @@
 	<label index="history.feedbackrequestseen">Feedback-Anfrage gesehen</label>
 	<label index="history.mailedto">Kommentar versandt an</label>
 	<label index="portal.tab.feedbacks">Feedbacks</label>
-	<label index="updateinfo">Zuletzt aktualisiert von %1$s am %2$s</label>
+	<label index="updateInfo">Zuletzt aktualisiert von %1$s am %2$s</label>
+	<label index="publicFeedbackWarning.task">Achtung: Aufgabe ist nicht öffentlich. Die gewählte Person kann die Feedbackanfrage nicht sehen!</label>
+	<label index="publicFeedbackWarning.comment">Achtung: Kommentar ist nicht öffentlich. Die gewählte Person kann die Feedbackanfrage nicht sehen!</label>
 </labels>

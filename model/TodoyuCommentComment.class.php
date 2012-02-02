@@ -95,6 +95,27 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 
 
 	/**
+	 * Check whether comment has open feedbacks from external persons
+	 *
+	 * @return	Boolean
+	 */
+	public function hasOpenFeedbacksFromExternals() {
+		$fields	= '	c.id';
+		$tables	= '	ext_comment_mm_comment_feedback f,
+					ext_contact_mm_company_person mmcp,
+					ext_contact_company c';
+		$where	= '		f.id_comment		= ' . $this->getID()
+				. ' AND f.is_seen			= 0'
+				. ' AND f.id_person_feedback= mmcp.id_person'
+				. ' AND mmcp.id_company		= c.id'
+				. ' AND c.is_internal		= 0';
+
+		return Todoyu::db()->hasResult($fields, $tables, $where, '', 1);
+	}
+
+
+
+	/**
 	 * Get update person ID
 	 *
 	 * @return	Integer
@@ -194,16 +215,44 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 		$label	= false;
 
 		if( $this->hasUpdatePerson() ) {
-			$person = $this->getUpdatePerson();
 			$data	= array(
 				$this->getUpdatePerson()->getFullName(),
 				TodoyuTime::format($this->getDateUpdate(), 'datetime')
 			);
-			$label	= TodoyuLabelManager::getFormatLabel('comment.ext.updateinfo', $data);
+			$label	= TodoyuLabelManager::getFormatLabel('comment.ext.updateInfo', $data);
 		}
 
 		return $label;
 	}
+
+
+
+	/**
+	 * Get warning label if problems with a comments occur
+	 * Problems:
+	 * - Feedback is requested from an external person
+	 * but:
+	 * - Task is not public
+	 * - Comment is not public
+	 *
+	 * @return	String|Boolean
+	 */
+	public function getPublicFeedbackWarning() {
+		$label			= false;
+
+		if( TodoyuAuth::isInternal() ) {
+			if( $this->hasOpenFeedbacksFromExternals() ) {
+				if( !$this->getTask()->isPublic() ) {
+					$label	= Todoyu::Label('comment.ext.publicFeedbackWarning.task');
+				} elseif( !$this->isPublic() ) {
+					$label	= Todoyu::Label('comment.ext.publicFeedbackWarning.comment');
+				}
+			}
+		}
+
+		return $label;
+	}
+
 
 
 	/**
@@ -220,12 +269,13 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 		$personIDsFeedback	= array_keys($this->data['persons_feedback']);
 		$this->data['person_ids_mailonly']	= array_diff($personIDsEmailedTo, $personIDsFeedback);
 
-		$this->data['isUnapproved']	= TodoyuCommentFeedbackManager::isCommentUnseen($this->getID());
-		$this->data['locked']		= $this->isLocked();
-		$this->data['canDelete']	= $this->canCurrentUserDelete();
-		$this->data['canEdit']		= $this->canCurrentUserEdit();
-		$this->data['canMakePublic']= $this->canCurrentUserMakePublic();
-		$this->data['updateInfo']	= $this->getUpdateInfoLabel();
+		$this->data['isUnapproved']		= TodoyuCommentFeedbackManager::isCommentUnseen($this->getID());
+		$this->data['locked']			= $this->isLocked();
+		$this->data['canDelete']		= $this->canCurrentUserDelete();
+		$this->data['canEdit']			= $this->canCurrentUserEdit();
+		$this->data['canMakePublic']	= $this->canCurrentUserMakePublic();
+		$this->data['updateInfo']		= $this->getUpdateInfoLabel();
+		$this->data['publicFeedbackWarning'] = $this->getPublicFeedbackWarning();
 	}
 
 

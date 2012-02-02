@@ -53,6 +53,10 @@ Todoyu::$CONFIG['FILTERS']['TASK']['filters']['unseenFeedbackCurrentPerson'] = a
 	'funcRef'	=> 'TodoyuCommentTaskFilter::Filter_unseenFeedbackCurrentPerson'
 );
 
+Todoyu::$CONFIG['FILTERS']['TASK']['filters']['commentIsPublicForExternals'] = array(
+	'funcRef'	=> 'TodoyuCommentTaskFilter::Filter_commentIsPublicForExternals'
+);
+
 /**
  * Unseen comment feedback request for roles
  */
