@@ -143,7 +143,7 @@ Todoyu.Ext.comment = {
 	 */
 	updateFeedbackTab: function(numFeedbacks) {
 		// Count down the feedback counter
-		if( Todoyu.getArea() === 'portal' && Todoyu.exists('portal-tab-feedback') ) {
+		if( Todoyu.isInArea('portal') && Todoyu.exists('portal-tab-feedback') ) {
 			var labelElement	= $('portal-tab-feedback').down('span.labeltext');
 
 			labelElement.update(labelElement.innerHTML.replace(/\(\d\)/, '(' + numFeedbacks + ')'));
