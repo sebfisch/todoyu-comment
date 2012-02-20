@@ -102,7 +102,7 @@ class TodoyuCommentViewHelper {
 		}
 
 			// Get staff persons (employees of internal company)
-		if( Todoyu::allowed('contact', 'person:seeAllInternalPersons') ) {
+		if( TodoyuAuth::isInternal() || Todoyu::allowed('contact', 'person:seeAllInternalPersons') ) {
 			$groupLabelEmployee				= Todoyu::Label('comment.ext.group.employees');
 			$options[$groupLabelEmployee]	=  TodoyuContactViewHelper::getInternalPersonOptions($field);;
 		}

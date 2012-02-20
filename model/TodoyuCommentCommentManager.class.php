@@ -314,7 +314,7 @@ class TodoyuCommentCommentManager {
 		}
 
 			// Add internal Persons
-		if( Todoyu::allowed('contact', 'person:seeAllInternalPersons') ) {
+		if( TodoyuAuth::isInternal() || Todoyu::allowed('contact', 'person:seeAllInternalPersons') ) {
 			$internalPersonIDs= TodoyuContactPersonManager::getInternalPersonIDs();
 
 			foreach($internalPersonIDs as $idPerson) {
