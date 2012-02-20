@@ -29,6 +29,7 @@
 	<label index="icon.toggleCustomerVisibility">Промени видљивост</label>
 	<label index="icon.togglelog">Покажи / Уклони историју комуникације</label>
 	<label index="comment.feedbackPersons">Повратна информација потразена од:</label>
+	<label index="comment.emailPersons">Постави само путем маил-а:</label>
 	<label index="mail.subject">Нови коментар</label>
 	<label index="mail.newcomment">Један нови коментар је сачуван у todoyu-у</label>
 	<label index="mail.commentlink">Отворени коментар</label>
