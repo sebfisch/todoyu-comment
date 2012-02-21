@@ -1,6 +1,7 @@
 todoyu comment extension changelog
 
 comment 1.2 - not released yet
+	* Bugfix: Feedbacks count (portal) did also count invisible feedbacks of disallowed projects
 	* Feature: Save and show time and person of last update of comment
 	* Feature: No reload required to change comment sorting
 	* Feature: Warn user if a person which is in the feedback request list is external, but task or comment not public

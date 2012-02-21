@@ -165,18 +165,19 @@ class TodoyuCommentFeedbackManager {
 
 
 	/**
-	 * Get comment IDs which need a feedback from the person
+	 * Get IDs of comments needing a feedback from the given person
 	 *
 	 * @param	Integer		$idPerson
-	 * @return	Array
+	 * @return	Integer[]
 	 */
 	public static function getCommentIDs($idPerson = 0) {
 		$idPerson	= Todoyu::personid($idPerson);
 
-		$field	= 'f.id_comment';
+		$field	= 'id_comment';
 		$table	= self::TABLE . '		as f,
 					ext_comment_comment as c,
 					ext_project_task	as t';
+
 		$where	= '	f.id_person_feedback	= ' . $idPerson
 				. ' AND	f.is_seen			= 0
 					AND c.id				= f.id_comment
@@ -184,14 +185,23 @@ class TodoyuCommentFeedbackManager {
 					AND c.id_task			!= 0
 					AND t.id				= c.id_task
 					AND t.deleted			= 0';
+
 		$group	= 'c.id';
 		$order	= 'f.date_create';
 
-		if( TodoyuAuth::isExternal() ) {
+		$person = TodoyuContactPersonManager::getPerson($idPerson);
+			// External persons can see only pubic comments and their feedback requests
+		if( $person->isExternal() ) {
 			$where .= ' AND c.is_public = 1';
+
+				// If person can not see all projects: limit to visible ones
+			if( ! $person->isAdmin() && ! TodoyuContactPersonManager::isAllowed($idPerson, 'project', 'project::seeAll') ) {
+				$projectIDs	= TodoyuProjectProjectManager::getAvailableProjectsForPerson();
+				$where	.= ' AND ' . Todoyu::db()->buildInArrayQuery($projectIDs, 't.id_project');
+			}
 		}
 
-		return Todoyu::db()->getColumn($field, $table, $where, $group, $order);
+		return TodoyuArray::flatten(Todoyu::db()->getArray($field, $table, $where, $group, $order));
 	}
 
 
