@@ -369,19 +369,17 @@ input.deleteButtonOwnComment {
 /* ------------------------
 	task tab comment
    ------------------------ */
-.commentform .fForm {
+.task .tabContent .commentform .fForm {
 	padding:0;
 	background:none;
 }
-.contextmenuComment .commentform .fForm {
-	background:white;
-	padding:0;
+
+.task .tabContent .commentform fieldset.main {
+	padding-bottom: 0;
+	margin-bottom: 0;
 }
-.contextmenuComment .commentform .fForm legend {
-	left:-5px;
-	text-indent:5px;
-	border:none;
-}
-.contextmenuComment .commentform .fForm fieldset {
-	padding-left:5px;
+
+.task .tabContent .commentform fieldset.email {
+	padding-top: 0;
+	margin-top:0;
 }
