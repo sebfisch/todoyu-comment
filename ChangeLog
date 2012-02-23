@@ -9,6 +9,10 @@ comment 1.2 - not released yet
 	* Changed: Use core button icon class for sorting button
 	* Changed: Unify fetching of feedback requests to synchronize listing and feedback count. Check for public flags
 
+comment 1.1.5 - 2012-02-22
+	* Bugfix: onFormLoaded handler failed extracting the correct comment id from the record id
+    * Changed: Unified handling of person listing in form elements (restricted by right or internal)
+
 comment 1.1.4 - not released yet
 	* Bugfix: Auto email and auto feedback for selected roles didn't work properly
 
