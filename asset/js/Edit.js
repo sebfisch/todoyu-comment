@@ -196,7 +196,7 @@ Todoyu.Ext.comment.Edit = {
 		var area = 'task-' + idTask + '-commentform-' + idComment;
 		Todoyu.Ui.closeRTE(area);
 		$(area).remove();
-		Todoyu.Ext.comment.List.refresh(idTask, true);
+		Todoyu.Ext.comment.List.refresh(idTask);
 	},
 
 

@@ -31,7 +31,7 @@ Todoyu.Ext.comment.List = {
 	 *
 	 * @method	refresh
 	 * @param	{Number}	idTask
-	 * @param	{Number}	desc	(0 or 1)
+	 * @param	{Boolean}	desc
 	 */
 	refresh: function(idTask, desc) {
 		var url		= Todoyu.getUrl('comment', 'task');
@@ -39,7 +39,7 @@ Todoyu.Ext.comment.List = {
 			parameters: {
 				action:	'list',
 				task:	idTask,
-				desc:	desc
+				desc:	desc !== false ? 1 : 0
 			}
 		};
 		var target	= 'task-' + idTask + '-tabcontent-comment';

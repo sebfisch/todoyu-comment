@@ -52,7 +52,7 @@ class TodoyuCommentRenderer {
 	 * @param	Boolean		$desc
 	 * @return	String
 	 */
-	public static function renderCommentList($idTask, $desc = false) {
+	public static function renderCommentList($idTask, $desc = true) {
 		$idTask		= intval($idTask);
 		$desc		= $desc ? true : false;
 

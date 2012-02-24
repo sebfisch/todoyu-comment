@@ -8,6 +8,7 @@ comment 1.2 - not released yet
 	* Changed: Use core button icon class for sorting button
 	* Changed: Unify fetching of feedback requests to synchronize listing and feedback count. Check for public flags
 	* Changed: Feedbacks count (portal) did also count invisible feedbacks of disallowed projects
+	* Changed: Latest comment is on top in the comment listig (sorting order = descending)
 
 comment  1.1.0 - 2011-06-17
 	* Bugfix: (UI) expanding task on add comment after collapse after adding comment failed
