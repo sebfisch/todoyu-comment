@@ -17,10 +17,6 @@
 
 				<field type="RTE" name="comment">
 					<label>comment.ext.edit.comment</label>
-					<tinymce>
-						<theme>simple</theme>
-						<width>100%</width>
-					</tinymce>
 					<required />
 				</field>
 
