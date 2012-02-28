@@ -369,7 +369,7 @@ class TodoyuCommentCommentManager {
 		if( $task->isTask() && ! $task->isLocked() ) {
 			$ownItems	=& Todoyu::$CONFIG['EXT']['comment']['ContextMenu']['Task'];
 
-			if( array_key_exists('add', $items) ) {
+			if( isset($items['add']) ) {
 				$allowed['add']['submenu']['add-comment'] = $ownItems['add']['submenu']['add-comment'];
 			}
 		}
