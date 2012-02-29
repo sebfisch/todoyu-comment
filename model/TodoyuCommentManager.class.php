@@ -91,7 +91,7 @@ class TodoyuCommentManager {
 		if( self::hasCurrentUserAutoFeedbackRole() ) {
 			$idTask	= intval($params['task']);
 			$task	= TodoyuProjectTaskManager::getTask($idTask);
-			$owner	= $task->getOwnerPerson();
+			$owner	= $task->getPersonOwner();
 
 				// Hide field to prevent change
 			$form->getField('feedback')->setAttribute('style', 'display:none');
@@ -120,7 +120,7 @@ class TodoyuCommentManager {
 		if( self::hasCurrentUserAutoMailRole() ) {
 			$idTask	= intval($params['task']);
 			$task	= TodoyuProjectTaskManager::getTask($idTask);
-			$owner	= $task->getOwnerPerson();
+			$owner	= $task->getPersonOwner();
 
 				// Hide field to prevent change
 			$form->getFieldset('email')->setClass('hidden');

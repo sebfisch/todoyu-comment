@@ -126,7 +126,7 @@ class TodoyuCommentMail extends TodoyuMail {
 	private function getData() {
 		$task			= $this->comment->getTask();
 		$project		= $this->comment->getProject();
-		$personWrite	= $this->comment->getCreatePerson();
+		$personWrite	= $this->comment->getPersonCreate();
 		$personSend		= TodoyuAuth::getPerson();
 
 		$data	= array(

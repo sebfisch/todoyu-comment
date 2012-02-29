@@ -259,7 +259,7 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 	 * Load comment foreign data: creator, feedback persons, approval state
 	 */
 	protected function loadForeignData() {
-		$this->data['person_create']	= $this->getCreatePerson()->getTemplateData(false);
+		$this->data['person_create']	= $this->getPersonCreate()->getTemplateData(false);
 
 		$this->data['persons_feedback']	= TodoyuCommentFeedbackManager::getFeedbackPersons($this->getID());
 		$this->data['persons_email']	= TodoyuCommentMailManager::getEmailPersons($this->getID());
