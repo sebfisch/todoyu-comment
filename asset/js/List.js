@@ -40,11 +40,65 @@ Todoyu.Ext.comment.List = {
 				action:	'list',
 				task:	idTask,
 				desc:	desc !== false ? 1 : 0
-			}
+			},
+			onComplete: this.onRefreshed.bind(this, idTask)
 		};
 		var target	= 'task-' + idTask + '-tabcontent-comment';
 
 		Todoyu.Ui.update(target, url, options);
+	},
+
+
+
+	/**
+	 * Check refreshed list of comments is empty hide the first of the two "add comment" buttons
+	 *
+	 * @method	onRefreshed
+	 * @param	{Number}		idTask
+	 * @param	{Ajax.Response}	response
+	 */
+	onRefreshed: function(idTask, response) {
+		var firstButton =  $('task-' + idTask).select('button.addComment')[0];
+
+		if( this.hasComments(idTask) ) {
+				// There are comments: unhide first button (above comments)
+			firstButton.show();
+		} else {
+				// There are no comments: hide first button
+			firstButton.hide();
+		}
+	},
+
+
+
+	/**
+	 * Get amount of displayed comments of given task
+	 *
+	 * @method	getAmountComments
+	 * @param	{Number}  idTask
+	 * @return	{Number}
+	 */
+	getAmountComments: function(idTask) {
+		var commentsElement = $('task-' + idTask + '-comments');
+		if( ! Todoyu.exists(commentsElement) ) {
+			return 0;
+		}
+
+		return commentsElement.select('li.comment').length;
+
+	},
+
+
+
+	/**
+	 * Check whether the given task has any shown comments
+	 *
+	 * @method	hasComments
+	 * @param	{Number}	idTask
+	 * @return	{Boolean}
+	 */
+	hasComments: function(idTask) {
+		return this.getAmountComments(idTask) > 0;
 	},
 
 

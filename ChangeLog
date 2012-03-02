@@ -5,6 +5,7 @@ comment 1.2 - not released yet
 	* Feature: No reload required to change comment sorting
 	* Feature: Warn user if a person which is in the feedback request list is external, but task or comment not public
 	* Added: Create and sorting button also at the bottom of the comment list
+	* Changed: When the comments list is empty there is now only one button to add a comment displayed
 	* Changed: Use core button icon class for sorting button
 	* Changed: Unify fetching of feedback requests to synchronize listing and feedback count. Check for public flags
 	* Changed: Feedbacks count (portal) did also count invisible feedbacks of disallowed projects
