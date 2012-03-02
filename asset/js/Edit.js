@@ -202,7 +202,7 @@ Todoyu.Ext.comment.Edit = {
 
 
 	/**
-	 * Evoked after completion of removing comment
+	 * Evoked after completion of removal comment request
 	 *
 	 * @method	onRemoved
 	 * @param	{Ajax.Response}		response
@@ -222,12 +222,9 @@ Todoyu.Ext.comment.Edit = {
 			afterFinish: function(effect) {
 					// Less than 2 comments left? remove button to toggle sorting
 				var tabContentElement		= effect.element.up('div.tabContent');
-				var commentsContainerElement= tabContentElement.down('.task-comments');
-
 				effect.element.remove();
-				var amountComments		= commentsContainerElement.select('li').length;
 
-				if( amountComments < 2 ) {
+				if( this.ext.List.getAmountComments(idTask) < 2 ) {
 					var button	= tabContentElement.select('button.reverseOrder')[0];
 					if( button ) {
 						button.hide();

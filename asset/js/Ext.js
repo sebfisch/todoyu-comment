@@ -38,8 +38,9 @@ Todoyu.Ext.comment = {
 
 	/**
 	 * Initialize comment extension
-	 *
 	 * Add a hook to observe form display to fix email receivers field display
+	 *
+	 * @method	init
 	 */
 	init: function() {
 		Todoyu.Hook.add('form.display', this.onFormDisplay.bind(this));
@@ -50,6 +51,7 @@ Todoyu.Ext.comment = {
 	/**
 	 * Hook, when a form is displayed
 	 *
+	 * @method	onFormDisplay
 	 * @param	{String}	idForm
 	 * @param	{String}	name
 	 * @param	{String}	recordID		idTask-idComment
@@ -139,10 +141,11 @@ Todoyu.Ext.comment = {
 
 
 	/**
+	 * @method	updateFeedbackTab
 	 * @param	{Number}		numFeedbacks
 	 */
 	updateFeedbackTab: function(numFeedbacks) {
-		// Count down the feedback counter
+			// Count-down the feedback counter
 		if( Todoyu.isInArea('portal') && Todoyu.exists('portal-tab-feedback') ) {
 			var labelElement	= $('portal-tab-feedback').down('span.labeltext');
 
@@ -263,7 +266,7 @@ Todoyu.Ext.comment = {
 	 * Add a new comment, open empty edit form
 	 *
 	 * @method	add
-	 * @param	{Number}		idTask
+	 * @param	{Number}	idTask
 	 */
 	add: function(idTask) {
 		this.removeForms(idTask);
@@ -287,7 +290,7 @@ Todoyu.Ext.comment = {
 	/**
 	 * Handler when empty edit form to add comment loaded
 	 *
-	 * @method	onAdd
+	 * @method	onAdded
 	 * @param	{Number}			idTask
 	 * @param	{Ajax.Response}		response
 	 */

@@ -176,7 +176,7 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 		$deleteAll	= Todoyu::allowed('comment', 'comment:deleteAll');
 		$deleteOwn	= Todoyu::allowed('comment','comment:deleteOwn') && $this->isCurrentPersonCreator();
 
-		return !$this->isLocked() && $deleteAll || $deleteOwn;
+		return (! $this->isLocked()) && ($deleteAll || $deleteOwn);
 	}
 
 

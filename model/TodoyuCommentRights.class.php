@@ -214,6 +214,7 @@ class TodoyuCommentRights {
 		$idComment	= intval($idComment);
 
 		if( ! self::isDeleteAllowed($idComment)) {
+			// @todo	state message more precisely when deletion is restricted because of locked projects its not the general right
 			self::deny('comment:delete');
 		}
 	}
