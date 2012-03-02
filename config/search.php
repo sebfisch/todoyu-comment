@@ -19,12 +19,11 @@
 *****************************************************************************/
 
 /**
- * Add comment search engine types: comments
+ * Register search engine type of comment comments to search headlet
  *
  * @package		Todoyu
  * @subpackage	Comment
  */
-
 if( Todoyu::allowed('comment', 'general:use') ) {
 	TodoyuSearchManager::addEngine('comment', 'TodoyuCommentSearch::getSuggestions', 'comment.ext.search.label', 'comment.ext.search.mode.label', 50);
 }
