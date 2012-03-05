@@ -353,9 +353,9 @@ class TodoyuCommentTaskFilter extends TodoyuSearchFilterBase {
 				'ext_project_task'
 			),
 			'order'	=> array(
-				'commentLastAdded' . $sortDir, // last date added by MAX() in fields
-				'ISNULL(ext_comment_comment.id)' . $sortDir, // No comments
-				'ext_project_task.id' . $sortDir // Make sure sorting is consistent
+				'commentLastAdded' . $sortDir,					// Last date added by MAX() in fields
+				'ISNULL(ext_comment_comment.id)' . $sortDir,	// No comments
+				'ext_project_task.id' . $sortDir				// Make sure sorting is consistent
 			),
 			'fields' => array(
 				'commentLastAdded' => 'MAX(ext_comment_comment.date_create) as commentLastAdded'
