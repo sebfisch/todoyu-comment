@@ -208,7 +208,7 @@ class TodoyuCommentManager {
 
 
 	/**
-	 * Load configs of comment related filter widgets of contact persons
+	 * Load configs of comment related filter widgets of project items
 	 */
 	public static function hookLoadProjectFilterConfig() {
 		$filePath	= realpath(PATH_EXT_COMMENT . DIR_SEP . 'config' . DIR_SEP . 'filters-project.php');
