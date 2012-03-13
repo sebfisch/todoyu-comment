@@ -18,17 +18,9 @@
 * This copyright notice MUST APPEAR in all copies of the script.
 *****************************************************************************/
 
-	// Substitute comment identifiers in text by hyperlinks
-TodoyuHookManager::registerHook('core', 'substituteLinkableElements', 'TodoyuCommentCommentManager::linkCommentIDsInText');
-
-	// Add auto feedback and auto email to comment form
-TodoyuFormHook::registerBuildForm('ext/comment/config/form/comment.xml',	'TodoyuCommentManager::hookAddAutoFeedbackFields');
-TodoyuFormHook::registerBuildForm('ext/comment/config/form/comment.xml',	'TodoyuCommentManager::hookAddAutoMailFields');
-TodoyuFormHook::registerLoadData('ext/comment/config/form/comment.xml',	'TodoyuCommentManager::hookLoadDataAutoFeedback');
-TodoyuFormHook::registerLoadData('ext/comment/config/form/comment.xml',	'TodoyuCommentManager::hookLoadDataAutoMail');
-
-//TodoyuHookManager::registerHook('project', 'renderTasks', 'TodoyuCommentCommentManager::onTasksRender');
-
+if( Todoyu::allowed('comment', 'general:use') ) {
+	require_once( PATH_EXT_COMMENT . '/config/hooks.php' );
+}
 
 	// System name and email to be used in sender attribute inside emails
 Todoyu::$CONFIG['EXT']['comment']['infomail']['fromname']		= Todoyu::$CONFIG['SYSTEM']['name'];
