@@ -119,13 +119,9 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 		if( $form->isValid() ) {
 			$storageData = $form->getStorageData();
 
-			TodoyuDebug::printInFirebug($storageData, 'storageData');
-
 				// Store comment
 			$saveResult	= TodoyuCommentCommentManager::saveComment($storageData);
 			$idComment	= $saveResult['id'];
-
-			TodoyuDebug::printInFirebug($saveResult, 'saveResult');
 
 				// Send info headers
 			TodoyuHeader::sendTodoyuHeader('comment', $idComment);
@@ -145,7 +141,6 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 					);
 				}
 				TodoyuHeader::sendTodoyuHeader('feedback', $feedbackData);
-				TodoyuDebug::printInFirebug('send todoyu header');
 			}
 
 
