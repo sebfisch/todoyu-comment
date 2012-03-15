@@ -45,8 +45,6 @@
 	<label index="js.commentSaved">Commentaire sauvegardé</label>
 	<label index="js.commentSavingFailed">Le commentaire n'a pas pu être enregistré</label>
 	<label index="js.emailSent">Courriel envoyé</label>
-	<label index="extconf.autorequestownerfeedback.label">Roles To Auto-Request Feedback From Task Owner: (Removes Feedback Option With Free Receiver Selection)</label>
-	<label index="extconf.automailcommenttoowner.label">Roles to Auto-Mail Comment To Task Owner: (Removes Mailing Option With Free Receiver Selection)</label>
 	<label index="history.header">Historique des commentaires (Suivis et courriels)</label>
 	<label index="history.created">Commentaire créé</label>
 	<label index="history.feedbackrequestedfrom">Suivi demandé par</label>

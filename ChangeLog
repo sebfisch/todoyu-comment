@@ -1,16 +1,17 @@
 todoyu comment extension changelog
 
 comment 1.2 - not released yet
-	* Bugfix: Right check "canCurrentUserDelete" did ignore locking for otherwise privileged users
 	* Feature: Save and show time and person of last update of comment
 	* Feature: No reload required to change comment sorting
 	* Feature: Warn user if a person which is in the feedback request list is external, but task or comment not public
+	* Feature: Use fallback configuration to define what should happen with a comment if it's created by a user with limited privileges
 	* Added: Create and sorting button also at the bottom of the comment list
 	* Changed: When the comments list is empty there is now only one button to add a comment displayed
 	* Changed: Use core button icon class for sorting button
 	* Changed: Unify fetching of feedback requests to synchronize listing and feedback count. Check for public flags
 	* Changed: Feedbacks count (portal) did also count invisible feedbacks of disallowed projects
 	* Changed: Latest comment is on top in the comment listig (sorting order = descending)
+	* Changed: Removed workaround to handle limited user support (removed autoemail and autofeedback)
 
 comment  1.1.0 - 2011-06-17
 	* Bugfix: (UI) expanding task on add comment after collapse after adding comment failed

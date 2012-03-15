@@ -40,8 +40,6 @@
 	<label index="js.commentSaved">Commento salvato</label>
 	<label index="js.commentSavingFailed">Impossibile salvare il commento</label>
 	<label index="js.emailSent">Email inviata</label>
-	<label index="extconf.autorequestownerfeedback.label">Ruoli per la richiesta automatica di feedback dal proprietario dell'attività (rimuove l'opzione feedback con la selezione libera dei destinatari):</label>
-	<label index="extconf.automailcommenttoowner.label">Ruoli per l'invio automatico tramite email dei comment al proprietario dell'attività (rimuove l'opzione relativa all'invio di email con la selezione libera dei destinatari):</label>
 	<label index="history.header">Cronologia dei commenti (feedback e invio email)</label>
 	<label index="history.created">Commento cerato</label>
 	<label index="history.feedbackrequestedfrom">Feedback richiesto da</label>

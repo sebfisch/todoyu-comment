@@ -41,8 +41,6 @@
 	<label index="js.commentSaved">Коментар сачуван</label>
 	<label index="js.commentSavingFailed">Коментар није успешно сачуван</label>
 	<label index="js.emailSent">Е-маил је послат</label>
-	<label index="extconf.autorequestownerfeedback.label">Ове улоге захтевају аутоматски повратну информацију од власника задатка (нема више избора повратне информације)</label>
-	<label index="extconf.automailcommenttoowner.label">Ове улоге шаљу аутоматски коментар власнику задатка (нема више избора е-маил-а)</label>
 	<label index="history.header">Исход коментара (Повратне информације и е-маилове)</label>
 	<label index="history.created">Коментар уношен</label>
 	<label index="history.feedbackrequestedfrom">Повратна информација потражена од</label>

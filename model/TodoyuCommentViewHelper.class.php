@@ -36,8 +36,10 @@ class TodoyuCommentViewHelper {
 		$idTask		= intval($field->getForm()->getHiddenField('id_task'));
 		$options	= array();
 
-		$hasAutoMail= $field->getForm()->hasField('mailinfo');
-		$personIDs	= TodoyuCommentCommentManager::getEmailReceiverIDs($idTask, $hasAutoMail);
+		$rightTask		= Todoyu::allowed('comment', 'sendEmail:task');
+		$rightProject	= Todoyu::allowed('comment', 'sendEmail:project');
+		$rightInternals	= Todoyu::allowed('comment', 'sendEmail:internal');
+		$personIDs		= TodoyuCommentCommentManager::getEmailReceiverIDs($idTask, $rightTask, $rightProject, $rightInternals);
 
 		foreach($personIDs as $idPerson) {
 			$person	= TodoyuContactPersonManager::getPerson($idPerson);
@@ -76,58 +78,42 @@ class TodoyuCommentViewHelper {
 	 */
 	public static function getFeedbackPersonsGroupedOptions(TodoyuFormElement $field) {
 		$formData	= $field->getForm()->getFormData();
-
+		
 		$idTask		= intval($formData['id_task']);
 		$idProject	= TodoyuProjectTaskManager::getProjectID($idTask);
 		$options	= array();
 
+
 			// Task persons
-		$groupLabelTask	= Todoyu::Label('comment.ext.group.taskmembers');
-		$taskPersons	= TodoyuProjectTaskManager::getTaskPersons($idTask, true);
-		foreach($taskPersons as $person) {
-			$options[$groupLabelTask][$person['id']] = array(
-				'value'	=> $person['id'],
-				'label'	=> TodoyuContactPersonManager::getLabel($person['id'], false, true)
-			);
+		if( Todoyu::allowed('comment', 'requestFeedback:task') ) {
+			$groupLabelTask	= Todoyu::Label('comment.ext.group.taskmembers');
+			$taskPersons	= TodoyuProjectTaskManager::getTaskPersons($idTask, true);
+			foreach($taskPersons as $person) {
+				$options[$groupLabelTask][$person['id']] = array(
+					'value'	=> $person['id'],
+					'label'	=> TodoyuContactPersonManager::getLabel($person['id'], false, true)
+				);
+			}
 		}
+
 
 			// Get project persons
-		$groupLabelProject	= Todoyu::Label('comment.ext.group.projectmembers');
-		$projectPersons		= TodoyuProjectProjectManager::getProjectPersons($idProject, true, true);
-		foreach($projectPersons as $person) {
-			$options[$groupLabelProject][$person['id']] = array(
-				'value'	=> $person['id'],
-				'label'	=> TodoyuContactPersonManager::getLabel($person['id'])
-			);
+		if( Todoyu::allowed('comment', 'requestFeedback:project') ) {
+			$groupLabelProject	= Todoyu::Label('comment.ext.group.projectmembers');
+			$projectPersons		= TodoyuProjectProjectManager::getProjectPersons($idProject, true, true);
+			foreach($projectPersons as $person) {
+				$options[$groupLabelProject][$person['id']] = array(
+					'value'	=> $person['id'],
+					'label'	=> TodoyuContactPersonManager::getLabel($person['id'])
+				);
+			}
 		}
+
 
 			// Get staff persons (employees of internal company)
-		if( TodoyuAuth::isInternal() || Todoyu::allowed('contact', 'person:seeAllInternalPersons') ) {
+		if( Todoyu::allowed('comment', 'requestFeedback:internal') ) {
 			$groupLabelEmployee				= Todoyu::Label('comment.ext.group.employees');
 			$options[$groupLabelEmployee]	=  TodoyuContactViewHelper::getInternalPersonOptions($field);;
-		}
-
-
-			// Force task members to be in the list for auto feedback
-			// @todo We should handle this during the save process, and not send back hidden data...
-		$hasAutoFeedback= $field->getForm()->hasField('feedbackinfo');
-		if( $hasAutoFeedback ) {
-			$task		= TodoyuProjectTaskManager::getTask($idTask);
-			$idOwner	= $task->getPersonID('owner');
-			$idAssigned	= $task->getPersonID('assigned');
-
-			if( !isset($options[$groupLabelTask][$idOwner]) ) {
-				$options[$groupLabelTask][$idOwner] = array(
-					'value'	=> $idOwner,
-					'label'	=> TodoyuContactPersonManager::getLabel($idOwner, false, true)
-				);
-			}
-			if( !isset($options[$groupLabelTask][$idAssigned]) ) {
-				$options[$groupLabelTask][$idAssigned] = array(
-					'value'	=> $idAssigned,
-					'label'	=> TodoyuContactPersonManager::getLabel($idAssigned, false, true)
-				);
-			}
 		}
 
 		return $options;
@@ -153,6 +139,50 @@ class TodoyuCommentViewHelper {
 		);
 
 		return $option;
+	}
+
+
+
+	/**
+	 * Get task person options for fallback config
+	 * Container task person labels: owner, creator and assigned
+	 *
+	 * @param	TodoyuFormElement	$field
+	 * @return	Array
+	 */
+	public static function getFallbackTaskPersonOptions(TodoyuFormElement $field) {
+		return array(
+			array(
+				'value'	=> 'owner',
+				'label'	=> 'comment.ext.fallback.task.owner'
+			),
+			array(
+				'value'	=> 'creator',
+				'label'	=> 'comment.ext.fallback.task.creator'
+			),
+			array(
+				'value'	=> 'assigned',
+				'label'	=> 'comment.ext.fallback.task.assigned'
+			)
+		);
+	}
+
+
+
+	/**
+	 * Get comment fallbacks as options
+	 *
+	 * @param	TodoyuFormElement	$field
+	 * @return	Array
+	 */
+	public static function getFallbackOptions(TodoyuFormElement $field) {
+		$fallbacks	= TodoyuCommentFallbackManager::getAllFallbacks();
+		$reform		= array(
+			'id'	=> 'value',
+			'title'	=> 'label'
+		);
+
+		return TodoyuArray::reform($fallbacks, $reform);
 	}
 
 }

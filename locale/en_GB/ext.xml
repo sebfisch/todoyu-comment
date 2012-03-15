@@ -41,8 +41,6 @@
 	<label index="js.commentSaved">Comment Saved</label>
 	<label index="js.commentSavingFailed">Could not save comment</label>
 	<label index="js.emailSent">Email Sent</label>
-	<label index="extconf.autorequestownerfeedback.label">Roles to auto-request feedback from task owner (removes feedback option with free receiver selection):</label>
-	<label index="extconf.automailcommenttoowner.label">Roles to auto-mail comment to task owner (removes mailing option with free receiver selection):</label>
 	<label index="history.header">Comment history (feedback and mailing)</label>
 	<label index="history.created">Comment Created</label>
 	<label index="history.feedbackrequestedfrom">Feedback Requested From</label>
@@ -52,4 +50,20 @@
 	<label index="updateInfo">Last updated by %1$s on %2$s</label>
 	<label index="publicFeedbackWarning.task">Attention: Task is not public. The feedback request cannot be seen by the selected person!</label>
 	<label index="publicFeedbackWarning.comment">Attention: Comment is not public. The feedback request cannot be seen by the selected person!</label>
+	<label index="records.fallback">Comment Fallback</label>
+	<label index="records.fallback.desc">Fallbacks for comments if user cannot select an option</label>
+	<label index="fallback">Comment Fallback</label>
+	<label index="fallback.title">Title</label>
+	<label index="fallback.task.owner">Task Owner</label>
+	<label index="fallback.task.creator">Task Creator</label>
+	<label index="fallback.task.assigned">Task Assigned</label>
+	<label index="fallback.helptext">If the creator of the comment is not allowed to select one of those fields, the selected fallback will be used. If the person can select those options but doesn't select one, no action will be taken.</label>
+	<label index="fallback.is_public">Make public</label>
+	<label index="fallback.id_person_feedback">From this person</label>
+	<label index="fallback.taskperson_feedback">From this task person</label>
+	<label index="fallback.id_role_feedback">From a person with this role</label>
+	<label index="fallback.id_person_email">To this person</label>
+	<label index="fallback.taskperson_email">To this task person</label>
+	<label index="fallback.id_role_email">To a person with this role</label>
+	<label index="extconf.globalFallback">Global fallback</label>
 </labels>

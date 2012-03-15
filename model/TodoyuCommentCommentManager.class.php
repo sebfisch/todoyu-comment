@@ -92,28 +92,42 @@ class TodoyuCommentCommentManager {
 	 * Save comment
 	 *
 	 * @param	Array		$data
-	 * @return	Integer
+	 * @return	Array		Data about comment saving: id, feedback, email, emailOk
 	 */
 	public static function saveComment(array $data) {
 		$idComment	= intval($data['id']);
+		$idTask		= intval($data['id_task']);
+		$task		= TodoyuCommentTaskManager::getTask($idTask);
 		$xmlPath	= 'ext/comment/config/form/comment.xml';
+		$result		= array(
+			'id'		=> $idComment,
+			'feedback'	=> array(),
+			'email'		=> array()
+		);
 
 		if( $idComment === 0 ) {
-			$idComment = self::addComment();
-		} else {
-			$data['id_person_update']	= TodoyuAuth::getPersonID();
+			$idComment = self::addComment(array(
+				'id_task'	=> $idTask
+			));
+
+			$result['id'] = $idComment;
 		}
 
-		$data['comment']	= self::filterHtmlTags($data['comment']);
+			// Apply fallback
+		$data	= $task->applyCommentFallback($data);
+
+			// Clean html tags
+		$data['comment'] = self::filterHtmlTags($data['comment']);
 
 			// Call hooked save data functions
 		$data	= TodoyuFormHook::callSaveData($xmlPath, $data, $idComment);
 
 			// Extract feedback and email data
-		$personIDsFeedback	= array_unique(TodoyuArray::intExplode(',', $data['feedback'], true, true));
+		$personFeedbackIDs	= array_unique(TodoyuArray::intExplode(',', $data['feedback'], true, true));
+		$personEmailIDs		= array_unique(TodoyuArray::intExplode(',', $data['emailreceivers'], true, true));
+
 
 			// Remove special handled fields
-		unset($data['sendasemail']);
 		unset($data['emailreceivers']);
 		unset($data['feedback']);
 
@@ -121,19 +135,24 @@ class TodoyuCommentCommentManager {
 		self::updateComment($idComment, $data);
 
 			// Clear record cache
-		TodoyuRecordManager::removeRecordCache('TodoyuCommentComment', $idComment);
-		TodoyuRecordManager::removeRecordQueryCache(self::TABLE, $idComment);
+		self::removeFromCache($idComment);
 
 			// Set all comments in task as seen
-		TodoyuCommentFeedbackManager::setTaskCommentsAsSeen($data['id_task']);
+		TodoyuCommentFeedbackManager::setTaskCommentsAsSeen($idTask);
 
-			// Register feedback for current comment
-		TodoyuCommentFeedbackManager::updateFeedbacks($idComment, $personIDsFeedback);
+			// Add feedback requests
+		TodoyuCommentFeedbackManager::savedFeedbackRequests($idComment, $personFeedbackIDs);
+		$result['feedback'] = $personFeedbackIDs;
+
+			// Send emails
+		if( sizeof($personEmailIDs) ) {
+			$result['email'] = TodoyuCommentMailer::sendEmails($idComment, $personEmailIDs);
+		}
 
 			// Call saved hook
 		TodoyuHookManager::callHook('comment', 'comment.save', array($idComment));
 
-		return $idComment;
+		return $result;
 	}
 
 
@@ -177,6 +196,19 @@ class TodoyuCommentCommentManager {
 		TodoyuRecordManager::deleteRecord(self::TABLE, $idComment);
 
 		TodoyuHookManager::callHook('comment', 'comment.delete', array($idComment));
+	}
+
+
+
+	/**
+	 * Remove comment from cache
+	 *
+	 * @param	Integer		$idComment
+	 */
+	public static function removeFromCache($idComment) {
+			// Clear record cache
+		TodoyuRecordManager::removeRecordCache('TodoyuCommentComment', $idComment);
+		TodoyuRecordManager::removeRecordQueryCache(self::TABLE, $idComment);
 	}
 
 
@@ -281,40 +313,49 @@ class TodoyuCommentCommentManager {
 	 * Get details of persons which could receive a comment email
 	 *
 	 * @param	Integer		$idTask
-	 * @param	Boolean		$forceTaskMembers
+	 * @param	Boolean		$taskMembers
+	 * @param	Boolean		$projectMembers
+	 * @param	Boolean		$allInternals
 	 * @return	Array
 	 */
-	public static function getEmailReceiverIDs($idTask, $forceTaskMembers = false) {
+	public static function getEmailReceiverIDs($idTask, $taskMembers = false, $projectMembers = false, $allInternals = false) {
 		$idTask		= intval($idTask);
-		$idProject	= TodoyuProjectTaskManager::getProjectID($idTask);
-
-		$taskPersonIDs		= TodoyuProjectTaskManager::getTaskPersonIDs($idTask);
-		$projectPersonIDs	= TodoyuProjectProjectManager::getProjectPersonIDs($idProject);
-
 		$personIDs	= array();
 
 			// Add task Persons
-		foreach($taskPersonIDs as $idPerson) {
-			$person	= TodoyuContactPersonManager::getPerson($idPerson);
-			$email	= $person->getEmail(true);
+		if( $taskMembers ) {
+			$taskPersonIDs	= TodoyuProjectTaskManager::getTaskPersonIDs($idTask);
 
-			if( $email !== false ) {
-				$personIDs[] = $idPerson;
+			foreach($taskPersonIDs as $idPerson) {
+				$person	= TodoyuContactPersonManager::getPerson($idPerson);
+				$email	= $person->getEmail(true);
+
+				if( $email !== false ) {
+					$personIDs[] = $idPerson;
+				}
 			}
 		}
+
+
 
 			// Add project Persons
-		foreach($projectPersonIDs as $idPerson) {
-			$person	= TodoyuContactPersonManager::getPerson($idPerson);
-			$email	= $person->getEmail(true);
+		if( $projectMembers ) {
+			$idProject			= TodoyuProjectTaskManager::getProjectID($idTask);
+			$projectPersonIDs	= TodoyuProjectProjectManager::getProjectPersonIDs($idProject);
 
-			if( $email !== false ) {
-				$personIDs[] = $idPerson;
+			foreach($projectPersonIDs as $idPerson) {
+				$person	= TodoyuContactPersonManager::getPerson($idPerson);
+				$email	= $person->getEmail(true);
+
+				if( $email !== false ) {
+					$personIDs[] = $idPerson;
+				}
 			}
 		}
 
+
 			// Add internal Persons
-		if( TodoyuAuth::isInternal() || Todoyu::allowed('contact', 'person:seeAllInternalPersons') ) {
+		if( $allInternals ) {
 			$internalPersonIDs= TodoyuContactPersonManager::getInternalPersonIDs();
 
 			foreach($internalPersonIDs as $idPerson) {
@@ -325,14 +366,6 @@ class TodoyuCommentCommentManager {
 					$personIDs[] = $idPerson;
 				}
 			}
-		}
-
-			// Add task members, ignore view rights
-		if( $forceTaskMembers ) {
-			$task	= TodoyuProjectTaskManager::getTask($idTask);
-			$personIDs[] = $task->getPersonID('assigned');
-			$personIDs[] = $task->getPersonID('owner');
-			$personIDs[] = $task->getPersonID('create');
 		}
 
 		return array_unique($personIDs);

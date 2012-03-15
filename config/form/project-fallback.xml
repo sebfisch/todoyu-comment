@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form>
+	<fieldsets>
+		<fieldset name="main">
+			<elements>
+
+				<field type="select" name="ext_comment_fallback">
+					<label>comment.ext.fallback</label>
+					<source type="function">
+						<function>TodoyuCommentViewHelper::getFallbackOptions</function>
+					</source>
+				</field>
+
+			</elements>
+		</fieldset>
+	</fieldsets>
+</form>

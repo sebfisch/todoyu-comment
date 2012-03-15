@@ -41,8 +41,6 @@
 	<label index="js.commentSaved">コメントを保存しました</label>
 	<label index="js.commentSavingFailed">コメントを保存できませんでした</label>
 	<label index="js.emailSent">メールの送信</label>
-	<label index="extconf.autorequestownerfeedback.label">タスク所有者からの自動要求フィードバックのロール (受信者に選択されていないフィードバックオプションの削除) -- Roles to auto-request feedback from task owner (removes feedback option with free receiver selection):</label>
-	<label index="extconf.automailcommenttoowner.label">Roles to auto-mail comment to task owner (removes mailing option with free receiver selection):</label>
 	<label index="history.header">コメントの履歴 (フィードバックとメール)</label>
 	<label index="history.created">コメントを作成しました</label>
 	<label index="history.feedbackrequestedfrom">フィードバックの要求元</label>

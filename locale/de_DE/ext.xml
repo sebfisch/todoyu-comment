@@ -41,8 +41,6 @@
 	<label index="js.commentSaved">Kommentar gespeichert</label>
 	<label index="js.commentSavingFailed">Kommentar konnte nicht gespeichert werden</label>
 	<label index="js.emailSent">Email verschickt</label>
-	<label index="extconf.autorequestownerfeedback.label">Diese Rollen erfordern automatisch ein Feedback vom Aufgaben Eigner (keine Feedback Auswahl mehr)</label>
-	<label index="extconf.automailcommenttoowner.label">Diese Rollen senden den Kommentar automatisch an den Aufgaben Eigner (keine Mail Auswahl mehr)</label>
 	<label index="history.header">Kommentar-Verlauf (Feedbacks und Mailing)</label>
 	<label index="history.created">Kommentar angelegt</label>
 	<label index="history.feedbackrequestedfrom">Feedback erbeten von</label>
@@ -52,4 +50,20 @@
 	<label index="updateInfo">Zuletzt aktualisiert von %1$s am %2$s</label>
 	<label index="publicFeedbackWarning.task">Achtung: Aufgabe ist nicht öffentlich. Die gewählte Person kann die Feedbackanfrage nicht sehen!</label>
 	<label index="publicFeedbackWarning.comment">Achtung: Kommentar ist nicht öffentlich. Die gewählte Person kann die Feedbackanfrage nicht sehen!</label>
+	<label index="records.fallback">Kommentar Fallback</label>
+	<label index="records.fallback.desc">Fallback für Kommentare, wenn der Benutzer die Felder nicht selbst ausfüllen darf</label>
+	<label index="fallback">Kommentar Fallback</label>
+	<label index="fallback.title">Titel</label>
+	<label index="fallback.task.owner">Aufgabe: Eigner</label>
+	<label index="fallback.task.creator">Aufgabe: Ersteller</label>
+	<label index="fallback.task.assigned">Aufgabe: Zugewiesen</label>
+	<label index="fallback.helptext">Wenn der Ersteller des Kommentar keine Recht für diese Felder hat, werden diese Fallbacks benutzt. Hat der Ersteller das Recht, gibt aber nichts ein, hat dieser Fallback keinen Einfluss</label>
+	<label index="fallback.is_public">Öffentlich machen</label>
+	<label index="fallback.id_person_feedback">Von dieser Person</label>
+	<label index="fallback.taskperson_feedback">Von dieser Person im Task</label>
+	<label index="fallback.id_role_feedback">Von der Person mit dieser Projektrolle</label>
+	<label index="fallback.id_person_email">An diese Person</label>
+	<label index="fallback.taskperson_email">An diese Person im Task</label>
+	<label index="fallback.id_role_email">An die Person mit dieser Projektrolle</label>
+	<label index="extconf.globalFallback">Globaler Falback</label>
 </labels>

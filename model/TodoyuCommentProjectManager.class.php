@@ -19,44 +19,21 @@
  *****************************************************************************/
 
 /**
- * General comment extension manager
+ * Comment project manager
  *
  * @package		Todoyu
  * @subpackage	Comment
  */
-class TodoyuCommentManager {
+class TodoyuCommentProjectManager {
 
 	/**
-	 * Get comment form
+	 * Get comment project
 	 *
-	 * @param	Integer		$idComment
-	 * @param	Integer		$idTask
-	 * @param	Array		$formData
-	 * @param	Array		$params
-	 * @return	TodoyuForm
+	 * @param	$idProject
+	 * @return	TodoyuCommentProject
 	 */
-	public static function getCommentForm($idComment, $idTask, array $formData = array(), array $params = array()) {
-		$xmlPath= 'ext/comment/config/form/comment.xml';
-		$params['task'] = $idTask;
-
-		$form	= TodoyuFormManager::getForm($xmlPath, $idComment, $params);
-
-		if( sizeof($formData) ) {
-			$form->setFormData($formData);
-		}
-
-		return $form;
-	}
-
-
-
-	/**
-	 * Load configs of comment related filter widgets of project items
-	 */
-	public static function hookLoadProjectFilterConfig() {
-		$filePath	= realpath(PATH_EXT_COMMENT . DIR_SEP . 'config' . DIR_SEP . 'filters-project.php');
-
-		include_once($filePath);
+	public static function getProject($idProject) {
+		return TodoyuRecordManager::getRecord('TodoyuCommentProject', $idProject);
 	}
 
 }

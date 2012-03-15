@@ -41,8 +41,6 @@
 	<label index="js.commentSaved">Комментарий сохранён</label>
 	<label index="js.commentSavingFailed">Не удалось сохранить комментарий</label>
 	<label index="js.emailSent">E-mail отправлен</label>
-	<label index="extconf.autorequestownerfeedback.label">Роли, запрашивающие ответ от владельца задачи (удаляет выбор у кого запросить ответ):</label>
-	<label index="extconf.automailcommenttoowner.label">Роли, автоматически отылающие комментарий владельцу задачи (удаляет выбор кому послать ответ):</label>
 	<label index="history.header">История комментариев (ответы и e-mail)</label>
 	<label index="history.created">Комментарий создан</label>
 	<label index="history.feedbackrequestedfrom">Ответ запрошен от</label>

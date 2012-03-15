@@ -21,13 +21,9 @@
 	// Substitute comment identifiers in text by hyperlinks
 TodoyuHookManager::registerHook('core', 'substituteLinkableElements', 'TodoyuCommentCommentManager::linkCommentIDsInText');
 
-	// Add auto feedback and auto email to comment form
-TodoyuFormHook::registerBuildForm('ext/comment/config/form/comment.xml',	'TodoyuCommentManager::hookAddAutoFeedbackFields');
-TodoyuFormHook::registerBuildForm('ext/comment/config/form/comment.xml',	'TodoyuCommentManager::hookAddAutoMailFields');
-TodoyuFormHook::registerLoadData('ext/comment/config/form/comment.xml',	'TodoyuCommentManager::hookLoadDataAutoFeedback');
-TodoyuFormHook::registerLoadData('ext/comment/config/form/comment.xml',	'TodoyuCommentManager::hookLoadDataAutoMail');
-
 //TodoyuHookManager::registerHook('project', 'renderTasks', 'TodoyuCommentCommentManager::onTasksRender');
+
+TodoyuFormHook::registerBuildForm('ext/project/config/form/project.xml', 'TodoyuCommentFallbackManager::hookAddFallbackField');
 
 
 	// Callbacks for exteding filter widgets of other extensions

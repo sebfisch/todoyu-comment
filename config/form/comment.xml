@@ -30,24 +30,29 @@
 					<size>7</size>
 					<multiple />
 					<restrict>
-						<allow ext="comment" right="comment:requestFeedback" />
+						<allow ext="comment" right="general:requestFeedback" />
 					</restrict>
 				</field>
 
 				<field type="checkbox" name="is_public">
 					<label>comment.ext.edit.is_public</label>
-					<restrictInternal />
+					<restrict>
+						<allow ext="comment" right="comment:makePublic" />
+					</restrict>
 				</field>
+
 			</elements>
 		</fieldset>
 
 		<fieldset name="email">
 			<elements>
+
 				<field type="checkbox" name="sendasemail">
 					<label>comment.ext.edit.sendasemail</label>
 					<onclick>Todoyu.Ext.comment.Edit.onClickSendAsEmail(this)</onclick>
+					<noStorage />
 					<restrict>
-						<allow ext="comment" right="comment:sendAsEmail" />
+						<allow ext="comment" right="general:sendEmail" />
 					</restrict>
 				</field>
 
@@ -61,9 +66,10 @@
 					<multiple />
 					<style>display:none</style>
 					<restrict>
-						<allow ext="comment" right="comment:sendAsEmail" />
+						<allow ext="comment" right="general:sendEmail" />
 					</restrict>
 				</field>
+
 			</elements>
 		</fieldset>
 

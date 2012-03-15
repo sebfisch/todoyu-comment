@@ -41,8 +41,6 @@
 	<label index="js.commentSaved">Komentarz zapisany</label>
 	<label index="js.commentSavingFailed">Niemożna zapisać komentarza</label>
 	<label index="js.emailSent">E-mail wysłany</label>
-	<label index="extconf.autorequestownerfeedback.label">Role do auto-żądania informacji zwrotnych (feedbacku) od właściciela zadanie (usuwa opcję Feedback z opcją wolnego wyboru):</label>
-	<label index="extconf.automailcommenttoowner.label">Role do auto-żądania komentarzy od właściciela zadanie (usuwa opcję Feedback z opcją wolnego wyboru):</label>
 	<label index="history.header">Historia komentarzy (feedback i mailing)</label>
 	<label index="history.created">Utworzono Komentarz</label>
 	<label index="history.feedbackrequestedfrom">Feedback zarządany od</label>

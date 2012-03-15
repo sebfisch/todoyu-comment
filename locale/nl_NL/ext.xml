@@ -40,8 +40,6 @@
 	<label index="js.commentSaved">Opmerking opgeslagen</label>
 	<label index="js.commentSavingFailed">Opmerking kon niet opgelsagen worden</label>
 	<label index="js.emailSent">E-mail verzonden</label>
-	<label index="extconf.autorequestownerfeedback.label">Rollen om automatisch terugkoppeling aan taakeigenaar te vragen (verwijdert de optie voor terugkoppeling met vrije keuze van ontvanger):</label>
-	<label index="extconf.automailcommenttoowner.label">Rollen om automatisch opmerkingen te mailen aan de taakeigenaar (verwijdert de optie voor vrije keuze voor de e-mailontvanger):</label>
 	<label index="history.header">Opmerkingenhistorie (terugkoppeling en e-mails)</label>
 	<label index="history.created">Opmerking aangemaakt</label>
 	<label index="history.feedbackrequestedfrom">Terugkoppeling verzocht van</label>

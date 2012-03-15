@@ -40,8 +40,6 @@
 	<label index="js.commentSaved">Komentář uložen</label>
 	<label index="js.commentSavingFailed">Komentář nelze uložit</label>
 	<label index="js.emailSent">Email odeslán</label>
-	<label index="extconf.autorequestownerfeedback.label">Roles to auto-request feedback from task owner (removes feedback option with free receiver selection):</label>
-	<label index="extconf.automailcommenttoowner.label">Roles to auto-mail comment to task owner (removes mailing option with free receiver selection):</label>
 	<label index="history.header">Historie komentáře (odpovědi a emaily)</label>
 	<label index="history.created">Komentář vytvořen</label>
 	<label index="history.feedbackrequestedfrom">Odpověď vyžadována od</label>

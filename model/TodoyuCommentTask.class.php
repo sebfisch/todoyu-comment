@@ -19,52 +19,65 @@
 *****************************************************************************/
 
 /**
- * Comments in task tab
+ * Comment task
  *
  * @package		Todoyu
  * @subpackage	Comment
  */
-class TodoyuCommentTask {
+class TodoyuCommentTask extends TodoyuProjectTask {
 
 	/**
-	 * Get label for comment tab in the task
+	 * Get comment project
 	 *
-	 * @param	Integer		$idTask
-	 * @return	String
+	 * @return	TodoyuCommentProject
 	 */
-	public static function getLabel($idTask) {
-		$idTask	= intval($idTask);
-
-		$numComments = TodoyuCommentCommentManager::getNumberOfTaskComments($idTask);
-
-		if( $numComments === 0 ) {
-			return Todoyu::Label('comment.ext.tab.noComments');
-		} elseif( $numComments === 1 ) {
-			return '1 ' . Todoyu::Label('comment.ext.tab.comment');
-		} else {
-			return $numComments . ' ' . Todoyu::Label('comment.ext.tab.comments');
-		}
+	public function getProject() {
+		return TodoyuCommentProjectManager::getProject($this->getProjectID());
 	}
 
 
 
 	/**
-	 * Get tab content for a task
+	 * Get comment fallback ID of project
 	 *
-	 * @param	Integer		$idTask
-	 * @return	String
+	 * @return	Integer
 	 */
-	public static function getContent($idTask) {
-		$idTask		= intval($idTask);
-		$numComments= TodoyuCommentCommentManager::getNumberOfTaskComments($idTask);
+	public function getCommentFallbackID() {
+		return $this->getProject()->getCommentFallbackID();
+	}
 
-			// If no comments
-		if( $numComments === 0 ) {
-				// Show form to add first task if allowed
-			return TodoyuCommentRenderer::renderEdit($idTask, 0);
-		} else {
-			return TodoyuCommentRenderer::renderCommentList($idTask);
-		}
+
+
+	/**
+	 * Get comment fallback of project
+	 *
+	 * @return	TodoyuCommentFallback
+	 */
+	public function getCommentFallback() {
+		return $this->getProject()->getCommentFallback();
+	}
+
+
+
+	/**
+	 * Check whether project has a comment fallback
+	 *
+	 * @return	Boolean
+	 */
+	public function hasCommentFallback() {
+		return $this->getProject()->hasCommentFallback();
+	}
+
+
+
+	/**
+	 * Apply comment fallback if project has one (or try global fallback)
+	 *
+	 * @param	Array		$data
+	 * @return	Array
+	 */
+	public function applyCommentFallback(array $data) {
+		return $this->getProject()->applyCommentFallback($this->getID(), $data);
 	}
 
 }

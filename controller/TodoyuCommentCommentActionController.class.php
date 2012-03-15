@@ -90,7 +90,7 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 
 		TodoyuHeader::sendTodoyuHeader('idTask', $idTask);
 		TodoyuHeader::sendTodoyuHeader('idComment', $idComment);
-		TodoyuHeader::sendTodoyuHeader('tabLabel', TodoyuCommentTask::getLabel($idTask));
+		TodoyuHeader::sendTodoyuHeader('tabLabel', TodoyuCommentTaskManager::getTaskTabLabel($idTask));
 	}
 
 
@@ -102,13 +102,9 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 	 * @return	Void|String		Failure returns re-rendered form with error messages
 	 */
 	public function saveAction(array $params) {
-		$data	= $params['comment'];
-
+		$data		= $params['comment'];
 		$idComment	= intval($data['id']);
 		$idTask		= intval($data['id_task']);
-
-		$sendAsEmail			= intval($data['sendasemail']) === 1;
-		$mailReceiverPersonIDs	= array_unique(TodoyuArray::intval($data['emailreceivers'], true, true));
 
 			// Check editing rights for existing comments
 		if( $idComment !== 0 ) {
@@ -123,21 +119,51 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 		if( $form->isValid() ) {
 			$storageData = $form->getStorageData();
 
-				// Store comment
-			$idComment = TodoyuCommentCommentManager::saveComment($storageData);
-			TodoyuHeader::sendTodoyuHeader('tabLabel', TodoyuCommentTask::getLabel($storageData['id_task']));
-			TodoyuHeader::sendTodoyuHeader('feedback', TodoyuCommentFeedbackManager::getOpenFeedbackCount());
+			TodoyuDebug::printInFirebug($storageData, 'storageData');
 
-				// Send email(s) if mail option activated
-			if( $sendAsEmail && sizeof($mailReceiverPersonIDs) > 0 ) {
-				$sent	= TodoyuCommentMailer::sendEmails($idComment, $mailReceiverPersonIDs);
-				if( $sent ) {
-					TodoyuCommentMailManager::saveMailsSent($idComment, $mailReceiverPersonIDs);
-					TodoyuHeader::sendTodoyuHeader('sentEmail', true);
-				}
+				// Store comment
+			$saveResult	= TodoyuCommentCommentManager::saveComment($storageData);
+			$idComment	= $saveResult['id'];
+
+			TodoyuDebug::printInFirebug($saveResult, 'saveResult');
+
+				// Send info headers
+			TodoyuHeader::sendTodoyuHeader('comment', $idComment);
+			TodoyuHeader::sendTodoyuHeader('tabLabel', TodoyuCommentTaskManager::getTaskTabLabel($idTask));
+
+			if( AREAEXT === 'portal' ) {
+				TodoyuHeader::sendTodoyuHeader('openFeedbackCount', TodoyuCommentFeedbackManager::getOpenFeedbackCount());
 			}
-			// Form data is invalid
-		} else {
+
+				// Send back feedback status
+			if( sizeof($saveResult['feedback']) ) {
+				$feedbackData = array();
+				foreach($saveResult['feedback'] as $idPerson) {
+					$feedbackData[] = array(
+						'id'	=> $idPerson,
+						'name'	=> TodoyuContactPersonManager::getLabel($idPerson)
+					);
+				}
+				TodoyuHeader::sendTodoyuHeader('feedback', $feedbackData);
+				TodoyuDebug::printInFirebug('send todoyu header');
+			}
+
+
+				// Send back email status data if any sent
+			if( sizeof($saveResult['email']) ) {
+				$emailStatusData = array();
+				foreach($saveResult['email'] as $idPerson => $personStatus) {
+					$emailStatusData[] = array(
+						'id'		=> $idPerson,
+						'name'		=> TodoyuContactPersonManager::getLabel($idPerson, true),
+						'status'	=> $personStatus
+					);
+				}
+				TodoyuHeader::sendTodoyuHeader('emailStatus', $emailStatusData);
+			}
+
+			return '';
+		} else { // Form data is invalid
 			TodoyuHeader::sendTodoyuErrorHeader();
 			TodoyuHeader::sendTodoyuHeader('idComment', $idComment);
 

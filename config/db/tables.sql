@@ -34,3 +34,14 @@ CREATE TABLE `ext_comment_mm_comment_feedback` (
 	 KEY `comment` (`id_comment`),
 	 KEY `personseen` (`id_person_feedback`,`is_seen`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+
+--
+-- Table structure for table `ext_project_project`
+--
+
+CREATE TABLE `ext_project_project` (
+	`ext_comment_fallback` int(10) unsigned NOT NULL
+);

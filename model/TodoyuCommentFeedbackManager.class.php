@@ -38,7 +38,7 @@ class TodoyuCommentFeedbackManager {
 	 * @param	Integer		$idComment
 	 * @param	Array		$feedbackPersonIDs
 	 */
-	public static function updateFeedbacks($idComment, $feedbackPersonIDs = array()) {
+	public static function savedFeedbackRequests($idComment, $feedbackPersonIDs = array()) {
 			// Get already stored unseen feedbacks
 		$seenFeedbackPersonIDs	= self::getSeenFeedbacksPersonIDs($idComment);
 

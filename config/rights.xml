@@ -3,17 +3,29 @@
 
 	<section name="general">
 		<right name="use" />
+		<right name="requestFeedback" require="general:use" />
+		<right name="sendEmail" require="general:use" />
 	</section>
 
 	<section name="comment" require="general:use">
 		<right name="seeAll" />
 		<right name="editOwn" />
 		<right name="editAll" require="comment:seeAll" />
-		<right name="requestFeedback" />
-		<right name="sendAsEmail" />
 		<right name="deleteOwn" />
 		<right name="deleteAll" require="comment:seeAll" />
 		<right name="makePublic" />
+	</section>
+
+	<section name="requestFeedback" require="general:requestFeedback">
+		<right name="task" />
+		<right name="project" />
+		<right name="internal" />
+	</section>
+
+	<section name="sendEmail" require="general:sendEmail">
+		<right name="task" />
+		<right name="project" />
+		<right name="internal" />
 	</section>
 
 </rights>

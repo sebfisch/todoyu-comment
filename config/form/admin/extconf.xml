@@ -6,24 +6,14 @@
 	<fieldsets>
 
 		<fieldset name="config">
-			<legend>comment.form.legend.admin.basics</legend>
+			<legend>comment.form.extconf.legend.config</legend>
 			<elements>
-				<field type="select" name="autorequestownerfeedback">
-					<label>comment.ext.extconf.autorequestownerfeedback.label</label>
-					<source type="function">
-						<function>TodoyuRoleViewHelper::getRoleOptions</function>
-						<lazyInit />
-					</source>
-					<multiple />
-				</field>
 
-				<field type="select" name="automailcommenttoowner">
-					<label>comment.ext.extconf.automailcommenttoowner.label</label>
+				<field type="select" name="globalFallback">
+					<label>comment.ext.extconf.globalFallback</label>
 					<source type="function">
-						<function>TodoyuRoleViewHelper::getRoleOptions</function>
-						<lazyInit />
+						<function>TodoyuCommentViewHelper::getFallbackOptions</function>
 					</source>
-					<multiple />
 				</field>
 
 			</elements>

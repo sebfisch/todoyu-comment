@@ -95,7 +95,9 @@ Todoyu.Ext.comment.Edit = {
 	 * @return	{Boolean}
 	 */
 	isMailActive: function(idTask, idComment) {
-		return $('comment-' + idTask + '-' + idComment + '-field-sendasemail').checked;
+		var checkbox = $('comment-' + idTask + '-' + idComment + '-field-sendasemail');
+
+		return checkbox && checkbox.checked;
 	},
 
 
@@ -175,12 +177,80 @@ Todoyu.Ext.comment.Edit = {
 			Todoyu.Ext.comment.setTabLabel(idTask, response.getTodoyuHeader('tabLabel'));
 			Todoyu.notifySuccess('[LLL:comment.ext.js.commentSaved]', notificationIdentifier);
 
-			if( response.getTodoyuHeader('sentEmail') ) {
-				Todoyu.notifySuccess('[LLL:comment.ext.js.emailSent]');
+			if( response.hasTodoyuHeader('feedback') ) {
+				this.notifyFeedbackPersons(response.getTodoyuHeader('feedback'));
 			}
-
-			Todoyu.Ext.comment.updateFeedbackTab(response.getTodoyuHeader('feedback'));
+			if( response.hasTodoyuHeader('emailStatus') ) {
+				this.notifyEmailSendStatus(response.getTodoyuHeader('emailStatus'));
+			}
+			if( Todoyu.isInArea('portal') ) {
+				this.ext.updateFeedbackTab(response.getTodoyuHeader('openFeedbackCount'));
+			}
 		}
+	},
+
+
+
+	/**
+	 * Show notification about the persons from which feedback is requested
+	 *
+	 * @param	{Array}		feedbackPersons
+	 */
+	notifyFeedbackPersons: function(feedbackPersons) {
+		var names = this.extractNames(feedbackPersons).join(', ');
+
+		Todoyu.notifyInfo('Requested feedback from: ' + names);
+	},
+
+
+
+	/**
+	 * Notify about email status
+	 *
+	 * @param	{Array}		emailSendStatus
+	 */
+	notifyEmailSendStatus: function(emailSendStatus) {
+		var names;
+		var allOk = emailSendStatus.all(function(person){
+			return person.status;
+		});
+
+		if( allOk ) {
+			names = feedbackPersons.collect(function(person){
+				return person.name;
+			}).join(', ');
+
+			Todoyu.notifyInfo('Emails sent to: ' + names);
+		} else {
+			var ok = emailSendStatus.findAll(function(person){
+				return this.status;
+			});
+			var fail = emailSendStatus.findAll(function(person){
+				return !this.status;
+			});
+
+			if( ok.size() ) {
+				names = this.extractNames(ok).join(', ');
+				Todoyu.notifyInfo('Email sent to: ' + names);
+			} else {
+				fail.each(function(name) {
+					Todoyu.notifyInfo('Email failed for: ' + name);
+				});
+			}
+		}
+	},
+
+
+
+	/**
+	 * Extract names out of person objects
+	 *
+	 * @param	{Object}	personObjects
+	 */
+	extractNames: function(personObjects) {
+		return personObjects.collect(function(person){
+			return person.name;
+		});
 	},
 
 

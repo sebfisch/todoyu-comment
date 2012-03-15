@@ -40,8 +40,6 @@
 	<label index="js.commentSaved">Nota Salva</label>
 	<label index="js.commentSavingFailed">A Nota Não Pode ser Salva</label>
 	<label index="js.emailSent">Email Enviado</label>
-	<label index="extconf.autorequestownerfeedback.label">Roles To Auto-Request Feedback From Task Owner: (Removes Feedback Option With Free Receiver Selection)</label>
-	<label index="extconf.automailcommenttoowner.label">Roles to Auto-Mail Comment To Task Owner: (Removes Mailing Option With Free Receiver Selection)</label>
 	<label index="history.header">Histórico de Notas (Feedbacks e Emails)</label>
 	<label index="history.created">Nota Criada</label>
 	<label index="history.feedbackrequestedfrom">Feedback Requisitado De</label>

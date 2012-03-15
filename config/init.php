@@ -50,7 +50,7 @@ Todoyu::$CONFIG['EXT']['comment']['feedbackTabFilters'] = array(
    -------------------------------------------- */
 if( Todoyu::allowed('comment', 'general:use') ) {
 		// Add task tab for comments
-	TodoyuContentItemTabManager::registerTab('project', 'task', 'comment', 'TodoyuCommentTask::getLabel', 'TodoyuCommentTask::getContent', 30);
+	TodoyuContentItemTabManager::registerTab('project', 'task', 'comment', 'TodoyuCommentTaskManager::getTaskTabLabel', 'TodoyuCommentTaskManager::getTaskTabContent', 30);
 		// Add "Add New > Comment" to task context menu
 	TodoyuContextMenuManager::addFunction('Task', 'TodoyuCommentCommentManager::getTaskContextMenuItems', 150);
 }

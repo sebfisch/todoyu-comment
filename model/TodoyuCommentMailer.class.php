@@ -27,26 +27,32 @@
 class TodoyuCommentMailer {
 
 	/**
-	 * Send comment information email to the persons
+	 * Send comment email to the persons
+	 * Store successful savings
 	 *
 	 * @param	Integer		$idComment
 	 * @param	Array		$personIDs
-	 * @return	Boolean
+	 * @return	Array		ID indexed list with send status
 	 */
 	public static function sendEmails($idComment, array $personIDs) {
-		$idComment	= intval($idComment);
-		$personIDs	= TodoyuArray::intval($personIDs, true, true);
+		$idComment		= intval($idComment);
+		$personIDs		= TodoyuArray::intval($personIDs, true, true);
+		$sendStatus		= array();
+		$sentPersonIDs	= array();
 
-		$succeeded	= true;
 		foreach($personIDs as $idPerson) {
-			$result = self::sendMail($idComment, $idPerson);
+			$personStatus = self::sendMail($idComment, $idPerson);
 
-			if( !$result ) {
-				$succeeded	= false;
+			$sendStatus[$idPerson] = $personStatus;
+
+			if( $personStatus ) {
+				$sentPersonIDs[] = $idPerson;
 			}
 		}
 
-		return $succeeded;
+		TodoyuCommentMailManager::saveMailsSent($idComment, $sentPersonIDs);
+
+		return $sendStatus;
 	}
 
 
