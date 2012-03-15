@@ -216,7 +216,7 @@ Todoyu.Ext.comment.Edit = {
 		});
 
 		if( allOk ) {
-			names = feedbackPersons.collect(function(person){
+			names = emailSendStatus.collect(function(person){
 				return person.name;
 			}).join(', ');
 
@@ -233,8 +233,8 @@ Todoyu.Ext.comment.Edit = {
 				names = this.extractNames(ok).join(', ');
 				Todoyu.notifyInfo('Email sent to: ' + names);
 			} else {
-				fail.each(function(name) {
-					Todoyu.notifyInfo('Email failed for: ' + name);
+				fail.each(function(person) {
+					Todoyu.notifyInfo('Email failed for: ' + person.name);
 				});
 			}
 		}
