@@ -373,7 +373,7 @@ Todoyu.Ext.comment = {
 		var idProject	= parseInt(response.getTodoyuHeader('project'), 10);
 
 		if( idTask > 0 && idProject > 0 ) {
-			location.href='?ext=project&project=' + idProject + '&task=' + idTask + '&tab=comment#task-comment-' + commentNumber;
+			location.href='index.php?ext=project&project=' + idProject + '&task=' + idTask + '&tab=comment#task-comment-' + commentNumber;
 		}
 	},
 

@@ -127,7 +127,7 @@ class TodoyuCommentSearch implements TodoyuSearchEngineIf {
 						'labelTitle'=> $labelTitle,
 						'labelInfo'	=> $textShort,
 						'title'		=> strip_tags($labelTitle),
-						'onclick'	=> 'location.href=\'?ext=project&amp;project=' . $comment['id_project'] . '&amp;task=' . $comment['taskid'] . '&amp;tab=comment#task-comment-' . $comment['id'] . '\''
+						'onclick'	=> 'location.href=\'index.php?ext=project&amp;project=' . $comment['id_project'] . '&amp;task=' . $comment['taskid'] . '&amp;tab=comment#task-comment-' . $comment['id'] . '\''
 					);
 				}
 			}
