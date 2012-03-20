@@ -49,7 +49,7 @@
 
 				<field type="checkbox" name="sendasemail">
 					<label>comment.ext.edit.sendasemail</label>
-					<onclick>Todoyu.Ext.comment.Edit.onClickSendAsEmail(this)</onclick>
+					<onclick>Todoyu.Ext.comment.Edit.onMailCheckboxToggle(this)</onclick>
 					<noStorage />
 					<restrict>
 						<allow ext="comment" right="general:sendEmail" />

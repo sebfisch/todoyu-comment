@@ -57,19 +57,6 @@ Todoyu.Ext.comment.Edit = {
 
 
 	/**
-	 * Check whether auto email field is present
-	 *
-	 * @param	{Number}	idTask
-	 * @param	{Number}	idComment
-	 * @return	{Boolean}
-	 */
-	hasAutoMailInfo: function(idTask, idComment) {
-		return Todoyu.exists('formElement-comment-' + idTask + '-' + idComment + '-field-mailinfo');
-	},
-
-	
-
-	/**
 	 * Show email receivers box when checkbox is activated in form
 	 * This happens on reload when form was invalid
 	 *
@@ -77,9 +64,6 @@ Todoyu.Ext.comment.Edit = {
 	 * @param	{Number}	idComment
 	 */
 	showEmailReceiversOnCheckboxActive: function(idTask, idComment) {
-		if( this.hasAutoMailInfo(idTask, idComment) ) {
-			return;
-		}
 		if( this.isMailActive(idTask, idComment) ) {
 			this.toggleEmailReceivers(idTask, idComment, true);
 		}
@@ -105,10 +89,10 @@ Todoyu.Ext.comment.Edit = {
 	/**
 	 * Handler when changing "send as email" option checkbox
 	 *
-	 * @method	onClickSendAsEmail
+	 * @method	onMailCheckboxToggle
 	 * @param	{Element}	checkbox
 	 */
-	onClickSendAsEmail: function(checkbox) {
+	onMailCheckboxToggle: function(checkbox) {
 		var parts		= checkbox.id.split('-');
 		var idTask		= parts[1];
 		var idComment	= parts[2];
@@ -126,10 +110,10 @@ Todoyu.Ext.comment.Edit = {
 	 * @param	{Boolean}	show
 	 */
 	toggleEmailReceivers: function(idTask, idComment, show) {
-		var inputDiv= $('formElement-comment-' + idTask + '-' + idComment + '-field-emailreceivers');
+		var mailReceiversBox = $('formElement-comment-' + idTask + '-' + idComment + '-field-emailreceivers');
 		var method	= show ? 'show' : 'hide';
 
-		inputDiv[method]();
+		mailReceiversBox[method]();
 	},
 
 
@@ -148,7 +132,8 @@ Todoyu.Ext.comment.Edit = {
 
 		$(form).request({
 			parameters: {
-				action:	'save'
+				action:	'save',
+				area:	Todoyu.getArea()
 			},
 			onComplete: this.onSaved.bind(this, idTask)
 		});
