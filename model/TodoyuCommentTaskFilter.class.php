@@ -279,7 +279,7 @@ class TodoyuCommentTaskFilter extends TodoyuSearchFilterBase {
 			self::TABLE
 		);
 		$compare= TodoyuSearchFilterHelper::getTimeAndLogicForDate($timestamp, $negate);
-		$where	=           self::TABLE . '.id_task				= ext_project_task.id'
+		$where	=			self::TABLE . '.id_task				= ext_project_task.id'
 				. ' AND ' . self::TABLE . '.deleted				= 0 '
 				. ' AND ' .	self::TABLE .	'.date_create' .	$compare['logic'] . ' ' . $compare['timestamp'];
 
