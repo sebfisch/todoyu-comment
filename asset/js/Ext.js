@@ -269,8 +269,15 @@ Todoyu.Ext.comment = {
 	 * @param	{Number}	idTask
 	 */
 	add: function(idTask) {
+			// Clean up UI
 		this.removeForms(idTask);
 
+		var addButton   = $('task-' + idTask + '-comment-commands-bottom').down('.addComment');
+		if( addButton ) {
+			addButton.hide();
+		}
+
+			// Load new comment form
 		var url		= Todoyu.getUrl('comment', 'comment');
 		var options = {
 			parameters: {
