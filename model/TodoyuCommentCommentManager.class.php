@@ -111,6 +111,8 @@ class TodoyuCommentCommentManager {
 			));
 
 			$result['id'] = $idComment;
+		} else {
+			$data['id_person_update'] = TodoyuAuth::getPersonID();
 		}
 
 			// Apply fallback
