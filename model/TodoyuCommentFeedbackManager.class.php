@@ -197,7 +197,7 @@ class TodoyuCommentFeedbackManager {
 				// If person can not see all projects: limit to visible ones
 			if( ! $person->isAdmin() && ! TodoyuContactPersonManager::isAllowed($idPerson, 'project', 'project::seeAll') ) {
 				$projectIDs	= TodoyuProjectProjectManager::getAvailableProjectsForPerson();
-				$where	.= ' AND ' . Todoyu::db()->buildInArrayQuery($projectIDs, 't.id_project');
+				$where	.= ' AND ' . TodoyuSql::buildInArrayQuery($projectIDs, 't.id_project');
 			}
 		}
 

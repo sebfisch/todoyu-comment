@@ -135,7 +135,7 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 		return TodoyuContactPersonManager::getPerson($this->getPersonUpdateID());
 	}
 
-	
+
 
 	/**
 	 * Check whether comment has an update person
@@ -173,7 +173,7 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 	 *
 	 * @return	Boolean
 	 */
-	public function canCurrentUserDelete() {
+	public function canCurrentPersonDelete() {
 		$deleteAll	= Todoyu::allowed('comment', 'comment:deleteAll');
 		$deleteOwn	= Todoyu::allowed('comment','comment:deleteOwn') && $this->isCurrentPersonCreator();
 
@@ -187,7 +187,7 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 	 *
 	 * @return	Boolean
 	 */
-	public function canCurrentUserEdit() {
+	public function canCurrentPersonEdit() {
 		$editAll	= Todoyu::allowed('comment', 'comment:editAll');
 		$editOwn	= Todoyu::allowed('comment','comment:editOwn') && $this->isCurrentPersonCreator();
 
@@ -201,8 +201,8 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 	 *
 	 * @return	Boolean
 	 */
-	public function canCurrentUserMakePublic() {
-		return $this->canCurrentUserEdit();
+	public function canCurrentPersonMakePublic() {
+		return $this->canCurrentPersonEdit();
 	}
 
 
@@ -272,9 +272,9 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 
 		$this->data['isUnapproved']		= TodoyuCommentFeedbackManager::isCommentUnseen($this->getID());
 		$this->data['locked']			= $this->isLocked();
-		$this->data['canDelete']		= $this->canCurrentUserDelete();
-		$this->data['canEdit']			= $this->canCurrentUserEdit();
-		$this->data['canMakePublic']	= $this->canCurrentUserMakePublic();
+		$this->data['canDelete']		= $this->canCurrentPersonDelete();
+		$this->data['canEdit']			= $this->canCurrentPersonEdit();
+		$this->data['canMakePublic']	= $this->canCurrentPersonMakePublic();
 		$this->data['updateInfo']		= $this->getUpdateInfoLabel();
 		$this->data['publicFeedbackWarning'] = $this->getPublicFeedbackWarning();
 	}
