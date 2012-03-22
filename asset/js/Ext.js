@@ -272,7 +272,7 @@ Todoyu.Ext.comment = {
 			// Clean up UI
 		this.removeForms(idTask);
 
-		var addButton   = $('task-' + idTask + '-comment-commands-bottom').down('.addComment');
+		var addButton	= $('task-' + idTask + '-comment-commands-bottom').down('.addComment');
 		if( addButton ) {
 			addButton.hide();
 		}
