@@ -120,7 +120,7 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 	 *
 	 * @return	Integer
 	 */
-	public function getUpdatePersonID() {
+	public function getPersonUpdateID() {
 		return $this->getInt('id_person_update');
 	}
 
@@ -131,18 +131,19 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 	 *
 	 * @return	TodoyuContactPerson
 	 */
-	public function getUpdatePerson() {
-		return TodoyuContactPersonManager::getPerson($this->getUpdatePersonID());
+	public function getPersonUpdate() {
+		return TodoyuContactPersonManager::getPerson($this->getPersonUpdateID());
 	}
 
+	
 
 	/**
 	 * Check whether comment has an update person
 	 *
 	 * @return	Boolean
 	 */
-	public function hasUpdatePerson() {
-		return $this->getUpdatePersonID() !== 0;
+	public function hasPersonUpdate() {
+		return $this->getPersonUpdateID() !== 0;
 	}
 
 
@@ -214,9 +215,9 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 	public function getUpdateInfoLabel() {
 		$label	= false;
 
-		if( $this->hasUpdatePerson() ) {
+		if( $this->hasPersonUpdate() ) {
 			$data	= array(
-				$this->getUpdatePerson()->getFullName(),
+				$this->getPersonUpdate()->getFullName(),
 				TodoyuTime::format($this->getDateUpdate(), 'datetime')
 			);
 			$label	= TodoyuLabelManager::getFormatLabel('comment.ext.updateInfo', $data);
