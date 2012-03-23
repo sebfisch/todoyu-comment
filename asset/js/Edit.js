@@ -216,10 +216,10 @@ Todoyu.Ext.comment.Edit = {
 
 			if( ok.size() ) {
 				names = this.extractNames(ok).join(', ');
-				Todoyu.notifyInfo('Email sent to: ' + names);
+				Todoyu.notifyInfo('[LLL:comment.ext.js.emailSent]: ' + names);
 			} else {
 				fail.each(function(person) {
-					Todoyu.notifyInfo('Email failed for: ' + person.name);
+					Todoyu.notifyError('[LLL:comment.ext.js.emailSent.fail]: ' + person.name);
 				});
 			}
 		}
