@@ -34,31 +34,39 @@
 		</span>
 	</div>
 	<div id="task-comment-{$id}-text" class="comment-details">
-		{* --------------------------- Comment persons --------------- *}
+		{* --------------------------- Comment persons (feedback, email, etc) --------------- *}
 		<div class="persons">
 		{foreach $persons_feedback feedbackPerson name=personsFeedback}
-			{if $dwoo.foreach.personsFeedback.first}
-				{Label comment.ext.comment.feedbackPersons}
-			{/if}
+			{if isPersonSeeAllowed($feedbackPerson.id)}
+				{if $dwoo.foreach.personsFeedback.first}
+					{Label comment.ext.comment.feedbackPersons}
+				{/if}
 
-			{if $feedbackPerson.is_seen}
-				{$class = 'commentperson-approved'}
-			{else}
-				{$class = 'commentperson-unapproved'}
-			{/if}
-			{if in_array($feedbackPerson.id, array_keys($persons_email))}
-				{$class .= '-email'}
-			{/if}
-			{personLabel idPrefix="comment-personfeedback" idRecord=$id idPerson=$feedbackPerson.id class=$class}
-			{if $dwoo.foreach.personsFeedback.last}
-				<div class="divider"> </div>
+				{if $feedbackPerson.is_seen}
+					{$class = 'commentperson-approved'}
+				{else}
+					{$class = 'commentperson-unapproved'}
+				{/if}
+				{if in_array($feedbackPerson.id, array_keys($persons_email))}
+					{$class .= '-email'}
+				{/if}
+				{personLabel idPrefix="comment-personfeedback" idRecord=$id idPerson=$feedbackPerson.id class=$class}
+				{if $dwoo.foreach.personsFeedback.last}
+					<div class="divider"> </div>
+				{/if}
 			{/if}
 		{/foreach}
 
 		{if sizeof($person_ids_mailonly) > 0}
-			{Label comment.ext.comment.emailPersons}
-			{foreach $person_ids_mailonly emailPersonID}
-				{personLabel idPrefix="comment-personemail" idRecord=$emailPersonID idPerson=$emailPersonID class="emailperson"}
+			{$labelRendered = 0}
+			{foreach $person_ids_mailonly emailPersonID name=personsEmai}
+				{if isPersonSeeAllowed($emailPersonID)}
+					{if $labelRendered === 0}
+						{Label comment.ext.comment.emailPersons}
+						{$labelRendered = 1}
+					{/if}
+					{personLabel idPrefix="comment-personemail" idRecord=$emailPersonID idPerson=$emailPersonID class="emailperson"}
+				{/if}
 			{/foreach}
 			<div class="divider"> </div>
 		{/if}
