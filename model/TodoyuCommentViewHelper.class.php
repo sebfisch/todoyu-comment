@@ -186,7 +186,7 @@ class TodoyuCommentViewHelper {
 	}
 
 
-	
+
 	/**
 	 * Get fallback options for config in project
 	 *
