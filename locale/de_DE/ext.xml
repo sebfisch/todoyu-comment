@@ -67,5 +67,5 @@
 	<label index="fallback.taskperson_email">An diese Person im Task</label>
 	<label index="fallback.id_role_email">An die Person mit dieser Projektrolle</label>
 	<label index="fallback.noneForProject">Keine Fallbacks für Aufgaben in diesem Projekt</label>
-	<label index="extconf.globalFallback">Globaler Falback</label>
+	<label index="extconf.globalFallback">Globaler Fallback</label>
 </labels>
