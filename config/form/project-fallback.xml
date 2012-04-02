@@ -7,8 +7,9 @@
 				<field type="select" name="ext_comment_fallback">
 					<label>comment.ext.fallback</label>
 					<source type="function">
-						<function>TodoyuCommentViewHelper::getFallbackOptions</function>
+						<function>TodoyuCommentViewHelper::getFallbackOptionsForProject</function>
 					</source>
+					<noPleaseSelect />
 				</field>
 
 			</elements>

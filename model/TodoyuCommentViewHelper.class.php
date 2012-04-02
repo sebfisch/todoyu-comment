@@ -185,6 +185,21 @@ class TodoyuCommentViewHelper {
 		return TodoyuArray::reform($fallbacks, $reform);
 	}
 
+
+	
+	/**
+	 * Get fallback options for config in project
+	 *
+	 * @param	TodoyuFormElement	$field
+	 * @return	Array
+	 */
+	public static function getFallbackOptionsForProject(TodoyuFormElement $field) {
+		$options	= self::getFallbackOptions($field);
+		$options	= TodoyuArray::prependSelectOption($options, 'comment.ext.fallback.noneForProject');
+
+		return $options;
+	}
+
 }
 
 ?>
