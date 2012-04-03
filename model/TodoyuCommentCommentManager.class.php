@@ -473,14 +473,33 @@ class TodoyuCommentCommentManager {
 	 */
 	public static function linkCommentIDsInText($text) {
 		if( Todoyu::allowed('project', 'general:area') ) {
-			$pattern	= '/(<p>|<span>|\s|^)c(\d+)(<\/p>|<\/span>|\s|$)/';
-			$replace	= '$1<a href="javascript:void(0)" onclick="Todoyu.Ext.comment.goToCommentInTaskByCommentNumber(\'$2\')">c$2</a>$3';
-
-			$text	= preg_replace($pattern, $replace, $text);
+			$pattern= '/(^|[^\w\.]+)(c(\d+))([^\w\.]+|$)/';
+			$text	= preg_replace_callback($pattern, array('TodoyuCommentCommentManager', 'callbackLinkCommentsInText'), $text);
 		}
 
 		return $text;
 	}
+
+
+
+	/**
+	 * Repalce comment text with link version
+	 *
+	 * @param	Array		$matches
+	 * @return	String
+	 */
+	private static function callbackLinkCommentsInText(array $matches) {
+		$idComment	= intval($matches[3]);
+		$comment	= self::getComment($idComment);
+		$idTask		= $comment->getTaskID();
+		$task		= $comment->getTask();
+		$person		= $comment->getPersonCreate()->getFullName();
+		$date		= TodoyuTime::format($comment->getDateCreate(), 'D2MshortTime');
+		$title		= $date . ' | ' . $person . ' | ' . $task->getTitleWithTaskNumber();
+
+		return $matches[1] . '<a href="index.php?ext=project&task=' . $idTask . '&tab=comment#task-comment-' . $idComment . '" title="' . $title . '">' . $matches[2] . '</a>' . $matches[4];
+	}
+
 }
 
 ?>
