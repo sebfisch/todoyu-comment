@@ -42,6 +42,7 @@ Todoyu.Ext.comment.Edit = {
 	/**
 	 * Hook when comment form is displayed
 	 *
+	 * @method	onFormDisplay
 	 * @param	{Number}	idForm
 	 * @param	{String}	name
 	 * @param	{Number}	recordID
@@ -60,6 +61,7 @@ Todoyu.Ext.comment.Edit = {
 	 * Show email receivers box when checkbox is activated in form
 	 * This happens on reload when form was invalid
 	 *
+	 * @method	showEmailReceiversOnCheckboxActive
 	 * @param	{Number}	idTask
 	 * @param	{Number}	idComment
 	 */
@@ -74,6 +76,7 @@ Todoyu.Ext.comment.Edit = {
 	/**
 	 * Check whether send mail option is enabled
 	 *
+	 * @method	isMailActive
 	 * @param	{Number}	idTask
 	 * @param	{Number}	idComment
 	 * @return	{Boolean}
@@ -105,6 +108,7 @@ Todoyu.Ext.comment.Edit = {
 	/**
 	 * Toggle the email receivers field
 	 *
+	 * @method	toggleEmailReceivers
 	 * @param	{Number}	idTask
 	 * @param	{Number}	idComment
 	 * @param	{Boolean}	show
@@ -179,6 +183,7 @@ Todoyu.Ext.comment.Edit = {
 	/**
 	 * Show notification about the persons from which feedback is requested
 	 *
+	 * @method	notifyFeedbackPersons
 	 * @param	{Array}		feedbackPersons
 	 */
 	notifyFeedbackPersons: function(feedbackPersons) {
@@ -192,6 +197,7 @@ Todoyu.Ext.comment.Edit = {
 	/**
 	 * Notify about email status
 	 *
+	 * @method	notifyEmailSendStatus
 	 * @param	{Array}		emailSendStatus
 	 */
 	notifyEmailSendStatus: function(emailSendStatus) {
@@ -230,6 +236,7 @@ Todoyu.Ext.comment.Edit = {
 	/**
 	 * Extract names out of person objects
 	 *
+	 * @method	extractNames
 	 * @param	{Object}	personObjects
 	 */
 	extractNames: function(personObjects) {
