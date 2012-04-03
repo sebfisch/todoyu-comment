@@ -24,6 +24,7 @@ TodoyuHookManager::registerHook('core', 'substituteLinkableElements', 'TodoyuCom
 //TodoyuHookManager::registerHook('project', 'renderTasks', 'TodoyuCommentCommentManager::onTasksRender');
 
 TodoyuFormHook::registerBuildForm('ext/project/config/form/project.xml', 'TodoyuCommentFallbackManager::hookAddFallbackField');
+TodoyuFormHook::registerLoadData('ext/project/config/form/project.xml', 'TodoyuCommentFallbackManager::hookSetProjectDefaultData');
 
 
 	// Callbacks for exteding filter widgets of other extensions

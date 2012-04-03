@@ -205,6 +205,31 @@ class TodoyuCommentFallbackManager {
 		return $form;
 	}
 
+
+
+	/**
+	 * Add global fallback as default for new projects
+	 *
+	 * @param	Array		$data
+	 * @param	Integer		$idProject
+	 * @param	Array		$params
+	 * @return	Array
+	 */
+	public static function hookSetProjectDefaultData(array $data, $idProject, array $params = array()) {
+		$idProject	= intval($idProject);
+
+		if( $idProject === 0 ) {
+			if( !isset($data['ext_comment_fallback']) ) {
+				$idFallback	= self::getGlobalFallbackID();
+				if( $idFallback !== 0 ) {
+					$data['ext_comment_fallback'] = $idFallback;
+				}
+			}
+		}
+
+		return $data;
+	}
+
 }
 
 ?>
