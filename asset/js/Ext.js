@@ -95,6 +95,23 @@ Todoyu.Ext.comment = {
 	onToggledPublic: function(idComment, response) {
 		$('task-comment-' + idComment).toggleClassName('isPublic');
 		$('public-trigger-' + idComment).toggleClassName('comment-public');
+		this.removeWarningPublicFeedback(idComment);
+	},
+
+
+
+	/**
+	 * Remove warning about feedback request from person that sees only public comments inside a non-public comment
+	 *
+	 * @method	removeWarningPublicFeedback
+	 * @param	{Number}	idComment
+	 */
+	removeWarningPublicFeedback: function(idComment) {
+		var publicFeedbackWarning	= $('task-comment-' + idComment + '-text').down('.publicFeedbackWarning');
+
+		if( publicFeedbackWarning ) {
+			publicFeedbackWarning.fade();
+		}
 	},
 
 
