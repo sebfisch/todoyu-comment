@@ -1,4 +1,4 @@
-<li id="task-comment-{$id}" class="tabBlock comment {if $is_public}isPublic{/if}">
+<li id="task-comment-{$id}" class="tabBlock comment {if $is_public}{if isSeeAllCommentsAllowed()}isPublic{/if}{/if}">
 	<a name="task-comment-{$id}"></a>
 	<div class="comment-properties">
 		{if $isUnapproved}

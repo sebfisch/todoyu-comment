@@ -48,4 +48,14 @@ function Dwoo_Plugin_isAddInTaskAllowed(Dwoo $dwoo, $idTask) {
 	return TodoyuCommentRights::isAddInTaskAllowed($idTask);
 }
 
+
+
+/**
+ * @param	Dwoo $dwoo
+ * @return	Boolean
+ */
+function Dwoo_Plugin_isSeeAllCommentsAllowed(Dwoo $dwoo) {
+	return Todoyu::allowed('comment', 'comment:seeAll');
+}
+
 ?>

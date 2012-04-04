@@ -35,7 +35,6 @@ Todoyu.Ext.comment = {
 	 */
 	PanelWidget: {},
 
-
 	/**
 	 * Initialize comment extension
 	 * Add a hook to observe form display to fix email receivers field display
