@@ -104,6 +104,12 @@ class TodoyuCommentTaskActionController extends TodoyuActionController {
 		TodoyuCommentRights::restrictSee($idComment);
 
 		TodoyuCommentCommentManager::togglePublic($idComment);
+		TodoyuCache::flush();
+
+		$publicFeedbackWarning	= TodoyuCommentCommentManager::getComment($idComment)->getPublicFeedbackWarning();
+		if( $publicFeedbackWarning !== false ) {
+			TodoyuHeader::sendTodoyuHeader('publicFeedbackWarning', $publicFeedbackWarning);
+		}
 	}
 
 

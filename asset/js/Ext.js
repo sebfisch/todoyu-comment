@@ -94,25 +94,42 @@ Todoyu.Ext.comment = {
 	onToggledPublic: function(idComment, response) {
 		$('task-comment-' + idComment).toggleClassName('isPublic');
 		$('public-trigger-' + idComment).toggleClassName('comment-public');
-		this.removeWarningPublicFeedback(idComment);
+
+		var warning;
+		if( response.hasTodoyuHeader('publicFeedbackWarning') ) {
+			if( !this.commentHasPublicFeedbackWarning(idComment) ) {
+					// Add received warning
+				warning		= new Element('div', { className:	'publicFeedbackWarning'}).update(response.getTodoyuHeader('publicFeedbackWarning'));
+				$('task-comment-' + idComment + '-text').insert(warning);
+			}
+		} else if( this.commentHasPublicFeedbackWarning(idComment) ) {
+				// Remove invalid warning
+			this.getCommentPublicFeedbackWarning(idComment).remove();
+		}
 	},
 
 
 
 	/**
-	 * Remove warning about feedback request from person that sees only public comments inside a non-public comment
-	 *
-	 * @method	removeWarningPublicFeedback
+	 * @method	getCommentPublicFeedbackWarning
 	 * @param	{Number}	idComment
+	 * @param	{Element}
 	 */
-	removeWarningPublicFeedback: function(idComment) {
-		var publicFeedbackWarning	= $('task-comment-' + idComment + '-text').down('.publicFeedbackWarning');
-
-		if( publicFeedbackWarning ) {
-			publicFeedbackWarning.fade();
-		}
+	getCommentPublicFeedbackWarning: function(idComment) {
+		return $('task-comment-' + idComment + '-text').down('.publicFeedbackWarning');
 	},
 
+
+	/**
+	 * Check whether there is a warning about non-public task/comments being not visible
+	 *
+	 * @method	hasPublicFeedbackWarning
+	 * @param	{Number}	idComment
+	 * @return	{Boolean}
+	 */
+	commentHasPublicFeedbackWarning: function(idComment) {
+		return Todoyu.exists(this.getCommentPublicFeedbackWarning(idComment));
+	},
 
 
 	/**
