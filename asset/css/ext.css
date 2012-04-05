@@ -383,3 +383,35 @@ input.deleteButtonOwnComment {
 	padding-top:0;
 	margin-top:0;
 }
+
+.task .tabContent .comment a {
+	text-decoration:underline !important;
+}
+
+.task .tabContent .comment a:hover {
+	background-color:#e2e2e2;
+}
+
+.task .tabContent .comment .comment-properties a:hover {
+	background-color:transparent;
+}
+
+
+.task-comments ul {
+	margin:0;
+	padding:0 0 5px 14px;
+}
+
+.task-comments ul li {
+	padding-left:5px;
+}
+
+.task-comments ol {
+	margin:0 0 0 5px;
+	padding:0 0 5px 14px;
+}
+
+.task-comments ul {
+	list-style:disc;
+}
+
