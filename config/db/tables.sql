@@ -14,7 +14,7 @@ CREATE TABLE `ext_comment_comment` (
 	`is_public` tinyint(1) unsigned NOT NULL DEFAULT '0',
 	PRIMARY KEY (`id`),
 	KEY `task` (`id_task`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -34,7 +34,7 @@ CREATE TABLE `ext_comment_mm_comment_feedback` (
 	PRIMARY KEY (`id`),
 	 KEY `comment` (`id_comment`),
 	 KEY `personseen` (`id_person_feedback`,`is_seen`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -44,21 +44,21 @@ CREATE TABLE `ext_comment_mm_comment_feedback` (
 --
 
 CREATE TABLE IF NOT EXISTS `ext_comment_fallback` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `date_create` int(10) unsigned NOT NULL,
-  `date_update` int(10) unsigned NOT NULL,
-  `id_person_create` int(10) unsigned NOT NULL,
-  `deleted` tinyint(1) unsigned NOT NULL,
-  `title` varchar(255) NOT NULL DEFAULT '',
-  `id_person_feedback` int(10) unsigned NOT NULL,
-  `taskperson_feedback` varchar(10) NOT NULL,
-  `id_role_feedback` int(10) unsigned NOT NULL,
-  `id_person_email` int(10) unsigned NOT NULL,
-  `taskperson_email` varchar(10) NOT NULL,
-  `id_role_email` int(10) unsigned NOT NULL,
-  `is_public` tinyint(1) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8;
+	`id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+	`date_create` int(10) unsigned NOT NULL,
+	`date_update` int(10) unsigned NOT NULL,
+	`id_person_create` int(10) unsigned NOT NULL,
+	`deleted` tinyint(1) unsigned NOT NULL,
+	`title` varchar(255) NOT NULL DEFAULT '',
+	`id_person_feedback` int(10) unsigned NOT NULL,
+	`taskperson_feedback` varchar(10) NOT NULL,
+	`id_role_feedback` int(10) unsigned NOT NULL,
+	`id_person_email` int(10) unsigned NOT NULL,
+	`taskperson_email` varchar(10) NOT NULL,
+	`id_role_email` int(10) unsigned NOT NULL,
+	`is_public` tinyint(1) unsigned NOT NULL,
+	PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 

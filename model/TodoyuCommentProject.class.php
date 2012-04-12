@@ -57,6 +57,13 @@ class TodoyuCommentProject extends TodoyuProjectProject {
 		return $this->getCommentFallbackID() !== 0;
 	}
 
+
+
+	/**
+	 * @param	Integer	$idTask
+	 * @param	Array	$data
+	 * @return	Array
+	 */
 	public function applyCommentFallback($idTask, array $data) {
 		$fallback	= false;
 

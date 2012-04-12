@@ -26,11 +26,12 @@
  */
 class TodoyuCommentFallbackManager {
 
+	/**
+	 * @var String		Default table for database requests
+	 */
 	const TABLE = 'ext_comment_fallback';
 
 	/**
-	 *
-	 *
 	 * @param	Integer		$idFallback
 	 * @return	TodoyuCommentFallback
 	 */
@@ -142,7 +143,6 @@ class TodoyuCommentFallbackManager {
 			return false;
 		}
 
-
 		$field	= 'id';
 		$table	= 'ext_project_project';
 		$where	= 'ext_comment_fallback = ' . $idFallback;
@@ -158,7 +158,9 @@ class TodoyuCommentFallbackManager {
 	 * @return	Boolean
 	 */
 	public static function hasGlobalFallback() {
-		return self::getGlobalFallbackID() !== 0;
+		$idFallback	= self::getGlobalFallbackID();
+
+		return $idFallback !== 0 && TodoyuRecordManager::isRecord(self::TABLE, $idFallback);
 	}
 
 
@@ -182,7 +184,9 @@ class TodoyuCommentFallbackManager {
 	 * @return	TodoyuCommentFallback
 	 */
 	public static function getGlobalFallback() {
-		return self::getFallback(self::getGlobalFallbackID());
+		$idFallback	= self::getGlobalFallbackID();
+
+		return $idFallback !== 0 ? self::getFallback($idFallback) : false;
 	}
 
 

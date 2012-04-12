@@ -58,7 +58,7 @@ Todoyu.Ext.comment.List = {
 	 * @param	{Ajax.Response}	response
 	 */
 	onRefreshed: function(idTask, response) {
-		var firstButton =  $('task-' + idTask).select('button.addComment')[0];
+		var firstButton = $('task-' + idTask).select('button.addComment')[0];
 
 		if( this.hasComments(idTask) ) {
 				// There are comments: unhide first button (above comments)
@@ -75,7 +75,7 @@ Todoyu.Ext.comment.List = {
 	 * Get amount of displayed comments of given task
 	 *
 	 * @method	getAmountComments
-	 * @param	{Number}  idTask
+	 * @param	{Number}			idTask
 	 * @return	{Number}
 	 */
 	getAmountComments: function(idTask) {
