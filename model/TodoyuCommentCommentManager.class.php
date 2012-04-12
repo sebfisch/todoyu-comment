@@ -89,7 +89,7 @@ class TodoyuCommentCommentManager {
 
 
 	/**
-	 * Save comment
+	 * Save comment (also sends comment mails if set)
 	 *
 	 * @param	Array		$data
 	 * @return	Array		Data about comment saving: id, feedback, email, emailOk

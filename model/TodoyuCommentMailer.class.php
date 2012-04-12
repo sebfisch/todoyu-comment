@@ -41,7 +41,7 @@ class TodoyuCommentMailer {
 		$sentPersonIDs	= array();
 
 		foreach($personIDs as $idPerson) {
-			$personStatus = self::sendMail($idComment, $idPerson);
+			$personStatus = self::sendMail($idComment, $idPerson, true);
 
 			$sendStatus[$idPerson] = $personStatus;
 
@@ -64,11 +64,15 @@ class TodoyuCommentMailer {
 	 * @param	Integer		$idPerson
 	 * @return	Boolean		Success
 	 */
-	public static function sendMail($idComment, $idPerson) {
+	public static function sendMail($idComment, $idPerson, $setCurrentUserAsSender=false) {
 		$idComment	= intval($idComment);
 		$idPerson	= intval($idPerson);
 
 		$mail		= new TodoyuCommentMail($idComment, $idPerson);
+
+		if( $setCurrentUserAsSender ) {
+			$mail->setCurrentUserAsSender();
+		}
 
 		TodoyuHookManager::callHook('comment', 'comment.email', array($idComment, $idPerson));
 
