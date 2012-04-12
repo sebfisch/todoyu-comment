@@ -83,7 +83,7 @@ class TodoyuCommentCommentManager {
 	 * @return	String
 	 */
 	public static function filterHtmlTags($text) {
-		return strip_tags($text, Todoyu::$CONFIG['EXT']['comment']['allowedtags']);
+		return strip_tags($text, Todoyu::$CONFIG['EXT']['comment']['allowedTags']);
 	}
 
 

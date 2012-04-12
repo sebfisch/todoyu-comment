@@ -22,27 +22,21 @@ if( Todoyu::allowed('comment', 'general:use') ) {
 	require_once( PATH_EXT_COMMENT . '/config/hooks.php' );
 }
 
-	// System name and email to be used in sender attribute inside emails
-Todoyu::$CONFIG['EXT']['comment']['infomail']['fromname']		= Todoyu::$CONFIG['SYSTEM']['name'];
-Todoyu::$CONFIG['EXT']['comment']['infomail']['email']			= Todoyu::$CONFIG['SYSTEM']['email'];
-
-	// Allowable tags inside comments text when saving
-Todoyu::$CONFIG['EXT']['comment']['allowedtags']	= '<p><b><strong><em><span><i><u><strike><ol><ul><li><br><pre><a>';
-
-
 
 /* ------------------------------------------------
 	Configuration for 'feedback' tab in portal
    ------------------------------------------------ */
-Todoyu::$CONFIG['EXT']['comment']['feedbackTabFilters'] = array(
-	array(
-		'filter' => 'unseenFeedbackPerson'
-	),
-	array(
-		'filter' => 'commentIsPublicForExternals'
+Todoyu::$CONFIG['EXT']['comment'] = array(
+	'allowedTags'		=> '<p><strong><em><span><i><ol><ul><li><br><pre><a>',
+	'feedbackTabFilters'=> array(
+		array(
+			'filter' => 'unseenFeedbackPerson'
+		),
+		array(
+			'filter' => 'commentIsPublicForExternals'
+		)
 	)
 );
-
 
 
 /* --------------------------------------------
