@@ -37,7 +37,7 @@ class TodoyuCommentSearch implements TodoyuSearchEngineIf {
 	public static function searchComments(array $find, array $ignore = array(), $limit = 100) {
 			// Find comment IDs via full-text search
 		$table	= 'ext_comment_comment';
-		$fields	= array('comment');
+		$fields	= array('`comment`');
 
 		$commentIDs	= TodoyuSearch::searchTable($table, $fields, $find, $ignore, $limit);
 
