@@ -1,5 +1,4 @@
 <li id="task-comment-{$id}" class="tabBlock comment {if $is_public}{if isSeeAllCommentsAllowed()}isPublic{/if}{/if}">
-	<a name="task-comment-{$id}"></a>
 	<div class="comment-properties">
 		{if $isUnapproved}
 			<a href="javascript:void(0)" id="comment-{$id}-seenstatus" onclick="Todoyu.Ext.comment.setSeenStatus({$id}, {personid()})" class="comment-personapproval hasicon"></a>
