@@ -5,13 +5,13 @@
 	<label index="tab.comment">Komentář</label>
 	<label index="tab.comments">Komentáře</label>
 	<label index="tab.noComments">Přidat komentář</label>
-	<label index="tab.toggle">Vyp./Zap. komentáře</label>
+	<label index="tab.toggle">Vyp/zap komentáře</label>
 	<label index="edit.comment">Komentář</label>
 	<label index="edit.feedback">Vyžadovat odpověď</label>
 	<label index="edit.autoFeedbackFromOwner">Vyžadovaná odpověď vlastníkem úkolu</label>
 	<label index="edit.is_public">Komentář je viditelný všem členům projektu</label>
 	<label index="edit.sendasemail">Odeslat komentář emailem</label>
-	<label index="edit.autoSentEmailToTaskOwner">Odeslat emailem vlastnikovi úkolu</label>
+	<label index="edit.autoSentEmailToTaskOwner">Odeslat emailem vlastníkovi úkolu</label>
 	<label index="edit.sentEmailTo">Odeslat email</label>
 	<label index="group.employees">Zaměstnanci</label>
 	<label index="group.projectmembers">Členové projektu</label>
@@ -29,6 +29,7 @@
 	<label index="icon.toggleCustomerVisibility">Změnit viditelnost komentáře</label>
 	<label index="icon.togglelog">Zobrazit/Skrýt komunikaci</label>
 	<label index="comment.feedbackPersons">Požadovaná odpověď od:</label>
+	<label index="comment.emailPersons">Poslat jen Emailem na:</label>
 	<label index="mail.subject">Nový komentář</label>
 	<label index="mail.newcomment">Byl vytvořen nový komentář</label>
 	<label index="mail.commentlink">Otevřít komentář</label>
@@ -40,6 +41,8 @@
 	<label index="js.commentSaved">Komentář uložen</label>
 	<label index="js.commentSavingFailed">Komentář nelze uložit</label>
 	<label index="js.emailSent">Email odeslán</label>
+	<label index="extconf.autorequestownerfeedback.label">Role s automatickým požadavkem pro odpověď od vlastníka úkolu (odstraní nastavení k výběru příjemce):</label>
+	<label index="extconf.automailcommenttoowner.label">Role s automatickým odesláním komentáře mailem vlastníkovi úkolu (odstraní nastavení k výběru příjemce):</label>
 	<label index="history.header">Historie komentáře (odpovědi a emaily)</label>
 	<label index="history.created">Komentář vytvořen</label>
 	<label index="history.feedbackrequestedfrom">Odpověď vyžadována od</label>
