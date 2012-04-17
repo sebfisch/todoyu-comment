@@ -180,7 +180,7 @@ class TodoyuCommentTaskFilter extends TodoyuSearchFilterBase {
 			$negator	= $negate ? 'NOT ' : '';
 
 
-			$where	= $negator . TodoyuSql::buildLikeQuery($keywords, $fields)
+			$where	= $negator . TodoyuSql::buildLikeQueryPart($keywords, $fields)
 					. ' AND ext_comment_comment.deleted	= 0';
 			$join	= array(
 				'ext_comment_comment.id_task = ext_project_task.id'
