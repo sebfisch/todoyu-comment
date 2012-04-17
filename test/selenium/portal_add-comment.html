@@ -14,7 +14,7 @@
 <!--open todo tab-->
 <tr>
 	<td>click</td>
-	<td>//p[@id='portal-tab-todo-label']/span[3]</td>
+	<td>//p[@id='portal-tab-todo-label']/span[2][@class=&quot;labeltext&quot;]</td>
 	<td></td>
 </tr>
 <tr>
@@ -82,27 +82,22 @@
 <!--comment tab opened, form available?-->
 <tr>
 	<td>assertElementPresent</td>
-	<td>//p[@id='task-33-tab-comment-label']/span[3]</td>
+	<td>//ul[contains(@class,&quot;tabs&quot;)]/li[contains(@class,&quot;tabkey-comment&quot;)][contains(@class,&quot;active&quot;)]</td>
 	<td></td>
 </tr>
 <tr>
 	<td>assertElementPresent</td>
-	<td>//p[@id='task-33-tab-comment-label']/span[3]</td>
+	<td>//div[contains(@class,&quot;tabContent&quot;)]/div[contains(@class,&quot;comment&quot;)]/div[2]/form/fieldset[@class=&quot;buttons&quot;]</td>
 	<td></td>
 </tr>
 <tr>
 	<td>assertElementPresent</td>
-	<td>//select[@id='comment-33-0-field-feedback']</td>
+	<td>//input[@type=&quot;hidden&quot;][@name=&quot;comment[is_public]&quot;]</td>
 	<td></td>
 </tr>
 <tr>
 	<td>assertElementPresent</td>
-	<td>comment-33-0-field-is-public</td>
-	<td></td>
-</tr>
-<tr>
-	<td>assertElementPresent</td>
-	<td>comment-33-0-field-sendasemail</td>
+	<td>//input[contains(@class,&quot;checkbox&quot;)][@name=&quot;comment[sendasemail]&quot;]</td>
 	<td></td>
 </tr>
 <!--type comment text and save-->
