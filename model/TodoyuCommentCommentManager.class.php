@@ -65,18 +65,6 @@ class TodoyuCommentCommentManager {
 
 
 	/**
-	 * Get a comment as an array
-	 *
-	 * @param	Integer		$idComment
-	 * @return	Array
-	 */
-	public static function getCommentData($idComment) {
-		return TodoyuRecordManager::getRecordData(self::TABLE, $idComment);
-	}
-
-
-
-	/**
 	 * Filter HTML tags inside comment text to keep only allowable ones
 	 *
 	 * @param	String		$text
