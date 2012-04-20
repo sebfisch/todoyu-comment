@@ -211,7 +211,7 @@ Todoyu.Ext.comment.Edit = {
 				return person.name;
 			}).join(', ');
 
-			Todoyu.notifyInfo('Emails sent to: ' + names);
+			Todoyu.notifyInfo('[LLL:comment.ext.js.sentEmailsTo]' + ' ' + names);
 		} else {
 			var ok = emailSendStatus.findAll(function(person){
 				return this.status;
