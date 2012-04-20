@@ -42,6 +42,7 @@
 	<label index="js.commentSavingFailed">Could not save comment</label>
 	<label index="js.emailSent">Email Sent</label>
 	<label index="js.emailSent.fail">Failed sending email</label>
+	<label index="js.requestedFeedbackFrom">Requested Feedback From:</label>
 	<label index="history.header">Comment history (feedback and mailing)</label>
 	<label index="history.created">Comment Created</label>
 	<label index="history.feedbackrequestedfrom">Feedback Requested From</label>

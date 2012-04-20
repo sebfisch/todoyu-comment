@@ -31,6 +31,8 @@ class TodoyuCommentFallbackManager {
 	 */
 	const TABLE = 'ext_comment_fallback';
 
+
+
 	/**
 	 * @param	Integer		$idFallback
 	 * @return	TodoyuCommentFallback

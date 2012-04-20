@@ -32,6 +32,7 @@ class TodoyuCommentFeedbackManager {
 	const TABLE = 'ext_comment_mm_comment_feedback';
 
 
+
 	/**
 	 * Save feedback requests of given comment
 	 *

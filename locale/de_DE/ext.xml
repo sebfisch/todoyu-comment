@@ -42,6 +42,7 @@
 	<label index="js.commentSavingFailed">Kommentar konnte nicht gespeichert werden</label>
 	<label index="js.emailSent">Email verschickt</label>
 	<label index="js.emailSent.fail">Fehler beim Versenden der Email</label>
+	<label index="js.requestedFeedbackFrom">Feedback gefordert von:</label>
 	<label index="history.header">Kommentar-Verlauf (Feedbacks und Mailing)</label>
 	<label index="history.created">Kommentar angelegt</label>
 	<label index="history.feedbackrequestedfrom">Feedback erbeten von</label>

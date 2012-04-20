@@ -189,7 +189,7 @@ Todoyu.Ext.comment.Edit = {
 	notifyFeedbackPersons: function(feedbackPersons) {
 		var names = this.extractNames(feedbackPersons).join(', ');
 
-		Todoyu.notifyInfo('Requested feedback from: ' + names);
+		Todoyu.notifyInfo('[LLL:comment.ext.js.requestedFeedbackFrom]' + ' ' + names);
 	},
 
 
