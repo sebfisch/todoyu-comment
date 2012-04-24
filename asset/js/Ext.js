@@ -205,7 +205,7 @@ Todoyu.Ext.comment = {
 				action:		'delete',
 				comment:	idComment
 			},
-			onComplete: Todoyu.Ext.comment.Edit.onRemoved.bind(this)
+			onComplete: Todoyu.Ext.comment.Edit.onRemoved.bind(this.Edit)
 		};
 
 		Todoyu.send(url, options);

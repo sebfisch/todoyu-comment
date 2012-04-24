@@ -80,12 +80,11 @@ Todoyu.Ext.comment.List = {
 	 */
 	getAmountComments: function(idTask) {
 		var commentsElement = $('task-' + idTask + '-comments');
-		if( ! Todoyu.exists(commentsElement) ) {
+		if( commentsElement ) {
+			return commentsElement.select('li.comment').size();
+		} else {
 			return 0;
 		}
-
-		return commentsElement.select('li.comment').length;
-
 	},
 
 

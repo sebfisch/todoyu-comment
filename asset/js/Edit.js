@@ -279,20 +279,16 @@ Todoyu.Ext.comment.Edit = {
 			// Fade out the removed task
 		Effect.Fade($('task-comment-' + idComment), {
 			duration:	0.5,
-			from:		1,
-			to:			0,
 			afterFinish: function(effect) {
-					// Less than 2 comments left? remove button to toggle sorting
-				var tabContentElement		= effect.element.up('div.tabContent');
+					// Get parent element
+				var tabContentElement	= effect.element.up('div.tabContent');
+					// Remove element
 				effect.element.remove();
-
+					// Less than 2 comments => hide sorting buttons
 				if( this.ext.List.getAmountComments(idTask) < 2 ) {
-					var button	= tabContentElement.select('button.reverseOrder')[0];
-					if( button ) {
-						button.hide();
-					}
+					tabContentElement.select('button.order').invoke('hide');
 				}
-			}
+			}.bind(this)
 		});
 	}
 
