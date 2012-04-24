@@ -45,12 +45,36 @@ Todoyu::$CONFIG['FILTERS']['TASK']['widgets']['unseenFeedbackPerson'] = array(
 		'FuncRef'		=> 'TodoyuContactPersonFilterDataSource::autocompletePersons',
 		'FuncParams'	=> array(),
 		'LabelFuncRef'	=> 'TodoyuContactPersonFilterDataSource::getLabel',
-		'negation'	=> 'default'
+		'negation'		=> array(
+			'labelTrue'	=> 'comment.filter.isSeen.negation.true',
+			'labelFalse'=> 'comment.filter.isSeen.negation.false'
+		)
 	)
 );
 
 Todoyu::$CONFIG['FILTERS']['TASK']['filters']['unseenFeedbackCurrentPerson'] = array(
 	'funcRef'	=> 'TodoyuCommentTaskFilter::Filter_unseenFeedbackCurrentPerson'
+);
+
+/**
+ * Feedback request by current user, adressee (optional) has/not seen the comment
+ */
+Todoyu::$CONFIG['FILTERS']['TASK']['widgets']['commentMyFeedbackRequestPerson'] = array(
+	'funcRef'	=> 'TodoyuCommentTaskFilter::Filter_commentMyFeedbackRequestPerson',
+	'label'		=> 'comment.filter.project.commentMyFeedbackRequest',
+	'optgroup'	=> 'comment.ext.search.label',
+	'widget'	=> 'text',
+	'internal'	=> true,
+	'wConf'		=> array(
+		'autocomplete'	=> true,
+		'FuncRef'		=> 'TodoyuContactPersonFilterDataSource::autocompletePersons',
+		'multiple'		=> true,
+		'size'			=> 5,
+		'negation'		=> array(
+			'labelTrue'	=> 'comment.filter.isSeen.negation.true',
+			'labelFalse'=> 'comment.filter.isSeen.negation.false'
+		)
+	)
 );
 
 Todoyu::$CONFIG['FILTERS']['TASK']['filters']['commentIsPublicForExternals'] = array(
@@ -69,7 +93,6 @@ Todoyu::$CONFIG['FILTERS']['TASK']['widgets']['unseenFeedbackRoles'] = array(
 	'wConf'		=> array(
 		'multiple'	=> true,
 		'size'		=> 5,
-//		'FuncRef'	=> 'TodoyuProjectTaskFilterDataSource::getRoleOptions'
 		'FuncRef'	=> 'TodoyuRoleDatasource::getRoleOptions'
 	)
 );

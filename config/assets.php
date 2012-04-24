@@ -19,12 +19,11 @@
 *****************************************************************************/
 
 /**
- * Page configuration for commnet extension
+ * Assets (JS, CSS, SWF, etc.) requirements for comment extension
  *
  * @package		Todoyu
- * @subpackage	Project
+ * @subpackage	Comment
  */
-
 Todoyu::$CONFIG['EXT']['comment']['assets'] = array(
 	'js' => array(
 		array(

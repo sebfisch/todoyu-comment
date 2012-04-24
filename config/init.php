@@ -39,6 +39,7 @@ Todoyu::$CONFIG['EXT']['comment'] = array(
 );
 
 
+
 /* --------------------------------------------
 	Add comment content tab and context menu
    -------------------------------------------- */

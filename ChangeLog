@@ -5,6 +5,7 @@ comment 1.2 - not released yet
 	* Feature: No reload required to change comment sorting
 	* Feature: Warn user if a person which is in the feedback request list is external, but task or comment not public
 	* Feature: Use fallback configuration to define what should happen with a comment if it's created by a user with limited privileges
+	* Added: Filter - my seen/unseen feedback request from person
 	* Added: Create and sorting button also at the bottom of the comment list
 	* Changed: When manually sending comments per email, the mail sender is the current logged-in person (not the system mail)
 	* Changed: When the comments list is empty there is now only one button to add a comment displayed

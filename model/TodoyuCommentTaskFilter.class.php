@@ -90,7 +90,6 @@ class TodoyuCommentTaskFilter extends TodoyuSearchFilterBase {
 	 * @return	Array
 	 */
 	public static function Filter_unseenFeedbackPerson($idPerson, $negate = false) {
-		$queryParts	= false;
 		$idPerson	= Todoyu::personid($idPerson);
 		$seenStatus	= $negate ? 1 : 0;
 
@@ -329,6 +328,38 @@ class TodoyuCommentTaskFilter extends TodoyuSearchFilterBase {
 		} else {
 			return false;
 		}
+	}
+
+
+
+	/**
+	 * Filter: Comment with feedback request from current person
+	 *
+	 * @param	String			$value
+	 * @param	Boolean			$negate		(Has been seen / Hasn't been seen)
+	 * @return	Array|Boolean
+	 */
+	public function Filter_commentMyFeedbackRequestPerson($idPerson, $negate = false) {
+		$idPerson	= intval($idPerson);
+
+		$tables	= array(
+			'ext_project_task',
+			'ext_comment_comment',
+			'ext_comment_mm_comment_feedback'
+		);
+		$seenState	= $negate ? 0 : 1;
+		$where	= '		ext_comment_comment.id_task							= ext_project_task.id'
+				. '	AND	ext_comment_comment.deleted							= 0'
+				. '	AND	ext_comment_mm_comment_feedback.id_comment			= ext_comment_comment.id '
+				. ' AND ext_comment_mm_comment_feedback.id_person_create	= ' . Todoyu::personid()
+				. ' AND ext_comment_mm_comment_feedback.is_seen				= ' . $seenState
+
+		. ($idPerson !== 0 ? (' AND ext_comment_mm_comment_feedback.id_person_feedback	= ' . $idPerson) : '');
+
+		return array(
+			'tables'	=> $tables,
+			'where'		=> $where
+		);
 	}
 
 
