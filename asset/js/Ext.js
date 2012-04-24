@@ -380,46 +380,6 @@ Todoyu.Ext.comment = {
 
 
 	/**
-	 * Go to a comment of a task in project view, by comment number
-	 * Gets the task ID by AJAX and redirects the browser
-	 *
-	 * @method	goToCommentInTaskByCommentNumber
-	 * @param	{Number}	commentNumber
-	 */
-	goToCommentInTaskByCommentNumber: function(commentNumber) {
-		var url		= Todoyu.getUrl('comment', 'task');
-		var options	= {
-			parameters: {
-				action:		'getcommentprojecttaskids',
-				commentnumber: commentNumber
-			},
-			onComplete: this.onGoToCommentInTaskByCommentNumber.bind(this, commentNumber)
-		};
-
-		Todoyu.send(url, options);
-	},
-
-
-
-	/**
-	 * Handler for comment IDs request
-	 * responseText is the task ID
-	 *
-	 * @method	onGoToCommentInTaskByCommentNumber
-	 * @param	{Number}	commentNumber
-	 */
-	onGoToCommentInTaskByCommentNumber: function(commentNumber, response) {
-		var idTask		= parseInt(response.getTodoyuHeader('task'), 10);
-		var idProject	= parseInt(response.getTodoyuHeader('project'), 10);
-
-		if( idTask > 0 && idProject > 0 ) {
-			location.href='index.php?ext=project&project=' + idProject + '&task=' + idTask + '&tab=comment#task-comment-' + commentNumber;
-		}
-	},
-
-
-
-	/**
 	 * Remove all open edit forms for comment
 	 *
 	 * @method	removeForms

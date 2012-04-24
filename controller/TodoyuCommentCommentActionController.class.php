@@ -80,12 +80,11 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 		Todoyu::restrict('comment', 'comment:deleteOwn');
 
 		$idComment		= intval($params['comment']);
-		$comment		= TodoyuCommentCommentManager::getComment($idComment);
 
 		TodoyuCommentRights::restrictDelete($idComment);
-
 		TodoyuCommentCommentManager::deleteComment($idComment);
 
+		$comment= TodoyuCommentCommentManager::getComment($idComment);
 		$idTask	= $comment->getTaskID();
 
 		TodoyuHeader::sendTodoyuHeader('idTask', $idTask);
