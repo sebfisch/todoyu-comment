@@ -1,16 +1,16 @@
 {Label comment.ext.mail.newcomment}
 
 ========================================================================
-{Label project.ext.project}:	{htmlencode $project.title}
-{Label project.task.task}:	{htmlencode $task.title} ({$task.id_project}.{$task.tasknumber})
+{Label project.ext.project}:	{html2text $project.title true}
+{Label project.task.task}:	{html2text $task.title true} ({$task.id_project}.{$task.tasknumber})
 {Label comment.ext.mail.commentfrom}:	{$personWrite.firstname} {$personWrite.lastname}{if $hideEmails != true} <{$personWrite.email}>{/if}
 {if $personWrite.id !== $personSend.id}{Label comment.ext.mail.commentsentby}: {$personSend.firstname} {$personSend.lastname}{if $hideEmails != true} <{$personSend.email}>{/if}{/if}
 ========================================================================
-{html2text $comment.comment}
+{html2text $comment.comment true}
 
 ========================================================================
 {Label comment.ext.mail.showcommentinprojectview}:
-{$commentlink}
+{html2text $commentlink true}
 
 {if sizeof($feedback_persons) > 0}
 ========================================================================
@@ -21,4 +21,4 @@
 {/if}
 ========================================================================
 {Label project.task.description}:
-{html2text $task.description}
+{html2text $task.description true}

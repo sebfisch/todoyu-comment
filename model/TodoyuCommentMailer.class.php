@@ -62,6 +62,7 @@ class TodoyuCommentMailer {
 	 *
 	 * @param	Integer		$idComment
 	 * @param	Integer		$idPerson
+	 * @param	Boolean		$setCurrentUserAsSender
 	 * @return	Boolean		Success
 	 */
 	public static function sendMail($idComment, $idPerson, $setCurrentUserAsSender=false) {

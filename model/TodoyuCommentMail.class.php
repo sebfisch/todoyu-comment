@@ -92,8 +92,8 @@ class TodoyuCommentMail extends TodoyuMail {
 	 * @return	String
 	 */
 	private function getContent($asHtml = false) {
-		$tmpl		= $this->getTemplate($asHtml);
-		$data		= $this->getData();
+		$tmpl	= $this->getTemplate($asHtml);
+		$data	= $this->getData($asHtml);
 
 		$data['hideEmails']	= true;
 
@@ -121,9 +121,10 @@ class TodoyuCommentMail extends TodoyuMail {
 	/**
 	 * Get data to render email
 	 *
+	 * @param	Boolean		$asHtml
 	 * @return	Array
 	 */
-	private function getData() {
+	private function getData($asHtml = true) {
 		$task			= $this->comment->getTask();
 		$project		= $this->comment->getProject();
 		$personWrite	= $this->comment->getPersonCreate();
@@ -139,20 +140,74 @@ class TodoyuCommentMail extends TodoyuMail {
 			'feedback_persons'	=> $this->comment->getFeedbackPersons()
 		);
 
-		$data['tasklink'] = TodoyuString::buildUrl(array(
-			'ext'		=> 'project',
-			'project'	=> $project->getID(),
-			'task'		=> $task->getID()
-		), 'task-' . $task->getID(), true);
+		$idTask	= $task->getID();
 
-		$data['commentlink'] = TodoyuString::buildUrl(array(
-			'ext'		=> 'project',
-			'project'	=> $project->getID(),
-			'task'		=> $task->getID(),
-			'tab'		=> 'comment'
-		), 'task-comment-' . $this->comment->getID(), true);
+			// Add task/comment link URLs
+		$data['tasklink']	= self::buildUrlForTask($idTask, !$asHtml);
+		$data['commentlink']= self::buildUrlForComment($this->comment->getID(), $asHtml);
+
+			// Decode HTML?
+		if( !$asHtml ) {
+			$data['comment']['comment']		= TodoyuString::html2text($data['comment']['comment'], true);
+			$data['project']['description']	= TodoyuString::html2text($data['project']['description'], true);
+			$data['task']['title']			= TodoyuString::html2text($data['task']['title'], true);
+			$data['task']['description']	= TodoyuString::html2text($data['task']['description'], true);
+		}
 
 		return $data;
+	}
+
+
+
+	/**
+	 * Build task deep-link
+	 *
+	 * @param	Integer		$idTask
+	 * @param	Boolean		$encode
+	 * @param	Boolean		$absolute
+	 * @return	String
+	 */
+	private static function buildUrlForTask($idTask, $encode, $absolute = true) {
+		$idTask	= intval($idTask);
+		$task	= TodoyuProjectTaskManager::getTask($idTask);
+
+		return TodoyuString::buildUrl(
+			array(
+				'ext'		=> 'project',
+				'project'	=> $task->getProjectID(),
+				'task'		=> $idTask,
+			),
+			'task-' . $idTask,
+			$absolute,
+			$encode
+		);
+	}
+
+
+
+	/**
+	 * Build comment deep-link
+	 *
+	 * @param	Integer		$idComment
+	 * @param	Boolean		$encode
+	 * @param	Boolean		$absolute
+	 * @return	String
+	 */
+	private static function buildUrlForComment($idComment, $encode, $absolute = true) {
+		$idComment	= intval($idComment);
+		$comment	= TodoyuCommentCommentManager::getComment($idComment);
+
+		return TodoyuString::buildUrl(
+			array(
+				'ext'		=> 'project',
+				'project'	=> $comment->getProjectID(),
+				'task'		=> $comment->getTaskID(),
+				'tab'		=> 'comment'
+			),
+			'task-comment-' . $idComment,
+			$absolute,
+			$encode
+		);
 	}
 
 }
