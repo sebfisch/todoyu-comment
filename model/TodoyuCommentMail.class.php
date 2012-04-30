@@ -93,7 +93,7 @@ class TodoyuCommentMail extends TodoyuMail {
 	 */
 	private function getContent($asHtml = false) {
 		$tmpl	= $this->getTemplate($asHtml);
-		$data	= $this->getData($asHtml);
+		$data	= $this->getData();
 
 		$data['hideEmails']	= true;
 
@@ -121,10 +121,9 @@ class TodoyuCommentMail extends TodoyuMail {
 	/**
 	 * Get data to render email
 	 *
-	 * @param	Boolean		$asHtml
 	 * @return	Array
 	 */
-	private function getData($asHtml = true) {
+	private function getData() {
 		$task			= $this->comment->getTask();
 		$project		= $this->comment->getProject();
 		$personWrite	= $this->comment->getPersonCreate();
@@ -142,17 +141,9 @@ class TodoyuCommentMail extends TodoyuMail {
 
 		$idTask	= $task->getID();
 
-			// Add task/comment link URLs
-		$data['tasklink']	= self::buildUrlForTask($idTask, !$asHtml);
-		$data['commentlink']= self::buildUrlForComment($this->comment->getID(), $asHtml);
-
-			// Decode HTML?
-		if( !$asHtml ) {
-			$data['comment']['comment']		= TodoyuString::html2text($data['comment']['comment'], true);
-			$data['project']['description']	= TodoyuString::html2text($data['project']['description'], true);
-			$data['task']['title']			= TodoyuString::html2text($data['task']['title'], true);
-			$data['task']['description']	= TodoyuString::html2text($data['task']['description'], true);
-		}
+			// Add deep-link URLs for task and comment
+		$data['tasklink']	= self::buildUrlForTask($idTask);
+		$data['commentlink']= self::buildUrlForComment($this->comment->getID());
 
 		return $data;
 	}
@@ -167,7 +158,7 @@ class TodoyuCommentMail extends TodoyuMail {
 	 * @param	Boolean		$absolute
 	 * @return	String
 	 */
-	private static function buildUrlForTask($idTask, $encode, $absolute = true) {
+	private static function buildUrlForTask($idTask, $encode = true, $absolute = true) {
 		$idTask	= intval($idTask);
 		$task	= TodoyuProjectTaskManager::getTask($idTask);
 
@@ -193,7 +184,7 @@ class TodoyuCommentMail extends TodoyuMail {
 	 * @param	Boolean		$absolute
 	 * @return	String
 	 */
-	private static function buildUrlForComment($idComment, $encode, $absolute = true) {
+	private static function buildUrlForComment($idComment, $encode = true, $absolute = true) {
 		$idComment	= intval($idComment);
 		$comment	= TodoyuCommentCommentManager::getComment($idComment);
 
