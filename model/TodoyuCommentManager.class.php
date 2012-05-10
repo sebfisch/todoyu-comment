@@ -39,7 +39,7 @@ class TodoyuCommentManager {
 		$xmlPath= 'ext/comment/config/form/comment.xml';
 		$params['task'] = $idTask;
 
-		$form	= TodoyuFormManager::getForm($xmlPath, $idComment, $params);
+		$form	= TodoyuFormManager::getForm($xmlPath, $idComment, $params, $formData);
 
 		if( sizeof($formData) ) {
 			$form->setFormData($formData);
