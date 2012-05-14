@@ -54,7 +54,7 @@ class TodoyuCommentMailManager {
 	 * Get persons the given comment has been sent to by email
 	 *
 	 * @param	Integer		$idComment
-	 * @return	Array
+	 * @return	Array[]
 	 */
 	public static function getEmailPersons($idComment) {
 		return TodoyuMailManager::getEmailPersons(EXTID_COMMENT, COMMENT_TYPE_COMMENT, $idComment);

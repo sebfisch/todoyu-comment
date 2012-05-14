@@ -86,10 +86,47 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 	/**
 	 * Get persons being stored to have a feedback requested from to this comment
 	 *
-	 * @return	Array
+	 * @return	Array[]
 	 */
-	public function getFeedbackPersons() {
+	public function getFeedbackPersonsData() {
 		return TodoyuCommentFeedbackManager::getFeedbackPersons($this->getID());
+	}
+
+
+
+	/**
+	 * Get IDs of feedback persons
+	 *
+	 * @return	Integer[]
+	 */
+	public function getFeedbackPersonsIDs() {
+		$feedbackPersonsData	= $this->getFeedbackPersonsData();
+
+		return TodoyuArray::getColumn($feedbackPersonsData, 'id');
+	}
+
+
+
+	/**
+	 * Get mail persons
+	 *
+	 * @return	Array[]
+	 */
+	public function getEmailPersonsData() {
+		return TodoyuCommentMailManager::getEmailPersons($this->getID());
+	}
+
+
+
+	/**
+	 * Get IDs of email persons
+	 *
+	 * @return	Integer
+	 */
+	public function getEmailPersonsIDs() {
+		$emailPersonsData	= $this->getEmailPersonsData();
+
+		return TodoyuArray::getColumn($emailPersonsData, 'id');
 	}
 
 
@@ -260,23 +297,25 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 	 * Load comment foreign data: creator, feedback persons, approval state
 	 */
 	protected function loadForeignData() {
-		$this->data['person_create']	= $this->getPersonCreate()->getTemplateData(false);
+		if( !$this->has('person_create') ) {
+			$this->data['person_create']	= $this->getPersonCreate()->getTemplateData(false);
 
-		$this->data['persons_feedback']	= TodoyuCommentFeedbackManager::getFeedbackPersons($this->getID());
-		$this->data['persons_email']	= TodoyuCommentMailManager::getEmailPersons($this->getID());
+			$this->data['persons_feedback']	= $this->getFeedbackPersonsData();
+			$this->data['persons_email']	= $this->getEmailPersonsData();
 
-			// Persons that the comment has been mailed to without a feedback request?
-		$personIDsEmailedTo	= array_keys($this->data['persons_email']);
-		$personIDsFeedback	= array_keys($this->data['persons_feedback']);
-		$this->data['person_ids_mailonly']	= array_diff($personIDsEmailedTo, $personIDsFeedback);
+				// Persons that the comment has been mailed to without a feedback request?
+			$personIDsEmailedTo	= array_keys($this->data['persons_email']);
+			$personIDsFeedback	= $this->getFeedbackPersonsIDs();
+			$this->data['person_ids_mailonly']	= array_diff($personIDsEmailedTo, $personIDsFeedback);
 
-		$this->data['isUnapproved']		= TodoyuCommentFeedbackManager::isCommentUnseen($this->getID());
-		$this->data['locked']			= $this->isLocked();
-		$this->data['canDelete']		= $this->canCurrentPersonDelete();
-		$this->data['canEdit']			= $this->canCurrentPersonEdit();
-		$this->data['canMakePublic']	= $this->canCurrentPersonMakePublic();
-		$this->data['updateInfo']		= $this->getUpdateInfoLabel();
-		$this->data['publicFeedbackWarning'] = $this->getPublicFeedbackWarning();
+			$this->data['isUnapproved']		= TodoyuCommentFeedbackManager::isCommentUnseen($this->getID());
+			$this->data['locked']			= $this->isLocked();
+			$this->data['canDelete']		= $this->canCurrentPersonDelete();
+			$this->data['canEdit']			= $this->canCurrentPersonEdit();
+			$this->data['canMakePublic']	= $this->canCurrentPersonMakePublic();
+			$this->data['updateInfo']		= $this->getUpdateInfoLabel();
+			$this->data['publicFeedbackWarning'] = $this->getPublicFeedbackWarning();
+		}
 	}
 
 

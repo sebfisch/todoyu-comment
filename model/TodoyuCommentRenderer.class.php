@@ -85,7 +85,7 @@ class TodoyuCommentRenderer {
 	public static function renderEdit($idTask, $idComment = 0) {
 		$idTask		= intval($idTask);
 		$idComment	= intval($idComment);
-		$form		= TodoyuCommentManager::getCommentForm($idComment, $idTask);
+		$form		= TodoyuCommentCommentManager::getCommentForm($idComment, $idTask);
 
 		if( $idComment === 0 ) {
 				// New comment
@@ -99,7 +99,7 @@ class TodoyuCommentRenderer {
 				// Edit comment
 			$comment	= TodoyuCommentCommentManager::getComment($idComment);
 			$data		= $comment->getTemplateData(true);
-			$data['feedback'] = TodoyuArray::getColumn($data['persons_feedback'], 'id');
+			$data['feedback'] = $comment->getFeedbackPersonsIDs();
 		}
 
 		$xmlPath= 'ext/comment/config/form/comment.xml';

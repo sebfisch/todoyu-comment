@@ -53,6 +53,8 @@ Todoyu.Ext.comment.Edit = {
 		var idTask		= parts[0];
 
 		this.showEmailReceiversOnCheckboxActive(idTask, idComment);
+
+		Todoyu.Hook.exec('comment.comment.edit', idComment, idTask);
 	},
 
 
@@ -175,6 +177,8 @@ Todoyu.Ext.comment.Edit = {
 			if( Todoyu.isInArea('portal') ) {
 				this.ext.updateFeedbackTab(response.getTodoyuHeader('openFeedbackCount'));
 			}
+
+			Todoyu.Hook.exec('comment.comment.saved', idComment, idTask);
 		}
 	},
 

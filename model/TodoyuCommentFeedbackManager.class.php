@@ -360,7 +360,7 @@ class TodoyuCommentFeedbackManager {
 	 * Get persons whom feedback to given comment is requested from
 	 *
 	 * @param	Integer	$idComment
-	 * @return	Array
+	 * @return	Array[]
 	 */
 	public static function getFeedbackPersons($idComment) {
 		$idComment	= intval($idComment);

@@ -101,9 +101,9 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 	 * @return	Void|String		Failure returns re-rendered form with error messages
 	 */
 	public function saveAction(array $params) {
-		$data		= $params['comment'];
-		$idComment	= intval($data['id']);
-		$idTask		= intval($data['id_task']);
+		$formData	= $params['comment'];
+		$idComment	= intval($formData['id']);
+		$idTask		= intval($formData['id_task']);
 
 			// Check editing rights for existing comments
 		if( $idComment !== 0 ) {
@@ -112,7 +112,7 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 			TodoyuCommentRights::restrictAddInTask($idTask);
 		}
 
-		$form	= TodoyuCommentManager::getCommentForm($idComment, $idTask, $data);
+		$form	= TodoyuCommentCommentManager::getCommentForm($idComment, $idTask, $formData);
 
 			// Validate comment and save + send mail if activated / notify about failure
 		if( $form->isValid() ) {

@@ -136,7 +136,7 @@ class TodoyuCommentMail extends TodoyuMail {
 			'personReceive'		=> $this->person->getTemplateData(),
 			'personWrite'		=> $personWrite->getTemplateData(),
 			'personSend'		=> $personSend->getTemplateData(),
-			'feedback_persons'	=> $this->comment->getFeedbackPersons()
+			'feedback_persons'	=> $this->comment->getFeedbackPersonsData()
 		);
 
 		$idTask	= $task->getID();
