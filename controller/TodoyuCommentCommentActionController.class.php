@@ -87,8 +87,8 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 		$comment= TodoyuCommentCommentManager::getComment($idComment);
 		$idTask	= $comment->getTaskID();
 
-		TodoyuHeader::sendTodoyuHeader('idTask', $idTask);
-		TodoyuHeader::sendTodoyuHeader('idComment', $idComment);
+		TodoyuHeader::sendTodoyuHeader('task', $idTask);
+		TodoyuHeader::sendTodoyuHeader('comment', $idComment);
 		TodoyuHeader::sendTodoyuHeader('tabLabel', TodoyuCommentTaskManager::getTaskTabLabel($idTask));
 	}
 
@@ -159,7 +159,7 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 			return '';
 		} else { // Form data is invalid
 			TodoyuHeader::sendTodoyuErrorHeader();
-			TodoyuHeader::sendTodoyuHeader('idComment', $idComment);
+			TodoyuHeader::sendTodoyuHeader('comment', $idComment);
 
 			$form->setRecordID($idTask . '-' . $idComment);
 

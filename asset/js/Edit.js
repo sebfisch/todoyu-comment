@@ -157,7 +157,7 @@ Todoyu.Ext.comment.Edit = {
 	 * @param	{Ajax.Response}		response
 	 */
 	onSaved: function(idTask, response) {
-		var idComment				= response.getTodoyuHeader('idComment');
+		var idComment				= response.getTodoyuHeader('comment');
 		var notificationIdentifier	= 'comment.edit.saved';
 
 		if( response.hasTodoyuError() ) {
@@ -275,8 +275,8 @@ Todoyu.Ext.comment.Edit = {
 	 */
 	onRemoved: function(response){
 		var tabLabel	= response.getTodoyuHeader('tabLabel');
-		var idTask		= response.getTodoyuHeader('idTask');
-		var idComment	= response.getTodoyuHeader('idComment');
+		var idTask		= response.getTodoyuHeader('task');
+		var idComment	= response.getTodoyuHeader('comment');
 
 		Todoyu.Ext.comment.setTabLabel(idTask, tabLabel);
 

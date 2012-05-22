@@ -341,6 +341,17 @@ Todoyu.Ext.comment = {
 
 
 	/**
+	 * Scroll to comment
+	 *
+	 * @param	{Number}	idComment
+	 */
+	scrollTo: function(idComment) {
+		$('task-comment-' + idComment).scrollToElement();
+	},
+
+
+
+	/**
 	 * Evoke comment editor (of given comment of given task)
 	 * Note:	there is the method 'edit' and the sub object 'Edit' (case-sensitive) with its own methods
 	 *
