@@ -80,12 +80,13 @@ class TodoyuCommentRenderer {
 	 *
 	 * @param	Integer		$idTask
 	 * @param	Integer		$idComment
+	 * @param	Array		$formParams
 	 * @return	String
 	 */
-	public static function renderEdit($idTask, $idComment = 0) {
+	public static function renderEdit($idTask, $idComment = 0, array $formParams = array()) {
 		$idTask		= intval($idTask);
 		$idComment	= intval($idComment);
-		$form		= TodoyuCommentCommentManager::getCommentForm($idComment, $idTask);
+		$form		= TodoyuCommentCommentManager::getCommentForm($idComment, $idTask, array(), $formParams);
 
 		if( $idComment === 0 ) {
 				// New comment
@@ -120,7 +121,6 @@ class TodoyuCommentRenderer {
 
 		return Todoyu::render($tmpl, $data);
 	}
-
 
 
 	/**

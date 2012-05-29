@@ -13,7 +13,6 @@
 	<fieldsets>
 
 		<fieldset name="main">
-			<legend>Left form column</legend>
 			<class>main</class>
 			<elements>
 

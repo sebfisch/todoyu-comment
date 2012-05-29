@@ -60,7 +60,7 @@ class TodoyuCommentCommentManager {
 	 * @return	TodoyuForm
 	 */
 	public static function getCommentForm($idComment, $idTask, array $formData = array(), array $params = array()) {
-		$xmlPath= 'ext/comment/config/form/comment.xml';
+		$xmlPath		= 'ext/comment/config/form/comment.xml';
 		$params['task'] = $idTask;
 
 		$form	= TodoyuFormManager::getForm($xmlPath, $idComment, $params, $formData);

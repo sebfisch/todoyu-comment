@@ -376,6 +376,7 @@ input.deleteButtonOwnComment {
 
 .task .tabContent .commentform fieldset.main {
 	padding-bottom:0;
+	padding-top: 10px;
 	margin-bottom:0;
 }
 
