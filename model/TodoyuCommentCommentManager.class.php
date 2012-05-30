@@ -111,6 +111,7 @@ class TodoyuCommentCommentManager {
 		$idTask		= intval($data['id_task']);
 		$task		= TodoyuCommentTaskManager::getTask($idTask);
 		$xmlPath	= 'ext/comment/config/form/comment.xml';
+
 		$result		= array(
 			'id'		=> $idComment,
 			'feedback'	=> array(),
