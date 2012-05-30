@@ -3,6 +3,8 @@ todoyu comment extension changelog
 comment 1.2.1 - not released yet
 	* Bugfix: After comment save, comment id was passed as 'comment', but fetched as 'idComment'
 	* Changed: Cleanup header values: idTask => task, idComment => comment
+	* Changed: Comment actions are now dynamic. Use hook comment.comment.actions
+	* Changed: Split up comments getTemplateData() into normal foreign data and special details render data
 
 comment 1.2 - 2012-05-03
 	* Feature: Save and show time and person of last update of comment

@@ -292,11 +292,62 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 	}
 
 
+	/**
+	 * Get actions
+	 *
+	 * @return	Array[]
+	 */
+	protected function getActions() {
+		$actions	= array();
+
+		if(  $this->canCurrentPersonEdit() ) {
+			$actions['edit'] = array(
+				'id'		=> 'edit',
+				'onclick'	=> 'Todoyu.Ext.comment.edit(' . $this->getTaskID() . ', ' . $this->getID() . ')',
+				'class'		=> 'edit',
+				'label'		=> 'comment.ext.icon.edit',
+				'position'	=> 10
+			);
+		}
+
+		if( $this->canCurrentPersonMakePublic() ) {
+			$actions['makePublic'] = array(
+				'id'		=> 'makePublic',
+				'onclick'	=> 'Todoyu.Ext.comment.togglePublic(' . $this->getID() . ')',
+				'class'		=> 'makePublic',
+				'label'		=> 'comment.ext.icon.toggleCustomerVisibility',
+				'position'	=> 20
+			);
+
+			if( $this->isPublic() ) {
+				$actions['makePublic']['class'] .= ' isPublic';
+			}
+		}
+
+		if( $this->canCurrentPersonDelete() ) {
+			$actions['remove'] = array(
+				'id'		=> 'remove',
+				'onclick'	=> 'Todoyu.Ext.comment.remove(' . $this->getID() . ')',
+				'class'		=> 'remove',
+				'label'		=> 'comment.ext.icon.remove',
+				'position'	=> 30
+			);
+		}
+
+		$actions	= TodoyuHookManager::callHookDataModifier('comment', 'comment.actions', $actions, array($this->getID(), $this));
+		$actions	= TodoyuArray::sortByLabel($actions, 'position');
+
+		return $actions;
+	}
+
+
 
 	/**
 	 * Load comment foreign data: creator, feedback persons, approval state
+	 *
+	 * @param	Boolean		$loadRenderData
 	 */
-	protected function loadForeignData() {
+	protected function loadForeignData($loadRenderData = false) {
 		if( !$this->has('person_create') ) {
 			$this->data['person_create']	= $this->getPersonCreate()->getTemplateData(false);
 
@@ -308,13 +359,17 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 			$personIDsFeedback	= $this->getFeedbackPersonsIDs();
 			$this->data['person_ids_mailonly']	= array_diff($personIDsEmailedTo, $personIDsFeedback);
 
-			$this->data['isUnapproved']		= TodoyuCommentFeedbackManager::isCommentUnseen($this->getID());
-			$this->data['locked']			= $this->isLocked();
-			$this->data['canDelete']		= $this->canCurrentPersonDelete();
-			$this->data['canEdit']			= $this->canCurrentPersonEdit();
-			$this->data['canMakePublic']	= $this->canCurrentPersonMakePublic();
-			$this->data['updateInfo']		= $this->getUpdateInfoLabel();
-			$this->data['publicFeedbackWarning'] = $this->getPublicFeedbackWarning();
+			$this->data['locked']				= $this->isLocked();
+		}
+
+		if( $loadRenderData && !$this->has('isUnapproved') ) {
+			$this->data['isUnapproved']			= TodoyuCommentFeedbackManager::isCommentUnseen($this->getID());
+			$this->data['canDelete']			= $this->canCurrentPersonDelete();
+			$this->data['canEdit']				= $this->canCurrentPersonEdit();
+			$this->data['canMakePublic']		= $this->canCurrentPersonMakePublic();
+			$this->data['updateInfo']			= $this->getUpdateInfoLabel();
+			$this->data['publicFeedbackWarning']= $this->getPublicFeedbackWarning();
+			$this->data['actions']				= $this->getActions();
 		}
 	}
 
@@ -323,12 +378,13 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 	/**
 	 * Prepare comments rendering template data (creation person, having been seen status, feedback persons)
 	 *
-	 * @param	Boolean		$loadForeignRecords
+	 * @param	Boolean		$loadForeignData
+	 * @param	Boolean		$loadRenderData
 	 * @return	Array
 	 */
-	public function getTemplateData($loadForeignRecords = false) {
-		if( $loadForeignRecords ) {
-			$this->loadForeignData();
+	public function getTemplateData($loadForeignData = false, $loadRenderData = false) {
+		if( $loadForeignData ) {
+			$this->loadForeignData($loadRenderData);
 		}
 
 		return parent::getTemplateData();

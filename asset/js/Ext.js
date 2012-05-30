@@ -93,13 +93,15 @@ Todoyu.Ext.comment = {
 	 */
 	onToggledPublic: function(idComment, response) {
 		$('task-comment-' + idComment).toggleClassName('isPublic');
-		$('public-trigger-' + idComment).toggleClassName('comment-public');
+		$('comment-' + idComment + '-action-makePublic').toggleClassName('isPublic');
 
 		var warning;
 		if( response.hasTodoyuHeader('publicFeedbackWarning') ) {
 			if( !this.commentHasPublicFeedbackWarning(idComment) ) {
 					// Add received warning
-				warning		= new Element('div', { className:	'publicFeedbackWarning'}).update(response.getTodoyuHeader('publicFeedbackWarning'));
+				warning		= new Element('div', {
+					className:	'publicFeedbackWarning'
+				}).update(response.getTodoyuHeader('publicFeedbackWarning'));
 				$('task-comment-' + idComment + '-text').insert(warning);
 			}
 		} else if( this.commentHasPublicFeedbackWarning(idComment) ) {

@@ -34,11 +34,10 @@ class TodoyuCommentRenderer {
 	 */
 	public static function renderComment($idComment) {
 		$idComment	= intval($idComment);
-
 		$comment	= TodoyuCommentCommentManager::getComment($idComment);
 
 		$tmpl		= 'ext/comment/view/comment.tmpl';
-		$data		= $comment->getTemplateData(true);
+		$data		= $comment->getTemplateData(true, true);
 
 		return Todoyu::render($tmpl, $data);
 	}

@@ -150,24 +150,24 @@ h1.extIconComment .title {
 }
 	/* Person has acknowledged feedback */
 .task-comments .comment-details .persons span.commentperson-approved {
-	background:transparent url('../../../../core/asset/img/icons.png') no-repeat 0 -1314px;
+	background:url(../../../../core/asset/img/icons.png) no-repeat 0 -1314px;
 }
 	/* Person has only received the comment via mail */
 .task-comments .comment-details .persons span.emailperson {
-	background:transparent url('../../../../core/asset/img/icons.png') no-repeat 0 -1344px;
+	background:url(../../../../core/asset/img/icons.png) no-repeat 0 -1344px;
 }
 	/* Person has acknowledged feedback AND received it via email */
 .task-comments .comment-details .persons span.commentperson-approved-email {
-	background:transparent url('../../../../core/asset/img/icons.png') no-repeat 0 -1402px;
+	background:url(../../../../core/asset/img/icons.png) no-repeat 0 -1402px;
 	padding-left:23px;
 }
 	/* Person has NOT acknowledged feedback */
 .task-comments .comment-details .persons span.commentperson-unapproved {
-	background:transparent url('../../../../core/asset/img/icons.png') no-repeat 0 -1288px;
+	background:url(../../../../core/asset/img/icons.png) no-repeat 0 -1288px;
 }
 	/* Person has NOT acknowledged feedback AND received it via email */
 .task-comments .comment-details .persons span.commentperson-unapproved-email {
-	background:transparent url('../../../../core/asset/img/icons.png') no-repeat 0 -1368px;
+	background:url(../../../../core/asset/img/icons.png) no-repeat 0 -1368px;
 	padding-left:23px;
 }
 
@@ -210,35 +210,39 @@ h1.extIconComment .title {
 	font-weight:normal;
 }
 
-.task-comments .comment-options {
+
+.comment .actions {
 	position:absolute;
 	top:5px;
 	right:5px;
 	margin:0 82px 0 -82px;
 }
 
-.task-comments .comment-options a {
+
+.comment .actions a {
+	background-image: url(../img/icons.png);
+	background-repeat: no-repeat;
 	float:left;
 	margin-left:10px;
 	width:18px;
 }
 
-.task-comments .public-trigger {
-	background:url(../img/icons.png) no-repeat 0 -236px;
+.comment .actions .makePublic {
+	background-position:0 -236px;
 	width:22px !important;
 }
-
-.task-comments .comment-edit {
-	background:url(../img/icons.png) no-repeat 0 -60px;
-}
-
-.task-comments .comment-remove {
-	background:url(../img/icons.png) no-repeat 0 -26px;
-}
-
-.task-comments .comment-public {
+.comment .actions .makePublic.isPublic {
 	background-position:0 -268px;
 }
+.comment .actions .edit {
+	background-position:0 -60px;
+}
+
+.comment .actions .remove {
+	background-position:0 -26px;
+}
+
+
 
 .task-comments .comment-log {
 	background:url(../img/icons.png) no-repeat 0 -420px;

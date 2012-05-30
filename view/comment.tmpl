@@ -8,28 +8,14 @@
 			{personLabel idPrefix="comment-personcreate" idRecord=$id idPerson=$person_create.id}
 		</span>
 		<span id="task-comment-{$id}-id" class="comment-id" title="{Label comment.ext.id}">c{$id}</span>
-		<span id="task-comment-{$id}-options" class="comment-options">
+		<span id="task-comment-{$id}-actions" class="actions">
 
-		{* --------------------------- Edit ------------------------- *}
-		{if $canEdit}
-			<a href="javascript:void(0)" onclick="Todoyu.Ext.comment.edit({$id_task}, {$id})" class="icon comment-edit" title="{Label comment.ext.icon.edit}">
-				<span class="hidden">{Label comment.ext.icon.edit}</span>
+		{foreach $actions action}
+			<a href="{$action.href|default:"javascript:void(0)"}" {if $action.onclick}onclick="{$action.onclick}"{/if} class="icon {$action.class}" title="{Label $action.label}" id="comment-{$id}-action-{$action.id}">
+				<span class="hidden">{Label $action.label}</span>
 			</a>
-		{/if}
+		{/foreach}
 
-		{* ------------------------ Make public ---------------------- *}
-		{if $canMakePublic}
-			<a href="javascript:void(0)" onclick="Todoyu.Ext.comment.togglePublic({$id})" class="icon public-trigger {if $is_public}comment-public{/if}" title="{Label comment.ext.icon.toggleCustomerVisibility}" id="public-trigger-{$id}">
-				<span class="hidden">{Label comment.ext.icon.toggleCustomerVisibility}</span>
-			</a>
-		{/if}
-
-		{* -------------------------- Delete ------------------------ *}
-		{if $canDelete}
-			<a href="javascript:void(0)" onclick="Todoyu.Ext.comment.remove({$id})" class="icon comment-remove" title="{Label comment.ext.icon.remove}">
-				<span class="hidden">{Label comment.ext.icon.remove}</span>
-			</a>
-		{/if}
 		</span>
 	</div>
 	<div id="task-comment-{$id}-text" class="comment-details">
