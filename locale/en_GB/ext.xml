@@ -13,6 +13,7 @@
 	<label index="edit.sendasemail">Send comment by email</label>
 	<label index="edit.autoSentEmailToTaskOwner">Send by email to task owner</label>
 	<label index="edit.sentEmailTo">Send Email To</label>
+	<label index="edit.assets">Send assets</label>
 	<label index="group.employees">Employees</label>
 	<label index="group.projectmembers">Project Members</label>
 	<label index="group.taskmembers">Task Members</label>
@@ -70,4 +71,6 @@
 	<label index="fallback.id_role_email">To a person with this role</label>
 	<label index="fallback.noneForProject">No fallbacks for comments in this project</label>
 	<label index="extconf.globalFallback">Global fallback</label>
+	<label index="edit.person_email_to">Email receivers</label>
+	<label index="edit.address_email_cc">CC to address</label>
 </labels>

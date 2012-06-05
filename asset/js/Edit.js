@@ -116,10 +116,12 @@ Todoyu.Ext.comment.Edit = {
 	 * @param	{Boolean}	show
 	 */
 	toggleEmailReceivers: function(idTask, idComment, show) {
-		var mailReceiversBox = $('formElement-comment-' + idTask + '-' + idComment + '-field-emailreceivers');
+		var form	= $('comment-' + idTask + '-' + idComment + '-form');
 		var method	= show ? 'show' : 'hide';
 
-		mailReceiversBox[method]();
+		if( form ) {
+			form.select('.mailToggle').invoke(method);
+		}
 	},
 
 
