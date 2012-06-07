@@ -114,7 +114,7 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 
 		$form	= TodoyuCommentCommentManager::getCommentForm($idComment, $idTask, $formData);
 
-			// Validate comment and save + send mail if activated / notify about failure
+			// Validate comment and save + send mail(s) if given / notify about failure
 		if( $form->isValid() ) {
 			$storageData = $form->getStorageData();
 

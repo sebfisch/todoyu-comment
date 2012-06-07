@@ -48,10 +48,7 @@
 		<fieldset name="email">
 			<elements>
 
-				<!--<field type="recordsEmailPerson" name="email_receivers">-->
-					<!--<label>comment.ext.edit.email_receivers</label>-->
-				<!--</field>-->
-				<field type="recordsPersonAndAddress" name="email_receivers">
+				<field type="recordsEmailPerson" name="email_receivers">
 					<label>comment.ext.edit.email_receivers</label>
 				</field>
 

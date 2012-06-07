@@ -71,6 +71,6 @@
 	<label index="fallback.id_role_email">To a person with this role</label>
 	<label index="fallback.noneForProject">No fallbacks for comments in this project</label>
 	<label index="extconf.globalFallback">Global fallback</label>
-	<label index="edit.email_receivers">Email receivers</label>
+	<label index="edit.email_receivers">Email Receivers</label>
 	<label index="edit.address_email_cc">CC to address</label>
 </labels>
