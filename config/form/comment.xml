@@ -48,40 +48,16 @@
 		<fieldset name="email">
 			<elements>
 
-				<!--<field type="checkbox" name="sendasemail">-->
-					<!--<label>comment.ext.edit.sendasemail</label>-->
-					<!--<onclick>Todoyu.Ext.comment.Edit.onMailCheckboxToggle(this)</onclick>-->
-					<!--<noStorage />-->
-					<!--<restrict>-->
-						<!--<allow ext="comment" right="general:sendEmail" />-->
-					<!--</restrict>-->
+				<!--<field type="recordsEmailPerson" name="email_receivers">-->
+					<!--<label>comment.ext.edit.email_receivers</label>-->
 				<!--</field>-->
+				<field type="recordsPersonAndAddress" name="email_receivers">
+					<label>comment.ext.edit.email_receivers</label>
+				</field>
 
-				<!--<field type="select" name="emailreceivers">-->
-					<!--<label>comment.ext.edit.sentEmailTo</label>-->
-					<!--<source type="function">-->
-						<!--<function>TodoyuCommentViewHelper::getEmailReceiverOptions</function>-->
-						<!--<lazyInit />-->
-					<!--</source>-->
-					<!--<size>5</size>-->
-					<!--<multiple />-->
-					<!--<style>display:none</style>-->
-					<!--<restrict>-->
-						<!--<allow ext="comment" right="general:sendEmail" />-->
-					<!--</restrict>-->
+				<!--<field type="recordsTaskAsset" name="assets">-->
+					<!--<label>comment.ext.edit.assets</label>-->
 				<!--</field>-->
-
-				<field type="recordsEmailPerson" name="person_email_to">
-					<label>comment.ext.edit.person_email_to</label>
-				</field>
-
-				<field type="recordsMailAddress" name="address_email_cc">
-					<label>comment.ext.edit.address_email_cc</label>
-				</field>
-
-				<field type="recordsTaskAsset" name="assets">
-					<label>comment.ext.edit.assets</label>
-				</field>
 
 			</elements>
 		</fieldset>

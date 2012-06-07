@@ -234,12 +234,12 @@ class TodoyuCommentFallback extends TodoyuBaseObject {
 			// Email
 		if( !Todoyu::allowed('comment', 'general:sendEmail') ) {
 			if( $this->hasPersonEmail() ) {
-				$commentData['emailreceivers'] = $this->getPersonEmailID();
+				$commentData['email_receivers'] = $this->getPersonEmailID();
 			} elseif( $this->hasTaskPersonEmail() ) {
-				$commentData['emailreceivers'] = $task->getPersonID($this->getTaskPersonEmailKey());
+				$commentData['email_receivers'] = $task->getPersonID($this->getTaskPersonEmailKey());
 			} elseif( $this->hasRoleEmail() ) {
 				$projectRoleIDs = $task->getProject()->getRolePersonIDs($this->getRoleEmailID());
-				$commentData['emailreceivers'] = reset($projectRoleIDs);
+				$commentData['email_receivers'] = reset($projectRoleIDs);
 			}
 		}
 

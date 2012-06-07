@@ -139,11 +139,11 @@ class TodoyuCommentCommentManager {
 
 			// Extract feedback and email data
 		$personFeedbackIDs	= array_unique(TodoyuArray::intExplode(',', $data['feedback'], true, true));
-		$personEmailIDs		= array_unique(TodoyuArray::intExplode(',', $data['emailreceivers'], true, true));
+		$personEmailIDs		= array_unique(TodoyuArray::intExplode(',', $data['email_receivers'], true, true));
 
 
 			// Remove special handled fields
-		unset($data['emailreceivers']);
+		unset($data['email_receivers']);
 		unset($data['feedback']);
 
 			// Update comment in database
