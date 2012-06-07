@@ -101,7 +101,8 @@ class TodoyuCommentCommentManager {
 
 
 	/**
-	 * Save comment (also sends comment mails if receiver email addresses given)
+	 * Save comment.
+	 * Also sends comment mails if any email receivers given
 	 *
 	 * @param	Array		$data
 	 * @return	Array		Data about comment saving: id, feedback, email, emailOk
@@ -139,8 +140,7 @@ class TodoyuCommentCommentManager {
 
 			// Extract feedback and email data
 		$personFeedbackIDs	= array_unique(TodoyuArray::intExplode(',', $data['feedback'], true, true));
-		$personEmailIDs		= array_unique(TodoyuArray::intExplode(',', $data['email_receivers'], true, true));
-
+		$personEmailIDs		= array_unique(TodoyuArray::intval($data['email_receivers']));
 
 			// Remove special handled fields
 		unset($data['email_receivers']);

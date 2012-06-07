@@ -114,7 +114,8 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 
 		$form	= TodoyuCommentCommentManager::getCommentForm($idComment, $idTask, $formData);
 
-			// Validate comment and save + send mail(s) if given / notify about failure
+			// Validate and save comment and notify about success/failure
+			// Also send email(s) if any receivers are selected.
 		if( $form->isValid() ) {
 			$storageData = $form->getStorageData();
 
@@ -141,7 +142,6 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 				}
 				TodoyuHeader::sendTodoyuHeader('feedback', $feedbackData);
 			}
-
 
 				// Send back email status data if any sent
 			if( sizeof($saveResult['email']) ) {
