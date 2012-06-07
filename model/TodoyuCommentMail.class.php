@@ -27,11 +27,19 @@
 class TodoyuCommentMail extends TodoyuMail {
 
 	/**
-	 * Receiver person
+	 * Email receiver
 	 *
-	 * @var	TodoyuContactPerson
+	 * @var	TodoyuMailReceiver
 	 */
-	private $person;
+	private $mailReceiver;
+
+	/**
+	 * ID optional with registered type key prefix.
+	 * E.g. 'contactperson232' or '232' which defaults the type to 'contactperson'
+	 *
+	 * @var String
+	 */
+	private $mailReceiverID;
 
 	/**
 	 * Comment to send
@@ -45,14 +53,15 @@ class TodoyuCommentMail extends TodoyuMail {
 	 * Initialize comment mail
 	 *
 	 * @param	Integer		$idComment
-	 * @param	Integer		$idPerson
+	 * @param	String		$mailReceiverID		ID optional with registered type key prefix
 	 * @param	Array		$config
 	 */
-	public function __construct($idComment, $idPerson, array $config = array()) {
+	public function __construct($idComment, $mailReceiverID, array $config = array()) {
 		parent::__construct($config);
 
-		$this->comment	= TodoyuCommentCommentManager::getComment($idComment);
-		$this->person	= TodoyuContactPersonManager::getPerson($idPerson);
+		$this->comment			= TodoyuCommentCommentManager::getComment($idComment);
+		$this->mailReceiverID	= $mailReceiverID;
+		$this->mailReceiver		= TodoyuMailReceiverManager::getMailReceiverObject($mailReceiverID);
 
 		$this->init();
 	}
@@ -65,11 +74,22 @@ class TodoyuCommentMail extends TodoyuMail {
 	private function init() {
 		$this->setMailSubject();
 		$this->setCurrentUserAsSender();
-		$this->addReceiver($this->person->getID());
+		$this->addReceiver($this->getMailReceiverID());
 		$this->setHeadline('comment.ext.mail.newcomment');
 
 		$this->setHtmlContent($this->getContent(true));
 		$this->setTextContent($this->getContent(false));
+	}
+
+
+
+	/**
+	 * Get mail receiver ID.
+	 *
+	 * @return	String
+	 */
+	public function getMailReceiverID() {
+		return $this->mailReceiverID;
 	}
 
 
@@ -133,7 +153,7 @@ class TodoyuCommentMail extends TodoyuMail {
 			'comment'			=> $this->comment->getTemplateData(),
 			'project'			=> $project->getTemplateData(true),
 			'task'				=> $task->getTemplateData(),
-			'personReceive'		=> $this->person->getTemplateData(),
+//			'personReceive'		=> $this->person->getTemplateData(),
 			'personWrite'		=> $personWrite->getTemplateData(),
 			'personSend'		=> $personSend->getTemplateData(),
 			'feedback_persons'	=> $this->comment->getFeedbackPersonsData()

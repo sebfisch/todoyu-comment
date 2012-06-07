@@ -31,26 +31,29 @@ class TodoyuCommentMailer {
 	 * Store successful savings
 	 *
 	 * @param	Integer		$idComment
-	 * @param	Array		$personIDs
+	 * @param	String[]	$emailReceivers
 	 * @return	Array		ID indexed list with send status
 	 */
-	public static function sendEmails($idComment, array $personIDs) {
+	public static function sendEmails($idComment, array $emailReceivers) {
 		$idComment		= intval($idComment);
-		$personIDs		= TodoyuArray::intval($personIDs, true, true);
 		$sendStatus		= array();
 		$sentPersonIDs	= array();
 
-		foreach($personIDs as $idPerson) {
-			$personStatus = self::sendMail($idComment, $idPerson, true);
+		foreach($emailReceivers as $mailReceiverID) {
+			self::sendMail($idComment, $mailReceiverID, true);
 
-			$sendStatus[$idPerson] = $personStatus;
+				// Email receiver is a regular person ID
+//			$personStatus = self::sendMailByReceiverPersonID($idComment, $emailReceiver, true);
+//			$sendStatus[$emailReceiver] = $personStatus;
+//
+//			if( $personStatus ) {
+//				$sentPersonIDs[] = $emailReceiver;
+//			}
 
-			if( $personStatus ) {
-				$sentPersonIDs[] = $idPerson;
-			}
+
 		}
 
-		TodoyuCommentMailManager::saveMailsSent($idComment, $sentPersonIDs);
+//		TodoyuCommentMailManager::saveMailsSent($idComment, $sentPersonIDs);
 
 		return $sendStatus;
 	}
@@ -58,24 +61,21 @@ class TodoyuCommentMailer {
 
 
 	/**
-	 * Send a comment email to a person
-	 *
-	 * @param	Integer		$idComment
-	 * @param	Integer		$idPerson
-	 * @param	Boolean		$setCurrentUserAsSender
-	 * @return	Boolean		Success
+	 * @param		Integer				$idComment
+	 * @param		String				$mailReceiverID				ID optional with registered type key prefix
+	 * @param		Boolean 			$setCurrentUserAsSender
+	 * @return		Boolean				$success
 	 */
-	public static function sendMail($idComment, $idPerson, $setCurrentUserAsSender=false) {
+	public static function sendMail($idComment, $mailReceiverID, $setCurrentUserAsSender=false) {
 		$idComment	= intval($idComment);
-		$idPerson	= intval($idPerson);
 
-		$mail		= new TodoyuCommentMail($idComment, $idPerson);
+		$mail	= new TodoyuCommentMail($idComment, $mailReceiverID);
 
 		if( $setCurrentUserAsSender ) {
 			$mail->setCurrentUserAsSender();
 		}
 
-		TodoyuHookManager::callHook('comment', 'comment.email', array($idComment, $idPerson));
+		TodoyuHookManager::callHook('comment', 'comment.email', array($idComment, $mailReceiver));
 
 		return $mail->send();
 	}

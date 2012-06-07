@@ -138,9 +138,11 @@ class TodoyuCommentCommentManager {
 			// Call hooked save data functions
 		$data	= TodoyuFormHook::callSaveData($xmlPath, $data, $idComment);
 
-			// Extract feedback and email data
+			// Extract feedback data
 		$personFeedbackIDs	= array_unique(TodoyuArray::intExplode(',', $data['feedback'], true, true));
-		$personEmailIDs		= array_unique(TodoyuArray::intval($data['email_receivers']));
+
+			// Get email receivers - per default: numeric person IDs, can also be prefixed with a registrable type name
+		$emailReceivers		= array_unique($data['email_receivers']);
 
 			// Remove special handled fields
 		unset($data['email_receivers']);
@@ -160,8 +162,8 @@ class TodoyuCommentCommentManager {
 		$result['feedback'] = $personFeedbackIDs;
 
 			// Send emails
-		if( sizeof($personEmailIDs) ) {
-			$result['email'] = TodoyuCommentMailer::sendEmails($idComment, $personEmailIDs);
+		if( sizeof($emailReceivers) ) {
+			$result['email'] = TodoyuCommentMailer::sendEmails($idComment, $emailReceivers);
 		}
 
 			// Call saved hook
