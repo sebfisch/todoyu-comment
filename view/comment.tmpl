@@ -44,13 +44,24 @@
 
 		{if sizeof($person_ids_mailonly) > 0}
 			{$labelRendered = 0}
-			{foreach $person_ids_mailonly emailPersonID name=personsEmai}
-				{if isPersonSeeAllowed($emailPersonID)}
+			{foreach $person_ids_mailonly receiverTuple}
+				{if substr($receiverTuple, 0 14) === 'contactperson:'}
+					{* ------- receivers which are ext_contact_person records ------ *}
+					{$emailPersonID = intval(substr($receiverTuple, 14))}
+					{if isPersonSeeAllowed($emailPersonID)}
+						{if $labelRendered === 0}
+							{Label comment.ext.comment.emailPersons}
+							{$labelRendered = 1}
+						{/if}
+						{personLabel idPrefix="comment-personemail" idRecord=$emailPersonID idPerson=$emailPersonID class="emailperson"}
+					{/if}
+				{else}
+					{* ------- dynamic registered receiver types ------ *}
 					{if $labelRendered === 0}
 						{Label comment.ext.comment.emailPersons}
 						{$labelRendered = 1}
 					{/if}
-					{personLabel idPrefix="comment-personemail" idRecord=$emailPersonID idPerson=$emailPersonID class="emailperson"}
+					<span>{mailreceiverLabel receiverTuple=$receiverTuple}</span>
 				{/if}
 			{/foreach}
 			<div class="divider"> </div>

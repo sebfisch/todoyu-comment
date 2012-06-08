@@ -112,22 +112,29 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 	 *
 	 * @return	Array[]
 	 */
-	public function getEmailPersonsData() {
-		return TodoyuCommentMailManager::getEmailPersons($this->getID());
+	public function getEmailReceiversData() {
+		$receiverObjects	= TodoyuCommentMailManager::getEmailReceivers($this->getID());
+
+		$data	= array();
+		foreach($receiverObjects as $mailReceiver) {
+			$data[$mailReceiver->getTuple()]	= $mailReceiver->getData();
+		}
+
+		return $data;
 	}
 
 
 
-	/**
-	 * Get IDs of email persons
-	 *
-	 * @return	Integer
-	 */
-	public function getEmailPersonsIDs() {
-		$emailPersonsData	= $this->getEmailPersonsData();
-
-		return TodoyuArray::getColumn($emailPersonsData, 'id');
-	}
+//	/**
+//	 * Get IDs of email persons
+//	 *
+//	 * @return	Integer
+//	 */
+//	public function getEmailReceiversIDs() {
+//		$emailPersonsData	= $this->getEmailReceiversData();
+//
+//		return TodoyuArray::getColumn($emailPersonsData, 'id');
+//	}
 
 
 
@@ -352,7 +359,7 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 			$this->data['person_create']	= $this->getPersonCreate()->getTemplateData(false);
 
 			$this->data['persons_feedback']	= $this->getFeedbackPersonsData();
-			$this->data['persons_email']	= $this->getEmailPersonsData();
+			$this->data['persons_email']	= $this->getEmailReceiversData();
 
 				// Persons that the comment has been mailed to without a feedback request?
 			$personIDsEmailedTo	= array_keys($this->data['persons_email']);
