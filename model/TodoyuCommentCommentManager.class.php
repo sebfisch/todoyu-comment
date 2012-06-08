@@ -141,8 +141,8 @@ class TodoyuCommentCommentManager {
 			// Extract feedback data
 		$personFeedbackIDs	= array_unique(TodoyuArray::intExplode(',', $data['feedback'], true, true));
 
-			// Get email receivers - per default: numeric person IDs, can also be prefixed with a registrable type name
-		$emailReceivers		= array_unique($data['email_receivers']);
+			// Get email receivers: tuples like 'type:ID' or just person IDs, which defaults type to 'contactperson'
+		$receiverTuples		= array_unique($data['email_receivers']);
 
 			// Remove special handled fields
 		unset($data['email_receivers']);
@@ -162,8 +162,8 @@ class TodoyuCommentCommentManager {
 		$result['feedback'] = $personFeedbackIDs;
 
 			// Send emails
-		if( sizeof($emailReceivers) ) {
-			$result['email'] = TodoyuCommentMailer::sendEmails($idComment, $emailReceivers);
+		if( sizeof($receiverTuples) ) {
+			$result['email'] = TodoyuCommentMailer::sendEmails($idComment, $receiverTuples);
 		}
 
 			// Call saved hook

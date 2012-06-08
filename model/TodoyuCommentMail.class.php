@@ -27,22 +27,22 @@
 class TodoyuCommentMail extends TodoyuMail {
 
 	/**
-	 * Email receiver
+	 * Email receiver object
 	 *
 	 * @var	TodoyuMailReceiver
 	 */
 	private $mailReceiver;
 
 	/**
-	 * ID optional with registered type key prefix.
-	 * E.g. 'contactperson232' or '232' which defaults the type to 'contactperson'
+	 * Tuple: 'type:ID', e.g. 'contactperson:232'
+	 * Or only ID, which defaults the type to 'contactperson'
 	 *
 	 * @var String
 	 */
-	private $mailReceiverID;
+	private $receiverTuple;
 
 	/**
-	 * Comment to send
+	 * Comment to be send
 	 *
 	 * @var	TodoyuCommentComment
 	 */
@@ -53,15 +53,15 @@ class TodoyuCommentMail extends TodoyuMail {
 	 * Initialize comment mail
 	 *
 	 * @param	Integer		$idComment
-	 * @param	String		$mailReceiverID		ID optional with registered type key prefix
+	 * @param	String		$receiverTuple
 	 * @param	Array		$config
 	 */
-	public function __construct($idComment, $mailReceiverID, array $config = array()) {
+	public function __construct($idComment, $receiverTuple, array $config = array()) {
 		parent::__construct($config);
 
 		$this->comment			= TodoyuCommentCommentManager::getComment($idComment);
-		$this->mailReceiverID	= $mailReceiverID;
-		$this->mailReceiver		= TodoyuMailReceiverManager::getMailReceiverObject($mailReceiverID);
+		$this->receiverTuple	= $receiverTuple;
+		$this->mailReceiver		= TodoyuMailReceiverManager::getMailReceiverObject($receiverTuple);
 
 		$this->init();
 	}
@@ -74,7 +74,7 @@ class TodoyuCommentMail extends TodoyuMail {
 	private function init() {
 		$this->setMailSubject();
 		$this->setCurrentUserAsSender();
-		$this->addReceiver($this->getMailReceiverID());
+		$this->addReceiver($this->getReceiverTuple());
 		$this->setHeadline('comment.ext.mail.newcomment');
 
 		$this->setHtmlContent($this->getContent(true));
@@ -84,12 +84,12 @@ class TodoyuCommentMail extends TodoyuMail {
 
 
 	/**
-	 * Get mail receiver ID.
+	 * Get mail receiver tuple ('type:ID')
 	 *
 	 * @return	String
 	 */
-	public function getMailReceiverID() {
-		return $this->mailReceiverID;
+	public function getReceiverTuple() {
+		return $this->receiverTuple;
 	}
 
 

@@ -27,55 +27,46 @@
 class TodoyuCommentMailer {
 
 	/**
-	 * Send comment email to the persons
-	 * Store successful savings
+	 * Send comment email to given receivers. Save status to mail-log.
 	 *
 	 * @param	Integer		$idComment
-	 * @param	String[]	$emailReceivers
-	 * @return	Array		ID indexed list with send status
+	 * @param	String[]	$receiverTuples
+	 * @return	Array
 	 */
-	public static function sendEmails($idComment, array $emailReceivers) {
-		$idComment		= intval($idComment);
-		$sendStatus		= array();
-		$sentPersonIDs	= array();
+	public static function sendEmails($idComment, array $receiverTuples) {
+		$idComment	= intval($idComment);
+		$status		= array();
 
-		foreach($emailReceivers as $mailReceiverID) {
-			self::sendMail($idComment, $mailReceiverID, true);
+		foreach($receiverTuples as $receiverTuple) {
+			$isSent = self::sendMail($idComment, $receiverTuple, true);
+			if( $isSent ) {
+				TodoyuCommentMailManager::saveMailSent($idComment, $receiverTuple);
+			}
 
-				// Email receiver is a regular person ID
-//			$personStatus = self::sendMailByReceiverPersonID($idComment, $emailReceiver, true);
-//			$sendStatus[$emailReceiver] = $personStatus;
-//
-//			if( $personStatus ) {
-//				$sentPersonIDs[] = $emailReceiver;
-//			}
-
-
+			$status[$receiverTuple]	= $isSent;
 		}
 
-//		TodoyuCommentMailManager::saveMailsSent($idComment, $sentPersonIDs);
-
-		return $sendStatus;
+		return $status;
 	}
 
 
 
 	/**
 	 * @param		Integer				$idComment
-	 * @param		String				$mailReceiverID				ID optional with registered type key prefix
+	 * @param		String				$receiverTuple				'type:ID' or just 'ID' which sets type to default (=contactperson)
 	 * @param		Boolean 			$setCurrentUserAsSender
 	 * @return		Boolean				$success
 	 */
-	public static function sendMail($idComment, $mailReceiverID, $setCurrentUserAsSender=false) {
+	public static function sendMail($idComment, $receiverTuple, $setCurrentUserAsSender=false) {
 		$idComment	= intval($idComment);
 
-		$mail	= new TodoyuCommentMail($idComment, $mailReceiverID);
+		$mail	= new TodoyuCommentMail($idComment, $receiverTuple);
 
 		if( $setCurrentUserAsSender ) {
 			$mail->setCurrentUserAsSender();
 		}
 
-		TodoyuHookManager::callHook('comment', 'comment.email', array($idComment, $mailReceiver));
+		TodoyuHookManager::callHook('comment', 'comment.email', array($idComment, $receiverTuple));
 
 		return $mail->send();
 	}
