@@ -1,3 +1,7 @@
+@import "../../../../core/config/theme.scss";
+
+
+
 /* ----------------------------------------------
 	Extension icon: stand-alone and in heading
    ---------------------------------------------- */
@@ -104,7 +108,7 @@ h1.extIconComment .title {
 }
 
 .task-comments .comment-details .persons .divider {
-	border-bottom:1px solid #ddd;
+	border-bottom:1px solid $grey02;
 }
 
 .task-comments .comment-details .right {
@@ -113,7 +117,7 @@ h1.extIconComment .title {
 }
 
 .task-comments .comment-details .updateInfo {
-	color:#999;
+	color:$grey06;
 	margin-left:5px;
 	margin-top:5px;
 	font-size:10px;
@@ -121,8 +125,8 @@ h1.extIconComment .title {
 
 .task-comments .comment-details .publicFeedbackWarning {
 	background-color:#ffac00;
-	box-shadow:2px 2px 7px #999;
-	border:1px solid #CCC;
+	box-shadow:2px 2px 7px $grey06;
+	border:1px solid $grey03;
 	padding:7px;
 	margin-left:5px;
 	font-weight:bold;
@@ -140,7 +144,7 @@ h1.extIconComment .title {
 
 .task-comments .comment-details .persons,
 .task-comments .comment-details .persons span {
-	color:#666;
+	color:$grey07;
 	line-height:18px;
 }
 
@@ -261,7 +265,7 @@ h1.extIconComment .title {
 	border:1px solid #0065A6;
 	margin:0 20px 5px;
 	padding:5px;
-	background-color:#fff;
+	background-color:$white;
 }
 
 .tabContent ul.task-comments {
@@ -321,7 +325,7 @@ li.comment .comment-history {
 .commentMailBox {
 	clear:both;
 	background-color:#fafafa;
-	border:1px dotted #ccc;
+	border:1px dotted $grey03;
 	margin:18px 0 8px 12px;
 	padding:6px 0 10px 4px;
 	width:564px;
