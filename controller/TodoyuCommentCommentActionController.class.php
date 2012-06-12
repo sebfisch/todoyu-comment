@@ -146,11 +146,10 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 				// Send back email status data if any sent
 			if( sizeof($saveResult['email']) ) {
 				$emailStatusData = array();
-				foreach($saveResult['email'] as $idPerson => $personStatus) {
+				foreach($saveResult['email'] as $receiverSendStatus) {
 					$emailStatusData[] = array(
-						'id'		=> $idPerson,
-						'name'		=> TodoyuContactPersonManager::getLabel($idPerson, true),
-						'status'	=> $personStatus
+						'name'		=> $receiverSendStatus['receiver']->getName(),
+						'status'	=> $receiverSendStatus['sendStatus']
 					);
 				}
 				TodoyuHeader::sendTodoyuHeader('emailStatus', $emailStatusData);

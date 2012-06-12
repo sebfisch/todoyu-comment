@@ -27,12 +27,10 @@
 class TodoyuCommentMailManager {
 
 	/**
-	 * @param	Integer		$idComment
-	 * @param	String		$receiverTuple
+	 * @param	Integer							$idComment
+	 * @param	TodoyuMailReceiverInterface		$mailReceiver
 	 */
-	public static function saveMailSent($idComment, $receiverTuple) {
-		$mailReceiver	= TodoyuMailReceiverManager::getMailReceiverObject($receiverTuple);
-
+	public static function saveMailSent($idComment, TodoyuMailReceiverInterface $mailReceiver) {
 		$idReceiver		= $mailReceiver->getIdReceiver();
 		$receiverType	= $mailReceiver->getType();
 

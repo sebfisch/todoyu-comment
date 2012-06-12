@@ -20,53 +20,29 @@
 	</div>
 	<div id="task-comment-{$id}-text" class="comment-details">
 		{* --------------------------- Comment persons (feedback, email, etc) --------------- *}
-		<div class="persons">
-		{foreach $persons_feedback feedbackPerson name=personsFeedback}
-			{if isPersonSeeAllowed($feedbackPerson.id)}
-				{if $dwoo.foreach.personsFeedback.first}
-					{Label comment.ext.comment.feedbackPersons}
-				{/if}
+		<div class="involvedPersons" id="task-comment-{$id}-involvedPersons">
+			{foreach $involvedPersons involvedPerson}
+				<span class="involvedPerson" id="task-comment-{$id}-involvedPerson-{$involvedPerson.key}">
+					{if $involvedPerson.feedback}
+						<span class="icon feedback {tif $involvedPerson.feedbackSeen ? 'approved' : 'unapproved'}"></span>
+					{/if}
+					{if $involvedPerson.email}
+						<span class="icon email"></span>
+					{/if}
 
-				{if $feedbackPerson.is_seen}
-					{$class = 'commentperson-approved'}
-				{else}
-					{$class = 'commentperson-unapproved'}
-				{/if}
-				{if in_array($feedbackPerson.id, array_keys($persons_email))}
-					{$class .= '-email'}
-				{/if}
-				{personLabel idPrefix="comment-personfeedback" idRecord=$id idPerson=$feedbackPerson.id class=$class}
-				{if $dwoo.foreach.personsFeedback.last}
-					<div class="divider"> </div>
-				{/if}
-			{/if}
-		{/foreach}
-
-		{if sizeof($person_ids_mailonly) > 0}
-			{$labelRendered = 0}
-			{foreach $person_ids_mailonly receiverTuple}
-				{if substr($receiverTuple, 0 14) === 'contactperson:'}
-					{* ------- receivers which are ext_contact_person records ------ *}
-					{$emailPersonID = intval(substr($receiverTuple, 14))}
-					{if isPersonSeeAllowed($emailPersonID)}
-						{if $labelRendered === 0}
-							{Label comment.ext.comment.emailPersons}
-							{$labelRendered = 1}
+					<span class="label">
+						{if $involvedPerson.personID}
+							{personLabel idPrefix="comment-personfeedback" idPerson=$involvedPerson.personID}
+						{else}
+							{if $involvedPerson.receiverTuple}
+								{mailreceiverLabel receiverTuple=$involvedPerson.receiverTuple}
+							{else}
+								{$involvedPerson.label}
+							{/if}
 						{/if}
-						{personLabel idPrefix="comment-personemail" idRecord=$emailPersonID idPerson=$emailPersonID class="emailperson"}
-					{/if}
-				{else}
-					{* ------- dynamic registered receiver types ------ *}
-					{if $labelRendered === 0}
-						{Label comment.ext.comment.emailPersons}
-						{$labelRendered = 1}
-					{/if}
-					<span>{mailreceiverLabel receiverTuple=$receiverTuple}</span>
-				{/if}
+					</span>
+				</span>
 			{/foreach}
-			<div class="divider"> </div>
-		{/if}
-
 		</div>
 		{* --------------------------- Comment itself --------------- *}
 		<div class="comment">{substituteLinkableElements(cleanHtml($comment))}</div>

@@ -107,16 +107,66 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 
 
 
+	public function getInvolvedPersonInfos() {
+		$feedbackPersonsData	= $this->getFeedbackPersonsData();
+		$emailReceiversData		= $this->getEmailReceiversData();
+		$involvedPersonInfos	= array();
+
+			// Add feedback persons
+		foreach($feedbackPersonsData as $feedbackPersonData) {
+			$feedbackSeen	= intval($feedbackPersonData['is_seen']) === 1;
+			$data	= array(
+				'feedback'		=> true,
+				'feedbackSeen'	=> $feedbackSeen,
+				'personID'		=> $feedbackPersonData['id'],
+				'class'			=> $feedbackSeen ? 'commentperson-approved' : 'commentperson-unapproved',
+				'key'			=> $feedbackPersonData['id']
+			);
+
+			$tuple	= 'contactperson:' . $feedbackPersonData['id'];
+
+				// If feedback person also received an email, combine it
+			if( isset($emailReceiversData[$tuple]) ) {
+				$data['email'] = true;
+				unset($emailReceiversData[$tuple]);
+			}
+
+			$involvedPersonInfos[] = $data;
+		}
+
+			// Add all email receivers
+		foreach($emailReceiversData as $receiverTuple => $receiverData) {
+			$data = array(
+				'email'	=> true
+			);
+
+			if( substr($receiverTuple, 0, 13) === 'contactperson' ) {
+				$idPerson			= intval(substr($receiverTuple, 14));
+				$data['personID']	= $idPerson;
+				$data['key']		= $idPerson;
+			} else {
+				$data['receiverTuple']	= $receiverTuple;
+				$data['key']			= $receiverTuple;
+			}
+
+			$involvedPersonInfos[] = $data;
+		}
+
+		return $involvedPersonInfos;
+	}
+
+
+
 	/**
 	 * Get mail persons
 	 *
 	 * @return	Array[]
 	 */
 	public function getEmailReceiversData() {
-		$receiverObjects	= TodoyuCommentMailManager::getEmailReceivers($this->getID());
+		$mailReceivers	= TodoyuCommentMailManager::getEmailReceivers($this->getID());
 
 		$data	= array();
-		foreach($receiverObjects as $mailReceiver) {
+		foreach($mailReceivers as $mailReceiver) {
 			$data[$mailReceiver->getTuple()]	= $mailReceiver->getData();
 		}
 
@@ -355,20 +405,14 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 	 * @param	Boolean		$loadRenderData
 	 */
 	protected function loadForeignData($loadRenderData = false) {
+			// Basic foreign data
 		if( !$this->has('person_create') ) {
 			$this->data['person_create']	= $this->getPersonCreate()->getTemplateData(false);
-
-			$this->data['persons_feedback']	= $this->getFeedbackPersonsData();
-			$this->data['persons_email']	= $this->getEmailReceiversData();
-
-				// Persons that the comment has been mailed to without a feedback request?
-			$personIDsEmailedTo	= array_keys($this->data['persons_email']);
-			$personIDsFeedback	= $this->getFeedbackPersonsIDs();
-			$this->data['person_ids_mailonly']	= array_diff($personIDsEmailedTo, $personIDsFeedback);
-
-			$this->data['locked']				= $this->isLocked();
+			$this->data['involvedPersons']	= $this->getInvolvedPersonInfos();
+			$this->data['locked']			= $this->isLocked();
 		}
 
+			// Extra data which is only required for detail rendering
 		if( $loadRenderData && !$this->has('isUnapproved') ) {
 			$this->data['isUnapproved']			= TodoyuCommentFeedbackManager::isCommentUnseen($this->getID());
 			$this->data['canDelete']			= $this->canCurrentPersonDelete();

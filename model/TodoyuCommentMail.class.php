@@ -34,14 +34,6 @@ class TodoyuCommentMail extends TodoyuMail {
 	private $mailReceiver;
 
 	/**
-	 * Tuple: 'type:ID', e.g. 'contactperson:232'
-	 * Or only ID, which defaults the type to 'contactperson'
-	 *
-	 * @var String
-	 */
-	private $receiverTuple;
-
-	/**
 	 * Comment to be send
 	 *
 	 * @var	TodoyuCommentComment
@@ -52,16 +44,15 @@ class TodoyuCommentMail extends TodoyuMail {
 	/**
 	 * Initialize comment mail
 	 *
-	 * @param	Integer		$idComment
-	 * @param	String		$receiverTuple
-	 * @param	Array		$config
+	 * @param	Integer							$idComment
+	 * @param	TodoyuMailReceiverInterface		$mailReceiver
+	 * @param	Array							$config
 	 */
-	public function __construct($idComment, $receiverTuple, array $config = array()) {
+	public function __construct($idComment, TodoyuMailReceiverInterface $mailReceiver, array $config = array()) {
 		parent::__construct($config);
 
 		$this->comment			= TodoyuCommentCommentManager::getComment($idComment);
-		$this->receiverTuple	= $receiverTuple;
-		$this->mailReceiver		= TodoyuMailReceiverManager::getMailReceiverObject($receiverTuple);
+		$this->mailReceiver		= $mailReceiver;
 
 		$this->init();
 	}
@@ -74,23 +65,13 @@ class TodoyuCommentMail extends TodoyuMail {
 	private function init() {
 		$this->setMailSubject();
 		$this->setCurrentUserAsSender();
-		$this->addReceiver($this->getReceiverTuple());
+		$this->addReceiver($this->mailReceiver);
 		$this->setHeadline('comment.ext.mail.newcomment');
 
 		$this->setHtmlContent($this->getContent(true));
 		$this->setTextContent($this->getContent(false));
 	}
 
-
-
-	/**
-	 * Get mail receiver tuple ('type:ID')
-	 *
-	 * @return	String
-	 */
-	public function getReceiverTuple() {
-		return $this->receiverTuple;
-	}
 
 
 

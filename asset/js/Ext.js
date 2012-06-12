@@ -168,7 +168,12 @@ Todoyu.Ext.comment = {
 			// Remove unseen icon
 		$('comment-' + idComment + '-seenstatus').remove();
 			// Remove class which marks the name unseen
-		$('comment-personfeedback-' + idComment + '-' + idPerson).removeClassName('commentperson-unapproved');
+
+		var person = $('task-comment-' + idComment + '-involvedPerson-' + idPerson);
+
+		if( person ) {
+			person.down('.feedback.icon').replaceClassName('unapproved', 'approved');
+		}
 
 		this.updateFeedbackTab(response.getTodoyuHeader('feedback'));
 	},

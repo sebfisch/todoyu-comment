@@ -107,10 +107,6 @@ h1.extIconComment .title {
 	padding:5px;
 }
 
-.task-comments .comment-details .persons .divider {
-	border-bottom:1px solid $colorNeutral02;
-}
-
 .task-comments .comment-details .right {
 	float:left;
 	width:285px;
@@ -138,43 +134,47 @@ h1.extIconComment .title {
 /* -----------------------------------------------------------
 	Feedback and email receiver persons in comment header
    ----------------------------------------------------------- */
-.task-comments .comment-details .persons {
-	padding:0 5px;
-}
+.task-comments {
+	.comment-details {
+		.involvedPersons {
+			padding-bottom: 3px;
+			border-bottom: 1px solid $colorNeutral02;
 
-.task-comments .comment-details .persons,
-.task-comments .comment-details .persons span {
-	color:$colorNeutral07;
-	line-height:18px;
-}
+			.involvedPerson {
+				margin-right:10px;
+				display: inline-block;
 
-.task-comments .comment-details .persons span {
-	padding-left:13px;
-	white-space:nowrap;
-}
-	/* Person has acknowledged feedback */
-.task-comments .comment-details .persons span.commentperson-approved {
-	background:url(../../../../core/asset/img/icons.png) no-repeat 0 -1314px;
-}
-	/* Person has only received the comment via mail */
-.task-comments .comment-details .persons span.emailperson {
-	background:url(../../../../core/asset/img/icons.png) no-repeat 0 -1344px;
-}
-	/* Person has acknowledged feedback AND received it via email */
-.task-comments .comment-details .persons span.commentperson-approved-email {
-	background:url(../../../../core/asset/img/icons.png) no-repeat 0 -1402px;
-	padding-left:23px;
-}
-	/* Person has NOT acknowledged feedback */
-.task-comments .comment-details .persons span.commentperson-unapproved {
-	background:url(../../../../core/asset/img/icons.png) no-repeat 0 -1288px;
-}
-	/* Person has NOT acknowledged feedback AND received it via email */
-.task-comments .comment-details .persons span.commentperson-unapproved-email {
-	background:url(../../../../core/asset/img/icons.png) no-repeat 0 -1368px;
-	padding-left:23px;
-}
+				span {
+					vertical-align: top;
+				}
 
+				.icon {
+					display: inline-block;
+					float:none;
+					height: 14px;
+					width: 12px;
+					background: {
+						image: url(../../../../core/asset/img/icons.png);
+						repeat: no-repeat;
+					}
+				}
+
+				.feedback {
+					&.approved {
+						background-position: 1px -1314px;
+					}
+					&.unapproved {
+						background-position: 1px -1288px;
+					}
+				}
+
+				.email {
+					background-position: 1px -1344px;
+				}
+			}
+		}
+	}
+}
 
 
 

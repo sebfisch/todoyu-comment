@@ -34,42 +34,48 @@ class TodoyuCommentMailer {
 	 * @return	Array
 	 */
 	public static function sendEmails($idComment, array $receiverTuples) {
-		$idComment	= intval($idComment);
-		$status		= array();
+		$idComment		= intval($idComment);
+		$sendStatus		= array();
+		$mailReceivers	= TodoyuMailReceiverManager::getMailReceivers($receiverTuples);
 
-		foreach($receiverTuples as $receiverTuple) {
-			$isSent = self::sendMail($idComment, $receiverTuple, true);
+		foreach($mailReceivers as $receiverTuple => $mailReceiver) {
+			$isSent = self::sendMail($idComment, $mailReceiver, true);
 			if( $isSent ) {
-				TodoyuCommentMailManager::saveMailSent($idComment, $receiverTuple);
+				TodoyuCommentMailManager::saveMailSent($idComment, $mailReceiver);
 			}
 
-			$status[$receiverTuple]	= $isSent;
+			$sendStatus[] = array(
+				'sendStatus'=> $isSent,
+				'receiver'	=> $mailReceiver
+			);
 		}
 
-		return $status;
+		return $sendStatus;
 	}
 
 
 
 	/**
-	 * @param		Integer				$idComment
-	 * @param		String				$receiverTuple				'type:ID' or just 'ID' which sets type to default (=contactperson)
-	 * @param		Boolean 			$setCurrentUserAsSender
-	 * @return		Boolean				$success
+	 * Send comment as mail
+	 *
+	 * @param		Integer							$idComment
+	 * @param		TodoyuMailReceiverInterface		$mailReceiver
+	 * @param		Boolean 						$setCurrentUserAsSender
+	 * @return		Boolean							$success
 	 */
-	public static function sendMail($idComment, $receiverTuple, $setCurrentUserAsSender=false) {
+	public static function sendMail($idComment, TodoyuMailReceiverInterface $mailReceiver, $setCurrentUserAsSender=false) {
 		$idComment	= intval($idComment);
-
-		$mail	= new TodoyuCommentMail($idComment, $receiverTuple);
+		$mail		= new TodoyuCommentMail($idComment, $mailReceiver);
 
 		if( $setCurrentUserAsSender ) {
 			$mail->setCurrentUserAsSender();
 		}
 
-		TodoyuHookManager::callHook('comment', 'comment.email', array($idComment, $receiverTuple));
+		TodoyuHookManager::callHook('comment', 'comment.email.send', array($idComment, $mail, $mailReceiver));
 
 		return $mail->send();
 	}
 
 }
+
 ?>
