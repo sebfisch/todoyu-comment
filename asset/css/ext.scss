@@ -68,7 +68,7 @@ h1.extIconComment .title {
 	margin:0 0 5px 0;
 	padding:7px 5px;
 	font-weight:bold;
-	background:#E5E8DA url(../../../../core/asset/img/bg-tabheader.png) repeat-x 0 top;
+	background:$colorCorporate01 url(../../../../core/asset/img/bg-tabheader.png) repeat-x 0 top;
 }
 .taskTabs .formComment {
 }
@@ -124,7 +124,7 @@ h1.extIconComment .title {
 }
 
 .task-comments .comment-details .publicFeedbackWarning {
-	background-color:#ffac00;
+	background-color:$colorNotice00;
 	box-shadow:2px 2px 7px $colorNeutral06;
 	border:1px solid $colorNeutral03;
 	padding:7px;
@@ -179,7 +179,7 @@ h1.extIconComment .title {
 
 
 .task-comments li.isPublic {
-	border:solid #ad4a4a !important;
+	border:solid $colorAlert01 !important;
 	border-width:1px !important;
 }
 
@@ -224,8 +224,8 @@ h1.extIconComment .title {
 
 
 .comment .actions a {
-	background-image: url(../img/icons.png);
-	background-repeat: no-repeat;
+	background-image:url(../img/icons.png);
+	background-repeat:no-repeat;
 	float:left;
 	margin-left:10px;
 	width:18px;
@@ -262,7 +262,7 @@ h1.extIconComment .title {
 }
 
 .task-comments li.taskOptionBlock {
-	border:1px solid #0065A6;
+	border:1px solid $blue06;
 	margin:0 20px 5px;
 	padding:5px;
 	background-color:$white;
@@ -283,8 +283,8 @@ h1.extIconComment .title {
 	Comment feedback and mailing log
    ----------------------------------------- */
 li.comment .comment-history {
-	border:1px dotted #8cabc8;
-	background-color:#F7FBFF;
+	border:1px dotted $blue07;
+	background-color:$white;
 	padding:0 0 1px 0;
 }
 
@@ -384,7 +384,7 @@ input.deleteButtonOwnComment {
 
 .task .tabContent .commentform fieldset.main {
 	padding-bottom:0;
-	padding-top: 10px;
+	padding-top:10px;
 	margin-bottom:0;
 }
 
