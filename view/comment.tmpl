@@ -35,9 +35,9 @@
 							{personLabel idPrefix="comment-personfeedback" idPerson=$involvedPerson.personID}
 						{else}
 							{if $involvedPerson.receiverTuple}
-								{mailreceiverLabel receiverTuple=$involvedPerson.receiverTuple}
+								{mailreceiverLabel tuple=$involvedPerson.receiverTuple}
 							{else}
-								{$involvedPerson.label}
+								{htmlencode $involvedPerson.label}
 							{/if}
 						{/if}
 					</span>
