@@ -74,7 +74,7 @@ h1.extIconComment .title {
 }
 .taskTabs .formComment fieldset {
 	margin-top:5px;
-	border-color:#e3eace;
+	border-color:$colorCorporate02;
 }
 
 
@@ -108,7 +108,7 @@ h1.extIconComment .title {
 }
 
 .task-comments .comment-details .persons .divider {
-	border-bottom:1px solid $grey02;
+	border-bottom:1px solid $colorNeutral02;
 }
 
 .task-comments .comment-details .right {
@@ -117,7 +117,7 @@ h1.extIconComment .title {
 }
 
 .task-comments .comment-details .updateInfo {
-	color:$grey06;
+	color:$colorNeutral06;
 	margin-left:5px;
 	margin-top:5px;
 	font-size:10px;
@@ -125,8 +125,8 @@ h1.extIconComment .title {
 
 .task-comments .comment-details .publicFeedbackWarning {
 	background-color:#ffac00;
-	box-shadow:2px 2px 7px $grey06;
-	border:1px solid $grey03;
+	box-shadow:2px 2px 7px $colorNeutral06;
+	border:1px solid $colorNeutral03;
 	padding:7px;
 	margin-left:5px;
 	font-weight:bold;
@@ -144,7 +144,7 @@ h1.extIconComment .title {
 
 .task-comments .comment-details .persons,
 .task-comments .comment-details .persons span {
-	color:$grey07;
+	color:$colorNeutral07;
 	line-height:18px;
 }
 
@@ -290,7 +290,7 @@ li.comment .comment-history {
 
 	.comment-history .log-head {
 		cursor:pointer;
-		background:#e8e8e8 url(../img/icons.png) no-repeat 6px -447px;
+		background:$colorNeutral01 url(../img/icons.png) no-repeat 6px -447px;
 		padding:4px 0 4px 26px;
 	}
 
@@ -325,7 +325,7 @@ li.comment .comment-history {
 .commentMailBox {
 	clear:both;
 	background-color:#fafafa;
-	border:1px dotted $grey03;
+	border:1px dotted $colorNeutral03;
 	margin:18px 0 8px 12px;
 	padding:6px 0 10px 4px;
 	width:564px;
@@ -398,7 +398,7 @@ input.deleteButtonOwnComment {
 }
 
 .task .tabContent .comment a:hover {
-	background-color:#e2e2e2;
+	background-color:$colorNeutral01;
 }
 
 .task .tabContent .comment .comment-properties a:hover {
