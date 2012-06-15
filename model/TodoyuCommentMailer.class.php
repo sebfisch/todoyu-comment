@@ -39,7 +39,7 @@ class TodoyuCommentMailer {
 		$mailReceivers	= TodoyuMailReceiverManager::getMailReceivers($receiverTuples);
 
 		foreach($mailReceivers as $receiverTuple => $mailReceiver) {
-			$isSent = self::sendMail($idComment, $mailReceiver, true);
+			$isSent = self::sendMail($idComment, $mailReceiver);
 			if( $isSent ) {
 				TodoyuCommentMailManager::saveMailSent($idComment, $mailReceiver);
 			}
@@ -60,16 +60,11 @@ class TodoyuCommentMailer {
 	 *
 	 * @param		Integer							$idComment
 	 * @param		TodoyuMailReceiverInterface		$mailReceiver
-	 * @param		Boolean 						$setCurrentUserAsSender
 	 * @return		Boolean							$success
 	 */
-	public static function sendMail($idComment, TodoyuMailReceiverInterface $mailReceiver, $setCurrentUserAsSender=false) {
+	public static function sendMail($idComment, TodoyuMailReceiverInterface $mailReceiver) {
 		$idComment	= intval($idComment);
 		$mail		= new TodoyuCommentMail($idComment, $mailReceiver);
-
-		if( $setCurrentUserAsSender ) {
-			$mail->setCurrentUserAsSender();
-		}
 
 		TodoyuHookManager::callHook('comment', 'comment.email.send', array($idComment, $mail, $mailReceiver));
 
