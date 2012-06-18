@@ -392,7 +392,7 @@ Todoyu.Ext.comment = {
 	 * @param	{Ajax.Response}	response
 	 */
 	onEdit: function(idTask, idComment, response) {
-		$('task-' + idTask + '-commentform-' + idComment).removeClassName('taskOptionBlock');
+//		$('task-' + idTask + '-commentform-' + idComment).removeClassName('taskOptionBlock');
 	},
 
 

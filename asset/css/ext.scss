@@ -18,10 +18,28 @@ h1.extIconComment .title {
 /* -----------------
 	Sub menu
    ----------------- */
-#navi-main-list-portal li.itemFeedback a {
-	background-image:url(../img/icons.png) !important;
-	background-repeat:no-repeat;
-	background-position:6px -356px;
+#navi-main-list-portal {
+	li.itemFeedback {
+		a {
+			background: {
+				image:url(../img/icons.png) !important;
+				repeat:no-repeat;
+				position:6px -356px;
+			}
+		}
+	}
+}
+
+
+/* ------------------------
+	Context menu task
+   ------------------------ */
+#contextmenu {
+	.taskContextMenu.task-add-comment {
+		background-image:url(../img/icons.png);
+		background-repeat:no-repeat;
+		background-position:3px 3px;
+	}
 }
 
 
@@ -29,11 +47,19 @@ h1.extIconComment .title {
 /* --------------
 	Search
    -------------- */
-#todoyusearchheadletquicksearch-modes li.searchmodeComment a {
-	background:url(../img/icons.png) no-repeat 3px -115px !important;
+#todoyusearchheadletquicksearch-modes {
+	li.searchmodeComment {
+		a {
+			background:url(../img/icons.png) no-repeat 3px -115px !important;
+		}
+	}
 }
-#todoyusearchheadletquicksearch form.searchmodeComment a.mode {
-	background:url(../img/icons.png) no-repeat 3px -472px !important;
+#todoyusearchheadletquicksearch {
+	form.searchmodeComment {
+		a.mode {
+			background:url(../img/icons.png) no-repeat 3px -472px !important;
+		}
+	}
 }
 
 
@@ -41,8 +67,10 @@ h1.extIconComment .title {
 /* --------------------------
  	Portal tab feedback
    --------------------------*/
-#portal-tab-feedback span.icon {
-	background:url(../img/icons.png) no-repeat 0 -356px;
+#portal-tab-feedback {
+	span.icon {
+		background:url(../img/icons.png) no-repeat 0 -356px;
+	}
 }
 
 
@@ -50,92 +78,151 @@ h1.extIconComment .title {
 /* --------------------------
  	Task tab
    --------------------------*/
-.task .taskTabs ul li.comment .label span.icon {
-	background:url(../img/icons.png) no-repeat 0 5px;
+.task {
+	.commentButtons {
+		.addComment {
+			.icon {
+				background:url(../img/icons.png) no-repeat 3px 4px;
+				width:21px;
+			}
+		}
+	}
 }
 
-.task .tabContent .commentButtons button.addComment .icon {
-	background:url(../img/icons.png) no-repeat 3px 4px;
-	width:21px;
-}
-
-.task-comments {
+.commentList {
 	display:block;
-}
-
-.task-comments .comment-properties {
-	position:relative;
-	margin:0 0 5px 0;
-	padding:7px 5px;
-	font-weight:bold;
-	background:$colorCorporate01 url(../../../../core/asset/img/bg-tabheader.png) repeat-x 0 top;
-}
-.taskTabs .formComment {
-}
-.taskTabs .formComment fieldset {
-	margin-top:5px;
-	border-color:$colorCorporate02;
+	padding:5px 0;
 }
 
 
 
 /* -------------------
-	Single comment
+	Comment
    ------------------- */
-.task-comments .comment {
-}
 
-.task-comments .comment-details {
-	padding-bottom:7px;
-}
+.commentList .comment {
+	&.isPublic {
+		border:solid $colorAlert01 !important;
+		border-width:1px !important;
+	}
 
-.task-comments div.comment ul {
-	list-style:disc outside;
-	padding-left:14px;
-}
+	.properties {
+		position:relative;
+		margin:0 0 5px 0;
+		padding:7px 5px;
+		background:$colorCorporate01 url(../../../../core/asset/img/bg-tabheader.png) repeat-x 0 top;
 
-.task-comments div.comment a {
-	text-decoration:underline;
-}
+		span {
+			font-weight:bold;
+		}
+		.hasicon {
+			padding:3px 0;
+		}
 
-.task-comments .comment-details .left {
-	float:left;
-	width:300px !important;
-}
+		.crdate {}
 
-.task-comments .comment-details .comment {
-	padding:5px;
-}
+		.personApproval {
+			display:block;
+			float:left;
+			position:relative;
+			top:-2px;
+			margin-right:10px;
+			height:16px;
+			width:16px;
+			background:transparent url('../../../../core/asset/img/icons.png') no-repeat 0 -1258px;
+		}
 
-.task-comments .comment-details .right {
-	float:left;
-	width:285px;
-}
+		.commentId {
+			float:right;
+			margin:0 5px 0 -12px;
+			font-size:11px !important;
+			letter-spacing:1px;
+			font-weight:normal;
+		}
 
-.task-comments .comment-details .updateInfo {
-	color:$colorNeutral06;
-	margin-left:5px;
-	margin-top:5px;
-	font-size:10px;
-}
+		.actions {
+			position:absolute;
+			top:5px;
+			right:5px;
+			margin:0 82px 0 -82px;
 
-.task-comments .comment-details .publicFeedbackWarning {
-	background-color:$colorNotice00;
-	box-shadow:2px 2px 7px $colorNeutral06;
-	border:1px solid $colorNeutral03;
-	padding:7px;
-	margin-left:5px;
-	font-weight:bold;
-	margin-bottom:5px;
-}
+			a {
+				background-image:url(../img/icons.png);
+				background-repeat:no-repeat;
+				float:left;
+				margin-left:10px;
+				width:18px;
+
+				&.makePublic {
+					background-position:0 -236px;
+					width:22px !important;
+
+					&.isPublic {
+						background-position:0 -268px;
+					}
+				}
+
+				&.edit {
+					background-position:0 -60px;
+				}
+
+				&.remove {
+					background-position:0 -26px;
+				}
+
+			}
+			a:hover {
+				background-color:transparent;
+			}
+		}
 
 
+	}
+	.details {
+		padding-bottom:7px;
 
-/* -----------------------------------------------------------
-	Feedback and email receiver persons in comment header
-   ----------------------------------------------------------- */
-.comment {
-	.comment-details {
+		.label {
+			.icon {
+				background:url(../img/icons.png) no-repeat 0 5px;
+			}
+		}
+
+		.commentText {
+			padding:5px;
+
+			ul {
+				list-style:disc outside;
+				padding-left:14px;
+			}
+
+			a {
+				text-decoration:underline !important;
+			}
+			a:hover {
+				background-color:$colorNeutral01;
+			}
+		}
+
+		.updateInfo {
+			color:$colorNeutral06;
+			margin-left:5px;
+			margin-top:5px;
+			font-size:10px;
+		}
+
+		.publicFeedbackWarning {
+			background-color:$colorNotice00;
+			box-shadow:2px 2px 7px $colorNeutral06;
+			border:1px solid $colorNeutral03;
+			padding:7px;
+			margin-left:5px;
+			font-weight:bold;
+			margin-bottom:5px;
+		}
+
+		/* -----------------------------------------------------------
+			Feedback and email receiver persons in comment header
+		   ----------------------------------------------------------- */
 		.involvedPersons {
 			padding-bottom: 3px;
 			border-bottom: 1px solid $colorNeutral02;
@@ -173,253 +260,34 @@ h1.extIconComment .title {
 				}
 			}
 		}
+
 	}
-}
-
-
-
-.task-comments li.isPublic {
-	border:solid $colorAlert01 !important;
-	border-width:1px !important;
-}
-
-.task-comments .hasicon {
-	padding:3px 0;
-}
-
-.task-comments .comment-crdate {
-
-}
-
-.task-comments .comment-personapproval {
-	display:block;
-	float:left;
-	position:relative;
-	top:-2px;
-	margin-right:10px;
-	height:16px;
-	width:16px;
-	background:transparent url('../../../../core/asset/img/icons.png') no-repeat 0 -1258px;
-}
-
-.task-comments .comment-person {
-
-}
-
-.task-comments .comment-id {
-	float:right;
-	margin:0 5px 0 -12px;
-	font-size:11px !important;
-	letter-spacing:1px;
-	font-weight:normal;
-}
-
-
-.comment .actions {
-	position:absolute;
-	top:5px;
-	right:5px;
-	margin:0 82px 0 -82px;
-}
-
-
-.comment .actions a {
-	background-image:url(../img/icons.png);
-	background-repeat:no-repeat;
-	float:left;
-	margin-left:10px;
-	width:18px;
-}
-
-.comment .actions .makePublic {
-	background-position:0 -236px;
-	width:22px !important;
-}
-.comment .actions .makePublic.isPublic {
-	background-position:0 -268px;
-}
-.comment .actions .edit {
-	background-position:0 -60px;
-}
-
-.comment .actions .remove {
-	background-position:0 -26px;
-}
-
-
-
-.task-comments .comment-log {
-	background:url(../img/icons.png) no-repeat 0 -420px;
-}
-
-.task-comments .comment-log.expanded {
-	background:url(../img/icons.png) no-repeat 0 -450px;
-}
-
-.task-comments li .comment-properties span.commentOptions .feedbackRequestedFromMe {
-	background:transparent;
-	cursor:pointer;
-}
-
-.task-comments li.taskOptionBlock {
-	border:1px solid $blue06;
-	margin:0 20px 5px;
-	padding:5px;
-	background-color:$white;
-}
-
-.tabContent ul.task-comments {
-	padding:5px 0;
-}
-
-
-
-
-/* ------------------------------------------------------------
-	Comment forms
-   ------------------------------------------------------------ */
-
-/* -----------------------------------------
-	Comment feedback and mailing log
-   ----------------------------------------- */
-li.comment .comment-history {
-	border:1px dotted $blue07;
-	background-color:$white;
-	padding:0 0 1px 0;
-}
-
-	.comment-history .log-head {
-		cursor:pointer;
-		background:$colorNeutral01 url(../img/icons.png) no-repeat 6px -447px;
-		padding:4px 0 4px 26px;
-	}
-
-	.comment-history dl {
-		padding:4px 0 6px 8px;
-	}
-		.comment-history dl dt {
-			float:left;
-			width:92px;
-			padding-right:8px;
-		}
-			.comment-history dl dt.indented {
-				float:left;
-				width:92px;
-				padding-left:8px;
-			}
-
-		.comment-history dl dd .person {
-			float:left;
-			width:150px;
-		}
-		.comment-history dl dd .description {
-			width:360px;
-			float:left;
-		}
-
-
-
-/* ------------------
-	Send as email
-   ------------------ */
-.commentMailBox {
-	clear:both;
-	background-color:#fafafa;
-	border:1px dotted $colorNeutral03;
-	margin:18px 0 8px 12px;
-	padding:6px 0 10px 4px;
-	width:564px;
-}
-
-select.customerRecipientsSelectorSingle {
-	width:320px;
-	height:18px;
-	margin:0 4px 0 30px;
-}
-
-select.customerRecipientsSelectorMulti {
-	width:320px;
-	height:78px;
-	margin:0 4px 0 30px;
-}
-
-td.custSelectorOptions {
-	padding:0 0 0 4px;
-}
-
-	td.custSelectorOptions input.toggleCustSel {
-		margin:0;
-	}
-
-input.ccommentMail {
-	margin:0 0 -2px 8px;
-}
-
-input.emsTmsButMarg { /* email-send & task message send buttons */
-	margin:8px 0 2px 0;
-}
-
-input.deleteButtonOwnComment {
-	margin:0 0 2px 500px;
 }
 
 
 
 /* ------------------------
-	Context menu task
+	Comment form
    ------------------------ */
-#contextmenu .taskContextMenu.task-add-comment {
-	background-image:url(../img/icons.png);
-	background-repeat:no-repeat;
-	background-position:3px 3px;
-}
+.task {
+	.formComment {
+		padding:0;
+		background:none;
 
-/* ------------------------
-	Task tab comment
-   ------------------------ */
-.task .tabContent .commentform .fForm {
-	padding:0;
-	background:none;
-}
+		fieldset {
+			margin-top:5px;
+			border-color:$colorCorporate02;
+		}
 
-.task .tabContent .commentform fieldset.main {
-	padding-bottom:0;
-	padding-top:10px;
-	margin-bottom:0;
-}
+		fieldset.main {
+			padding-bottom:0;
+			padding-top:10px;
+			margin-bottom:0;
+		}
 
-.task .tabContent .commentform fieldset.email {
-	padding-top:0;
-	margin-top:0;
-}
-
-.task .tabContent .comment a {
-	text-decoration:underline !important;
-}
-
-.task .tabContent .comment a:hover {
-	background-color:$colorNeutral01;
-}
-
-.task .tabContent .comment .comment-properties a:hover {
-	background-color:transparent;
-}
-
-
-.task-comments ul {
-	margin:0;
-	padding:0 0 5px 14px;
-}
-
-.task-comments ul li {
-	padding-left:5px;
-}
-
-.task-comments ol {
-	margin:0 0 0 5px;
-	padding:0 0 5px 14px;
-}
-
-.task-comments ul {
-	list-style:disc;
+		fieldset.email {
+			padding-top:0;
+			margin-top:0;
+		}
+	}
 }

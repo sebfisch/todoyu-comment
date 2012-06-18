@@ -1,13 +1,13 @@
-<li id="task-comment-{$id}" class="tabBlock comment {if $is_public}{if isSeeAllCommentsAllowed()}isPublic{/if}{/if}">
-	<div class="comment-properties">
+<li id="task-comment-{$id}" class="comment {if $is_public}{if isSeeAllCommentsAllowed()}isPublic{/if}{/if}">
+	<div id="task-comment-{$id}-properties" class="properties">
 		{if $isUnapproved}
-			<a href="javascript:void(0)" id="comment-{$id}-seenstatus" onclick="Todoyu.Ext.comment.setSeenStatus({$id}, {personid()})" class="comment-personapproval hasicon"></a>
+			<a href="javascript:void(0)" id="comment-{$id}-seenstatus" onclick="Todoyu.Ext.comment.setSeenStatus({$id}, {personid()})" class="personApproval hasicon"></a>
 		{/if}
-		<span id="task-comment-{$id}-crdate" class="comment-crdate">{dateFormat $date_create datetime}</span> -
+		<span id="task-comment-{$id}-crdate" class="crdate">{dateFormat $date_create datetime}</span> -
 		<span id="task-comment-{$id}-person" class="comment-person">
 			{personLabel idPrefix="comment-personcreate" idRecord=$id idPerson=$person_create.id}
 		</span>
-		<span id="task-comment-{$id}-id" class="comment-id" title="{Label comment.ext.id}">c{$id}</span>
+		<span id="task-comment-{$id}-id" class="commentId" title="{Label comment.ext.id}">c{$id}</span>
 		<span id="task-comment-{$id}-actions" class="actions">
 
 		{foreach $actions action}
@@ -18,7 +18,7 @@
 
 		</span>
 	</div>
-	<div id="task-comment-{$id}-text" class="comment-details">
+	<div id="task-comment-{$id}-text" class="details">
 		{* --------------------------- Comment persons (feedback, email, etc) --------------- *}
 		<div class="involvedPersons" id="task-comment-{$id}-involvedPersons">
 			{foreach $involvedPersons involvedPerson}
@@ -45,7 +45,7 @@
 			{/foreach}
 		</div>
 		{* --------------------------- Comment itself --------------- *}
-		<div class="comment">{substituteLinkableElements(cleanHtml($comment))}</div>
+		<div class="commentText">{substituteLinkableElements(cleanHtml($comment))}</div>
 
 		{if $publicFeedbackWarning}
 			<div class="publicFeedbackWarning">{$publicFeedbackWarning}</div>
@@ -56,7 +56,5 @@
 		{/if}
 
 	</div>
-	<div class="clear"><!-- clear --></div>
-	<div id="task-comment-log-{$id}-details" class="comment-history" style="display:none;"></div>
 	<div class="clear"><!-- clear --></div>
 </li>

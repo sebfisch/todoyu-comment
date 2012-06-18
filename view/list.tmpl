@@ -9,7 +9,7 @@
 </div>
 
 	{* List of comments *}
-<ul class="task-comments {if $desc}desc{else}asc{/if}" id="task-{$idTask}-comments">
+<ul class="commentList {if $desc}desc{else}asc{/if}" id="task-{$idTask}-comments">
 {foreach $comments commentHTML}
 	{$commentHTML}
 {/foreach}
