@@ -48,7 +48,7 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 
 		TodoyuCommentRights::restrictAddInTask($idTask);
 
-		return TodoyuCommentRenderer::renderEdit($idTask, 0);
+		return TodoyuCommentCommentRenderer::renderEdit($idTask, 0);
 	}
 
 
@@ -66,7 +66,7 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 			// Person is the creator + has right editOwn or has right editAll
 		TodoyuCommentRights::restrictEdit($idComment);
 
-		return TodoyuCommentRenderer::renderEdit($idTask, $idComment);
+		return TodoyuCommentCommentRenderer::renderEdit($idTask, $idComment);
 	}
 
 

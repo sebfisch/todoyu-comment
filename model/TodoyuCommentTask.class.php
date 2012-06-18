@@ -80,6 +80,36 @@ class TodoyuCommentTask extends TodoyuProjectTask {
 		return $this->getProject()->applyCommentFallback($this->getID(), $data);
 	}
 
+
+
+	/**
+	 * Get ID of the first comment
+	 *
+	 * @return	Integer
+	 */
+	public function getFirstCommentID() {
+		$taskCommentIDs	= TodoyuCommentCommentManager::getTaskCommentIDs($this->getID(), false);
+
+		return intval($taskCommentIDs[0]);
+	}
+
+
+
+	/**
+	 * Get first (oldest) comment
+	 *
+	 * @return	TodoyuCommentComment|Boolean
+	 */
+	public function getFirstComment() {
+		$idFirstComment	= $this->getFirstCommentID();
+
+		if( $idFirstComment !== 0 ) {
+			return TodoyuCommentCommentManager::getComment($idFirstComment);
+		} else {
+			return false;
+		}
+	}
+
 }
 
 ?>

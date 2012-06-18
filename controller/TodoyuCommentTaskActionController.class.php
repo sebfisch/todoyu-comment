@@ -65,7 +65,7 @@ class TodoyuCommentTaskActionController extends TodoyuActionController {
 
 		TodoyuProjectTaskRights::restrictSee($idTask);
 
-		return TodoyuCommentRenderer::renderCommentList($idTask, $desc);
+		return TodoyuCommentCommentRenderer::renderCommentList($idTask, $desc);
 	}
 
 

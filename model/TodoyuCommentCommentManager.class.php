@@ -253,9 +253,9 @@ class TodoyuCommentCommentManager {
 	 *
 	 * @param	Integer		$idTask
 	 * @param	Boolean		$desc
-	 * @return	Array
+	 * @return	Integer[]
 	 */
-	public static function getTaskCommentIDs($idTask, $desc = false) {
+	public static function getTaskCommentIDs($idTask, $desc = true) {
 		$idTask	= intval($idTask);
 		$sortDir= $desc ? 'DESC' : 'ASC';
 
