@@ -29,7 +29,7 @@ class TodoyuCommentMail extends TodoyuMail {
 	/**
 	 * Email receiver object
 	 *
-	 * @var	TodoyuMailReceiver
+	 * @var	TodoyuMailReceiverInterface
 	 */
 	private $mailReceiver;
 

@@ -31,7 +31,7 @@ class TodoyuCommentMailManager {
 	 * @param	TodoyuMailReceiverInterface		$mailReceiver
 	 */
 	public static function saveMailSent($idComment, TodoyuMailReceiverInterface $mailReceiver) {
-		$idReceiver		= $mailReceiver->getIdReceiver();
+		$idReceiver		= $mailReceiver->getRecordID();
 		$receiverType	= $mailReceiver->getType();
 
 		TodoyuMailManager::addMailSent(EXTID_COMMENT, COMMENT_TYPE_COMMENT, $idComment, $idReceiver, $receiverType);
@@ -55,7 +55,7 @@ class TodoyuCommentMailManager {
 	 * Get receivers the given comment has been sent to by email
 	 *
 	 * @param	Integer		$idComment
-	 * @return	TodoyuMailReceiver[]
+	 * @return	TodoyuMailReceiverInterface[]
 	 */
 	public static function getEmailReceivers($idComment) {
 		return TodoyuMailManager::getEmailReceivers(EXTID_COMMENT, COMMENT_TYPE_COMMENT, $idComment);

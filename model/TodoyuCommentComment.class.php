@@ -167,7 +167,7 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 
 		$data	= array();
 		foreach($mailReceivers as $mailReceiver) {
-			$data[$mailReceiver->getTuple()]	= $mailReceiver->getData();
+			$data[$mailReceiver->getTuple()] = $mailReceiver->getData();
 		}
 
 		return $data;
