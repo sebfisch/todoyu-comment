@@ -65,6 +65,16 @@
 			</div>
 		{/if}
 
+		{if $assets}
+			<div class="assets">
+				{foreach $assets asset}
+					<a class="asset" onclick="Todoyu.Ext.assets.downloadAsset({$asset.id});">
+						{$asset.file_name} <span class="filesize">{fileSize $asset.file_size}</span>
+					</a>
+				{/foreach}
+			</div>
+		{/if}
+
 	</div>
 	<div class="clear"><!-- clear --></div>
 </li>

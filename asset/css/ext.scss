@@ -272,6 +272,25 @@ h1.extIconComment .title {
 			}
 		}
 
+		/* -----------------------------------------------------------
+			Assets
+		----------------------------------------------------------- */
+
+		.assets {
+			margin-left: 5px;
+			margin-top: 5px;
+			border-top: 1px solid $colorNeutral03;
+			padding-top: 3px;
+
+			& .asset {
+				cursor: pointer;
+				margin-right: 10px;
+			}
+
+			& .filesize {
+				color: $colorNeutral06;
+			}
+		}
 	}
 }
 

@@ -191,6 +191,24 @@ class TodoyuCommentAssetManager {
 	protected static function removeAllAssets($idCommentNew) {
 		Todoyu::db()->doDelete(self::TABLE, 'id_comment = ' . intval($idCommentNew));
 	}
+
+
+
+	/**
+	 * @static
+	 * @param	Array		$assetIDs
+	 */
+	public static function loadAssetTemplateData($assetIDs) {
+		$assets = array();
+
+		foreach($assetIDs as $idAsset) {
+			if( TodoyuAssetsRights::isSeeAllowed($idAsset['id'])) {
+				$assets[] = TodoyuAssetsAssetManager::getAsset($idAsset['id']);
+			}
+		}
+
+		return $assets;
+	}
 }
 
 ?>

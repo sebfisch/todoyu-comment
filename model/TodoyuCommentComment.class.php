@@ -436,6 +436,9 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 		}
 
 		$this->data['assets'] = $this->getCommentAssets();
+		if( $loadRenderData ) {
+			$this->data['assets'] = TodoyuCommentAssetManager::loadAssetTemplateData($this->data['assets']);
+		}
 	}
 
 
