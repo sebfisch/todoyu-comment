@@ -400,6 +400,17 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 
 
 	/**
+	 * Get additional content items data
+	 *
+	 * @return	Array[]
+	 */
+	protected function getAdditionalContentItems() {
+		return TodoyuHookManager::callHookDataModifier('comment', 'comment.additionalContentItems', array(), array($this->getID()));
+	}
+
+
+
+	/**
 	 * Load comment foreign data: creator, feedback persons, approval state
 	 *
 	 * @param	Boolean		$loadRenderData
@@ -414,13 +425,14 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 
 			// Extra data which is only required for detail rendering
 		if( $loadRenderData && !$this->has('isUnapproved') ) {
-			$this->data['isUnapproved']			= TodoyuCommentFeedbackManager::isCommentUnseen($this->getID());
-			$this->data['canDelete']			= $this->canCurrentPersonDelete();
-			$this->data['canEdit']				= $this->canCurrentPersonEdit();
-			$this->data['canMakePublic']		= $this->canCurrentPersonMakePublic();
-			$this->data['updateInfo']			= $this->getUpdateInfoLabel();
-			$this->data['publicFeedbackWarning']= $this->getPublicFeedbackWarning();
-			$this->data['actions']				= $this->getActions();
+			$this->data['isUnapproved']				= TodoyuCommentFeedbackManager::isCommentUnseen($this->getID());
+			$this->data['canDelete']				= $this->canCurrentPersonDelete();
+			$this->data['canEdit']					= $this->canCurrentPersonEdit();
+			$this->data['canMakePublic']			= $this->canCurrentPersonMakePublic();
+			$this->data['updateInfo']				= $this->getUpdateInfoLabel();
+			$this->data['publicFeedbackWarning']	= $this->getPublicFeedbackWarning();
+			$this->data['actions']					= $this->getActions();
+			$this->data['additionalContentItems']	= $this->getAdditionalContentItems();
 		}
 	}
 

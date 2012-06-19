@@ -222,6 +222,15 @@ h1.extIconComment .title {
 			margin-bottom:5px;
 		}
 
+		.additionalContent {
+			margin-left:5px;
+
+			div {
+				font-size:10px;
+				color:$colorNeutral06;
+			}
+		}
+
 		/* -----------------------------------------------------------
 			Feedback and email receiver persons in comment header
 		   ----------------------------------------------------------- */

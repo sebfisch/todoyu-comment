@@ -55,6 +55,16 @@
 			<div class="updateInfo">{$updateInfo}</div>
 		{/if}
 
+		{if $additionalContentItems}
+			<div class="additionalContent">
+				{foreach $additionalContentItems additionalContentItem}
+					<div class="{$additionalContentItem.class}">
+						{$additionalContentItem.content}
+					</div>
+				{/foreach}
+			</div>
+		{/if}
+
 	</div>
 	<div class="clear"><!-- clear --></div>
 </li>
