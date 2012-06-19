@@ -64,6 +64,23 @@ CREATE TABLE IF NOT EXISTS `ext_comment_fallback` (
 
 
 --
+-- Table structure for table `ext_comment_mm_comment_asset`
+--
+
+CREATE TABLE IF NOT EXISTS `ext_comment_mm_comment_asset` (
+	`id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+	`date_create` int(10) unsigned NOT NULL,
+	`date_update` int(10) unsigned NOT NULL,
+	`id_person_create` int(10) unsigned NOT NULL,
+	`id_asset` int(10) unsigned NOT NULL,
+	`id_comment` int(10) unsigned NOT NULL,
+	PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--  --  --  -- --------------------------------------------------------
+
+
+--
 -- Table structure for table `ext_project_project`
 --
 

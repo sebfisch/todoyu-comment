@@ -52,9 +52,25 @@
 					<label>comment.ext.edit.email_receivers</label>
 				</field>
 
-				<!--<field type="recordsTaskAsset" name="assets">-->
-					<!--<label>comment.ext.edit.assets</label>-->
-				<!--</field>-->
+				<field type="upload" name="file">
+					<onchange>Todoyu.Ext.comment.Edit.uploadFileInline(this)</onchange>
+					<class>directUploadBox</class>
+				</field>
+
+				<field type="button" name="upload">
+					<text>assets.ext.taskform.assets.button.upload</text>
+					<class>buttonUploadAsset</class>
+					<hasIcon />
+				</field>
+
+				<field type="recordsSelectAsset" name="assets">
+					<label>comment.ext.edit.assets</label>
+					<source type="function">
+						<optionFunction>TodoyuCommentAssetManager::getCommentAssetOptions</optionFunction>
+						<recordFunction>TodoyuCommentAssetManager::getCommentAssetRecords</recordFunction>
+						<lazyInit />
+					</source>
+				</field>
 
 			</elements>
 		</fieldset>

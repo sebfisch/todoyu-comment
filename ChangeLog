@@ -1,6 +1,7 @@
 todoyu comment extension changelog
 
 comment 1.3.0 - not released yet
+	* Added: Assets for comment Part I (selector)
 	* Bugfix: After comment save, comment id was passed as 'comment', but fetched as 'idComment'
 	* Require: assets 1.3 and core 2.2.1
 	* Changed: Cleanup header values: idTask => task, idComment => comment

@@ -19,10 +19,9 @@
  *****************************************************************************/
 
 /**
- * [Description]
  *
- * @package        Todoyu
- * @subpackage    [Subpackage]
+ * @package			Todoyu
+ * @subpackage		Comment
  */
 class TodoyuCommentCommentRenderer {
 
@@ -122,6 +121,72 @@ class TodoyuCommentCommentRenderer {
 
 
 
+	/**
+	 * @static
+	 * @param	String		$filename
+	 * @param	String		$filekey
+	 * @param	Integer		$idComment
+	 * @param	Integer		$idTask
+	 * @return	String
+	 */
+	public static function renderFileUploadSuccess($filename, $filekey, $idComment, $idTask) {
+		$idComment			= intval($idComment);
+		$idTask				= intval($idTask);
+
+		$javaScriptString	= TodoyuString::wrapScript('window.parent.Todoyu.Ext.comment.Edit.uploadFinished(' . $idComment . ', ' . $idTask . ', \'' . $filename . '\', \'' . $filekey . '\');');
+
+		return self::renderUploadMessage($javaScriptString);
+	}
+
+
+
+	/**
+	 * @static
+	 * @param	Integer		$error
+	 * @param	String		$fileName
+	 * @param	Integer		$idTask
+	 * @return	String
+	 */
+	public static function renderFileUploadFailed($error, $fileName, $idTask){
+		$idTask				= intval($idTask);
+
+		$maxFileSize		= TodoyuString::formatSize(intval(Todoyu::$CONFIG['EXT']['assets']['max_file_size']));
+		$javaScriptString	= TodoyuString::wrapScript('window.parent.Todoyu.Ext.comment.Edit.uploadFailed(' . $idTask . ', ' . $error . ', \'' . $fileName . '\', \'' . $maxFileSize . '\');');
+
+		return self::renderUploadMessage($javaScriptString);
+	}
+
+
+
+	/**
+	 * @static
+	 * @param	String		$javaScriptString
+	 * @return	String
+	 */
+	protected static function renderUploadMessage($javaScriptString) {
+		$tmpl = 'core/view/htmldoc.tmpl';
+		$data = array(
+			'title' => 'Uploader IFrame',
+			'content' => $javaScriptString
+		);
+
+		return Todoyu::render($tmpl, $data);
+	}
+
+
+
+	/**
+	 * @static
+	 * @param	Integer		$idComment
+	 * @param	Integer		$idTask
+	 */
+	public static function renderFileSelector($idComment, $idTask) {
+		$form = TodoyuCommentCommentManager::getCommentForm($idComment, $idTask, array('id_task' => $idTask, 'id' => $idComment));
+
+		$form->setRecordID($idTask . '-' . $idComment);
+
+		return $form->getField('assets')->render();
+	}
 }
 
 ?>

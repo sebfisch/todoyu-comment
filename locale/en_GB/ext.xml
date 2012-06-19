@@ -73,4 +73,7 @@
 	<label index="extconf.globalFallback">Global fallback</label>
 	<label index="edit.email_receivers">Email Receivers</label>
 	<label index="edit.address_email_cc">CC to address</label>
+	<label index="assets.optgroup.project">Project Assets</label>
+	<label index="assets.optgroup.task">Task Assets</label>
+	<label index="assets.optgroup.comment">Comment Assets</label>
 </labels>

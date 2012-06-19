@@ -262,6 +262,7 @@ Todoyu.Ext.comment.Edit = {
 	 */
 	cancel: function(idTask, idComment) {
 		var area = 'task-' + idTask + '-commentform-' + idComment;
+		this.clearTempUploads(idComment, idTask);
 		Todoyu.Ui.closeRTE(area);
 		$(area).remove();
 		Todoyu.Ext.comment.List.refresh(idTask);
@@ -296,6 +297,116 @@ Todoyu.Ext.comment.Edit = {
 				}
 			}.bind(this)
 		});
-	}
+	},
 
+
+
+	/**
+	 * Upload asset file
+	 *
+	 * @method	uploadFileInline
+	 * @param	{Element}	field
+	 */
+	uploadFileInline: function(field) {
+		if( $F(field) !== '' ) {
+			var url	= Todoyu.getUrl('comment', 'comment', {
+				action:		'uploadassetfile'
+			});
+
+			Todoyu.Form.submitFileUploadForm(field.form, url);
+		}
+	},
+
+
+	/**
+	 *
+	 * @param	{Integer}		idComment
+	 * @param	{Integer}		idTask
+	 * @param	{String}		filename
+	 * @param	{String}		filekey
+	 */
+	uploadFinished: function(idComment, idTask, filename, filekey) {
+		this.refreshFileSelectorOptions(idComment, idTask);
+		this.addSelectorItem(idComment, idTask, filename, filekey);
+
+		Todoyu.notifySuccess('[LLL:core.file.upload.succeeded]', 'fileupload');
+	},
+
+
+
+	/**
+	 *
+	 * @param	{Integer}		idTask
+	 * @param	{String}		filename
+	 * @param	{Integer}		maxFileSize
+	 */
+	uploadFailed: function(idTask, filename, maxFileSize) {
+		var info	= {
+			filename:		filename,
+			maxFileSize:	maxFileSize,
+			id_task:		idTask
+		};
+		var msg		= '';
+
+		if( error === 1 || error === 2 ) {
+			msg	= '[LLL:core.file.upload.failed.maxFileSizeExceeded]';
+		} else {
+			msg	= '[LLL:core.file.upload.error.uploadfailed]';
+		}
+
+		Todoyu.notifyError(msg.interpolate(info), 'fileupload');
+	},
+
+
+
+	/**
+	 *
+	 * @param	{Integer}		idComment
+	 */
+	refreshFileSelectorOptions: function(idComment, idTask) {
+		var idElement = 'comment-' + idTask + '-' + idComment + '-field-assets-search';
+		var target		= $(idElement);
+
+		var url		= Todoyu.getUrl('comment', 'comment');
+		var options	= {
+			parameters: {
+				action:		'refreshfileselector',
+				task:		idTask,
+				comment:	idComment
+			}
+		};
+
+		Todoyu.Ui.update(target, url, options);
+	},
+
+
+	/**
+	 * @param	{Integer}		idComment
+	 * @param	{Integer}		idTask
+	 * @param	{String}		filename
+	 * @param	{String}		filekey
+	 */
+	addSelectorItem: function(idComment, idTask, filename, filekey) {
+		Todoyu.R['recordselectasset-comment-' + idTask +'-' + idComment + '-field-assets'].addSelectedItem(filekey, filename, filename);
+	},
+
+
+
+	/**
+	 *
+	 * @param	{Integer}		idComment
+	 * @param	{Integer}		idTask
+	 */
+	clearTempUploads: function(idComment, idTask) {
+		var url		= Todoyu.getUrl('comment', 'comment');
+		var options	= {
+			parameters: {
+				action:		'cleartempuploads',
+				task:		idTask,
+				comment:	idComment
+			}
+		};
+
+		Todoyu.send(url, options);
+	}
 };

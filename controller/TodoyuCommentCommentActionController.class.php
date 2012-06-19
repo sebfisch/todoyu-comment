@@ -166,6 +166,69 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 		}
 	}
 
+
+
+	/**
+	 * @param	Array		$params
+	 * @return	String
+	 */
+	public function uploadassetfileAction($params) {
+		$idComment	= intval($params['comment']['id']);
+		$idTask		= intval($params['comment']['id_task']);
+
+		$file	= TodoyuRequest::getUploadFile('file', 'comment');
+		$error	= intval($file['error']);
+
+			// Check again for file limit
+		$maxFileSize	= intval(Todoyu::$CONFIG['EXT']['assets']['max_file_size']);
+		if( $file['size'] > $maxFileSize ) {
+			$error	= UPLOAD_ERR_FORM_SIZE;
+		}
+			// Check length of file name
+		if( strlen($file['name']) > Todoyu::$CONFIG['EXT']['assets']['max_length_filename'] ) {
+			$file['error']	= 3;
+		}
+
+			// Render frame content. Success or error
+		if( $error === UPLOAD_ERR_OK && is_array($file) && !$file['error'] ) {
+			$uploader	= new TodoyuCommentTempUploader($idComment, $idTask);
+			$fileKey	= $uploader->addFile($file);
+			$fileInfo	= $uploader->getFileInfo($fileKey);
+
+			return TodoyuCommentCommentRenderer::renderFileUploadSuccess(TodoyuCommentAssetManager::getTempFileLabel($fileInfo), $fileKey, $idComment, $idTask);
+		} else {
+				// Notify upload failure
+			TodoyuLogger::logError('File upload failed: ' . $file['name'] . ' (ERROR:' . $error . ')');
+			return TodoyuCommentCommentRenderer::renderFileUploadFailed($error, $file['name'], $idTask);
+		}
+	}
+
+
+
+	/**
+	 * @param	Array		$params
+	 * @return	String
+	 */
+	public function refreshfileselectorAction($params) {
+		$idComment	= intval($params['comment']);
+		$idTask		= intval($params['task']);
+
+		return TodoyuCommentCommentRenderer::renderFileSelector($idComment, $idTask);
+	}
+
+
+
+	/**
+	 * @param	Array		$params
+	 */
+	public function cleartempuploadsAction($params) {
+		$idComment	= intval($params['comment']);
+		$idTask		= intval($params['task']);
+
+		$uploader	= new TodoyuCommentTempUploader($idComment, $idTask);
+		$uploader->clear();
+	}
+
 }
 
 ?>

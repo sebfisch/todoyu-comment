@@ -70,4 +70,7 @@
 	<label index="fallback.id_role_email">An die Person mit dieser Projektrolle</label>
 	<label index="fallback.noneForProject">Keine Fallbacks für Kommentare in diesem Projekt</label>
 	<label index="extconf.globalFallback">Globaler Fallback</label>
+	<label index="assets.optgroup.project">Projekt Dateien</label>
+	<label index="assets.optgroup.task">Aufgaben Dateien</label>
+	<label index="assets.optgroup.comment">Kommentar Dateien</label>
 </labels>
