@@ -144,9 +144,12 @@ class TodoyuCommentCommentManager {
 			// Get email receivers: tuples like 'type:ID' or just person IDs, which defaults type to 'contactperson'
 		$receiverTuples		= array_unique($data['email_receivers']);
 
+		$assets				= $data['assets'];
+
 			// Remove special handled fields
 		unset($data['email_receivers']);
 		unset($data['feedback']);
+		unset($data['assets']);
 
 			// Update comment in database
 		self::updateComment($idComment, $data);
@@ -164,6 +167,10 @@ class TodoyuCommentCommentManager {
 			// Send emails
 		if( sizeof($receiverTuples) ) {
 			$result['email'] = TodoyuCommentMailer::sendEmails($idComment, $receiverTuples);
+		}
+
+		if( sizeof($assets) ) {
+			TodoyuCommentAssetManager::saveAssets($data['id'], $idComment, $idTask, $assets);
 		}
 
 			// Call saved hook

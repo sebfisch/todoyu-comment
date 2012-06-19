@@ -26,6 +26,13 @@
 class TodoyuCommentAssetManager {
 
 	/**
+	 *
+	 */
+	const TABLE = 'ext_comment_mm_comment_asset';
+
+
+
+	/**
 	 * @static
 	 * @param	TodoyuFormElement		$field
 	 * @return	Array
@@ -127,6 +134,62 @@ class TodoyuCommentAssetManager {
 		}
 
 		return $records;
+	}
+
+
+
+	/**
+	 * @static
+	 * @param	Integer		$idCommentOld
+	 * @param	Integer		$idCommentNew
+	 * @param	Integer		$idTask
+	 * @param	Array		$assets
+	 */
+	public static function saveAssets($idCommentOld, $idCommentNew, $idTask, array $assets) {
+		self::removeAllAssets($idCommentNew);
+
+		foreach($assets as $idAsset) {
+			if(!is_numeric($idAsset)) {
+				$idAsset	= self::saveNewAsset($idCommentOld, $idCommentNew, $idTask, $idAsset);
+			}
+
+			$data = array(
+				'date_create'		=> NOW,
+				'date_update'		=> NOW,
+				'id_person_create'	=> Todoyu::personid(),
+				'id_asset'			=> $idAsset,
+				'id_comment'		=> $idCommentNew
+			);
+
+			Todoyu::db()->doInsert(self::TABLE, $data);
+		}
+	}
+
+
+
+	/**
+	 * @static
+	 * @param	Integer		$idCommentOld
+	 * @param	Integer		$idCommentNew
+	 * @param	Integer		$idTask
+	 * @param	Mixed		$idAsset
+	 * @return	Integer
+	 */
+	protected static function saveNewAsset($idCommentOld, $idCommentNew, $idTask, $idAsset) {
+		$uploader	= new TodoyuCommentTempUploader($idCommentOld, $idTask);
+		$fileInfo	= $uploader->getFileInfo($idAsset);
+
+		return TodoyuAssetsAssetManager::addAsset(ASSET_PARENTTYPE_COMMENT, $idCommentNew, $fileInfo['path'], $fileInfo['name'], $fileInfo['type']);
+	}
+
+
+
+	/**
+	 * @static
+	 * @param	Integer		$idCommentNew
+	 */
+	protected static function removeAllAssets($idCommentNew) {
+		Todoyu::db()->doDelete(self::TABLE, 'id_comment = ' . intval($idCommentNew));
 	}
 }
 
