@@ -164,14 +164,16 @@ class TodoyuCommentCommentManager {
 		TodoyuCommentFeedbackManager::savedFeedbackRequests($idComment, $personFeedbackIDs);
 		$result['feedback'] = $personFeedbackIDs;
 
-			// Send emails
+		// save assets
+		if( sizeof($assets) ) {
+			TodoyuCommentAssetManager::saveAssets($data['id'], $idComment, $idTask, $assets);
+		}
+
+		// Send emails
 		if( sizeof($receiverTuples) ) {
 			$result['email'] = TodoyuCommentMailer::sendEmails($idComment, $receiverTuples);
 		}
 
-		if( sizeof($assets) ) {
-			TodoyuCommentAssetManager::saveAssets($data['id'], $idComment, $idTask, $assets);
-		}
 
 			// Call saved hook
 		TodoyuHookManager::callHook('comment', 'comment.save', array($idComment));
