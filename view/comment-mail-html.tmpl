@@ -6,24 +6,24 @@
 		<td>
 			<table width="600" border="0" cellspacing="0" cellpadding="5" bgcolor="#d3dabb">
 				<tr>
-					<td width="10" bgcolor="{$colors[$task.status]}" style="background:{$colors[$task.status]}; border-left:1px solid {$colors[$task.status]};"><!-- spacer --></td>
-					<td valign="top" align="left" style="color:#000; font-size:11px; font-family:Arial,Helvetica,sans-serif;">
-						<strong style="margin:0; padding:0; color:#000; font-size:11px; font-family:Arial,Helvetica,sans-serif;">
+					<td width="10" bgcolor="{$colors[$task.status]}" style="background:{$colors[$task.status]}; border-left:1px solid {$colors[$task.status]}"><!-- spacer --></td>
+					<td valign="top" align="left" style="color:#000; font-size:11px; font-family:Arial,Helvetica,sans-serif">
+						<strong style="margin:0; padding:0; color:#000; font-size:11px; font-family:Arial,Helvetica,sans-serif">
 							{dateFormat $task.date_deadline D2M2Y2}
 						</strong>
 					</td>
-					<td valign="top" align="left" style="color:#000; font-size:11px; font-family:Arial,Helvetica,sans-serif;">
-						<strong style="margin:0; padding:0; color:#000; font-size:11px; font-family:Arial,Helvetica,sans-serif;">
+					<td valign="top" align="left" style="color:#000; font-size:11px; font-family:Arial,Helvetica,sans-serif">
+						<strong style="margin:0; padding:0; color:#000; font-size:11px; font-family:Arial,Helvetica,sans-serif">
 							{$project.company.title}
 						</strong>
 					</td>
-					<td valign="top" align="left" style="color:#000; font-size:11px; font-family:Arial,Helvetica,sans-serif;">
-						<strong style="margin:0; padding:0; color:#000; font-size:11px; font-family:Arial,Helvetica,sans-serif;">
+					<td valign="top" align="left" style="color:#000; font-size:11px; font-family:Arial,Helvetica,sans-serif">
+						<strong style="margin:0; padding:0; color:#000; font-size:11px; font-family:Arial,Helvetica,sans-serif">
 							{htmlencode $project.title} - <a href="{$tasklink}">{htmlencode $task.title}</a>
 						</strong>
 					</td>
-					<td valign="top" align="right" style="color:#000; font-size:11px; font-family:Arial,Helvetica,sans-serif;">
-						<strong style="margin:0; padding:0; color:#000; font-size:11px; font-family:Arial,Helvetica,sans-serif;">
+					<td valign="top" align="right" style="color:#000; font-size:11px; font-family:Arial,Helvetica,sans-serif">
+						<strong style="margin:0; padding:0; color:#000; font-size:11px; font-family:Arial,Helvetica,sans-serif">
 							{$task.id_project}.{$task.tasknumber}
 						</strong>
 					</td>
@@ -36,8 +36,8 @@
 		<td>
 			<table width="600" border="0" cellspacing="0" cellpadding="5" bgcolor="#f1f1f1">
 				<tr>
-					<td width="10" style="border-left:1px solid {$colors[$task.status]};"><!-- spacer --></td>
-					<td style="color:#000; font-size:11px; font-family:Arial,Helvetica,sans-serif;">
+					<td width="10" style="border-left:1px solid {$colors[$task.status]}"><!-- spacer --></td>
+					<td style="color:#000; font-size:11px; font-family:Arial,Helvetica,sans-serif">
 						{$task.description}
 					</td>
 					<td width="10"><!-- spacer --></td>
@@ -53,19 +53,19 @@
 	<tr>
 		<td>
 			<table width="600" border="0" cellspacing="0" cellpadding="0" bgcolor="#e3eace">
-				<tr><td height="10" style="border-left:1px solid {$colors[$task.status]};"><!-- spacer --></td></tr>
+				<tr><td height="10" style="border-left:1px solid {$colors[$task.status]}"><!-- spacer --></td></tr>
 				<tr>
-					<td align="center" style="border-left:1px solid {$colors[$task.status]};">
+					<td align="center" style="border-left:1px solid {$colors[$task.status]}">
 						<table width="580" border="0" cellspacing="0" cellpadding="5" bgcolor="#d3dabb">
 							<tr>
 								<td width="10"><!-- spacer --></td>
 								<td valign="top" align="left">
-									<strong style="margin:0; padding:0; color:#000; font-size:11px; font-family:Arial,Helvetica,sans-serif;">
+									<strong style="margin:0; padding:0; color:#000; font-size:11px; font-family:Arial,Helvetica,sans-serif">
 										{dateFormat $comment.date_create D2M2Y2} - {if $hideEmails == true}{$personWrite.firstname} {$personWrite.lastname}{else}<a href="mailto:{$personWrite.firstname}%20{$personWrite.lastname}%20%3C{$personWrite.email}%3E">{$personWrite.firstname} {$personWrite.lastname}</a>{/if}
 									</strong>
 								</td>
 								<td valign="top" align="right">
-									<strong style="margin:0; padding:0; color:#000; font-size:11px; font-family:Arial,Helvetica,sans-serif;">
+									<strong style="margin:0; padding:0; color:#000; font-size:11px; font-family:Arial,Helvetica,sans-serif">
 										c{$comment.id}
 									</strong>
 								</td>
@@ -76,14 +76,14 @@
 				</tr>
 				{if sizeof($feedback_persons) > 0}
 				<tr>
-					<td align="center" style="border-left:1px solid {$colors[$task.status]};">
-						<table width="580" border="0" cellspacing="0" cellpadding="5" bgcolor="#f1f1f1" style="border-bottom:1px solid #d3dabb;">
+					<td align="center" style="border-left:1px solid {$colors[$task.status]}">
+						<table width="580" border="0" cellspacing="0" cellpadding="5" bgcolor="#f1f1f1" style="border-bottom:1px solid #d3dabb">
 							<tr>
 								<td width="10"><!-- spacer --></td>
-								<td valign="top" align="left" style="color:#000; font-size:11px; font-family:Arial,Helvetica,sans-serif;">
+								<td valign="top" align="left" style="color:#000; font-size:11px; font-family:Arial,Helvetica,sans-serif">
 										{Label comment.ext.mail.feedbackexpected}:
 								</td>
-								<td valign="top" align="left" style="color:#000; font-size:11px; font-family:Arial,Helvetica,sans-serif;">
+								<td valign="top" align="left" style="color:#000; font-size:11px; font-family:Arial,Helvetica,sans-serif">
 									{foreach $feedback_persons feedbackPerson}
 										{if $hideEmails != true}
 											<a href="mailto:{$feedbackPerson.firstname}%20{$feedbackPerson.lastname}%20%3C{$feedbackPerson.email}%3E">{$feedbackPerson.firstname} {$feedbackPerson.lastname},</a>
@@ -99,11 +99,11 @@
 				</tr>
 				{/if}
 				<tr>
-					<td align="center" style="border-left:1px solid {$colors[$task.status]};">
-						<table width="580" border="0" cellspacing="0" cellpadding="5" bgcolor="#f1f1f1" style="border-bottom:1px solid #d3dabb;">
+					<td align="center" style="border-left:1px solid {$colors[$task.status]}">
+						<table width="580" border="0" cellspacing="0" cellpadding="5" bgcolor="#f1f1f1" style="border-bottom:1px solid #d3dabb">
 							<tr>
 								<td width="10"><!-- spacer --></td>
-								<td style="color:#000; font-size:11px; font-family:Arial,Helvetica,sans-serif;">
+								<td style="color:#000; font-size:11px; font-family:Arial,Helvetica,sans-serif">
 									{$comment.comment}
 								</td>
 								<td width="10"><!-- spacer --></td>
@@ -112,11 +112,11 @@
 					</td>
 				</tr>
 				<tr>
-					<td align="center" style="border-left:1px solid {$colors[$task.status]};">
+					<td align="center" style="border-left:1px solid {$colors[$task.status]}">
 						<table width="580" border="0" cellspacing="0" cellpadding="5" bgcolor="#f1f1f1">
 							<tr>
 								<td width="10"><!-- spacer --></td>
-								<td style="color:#000; font-size:11px; font-family:Arial,Helvetica,sans-serif;">
+								<td style="color:#000; font-size:11px; font-family:Arial,Helvetica,sans-serif">
 									<a href="{$commentlink}">{Label comment.ext.mail.showcommentinprojectview}</a>
 									<br /><br />
 								</td>
@@ -125,7 +125,7 @@
 						</table>
 					</td>
 				</tr>
-				<tr><td height="10" style="border-left:1px solid {$colors[$task.status]};"><!-- spacer --></td></tr>
+				<tr><td height="10" style="border-left:1px solid {$colors[$task.status]}"><!-- spacer --></td></tr>
 			</table>
 		</td>
 	</tr>
