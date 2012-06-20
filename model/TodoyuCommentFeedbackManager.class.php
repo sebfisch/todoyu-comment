@@ -339,7 +339,7 @@ class TodoyuCommentFeedbackManager {
 	 * @param	Integer		$idPerson
 	 */
 	public static function setTaskCommentsAsSeen($idTask, $idPerson = 0) {
-		$idTask	= intval($idTask);
+		$idTask		= intval($idTask);
 		$idPerson	= Todoyu::personid($idPerson);
 
 		$tables	=	self::TABLE . ' f,

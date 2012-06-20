@@ -140,8 +140,6 @@ class TodoyuCommentAssetManager {
 		$assetIDs = $field->getValue();
 		$records	= array();
 
-		TodoyuDebug::printInFirebug($assetIDs, 'assetIDs');
-
 		foreach($assetIDs as $idAsset) {
 			if( is_numeric($idAsset) ) {
 				$info = array(
