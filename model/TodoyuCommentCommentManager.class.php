@@ -123,7 +123,6 @@ class TodoyuCommentCommentManager {
 			$idComment = self::addComment(array(
 				'id_task'	=> $idTask
 			));
-
 			$result['id'] = $idComment;
 		} else {
 			$data['id_person_update'] = TodoyuAuth::getPersonID();
@@ -161,8 +160,7 @@ class TodoyuCommentCommentManager {
 		TodoyuCommentFeedbackManager::setTaskCommentsAsSeen($idTask);
 
 			// Add feedback requests
-		TodoyuCommentFeedbackManager::savedFeedbackRequests($idComment, $personFeedbackIDs);
-		$result['feedback'] = $personFeedbackIDs;
+		$result['feedback'] = TodoyuCommentFeedbackManager::saveFeedbackRequests($idComment, $personFeedbackIDs);
 
 		// save assets
 		if( sizeof($assets) ) {

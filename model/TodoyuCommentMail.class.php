@@ -27,18 +27,14 @@
 class TodoyuCommentMail extends TodoyuMail {
 
 	/**
-	 * Email receiver object
-	 *
-	 * @var	TodoyuMailReceiverInterface
+	 * @var	TodoyuMailReceiverInterface		Email receiver
 	 */
-	private $mailReceiver;
+	protected $mailReceiver;
 
 	/**
-	 * Comment to be send
-	 *
-	 * @var	TodoyuCommentComment
+	 * @var	TodoyuCommentComment	Comment to be send
 	 */
-	private $comment;
+	protected $comment;
 
 
 	/**
@@ -62,13 +58,37 @@ class TodoyuCommentMail extends TodoyuMail {
 	/**
 	 * Init mail
 	 */
-	private function init() {
+	protected function init() {
 		$this->setMailSubject();
 		$this->addReceiver($this->mailReceiver);
 		$this->setHeadline('comment.ext.mail.newcomment');
 
 		$this->setHtmlContent($this->getContent(true));
 		$this->setTextContent($this->getContent(false));
+		$this->addCommentAssetsAsAttachments();
+	}
+
+
+
+	/**
+	 * Get comment
+	 *
+	 * @return	TodoyuCommentComment
+	 */
+	public function getComment() {
+		return $this->comment;
+	}
+
+
+
+	/**
+	 * Get receiver
+	 * Only one person can receive a comment mail
+	 *
+	 * @return	TodoyuMailReceiverInterface
+	 */
+	public function getReceiver() {
+		return $this->mailReceiver;
 	}
 
 
@@ -77,10 +97,19 @@ class TodoyuCommentMail extends TodoyuMail {
 	/**
 	 * Set mail subject
 	 */
-	private function setMailSubject() {
+	protected function setMailSubject() {
 		$subject	= Todoyu::Label('comment.ext.mail.subject') . ': ' . $this->comment->getTask()->getTitle() . ' (#' . $this->comment->getTask()->getTaskNumber(true) . ')';
 
 		$this->setSubject($subject);
+	}
+
+
+	protected function addCommentAssetsAsAttachments() {
+		$assets	= $this->comment->getAssets();
+
+		foreach($assets as $asset) {
+			$this->addAttachment($asset->getFileStoragePath(), $asset->getFilename());
+		}
 	}
 
 
@@ -91,7 +120,7 @@ class TodoyuCommentMail extends TodoyuMail {
 	 * @param	Boolean		$asHtml
 	 * @return	String
 	 */
-	private function getContent($asHtml = false) {
+	protected function getContent($asHtml = false) {
 		$tmpl	= $this->getTemplate($asHtml);
 		$data	= $this->getData();
 
@@ -108,7 +137,7 @@ class TodoyuCommentMail extends TodoyuMail {
 	 * @param	Boolean		$asHtml
 	 * @return	String
 	 */
-	private function getTemplate($asHtml = false) {
+	protected function getTemplate($asHtml = false) {
 		$basePath	= 'ext/comment/view';
 		$type		= $asHtml ? 'html' : 'text';
 		$template	= $basePath . '/comment-mail-' . $type . '.tmpl';
@@ -123,7 +152,7 @@ class TodoyuCommentMail extends TodoyuMail {
 	 *
 	 * @return	Array
 	 */
-	private function getData() {
+	protected function getData() {
 		$task			= $this->comment->getTask();
 		$project		= $this->comment->getProject();
 		$personWrite	= $this->comment->getPersonCreate();

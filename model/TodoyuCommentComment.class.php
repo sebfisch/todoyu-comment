@@ -411,6 +411,59 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 
 
 	/**
+	 * Get assets which are attached
+	 *
+	 * @return	TodoyuAssetsAsset[]
+	 */
+	public function getAssets() {
+		$assetIDs	= $this->getAssetsIDs();
+
+		return TodoyuRecordManager::getRecordList('TodoyuAssetsAsset', $assetIDs);
+	}
+
+
+
+	/**
+	 * Get IDs of attached assets
+	 *
+	 * @return	Integer[]
+	 */
+	public function getAssetsIDs() {
+		return TodoyuCommentAssetManager::getAssetIDs($this->getID());
+	}
+
+
+
+	/**
+	 * Check whether assets are attached
+	 *
+	 * @return	Boolean
+	 */
+	public function hasAssets() {
+		return sizeof($this->getAssetsIDs()) > 0;
+	}
+
+
+
+	/**
+	 * Get template data for all the assets
+	 *
+	 * @return	Array[]
+	 */
+	protected function getAssetsTemplateData() {
+		$assets	= $this->getAssets();
+		$data	= array();
+
+		foreach($assets as $asset) {
+			$data[$asset->getID()] = $asset->getTemplateData();
+		}
+
+		return $data;
+	}
+
+
+
+	/**
 	 * Load comment foreign data: creator, feedback persons, approval state
 	 *
 	 * @param	Boolean		$loadRenderData
@@ -421,6 +474,7 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 			$this->data['person_create']	= $this->getPersonCreate()->getTemplateData(false);
 			$this->data['involvedPersons']	= $this->getInvolvedPersonInfos();
 			$this->data['locked']			= $this->isLocked();
+			$this->data['assets']			= $this->getAssetsIDs();
 		}
 
 			// Extra data which is only required for detail rendering
@@ -433,11 +487,7 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 			$this->data['publicFeedbackWarning']	= $this->getPublicFeedbackWarning();
 			$this->data['actions']					= $this->getActions();
 			$this->data['additionalContentItems']	= $this->getAdditionalContentItems();
-		}
-
-		$this->data['assets'] = $this->getCommentAssets();
-		if( $loadRenderData ) {
-			$this->data['assets'] = TodoyuCommentAssetManager::loadAssetTemplateData($this->data['assets']);
+			$this->data['assetInfos']				= $this->getAssetsTemplateData();
 		}
 	}
 
@@ -458,16 +508,6 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 		return parent::getTemplateData();
 	}
 
-
-
-	private function getCommentAssets() {
-		$fields = 'a.id_asset as id';
-		$tables	= 'ext_comment_mm_comment_asset as a';
-		$where	= 'a.id_comment = ' . $this->getID();
-
-
-		return Todoyu::db()->getArray($fields, $tables, $where);
-	}
 }
 
 ?>

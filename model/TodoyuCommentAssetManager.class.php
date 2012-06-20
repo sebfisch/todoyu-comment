@@ -33,6 +33,28 @@ class TodoyuCommentAssetManager {
 
 
 	/**
+	 * Get IDs of assets which are attached to a comment
+	 *
+	 * @param	Integer		$idComment
+	 * @return	Integer[]
+	 */
+	public static function getAssetIDs($idComment) {
+		$idComment	= intval($idComment);
+
+		$field	= '	a.id';
+		$tables	= '	ext_comment_mm_comment_asset mm,
+					ext_assets_asset a';
+		$where	= '		mm.id_comment	= ' . $idComment
+				. ' AND mm.id_asset		= a.id'
+				. ' AND a.deleted		= 0';
+		$order	= '	a.file_name';
+
+		return Todoyu::db()->getColumn($field, $tables, $where, '', $order, '', 'id');
+	}
+
+
+
+	/**
 	 * @static
 	 * @param	TodoyuFormElement		$field
 	 * @return	Array
@@ -90,20 +112,22 @@ class TodoyuCommentAssetManager {
 
 
 	/**
-	 * @static
-	 * @param	Array		$file
+	 * Get label for temporary uploaded file
+	 *
+	 * @param	Array		$fileData
 	 * @return	String
 	 */
-	public static function getTempFileLabel(array $file) {
-		return $file['name'] . ' (' . TodoyuTime::format($file['time'], 'timesec') . ', ' . TodoyuString::formatSize($file['size']) . ')';
+	public static function getTempFileLabel(array $fileData) {
+		return $fileData['name'] . ' (' . TodoyuTime::format($fileData['time'], 'timesec') . ', ' . TodoyuString::formatSize($fileData['size']) . ')';
 	}
 
 
 
 	/**
-	 * @static
+	 * Get records for record selector
+	 *
 	 * @param	TodoyuFormElement		$field
-	 * @return	Array
+	 * @return	Array[]
 	 */
 	public static function getCommentAssetRecords(TodoyuFormElement $field){
 		$formData	= $field->getForm()->getFormData();
@@ -115,6 +139,8 @@ class TodoyuCommentAssetManager {
 
 		$assetIDs = $field->getValue();
 		$records	= array();
+
+		TodoyuDebug::printInFirebug($assetIDs, 'assetIDs');
 
 		foreach($assetIDs as $idAsset) {
 			if( is_numeric($idAsset) ) {
@@ -139,76 +165,93 @@ class TodoyuCommentAssetManager {
 
 
 	/**
-	 * @static
+	 * Save comment assets
+	 *
 	 * @param	Integer		$idCommentOld
 	 * @param	Integer		$idCommentNew
 	 * @param	Integer		$idTask
 	 * @param	Array		$assets
+	 * @todo	Only remove assets which are no longer attached
 	 */
 	public static function saveAssets($idCommentOld, $idCommentNew, $idTask, array $assets) {
 		self::removeAllAssets($idCommentNew);
 
 		foreach($assets as $idAsset) {
-			if(!is_numeric($idAsset)) {
-				$idAsset	= self::saveNewAsset($idCommentOld, $idCommentNew, $idTask, $idAsset);
+				// Create assets from temporary uploaded files
+			if( !is_numeric($idAsset) ) {
+				$uploader	= new TodoyuCommentTempUploader($idCommentOld, $idTask);
+				$fileInfo	= $uploader->getFileInfo($idAsset);
+				$idAsset	= self::addNewAssetFromTempFile($idCommentNew, $fileInfo);
 			}
 
-			$data = array(
-				'date_create'		=> NOW,
-				'date_update'		=> NOW,
-				'id_person_create'	=> Todoyu::personid(),
-				'id_asset'			=> $idAsset,
-				'id_comment'		=> $idCommentNew
-			);
-
-			Todoyu::db()->doInsert(self::TABLE, $data);
+			self::addAssetToComment($idCommentNew, $idAsset);
 		}
 	}
 
 
 
 	/**
-	 * @static
-	 * @param	Integer		$idCommentOld
-	 * @param	Integer		$idCommentNew
-	 * @param	Integer		$idTask
-	 * @param	Mixed		$idAsset
+	 * Link asset with comment
+	 *
+	 * @param	Integer		$idComment
+	 * @param	Integer		$idAsset
 	 * @return	Integer
 	 */
-	protected static function saveNewAsset($idCommentOld, $idCommentNew, $idTask, $idAsset) {
-		$uploader	= new TodoyuCommentTempUploader($idCommentOld, $idTask);
-		$fileInfo	= $uploader->getFileInfo($idAsset);
+	protected static function addAssetToComment($idComment, $idAsset) {
+		$idComment	= intval($idComment);
+		$idAsset	= intval($idAsset);
 
-		return TodoyuAssetsAssetManager::addAsset(ASSET_PARENTTYPE_COMMENT, $idCommentNew, $fileInfo['path'], $fileInfo['name'], $fileInfo['type']);
+		$data = array(
+			'id_asset'	=> $idAsset,
+			'id_comment'=> $idComment
+		);
+
+		return TodoyuRecordManager::addRecord(self::TABLE, $data);
 	}
 
 
 
 	/**
-	 * @static
-	 * @param	Integer		$idCommentNew
+	 * Add a new asset for comment from a temporary uploaded file
+	 *
+	 * @param	Integer		$idComment
+	 * @param	Array		$fileInfo
+	 * @return	Integer
 	 */
-	protected static function removeAllAssets($idCommentNew) {
-		Todoyu::db()->doDelete(self::TABLE, 'id_comment = ' . intval($idCommentNew));
+	protected static function addNewAssetFromTempFile($idComment, array $fileInfo) {
+		return self::addAsset($idComment, $fileInfo['path'], $fileInfo['name'], $fileInfo['type']);
 	}
 
 
 
 	/**
-	 * @static
-	 * @param	Array		$assetIDs
+	 * Add a new comment asset
+	 *
+	 * @param	Integer		$idComment
+	 * @param	String		$tempFile
+	 * @param	String		$fileName
+	 * @param	String		$mimeType
+	 * @return	Integer
 	 */
-	public static function loadAssetTemplateData($assetIDs) {
-		$assets = array();
-
-		foreach($assetIDs as $idAsset) {
-			if( TodoyuAssetsRights::isSeeAllowed($idAsset['id'])) {
-				$assets[] = TodoyuAssetsAssetManager::getAsset($idAsset['id']);
-			}
-		}
-
-		return $assets;
+	public static function addAsset($idComment, $tempFile, $fileName, $mimeType) {
+		return TodoyuAssetsAssetManager::addAsset(ASSET_PARENTTYPE_COMMENT, $idComment, $tempFile, $fileName, $mimeType);
 	}
+
+
+
+	/**
+	 * Remove all assets from comment
+	 * Only the link is removed, they stay attached to to task
+	 *
+	 * @param	Integer		$idComment
+	 */
+	protected static function removeAllAssets($idComment) {
+		$idComment	= intval($idComment);
+		$where		= 'id_comment = ' . $idComment;
+
+		Todoyu::db()->doDelete(self::TABLE, $where);
+	}
+
 }
 
 ?>

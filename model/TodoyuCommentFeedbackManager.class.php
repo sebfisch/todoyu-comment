@@ -37,20 +37,23 @@ class TodoyuCommentFeedbackManager {
 	 * Save feedback requests of given comment
 	 *
 	 * @param	Integer		$idComment
-	 * @param	Array		$feedbackPersonIDs
+	 * @param	Integer[]	$feedbackPersonIDs
+	 * @return	Integer[]
 	 */
-	public static function savedFeedbackRequests($idComment, $feedbackPersonIDs = array()) {
+	public static function saveFeedbackRequests($idComment, $feedbackPersonIDs) {
 			// Get already stored unseen feedbacks
 		$seenFeedbackPersonIDs	= self::getSeenFeedbacksPersonIDs($idComment);
 
 			// Remove feedbacks that have been seen already from list, those don't need to be removed/resaved
-		$feedbackPersonIDs	= array_diff($feedbackPersonIDs, $seenFeedbackPersonIDs);
+		$unseenFeedbackPersonIDs	= array_diff($feedbackPersonIDs, $seenFeedbackPersonIDs);
 
 			// Remove old open feedbacks from DB
 		self::removeUnseenFeedbacks($idComment);
 
 			// Add newly added feedback requests
-		self::addFeedbacks($idComment, $feedbackPersonIDs);
+		self::addFeedbacks($idComment, $unseenFeedbackPersonIDs);
+
+		return $feedbackPersonIDs;
 	}
 
 

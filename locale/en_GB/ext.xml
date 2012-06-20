@@ -13,7 +13,7 @@
 	<label index="edit.sendasemail">Send comment by email</label>
 	<label index="edit.autoSentEmailToTaskOwner">Send by email to task owner</label>
 	<label index="edit.sentEmailTo">Send Email To</label>
-	<label index="edit.assets">Send assets</label>
+	<label index="edit.assets">Attach assets</label>
 	<label index="group.employees">Employees</label>
 	<label index="group.projectmembers">Project Members</label>
 	<label index="group.taskmembers">Task Members</label>

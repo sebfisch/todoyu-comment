@@ -48,10 +48,6 @@
 		<fieldset name="email">
 			<elements>
 
-				<field type="recordsEmailPerson" name="email_receivers">
-					<label>comment.ext.edit.email_receivers</label>
-				</field>
-
 				<field type="upload" name="file">
 					<onchange>Todoyu.Ext.comment.Edit.uploadFileInline(this)</onchange>
 					<class>directUploadBox</class>
@@ -72,6 +68,10 @@
 						<recordFunction>TodoyuCommentAssetManager::getCommentAssetRecords</recordFunction>
 						<lazyInit />
 					</source>
+				</field>
+
+				<field type="recordsEmailPerson" name="email_receivers">
+					<label>comment.ext.edit.email_receivers</label>
 				</field>
 
 			</elements>

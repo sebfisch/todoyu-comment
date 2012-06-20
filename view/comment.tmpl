@@ -65,10 +65,10 @@
 			</div>
 		{/if}
 
-		{if $assets}
+		{if $assetInfos}
 			<div class="assets">
-				{foreach $assets asset}
-					<a class="asset" onclick="Todoyu.Ext.assets.downloadAsset({$asset.id});">
+				{foreach $assetInfos asset}
+					<a class="asset" onclick="Todoyu.Ext.assets.downloadAsset({$asset.id})">
 						{$asset.file_name} <span class="filesize">{fileSize $asset.file_size}</span>
 					</a>
 				{/foreach}

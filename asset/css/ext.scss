@@ -75,9 +75,11 @@ h1.extIconComment .title {
 
 
 .taskTabs {
-	li.comment {
-		.icon {
-			background:url(../img/icons.png) no-repeat 0 5px;
+	.tabs {
+		li.comment {
+			.icon {
+				background:url(../img/icons.png) no-repeat 0 5px;
+			}
 		}
 	}
 }
@@ -318,6 +320,14 @@ h1.extIconComment .title {
 		fieldset.email {
 			padding-top:0;
 			margin-top:0;
+		}
+
+		.fieldnameUpload {
+			button {
+				.icon {
+					background: url(../../../../core/asset/img/icons.png) no-repeat 1px -1692px;
+				}
+			}
 		}
 	}
 }
