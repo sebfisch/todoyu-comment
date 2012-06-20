@@ -78,7 +78,7 @@ h1.extIconComment .title {
 	.tabs {
 		li.comment {
 			.icon {
-				background:url(../img/icons.png) no-repeat 0 5px;
+				background:url(../img/icons.png) no-repeat 0 -112px;
 			}
 		}
 	}
@@ -157,27 +157,29 @@ h1.extIconComment .title {
 			margin:0 82px 0 -82px;
 
 			a {
-				background-image:url(../img/icons.png);
+				background-image:url(../../../../core/asset/img/icons.png);
 				background-repeat:no-repeat;
 				float:left;
 				margin-left:10px;
 				width:18px;
 
 				&.makePublic {
-					background-position:0 -236px;
+					background-position:0 -1079px;
 					width:22px !important;
+					opacity: 0.3;
 
 					&.isPublic {
-						background-position:0 -268px;
+						background-position:0 -1079px;
+						opacity: 1;
 					}
 				}
 
 				&.edit {
-					background-position:0 -60px;
+					background-position:0 -746px;
 				}
 
 				&.remove {
-					background-position:0 -26px;
+					background-position:0 -357px;
 				}
 
 			}
