@@ -70,9 +70,9 @@
 	<label index="fallback.taskperson_email">To this task person</label>
 	<label index="fallback.id_role_email">To a person with this role</label>
 	<label index="fallback.noneForProject">No fallbacks for comments in this project</label>
-	<label index="extconf.globalFallback">Global fallback</label>
-	<label index="edit.email_receivers">Email Receivers</label>
-	<label index="edit.address_email_cc">CC to address</label>
+	<label index="extconf.globalFallback">Global Fallback</label>
+	<label index="edit.email_receivers">Email Recipients</label>
+	<label index="edit.address_email_cc">CC To Address</label>
 	<label index="assets.optgroup.project">Project Assets</label>
 	<label index="assets.optgroup.task">Task Assets</label>
 	<label index="assets.optgroup.comment">Comment Assets</label>
