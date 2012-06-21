@@ -157,29 +157,27 @@ h1.extIconComment .title {
 			margin:0 82px 0 -82px;
 
 			a {
-				background-image:url(../../../../core/asset/img/icons.png);
-				background-repeat:no-repeat;
 				float:left;
 				margin-left:10px;
 				width:18px;
 
 				&.makePublic {
-					background-position:0 -1079px;
+				    background:url(../../../../core/asset/img/icons.png) no-repeat 0 -1079px;
 					width:22px !important;
 					opacity: 0.3;
 
 					&.isPublic {
-						background-position:0 -1079px;
+						background:url(../../../../core/asset/img/icons.png) no-repeat 0 -1079px;
 						opacity: 1;
 					}
 				}
 
 				&.edit {
-					background-position:0 -746px;
+					background:url(../../../../core/asset/img/icons.png) no-repeat 0 -746px;
 				}
 
 				&.remove {
-					background-position:0 -357px;
+					background:url(../../../../core/asset/img/icons.png) no-repeat 0 -357px;
 				}
 
 			}
