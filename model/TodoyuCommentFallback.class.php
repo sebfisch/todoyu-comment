@@ -208,38 +208,51 @@ class TodoyuCommentFallback extends TodoyuBaseObject {
 	 * @param	Integer		$idTask
 	 * @param	Array		$commentData
 	 * @return	Array		Comment data with fallback values
+	 * @deprecated
 	 */
 	public function apply($idTask, array $commentData) {
+		return $this->applyFallbackData($idTask, $commentData);
+	}
+
+
+
+	/**
+	 * Apply fallback data to comment
+	 *
+	 * @param	Integer		$idTask
+	 * @param	Array		$commentData
+	 * @return	Array		Comment data with fallback values
+	 */
+	public function applyFallbackData($idTask, array $commentData) {
 		$task	= TodoyuCommentTaskManager::getTask($idTask);
 
 			// Is public
-		if( !Todoyu::allowed('comment', 'comment:makePublic') ) {
-			if( $this->hasIsPublic() ) {
-				$commentData['is_public'] = 1;
-			}
+		if( !isset($commentData['is_public']) && $this->hasIsPublic() ) {
+			TodoyuDebug::printInFirebug('set public');
+			$commentData['is_public'] = 1;
 		}
 
 			// Feedback
-		if( !Todoyu::allowed('comment', 'general:requestFeedback') ) {
+		if( !isset($commentData['feedback']) ) {
 			if( $this->hasPersonFeedback() ) {
-				$commentData['feedback'] = $this->getPersonFeedbackID();
+				$commentData['feedback'] 	= $this->getPersonFeedbackID();
 			} elseif( $this->hasTaskPersonFeedback() ) {
-				$commentData['feedback'] = $task->getPersonID($this->getTaskPersonFeedbackKey());
+				$commentData['feedback']	= $task->getPersonID($this->getTaskPersonFeedbackKey());
 			} elseif( $this->hasRoleFeedback() ) {
-				$projectRoleIDs = $task->getProject()->getRolePersonIDs($this->getRoleFeedbackID());
-				$commentData['feedback'] = reset($projectRoleIDs);
+				$projectRolePersonIDs		= $task->getProject()->getRolePersonIDs($this->getRoleFeedbackID());
+				$commentData['feedback']	= reset($projectRolePersonIDs);
 			}
 		}
 
 			// Email
-		if( !Todoyu::allowed('comment', 'general:sendEmail') ) {
+		if( !isset($commentData['email_receivers']) ) {
 			if( $this->hasPersonEmail() ) {
 				$commentData['email_receivers'] = $this->getPersonEmailID();
 			} elseif( $this->hasTaskPersonEmail() ) {
 				$commentData['email_receivers'] = $task->getPersonID($this->getTaskPersonEmailKey());
 			} elseif( $this->hasRoleEmail() ) {
-				$projectRoleIDs = $task->getProject()->getRolePersonIDs($this->getRoleEmailID());
-				$commentData['email_receivers'] = reset($projectRoleIDs);
+				$projectRolePersonIDs 			= $task->getProject()->getRolePersonIDs($this->getRoleEmailID());
+				$commentData['email_receivers'] = reset($projectRolePersonIDs);
 			}
 		}
 

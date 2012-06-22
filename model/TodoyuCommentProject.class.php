@@ -76,7 +76,7 @@ class TodoyuCommentProject extends TodoyuProjectProject {
 		}
 
 		if( $fallback ) {
-			$data = $fallback->apply($idTask, $data);
+			$data = $fallback->applyFallbackData($idTask, $data);
 		}
 
 		return $data;
