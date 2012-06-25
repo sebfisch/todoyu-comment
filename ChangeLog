@@ -1,16 +1,15 @@
 todoyu comment extension changelog
 
 comment 1.3.0 - not released yet
-	* Added: Assets for comment Part III (display in comment detail)
-	* Added: Assets for comment Part II (save and load)
+	* Feature: Upload assets to comments
 	* Feature: Add additional content to comment text area with a hook: comment,comment.additionalContentItems
-	* Added: Assets for comment Part I (selector)
 	* Require: assets 1.3 and core 2.2.1
 	* Changed: Cleanup header values: idTask => task, idComment => comment
 	* Changed: Comment actions are now dynamic. Use hook comment.comment.actions
 	* Changed: Split up comments getTemplateData() into normal foreign data and special details render data
 	* Changed: Rename TodoyuCommentFallback->apply() to applyFallbackData()
 	* Changed: Don't check for rights in fallback, check if field data is available/submitted
+	* Changed: Allow more HTML tags in comment. New <table><tr><td><th><div><tbody><thead><hr>
 	* Bugfix: After comment save, comment id was passed as 'comment', but fetched as 'idComment'
 
 comment 1.2 - 2012-05-03

@@ -27,7 +27,7 @@ if( Todoyu::allowed('comment', 'general:use') ) {
 	Configuration for 'feedback' tab in portal
    ------------------------------------------------ */
 Todoyu::$CONFIG['EXT']['comment'] = array(
-	'allowedTags'		=> '<p><strong><em><span><i><ol><ul><li><br><pre><a>',
+	'allowedTags'		=> '<p><strong><em><span><i><ol><ul><li><br><pre><a><table><tr><td><th><div><tbody><thead><hr>',
 	'feedbackTabFilters'=> array(
 		array(
 			'filter' => 'unseenFeedbackPerson'
