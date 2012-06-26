@@ -96,6 +96,19 @@ class TodoyuCommentTask extends TodoyuProjectTask {
 
 
 	/**
+	 * Get ID of the last comment
+	 *
+	 * @return	Integer
+	 */
+	public function getLastCommentID() {
+		$taskCommentIDs	= TodoyuCommentCommentManager::getTaskCommentIDs($this->getID(), true);
+
+		return intval($taskCommentIDs[0]);
+	}
+
+
+
+	/**
 	 * Get first (oldest) comment
 	 *
 	 * @return	TodoyuCommentComment|Boolean
