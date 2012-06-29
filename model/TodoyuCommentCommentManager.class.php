@@ -167,6 +167,9 @@ class TodoyuCommentCommentManager {
 			TodoyuCommentAssetManager::saveAssets($data['id'], $idComment, $idTask, $assets);
 		}
 
+			// Clear record cache
+		self::removeFromCache($idComment);
+
 			// Call saved before email hook
 		TodoyuHookManager::callHook('comment', 'comment.save.beforeEmail', array($idComment));
 
