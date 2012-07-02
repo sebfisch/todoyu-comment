@@ -106,197 +106,331 @@ h1.extIconComment .title {
 
 
 
+
+
 /* -------------------
 	Comment
    ------------------- */
+/*
 
-.commentList .comment {
-	&.isPublic {
-		border:solid $colorAlert01 !important;
-		border-width:1px !important;
-	}
+TODO: make sure this goes into the core CSS ??
 
-	.properties {
-		position:relative;
-		margin:0 0 5px 0;
-		padding:7px 5px;
-		background:$colorCorporate01 url(../../../../core/asset/img/bg-tabheader.png) repeat-x 0 top;
+*/
 
-		span {
-			font-weight:bold;
-		}
-		.hasicon {
-			padding:3px 0;
-		}
-
-		.crdate {}
-
-		.personApproval {
-			display:block;
-			float:left;
-			position:relative;
-			top:-2px;
-			margin-right:10px;
-			height:16px;
-			width:16px;
-			background:transparent url('../../../../core/asset/img/icons.png') no-repeat 0 -1258px;
-		}
-
-		.commentId {
-			float:right;
-			margin:0 5px 0 -12px;
-			font-size:11px !important;
-			letter-spacing:1px;
-			font-weight:normal;
-		}
-
-		.actions {
-			position:absolute;
-			top:5px;
-			right:5px;
-			margin:0 82px 0 -82px;
-
-			a {
-				float:left;
-				margin-left:10px;
-				width:18px;
-
-				&.makePublic {
-				    background:url(../../../../core/asset/img/icons.png) no-repeat 0 -1079px;
-					width:22px !important;
-					opacity: 0.3;
-
-					&.isPublic {
-						background:url(../../../../core/asset/img/icons.png) no-repeat 0 -1079px;
-						opacity: 1;
-					}
-				}
-
-				&.edit {
-					background:url(../../../../core/asset/img/icons.png) no-repeat 0 -746px;
-				}
-
-				&.remove {
-					background:url(../../../../core/asset/img/icons.png) no-repeat 0 -330px;
-				}
-
-			}
-			a:hover {
-				background-color:transparent;
-			}
-		}
-
-
-	}
-	.details {
-		padding-bottom:7px;
-
-		.commentText {
-			padding:5px;
-
-			ul {
-				list-style:disc outside;
-				padding-left:14px;
-			}
-
-			a {
-				text-decoration:underline !important;
-			}
-			a:hover {
-				background-color:$colorNeutral01;
-			}
-		}
-
-		.updateInfo {
-			color:$colorNeutral06;
-			margin-left:5px;
-			margin-top:5px;
-			font-size:10px;
-		}
-
-		.publicFeedbackWarning {
-			background-color:$colorNotice00;
-			box-shadow:2px 2px 7px $colorNeutral06;
-			border:1px solid $colorNeutral03;
-			padding:7px;
-			margin-left:5px;
-			font-weight:bold;
-			margin-bottom:5px;
-		}
-
-		.additionalContent {
-			margin-left:5px;
-
-			div {
-				font-size:10px;
-				color:$colorNeutral06;
-			}
-		}
-
-		/* -----------------------------------------------------------
-			Feedback and email receiver persons in comment header
-		   ----------------------------------------------------------- */
-		.involvedPersons {
-			padding-bottom: 3px;
-			border-bottom: 1px solid $colorNeutral02;
-
-			.involvedPerson {
-				margin-right:10px;
-				display: inline-block;
-
-				span {
-					vertical-align: top;
-				}
-
-				.icon {
-					display: inline-block;
-					float:none;
-					height: 14px;
-					width: 12px;
-					background: {
-						image: url(../../../../core/asset/img/icons.png);
-						repeat: no-repeat;
-					}
-				}
-
-				.feedback {
-					&.approved {
-						background-position: 1px -1314px;
-					}
-					&.unapproved {
-						background-position: 1px -1288px;
-					}
-				}
-
-				.email {
-					background-position: 1px -1344px;
-				}
-			}
-		}
-
-		/* -----------------------------------------------------------
-			Assets
-		----------------------------------------------------------- */
-
-		.assets {
-			margin-left: 5px;
-			margin-top: 5px;
-			border-top: 1px solid $colorNeutral03;
-			padding-top: 3px;
-
-			& .asset {
-				cursor: pointer;
-				margin-right: 10px;
-			}
-
-			& .filesize {
-				color: $colorNeutral06;
-			}
-		}
-	}
+article, aside, figure, footer, header, hgroup,
+menu, nav, section {
+    display: block;
 }
 
+.tabContent .comment section {
+	margin:30px 0;
+}
 
+.commentList {
+
+	.comment {
+		overflow: hidden;
+		padding: 0 0 1em;
+		border-bottom: 1px solid #ddd;
+		margin: 0 0 1em;
+		*zoom: 1;
+	}
+
+	.publicFeedbackWarning {
+    			background-color:$colorNotice00;
+    			box-shadow:2px 2px 7px $colorNeutral06;
+    			border:1px solid $colorNeutral03;
+    			padding:7px;
+    			margin-left:5px;
+    			font-weight:bold;
+    			margin-bottom:5px;
+    }
+
+
+    .actions {
+
+		padding: 0 0 0 350px;
+
+		a {
+
+			width:18px;
+
+			&.makePublic {
+				background:url(../../../../core/asset/img/icons.png) no-repeat 0 -1079px;
+				width:22px !important;
+				opacity: 0.3;
+
+				&.isPublic {
+					background:url(../../../../core/asset/img/icons.png) no-repeat 0 -1079px;
+					opacity: 1;
+				}
+			}
+
+			&.edit {
+				background:url(../../../../core/asset/img/icons.png) no-repeat 0 -746px;
+			}
+
+			&.remove {
+				background:url(../../../../core/asset/img/icons.png) no-repeat 0 -330px;
+			}
+
+		}
+
+		a:hover {
+			background-color:transparent;
+		}
+    }
+
+
+
+
+
+	 /* -----------------------------------------------------------
+         Person and meta information
+     ----------------------------------------------------------- */
+
+	.comment-meta {
+		width:160px;
+		float: left;
+
+		p {
+			line-height: 15px;
+			padding:0 0 0 0;
+		}
+	}
+
+	.comment .personApproval {
+		display:block;
+		height:16px;
+		width:16px;
+		background:transparent url('../../../../core/asset/img/icons.png') no-repeat 0 -1258px;
+    }
+
+	.comment-img {
+		border-radius: 5px;
+		overflow: hidden;
+		width: 100px;
+		height: 65px;
+		margin: 0 0 10px 0;
+		background:url(../../../contact/asset/img/persondefault/user01.png.png) no-repeat;
+
+	}
+
+	.comment-img img {
+		display: block;
+	}
+
+	.comment-meta .quickInfoPerson {
+		font-weight: bold;
+	}
+
+	 /* -----------------------------------------------------------
+        Comment Text
+     ----------------------------------------------------------- */
+
+	.comment-body {
+		overflow: hidden;
+	}
+
+
+	.comment .text {
+
+		padding: 10px 5px 5px 12px;
+		border: 1px solid #e5e5e5;
+		border-radius: 5px;
+		background: #fff;
+
+		ul {
+			list-style:disc outside;
+			padding-left:14px;
+		}
+
+		ol {
+			padding-left:17px;
+		}
+
+		a {
+			text-decoration:underline !important;
+		}
+		a:hover {
+			background-color:$colorNeutral01;
+		}
+	}
+
+	.comment.isPublic .text {
+        border:solid 1px $colorAlert01;
+     }
+
+	.comment .text p:last-child {
+		margin: 0;
+	}
+
+
+	/* circle */
+	.comment:before {
+		width: 9px;
+		height: 9px;
+		border: 3px solid #fff;
+		border-radius: 100px;
+		margin: 16px 0 0 -6px;
+		box-shadow: 0 1px 1px rgba(0,0,0,0.2), inset 0 1px 1px rgba(0,0,0,0.1);
+		background: #ccc;
+	}
+
+	.comment:hover:before {
+		background: orange;
+	}
+
+	.comment .text:before {
+		top: 18px;
+		left: 156px;
+		width: 9px;
+		height: 9px;
+		border-width: 0 0 1px 1px;
+		border-style: solid;
+		border-color: #e5e5e5;
+		background: #fff;
+		-webkit-transform: rotate(45deg);
+		-moz-transform: rotate(45deg);
+		-ms-transform: rotate(45deg);
+		-o-transform: rotate(45deg);
+	}
+
+	.comment.isPublic .text:before {
+		border-color:$colorAlert01;
+	}
+
+	.updateInfo,
+	.commentId		 {
+    	color:$colorNeutral06;
+    	text-align: right;
+
+    }
+
+	.updateInfo,
+	.involvedPersons,
+    .additionalContent,
+    .action-bar,
+    .assets	 {
+    	padding:5px 0 ;
+    	border-bottom:1px solid #eeeeee;
+    	clear:both;
+    }
+
+    .action-bar {
+
+    }
+
+    span.commentId {
+    	padding:0 0 0 20px;
+    }
+
+	/* only last element should not have a border*/
+	div:nth-last-child(1) {
+		border-bottom:0px;
+	}
+
+
+
+
+
+
+    /* -----------------------------------------------------------
+        Assets
+	 ----------------------------------------------------------- */
+	.assets {
+	    ul {
+			list-style: disc inside;
+        }
+		h6 {
+			margin:0 0 0 0;
+		}
+	    
+		a {
+			text-decoration: underline;
+			cursor: pointer;
+		}
+		a:hover {
+			background:#E2E2E2;
+		}
+
+	}
+
+
+    /* -----------------------------------------------------------
+        SLA attributes and information
+	 ----------------------------------------------------------- */
+	.additionalContent {
+
+		.slaUseCaseInfo{
+			span.label {
+				text-decoration: underline;
+				cursor:pointer;
+			}
+			span.label:hover{
+				background-color:#E2E2E2;
+			}
+
+
+			.useCaseLogDetails {
+
+				ul {
+					padding:5px;
+					background:#E2E2E2;
+					border-radius: 5px;
+
+				}
+			}
+
+		}
+
+
+	}
+
+
+	/* -----------------------------------------------------------
+		Feedback and email receiver persons in comment header
+	   ----------------------------------------------------------- */
+	.involvedPersons {
+
+		.involvedPerson {
+			margin-right:10px;
+			display: inline-block;
+
+			span {
+				vertical-align: top;
+			}
+
+			.icon {
+				display: inline-block;
+				float:none;
+				height: 14px;
+				width: 12px;
+				background: {
+					image: url(../../../../core/asset/img/icons.png);
+					repeat: no-repeat;
+				}
+			}
+
+			.feedback {
+				&.approved {
+					background-position: 1px -1314px;
+				}
+				&.unapproved {
+					background-position: 1px -1288px;
+				}
+			}
+
+			.email {
+				background-position: 1px -1344px;
+			}
+		}
+	}
+
+
+
+
+}
 
 /* ------------------------
 	Comment form
@@ -340,3 +474,49 @@ h1.extIconComment .title {
 		}
 	}
 }
+
+/* -----------------------------------------------------------
+	Decorations
+   ----------------------------------------------------------- */
+
+.commentList,
+.comment {
+	position: relative;
+}
+
+.commentList:before,
+.comment:before,
+.comment .text:before {
+	content: "";
+	position: absolute;
+	top: 0;
+	left: 135px;
+}
+
+/*vertical line */
+.commentList:before {
+	width: 3px;
+	top: -20px;
+	bottom: -20px;
+	background:#ccc;
+}
+
+/* -----------------------------------------------------------
+	Pimp my Tab
+   ----------------------------------------------------------- */
+ .project .tabContent{
+ 	.tab.comment {
+     	background:#f9f9f9;
+     	margin:0;
+     	border:0;
+    	padding:10px;
+
+ 		.tabBlock{
+ 			background:#f9f9f9;
+ 		}
+ 	}
+
+
+
+
+ }

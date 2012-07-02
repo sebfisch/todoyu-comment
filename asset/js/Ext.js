@@ -293,7 +293,7 @@ Todoyu.Ext.comment = {
 	toggleSorting: function(idTask) {
 		var list 	= $('task-' + idTask + '-comments');
 
-		list.select('li.comment').reverse().each(function(commentElement){
+		list.select('article.comment').reverse().each(function(commentElement){
 			list.insert(commentElement);
 		});
 
