@@ -102,7 +102,7 @@ class TodoyuCommentCommentRenderer {
 
 		$xmlPath= 'ext/comment/config/form/comment.xml';
 		$data	= TodoyuFormHook::callLoadData($xmlPath, $data, $idComment, array(
-			'task' => $idTask
+			'task'	=> $idTask
 		));
 
 		$form->setFormData($data);
