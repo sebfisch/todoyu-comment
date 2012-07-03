@@ -34,6 +34,7 @@ Todoyu.Ext.comment.List = {
 	 * @param	{Boolean}	desc
 	 */
 	refresh: function(idTask, desc) {
+		desc	= !!desc;
 		var url		= Todoyu.getUrl('comment', 'task');
 		var options	= {
 			parameters: {
@@ -41,7 +42,7 @@ Todoyu.Ext.comment.List = {
 				task:	idTask,
 				desc:	desc !== false ? 1 : 0
 			},
-			onComplete: this.onRefreshed.bind(this, idTask)
+			onComplete: this.onRefreshed.bind(this, idTask, desc)
 		};
 		var target	= 'task-' + idTask + '-tabcontent-comment';
 
@@ -55,18 +56,11 @@ Todoyu.Ext.comment.List = {
 	 *
 	 * @method	onRefreshed
 	 * @param	{Number}		idTask
+	 * @param	{Boolean}		desc
 	 * @param	{Ajax.Response}	response
 	 */
-	onRefreshed: function(idTask, response) {
-		var firstButton = $('task-' + idTask).select('button.addComment')[0];
-
-		if( this.hasComments(idTask) ) {
-				// There are comments: unhide first button (above comments)
-			firstButton.show();
-		} else {
-				// There are no comments: hide first button
-			firstButton.hide();
-		}
+	onRefreshed: function(idTask, desc, response) {
+		this.toggleAddButtons(idTask);
 	},
 
 
@@ -81,7 +75,7 @@ Todoyu.Ext.comment.List = {
 	getAmountComments: function(idTask) {
 		var commentsElement = $('task-' + idTask + '-comments');
 		if( commentsElement ) {
-			return commentsElement.select('li.comment').size();
+			return commentsElement.select('.comment').size();
 		} else {
 			return 0;
 		}
@@ -110,6 +104,52 @@ Todoyu.Ext.comment.List = {
 	 */
 	toggle: function(idTask) {
 		Todoyu.Ui.toggle('task-' + idTask + '-comments');
+	},
+
+
+
+	/**
+	 * Show or hide sorting buttons depending on amount of comments
+	 *
+	 * @param	{Number}	idTask
+	 */
+	toggleSortingButtons: function(idTask) {
+		var action = this.getAmountComments(idTask) < 2 ? 'hide' : 'show';
+
+		$('task-' + idTask + '-tabcontent-comment').select('button.order').invoke(action);
+	},
+
+
+
+	/**
+	 * Toggle add buttons
+	 * Hide first add button if there are no comments
+	 *
+	 * @param	{Number}	idTask
+	 */
+	toggleAddButtons: function(idTask) {
+		var firstButton = $('task-' + idTask).select('button.addComment').first();
+		var action		= this.hasComments(idTask) ? 'show' : 'hide';
+
+		firstButton[action]();
+	},
+
+
+
+	/**
+	 * Toggle sorting of comments of given task
+	 *
+	 * @method	toggleSorting
+	 * @param	{Number}	idTask
+	 */
+	toggleSorting: function(idTask) {
+		var list 	= $('task-' + idTask + '-comments');
+
+		list.select('.comment').reverse().each(function(commentElement){
+			list.insert(commentElement);
+		});
+
+		$('task-' + idTask + '-tabcontent-comment').select('button.order').invoke('toggleClassName', 'desc');
 	}
 
 };

@@ -73,7 +73,7 @@ class TodoyuCommentTaskManager {
 			// If no comments
 		if( $numComments === 0 ) {
 				// Show form to add first task if allowed
-			return TodoyuCommentCommentRenderer::renderEdit($idTask, 0);
+			return TodoyuCommentCommentRenderer::renderEdit($idTask);
 		} else {
 			return TodoyuCommentCommentRenderer::renderCommentList($idTask);
 		}

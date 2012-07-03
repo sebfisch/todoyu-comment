@@ -3,7 +3,7 @@
 	<div class="comment-meta" id="task-comment-{$id}-properties">
 		<div class="comment-img">
 			{if $isUnapproved}
-				<a href="javascript:void(0)" style="position:absolute;top:55px;left:93px;" id="comment-{$id}-seenstatus" onclick="Todoyu.Ext.comment.setSeenStatus({$id}, {personid()})" class="personApproval hasicon"></a>
+				<a href="javascript:void(0)" style="position:absolute;top:55px;left:93px;" id="comment-{$id}-seenstatus" onclick="Todoyu.Ext.comment.Comment.setSeenStatus({$id}, {personid()})" class="personApproval hasicon"></a>
 			{/if}
 			<img src="https://sfp.todoyu.net/index.php?ext=contact&controller=person&action=renderimage&idImage=1&hash=1340794483" alt="{$person_create.fullname}" />
 	 	 </div>

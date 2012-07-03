@@ -530,6 +530,22 @@ class TodoyuCommentCommentManager {
 		return $matches[1] . '<a href="index.php?ext=project&task=' . $idTask . '&tab=comment#task-comment-' . $idComment . '" title="' . $title . '">' . $matches[2] . '</a>' . $matches[4];
 	}
 
+
+
+	/**
+	 * Prefix every paragraph with a ">"
+	 *
+	 * @param	String		$commentHtml
+	 * @param	String		$prefix
+	 * @return	String
+	 */
+	public static function getPrefixedResponseLines($commentHtml, $prefix = '&gt; ') {
+		$pattern	= '/(<p[^>]*?>)(.*?)(<\/p>)/is';
+		$replace	= '\1' . $prefix . '\2\3';
+
+		return preg_replace($pattern, $replace, $commentHtml);
+	}
+
 }
 
 ?>

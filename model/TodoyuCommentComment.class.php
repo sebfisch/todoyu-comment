@@ -40,6 +40,29 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 
 
 	/**
+	 * Get comment text
+	 *
+	 * @return	String
+	 */
+	public function getComment() {
+		return $this->get('comment');
+	}
+
+
+
+	/**
+	 * Get comment text for response
+	 * Text is prefixed with >
+	 *
+	 * @return	String
+	 */
+	public function getCommentResponseText() {
+		return '<p></p>' . TodoyuCommentCommentManager::getPrefixedResponseLines($this->getComment());
+	}
+
+
+
+	/**
 	 * Get ID of the task the comment is added to
 	 *
 	 * @return	Integer
@@ -360,7 +383,7 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 		if(  $this->canCurrentPersonEdit() ) {
 			$actions['edit'] = array(
 				'id'		=> 'edit',
-				'onclick'	=> 'Todoyu.Ext.comment.edit(' . $this->getTaskID() . ', ' . $this->getID() . ')',
+				'onclick'	=> 'Todoyu.Ext.comment.Edit.editComment(' . $this->getTaskID() . ', ' . $this->getID() . ')',
 				'class'		=> 'edit',
 				'label'		=> 'comment.ext.icon.edit',
 				'position'	=> 10
@@ -370,7 +393,7 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 		if( $this->canCurrentPersonMakePublic() ) {
 			$actions['makePublic'] = array(
 				'id'		=> 'makePublic',
-				'onclick'	=> 'Todoyu.Ext.comment.togglePublic(' . $this->getID() . ')',
+				'onclick'	=> 'Todoyu.Ext.comment.Comment.togglePublic(' . $this->getID() . ')',
 				'class'		=> 'makePublic',
 				'label'		=> 'comment.ext.icon.toggleCustomerVisibility',
 				'position'	=> 20
@@ -384,12 +407,20 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 		if( $this->canCurrentPersonDelete() ) {
 			$actions['remove'] = array(
 				'id'		=> 'remove',
-				'onclick'	=> 'Todoyu.Ext.comment.remove(' . $this->getID() . ')',
+				'onclick'	=> 'Todoyu.Ext.comment.Comment.remove(' . $this->getID() . ')',
 				'class'		=> 'remove',
 				'label'		=> 'comment.ext.icon.remove',
 				'position'	=> 30
 			);
 		}
+
+		$actions['respond'] = array(
+			'id'		=> 'respond',
+			'onclick'	=> 'Todoyu.Ext.comment.Comment.addAsResponse(' . $this->getTaskID() . ', ' . $this->getID() . ')',
+			'class'		=> 'respond',
+			'label'		=> 'comment.ext.icon.respond',
+			'position'	=> 40
+		);
 
 		$actions	= TodoyuHookManager::callHookDataModifier('comment', 'comment.actions', $actions, array($this->getID(), $this));
 		$actions	= TodoyuArray::sortByLabel($actions, 'position');

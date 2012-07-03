@@ -63,7 +63,7 @@ class TodoyuCommentRenderer {
 	 * @deprecated
 	 */
 	public static function renderEdit($idTask, $idComment = 0, array $formParams = array()) {
-		return TodoyuCommentCommentRenderer::renderEdit($idTask, $idComment, $formParams);
+		return TodoyuCommentCommentRenderer::renderEdit($idTask, $idComment, 0, $formParams);
 	}
 
 

@@ -40,12 +40,52 @@ Todoyu.Ext.comment.Edit = {
 
 
 	/**
+	 * Evoke comment editor (of given comment of given task)
+	 * Note:	there is the method 'edit' and the sub object 'Edit' (case-sensitive) with its own methods
+	 *
+	 * @method	edit
+	 * @param	{Number}	idTask
+	 * @param	{Number}	idComment
+	 */
+	editComment: function(idTask, idComment) {
+		var url		= Todoyu.getUrl('comment', 'comment');
+		var options = {
+			parameters: {
+				action: 	'edit',
+				task:		idTask,
+				comment:	idComment
+			},
+			onComplete:	this.onCommentEdit.bind(this, idTask, idComment)
+		};
+		var target	= 'task-comment-' + idComment + '-text';
+
+		Todoyu.Ui.update(target, url, options);
+	},
+
+
+
+	/**
+	 * Handler when comment edit form loaded
+	 *
+	 * @method	onEdit
+	 * @param	{Number}			idTask
+	 * @param	{Number}			idComment
+	 * @param	{Ajax.Response}	response
+	 */
+	onCommentEdit: function(idTask, idComment, response) {
+//		$('task-' + idTask + '-commentform-' + idComment).removeClassName('taskOptionBlock');
+	},
+
+
+
+
+	/**
 	 * Hook when comment form is displayed
 	 *
 	 * @method	onFormDisplay
-	 * @param	{Number}	idForm
-	 * @param	{String}	name
-	 * @param	{Number}	recordID
+	 * @param	{String}		idForm
+	 * @param	{String}		name
+	 * @param	{Number|String}	recordID
 	 */
 	onFormDisplay: function(idForm, name, recordID) {
 		var parts		= recordID.split('-');
@@ -265,38 +305,8 @@ Todoyu.Ext.comment.Edit = {
 		this.clearTempUploads(idComment, idTask);
 		Todoyu.Ui.closeRTE(area);
 		$(area).remove();
-		Todoyu.Ext.comment.List.refresh(idTask);
-	},
 
-
-
-	/**
-	 * Evoked after completion of removal comment request
-	 *
-	 * @method	onRemoved
-	 * @param	{Ajax.Response}		response
-	 */
-	onRemoved: function(response){
-		var tabLabel	= response.getTodoyuHeader('tabLabel');
-		var idTask		= response.getTodoyuHeader('task');
-		var idComment	= response.getTodoyuHeader('comment');
-
-		Todoyu.Ext.comment.setTabLabel(idTask, tabLabel);
-
-			// Fade out the removed task
-		Effect.Fade($('task-comment-' + idComment), {
-			duration:	0.5,
-			afterFinish: function(effect) {
-					// Get parent element
-				var tabContentElement	= effect.element.up('div.tabContent');
-					// Remove element
-				effect.element.remove();
-					// Less than 2 comments => hide sorting buttons
-				if( this.ext.List.getAmountComments(idTask) < 2 ) {
-					tabContentElement.select('button.order').invoke('hide');
-				}
-			}.bind(this)
-		});
+		this.ext.List.refresh(idTask);
 	},
 
 
