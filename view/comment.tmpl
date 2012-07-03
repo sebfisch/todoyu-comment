@@ -1,104 +1,105 @@
-<article class="comment" id="task-comment-{$id}">
+<article class="comment{if $person_create.id ==personid()} ownComment{/if}{if $is_public}{if isSeeAllCommentsAllowed()} isPublic{/if}{/if}" id="task-comment-{$id}">
+	<div class="commentBackground">
+		<div class="comment-meta" id="task-comment-{$id}-properties">
+			<div class="comment-img">
+				{if $isUnapproved}
+					<a href="javascript:void(0)" style="position:absolute;top:55px;left:93px;" id="comment-{$id}-seenstatus" onclick="Todoyu.Ext.comment.Comment.setSeenStatus({$id}, {personid()})" class="personApproval hasicon"></a>
+				{/if}
+				{personImage $person_create.id}
+			 </div>
 
-	<div class="comment-meta" id="task-comment-{$id}-properties">
-		<div class="comment-img">
-			{if $isUnapproved}
-				<a href="javascript:void(0)" style="position:absolute;top:55px;left:93px;" id="comment-{$id}-seenstatus" onclick="Todoyu.Ext.comment.Comment.setSeenStatus({$id}, {personid()})" class="personApproval hasicon"></a>
-			{/if}
-			<img src="https://sfp.todoyu.net/index.php?ext=contact&controller=person&action=renderimage&idImage=1&hash=1340794483" alt="{$person_create.fullname}" />
-	 	 </div>
-
-		<div class="clear">
-			<p>{personLabel idPrefix="comment-personcreate" idRecord=$id idPerson=$person_create.id}</p>
-			<p id="task-comment-{$id}-crdate" class="crdate">{dateFormat $date_create datetime}</p>
-		</div>
-	</div>
-
-	
-	<div class="comment-body">
-
-		<div class="text {if $is_public}{if isSeeAllCommentsAllowed()}isPublic{/if}{/if}" id="task-comment-{$id}-text">
-			<p>{substituteLinkableElements(cleanHtml($comment))}</p>
+			<div class="clear">
+				<p>{personLabel idPrefix="comment-personcreate" idRecord=$id idPerson=$person_create.id}</p>
+				<p id="task-comment-{$id}-crdate" class="crdate">{dateFormat $date_create datetime}</p>
+			</div>
 		</div>
 
-		<div id="task-comment-{$id}-involved" class="involved">
-			{* --------------------------- Comment persons (feedback, email, etc) --------------- *}
-				{if $involvedPersons}
-				<div class="involvedPersons" id="task-comment-{$id}-involvedPersons">
 
-					{foreach $involvedPersons involvedPerson}
-						<span class="involvedPerson" id="task-comment-{$id}-involvedPerson-{$involvedPerson.key}">
-							{if $involvedPerson.feedback}
-								<span class="icon feedback {tif $involvedPerson.feedbackSeen ? 'approved' : 'unapproved'}"></span>
-							{/if}
-							{if $involvedPerson.email}
-								<span class="icon email"></span>
-							{/if}
+		<div class="comment-body">
 
-							<span class="label">
-								{if $involvedPerson.personID}
-									{personLabel idPrefix="comment-personfeedback" idPerson=$involvedPerson.personID}
-								{else}
-									{if $involvedPerson.receiverTuple}
-										{mailreceiverLabel tuple=$involvedPerson.receiverTuple}
-									{else}
-										{htmlencode $involvedPerson.label}
-									{/if}
-								{/if}
-							</span>
-						</span>
-					{/foreach}
-				</div>
-			{/if}
-
-
-
-
-
-			{if $publicFeedbackWarning}
-				<div class="publicFeedbackWarning">{$publicFeedbackWarning}</div>
-			{/if}
-
-
-			{if $additionalContentItems}
-				<div class="additionalContent">
-					{foreach $additionalContentItems additionalContentItem}
-						<div class="{$additionalContentItem.class}">{$additionalContentItem.content}</div>
-					{/foreach}
-				</div>
-			{/if}
-
-			{if $assetInfos}
-				<div class="assets">
-					<h6>{Label comment.ext.assets.title}</h6>
-					<ul>
-						{foreach $assetInfos asset}
-							<li>
-							<a class="asset" onclick="Todoyu.Ext.assets.downloadAsset({$asset.id})">{$asset.file_name}</a> <span class="filesize">({fileSize $asset.file_size})</span>
-							</li>
-						{/foreach}
-					</ul>
-				</div>
-			{/if}
-
-			<div class="action-bar">
-
-				<div id="task-comment-{$id}-actions" class="actions">
-					{foreach $actions action}
-						<a href="{$action.href|default:"javascript:void(0)"}" {if $action.onclick}onclick="{$action.onclick}"{/if} class="icon {$action.class}" title="{Label $action.label}" id="comment-{$id}-action-{$action.id}">
-							<span class="hidden">{Label $action.label}</span>
-						</a>
-					{/foreach}
-				</div>
-				<div id="task-comment-{$id}-id" class="commentId" title="{Label comment.ext.id}" class="commentId">c{$id}</div>
-
+			<div class="text" id="task-comment-{$id}-text">
+				<p>{substituteLinkableElements(cleanHtml($comment))}</p>
 			</div>
 
+			<div id="task-comment-{$id}-involved" class="involved">
+				{* --------------------------- Comment persons (feedback, email, etc) --------------- *}
+					{if $involvedPersons}
+					<div class="involvedPersons" id="task-comment-{$id}-involvedPersons">
 
-			{if $updateInfo}
-            	<div class="updateInfo">{$updateInfo}</div>
-            {/if}
+						{foreach $involvedPersons involvedPerson}
+							<span class="involvedPerson" id="task-comment-{$id}-involvedPerson-{$involvedPerson.key}">
+								{if $involvedPerson.feedback}
+									<span class="icon feedback {tif $involvedPerson.feedbackSeen ? 'approved' : 'unapproved'}"></span>
+								{/if}
+								{if $involvedPerson.email}
+									<span class="icon email"></span>
+								{/if}
 
+								<span class="label">
+									{if $involvedPerson.personID}
+										{personLabel idPrefix="comment-personfeedback" idPerson=$involvedPerson.personID}
+									{else}
+										{if $involvedPerson.receiverTuple}
+											{mailreceiverLabel tuple=$involvedPerson.receiverTuple}
+										{else}
+											{htmlencode $involvedPerson.label}
+										{/if}
+									{/if}
+								</span>
+							</span>
+						{/foreach}
+					</div>
+				{/if}
+
+
+
+
+
+				{if $publicFeedbackWarning}
+					<div class="publicFeedbackWarning">{$publicFeedbackWarning}</div>
+				{/if}
+
+
+				{if $additionalContentItems}
+					<div class="additionalContent">
+						{foreach $additionalContentItems additionalContentItem}
+							<div class="{$additionalContentItem.class}">{$additionalContentItem.content}</div>
+						{/foreach}
+					</div>
+				{/if}
+
+				{if $assetInfos}
+					<div class="assets">
+						<h6>{Label comment.ext.assets.title}</h6>
+						<ul>
+							{foreach $assetInfos asset}
+								<li>
+								<a class="asset" onclick="Todoyu.Ext.assets.downloadAsset({$asset.id})">{$asset.file_name}</a> <span class="filesize">({fileSize $asset.file_size})</span>
+								</li>
+							{/foreach}
+						</ul>
+					</div>
+				{/if}
+
+				<div class="action-bar">
+
+					<div id="task-comment-{$id}-actions" class="actions">
+						{foreach $actions action}
+							<a href="{$action.href|default:"javascript:void(0)"}" {if $action.onclick}onclick="{$action.onclick}"{/if} class="icon {$action.class}" title="{Label $action.label}" id="comment-{$id}-action-{$action.id}">
+								<span class="hidden">{Label $action.label}</span>
+							</a>
+						{/foreach}
+					</div>
+					<div id="task-comment-{$id}-id" class="commentId" title="{Label comment.ext.id}" class="commentId">c{$id}</div>
+
+				</div>
+
+
+				{if $updateInfo}
+					<div class="updateInfo">{$updateInfo}</div>
+				{/if}
+
+			</div>
 		</div>
 	</div>
 </article>

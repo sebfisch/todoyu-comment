@@ -126,14 +126,31 @@ menu, nav, section {
 	margin:30px 0;
 }
 
+.tabContent .tab.comment {
+	padding: 0;
+
+	& .commentButtons {
+		padding: 5px;
+	}
+}
+
+
+
 .commentList {
 
 	.comment {
-		overflow: hidden;
-		padding: 0 0 1em;
-		border-bottom: 1px solid #ddd;
-		margin: 0 0 1em;
-		*zoom: 1;
+		padding: 0 4px;
+
+		& .commentBackground {
+			overflow: hidden;
+			padding: 2em 0 1em;
+			border-bottom: 1px solid #ddd;
+			*zoom: 1;
+		}
+
+		&.ownComment {
+			background-color: $colorCorporate00;
+		}
 	}
 
 	.publicFeedbackWarning {
@@ -149,10 +166,10 @@ menu, nav, section {
 
     .actions {
 
-		padding: 0 0 0 350px;
+		position: absolute;
+		right: 65px;
 
 		a {
-
 			width:18px;
 
 			&.makePublic {
@@ -209,15 +226,15 @@ menu, nav, section {
 	.comment-img {
 		border-radius: 5px;
 		overflow: hidden;
-		width: 100px;
-		height: 65px;
-		margin: 0 0 10px 0;
-		background:url(../../../contact/asset/img/persondefault/user01.png.png) no-repeat;
-
+		width: 75px;
+		height: 75px;
+		margin: 0 0 10px 5px;
 	}
 
 	.comment-img img {
 		display: block;
+		height: 80px;
+		width: 80px;
 	}
 
 	.comment-meta .quickInfoPerson {
@@ -272,9 +289,10 @@ menu, nav, section {
 		height: 9px;
 		border: 3px solid #fff;
 		border-radius: 100px;
-		margin: 16px 0 0 -6px;
+		margin: 32px 0 0 -6px;
 		box-shadow: 0 1px 1px rgba(0,0,0,0.2), inset 0 1px 1px rgba(0,0,0,0.1);
 		background: #ccc;
+		z-index: 2;
 	}
 
 	.comment:hover:before {
@@ -282,8 +300,8 @@ menu, nav, section {
 	}
 
 	.comment .text:before {
-		top: 18px;
-		left: 156px;
+		top: 35px;
+		left: 160px;
 		width: 9px;
 		height: 9px;
 		border-width: 0 0 1px 1px;
@@ -491,6 +509,7 @@ menu, nav, section {
 	position: absolute;
 	top: 0;
 	left: 135px;
+	z-index: 2;
 }
 
 /*vertical line */
@@ -499,6 +518,7 @@ menu, nav, section {
 	top: -20px;
 	bottom: -20px;
 	background:#ccc;
+	z-index: 2;
 }
 
 /* -----------------------------------------------------------
@@ -509,7 +529,7 @@ menu, nav, section {
      	background:#f9f9f9;
      	margin:0;
      	border:0;
-    	padding:10px;
+		padding:0;
 
  		.tabBlock{
  			background:#f9f9f9;
