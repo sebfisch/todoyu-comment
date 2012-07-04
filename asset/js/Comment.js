@@ -228,7 +228,7 @@ Todoyu.Ext.comment.Comment = {
 	 * @param	{Number}	idTask
 	 * @param	{Number}	idComment
 	 */
-	addAsResponse: function(idTask, idComment) {
+	quote: function(idTask, idComment) {
 		this.ext.add(idTask, idComment);
 	}
 

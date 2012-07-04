@@ -44,12 +44,12 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 	 * @return	String
 	 */
 	public function addAction(array $params) {
-		$idTask				= intval($params['task']);
-		$idCommentRespond	= intval($params['respond']);
+		$idTask			= intval($params['task']);
+		$idCommentQuote	= intval($params['quote']);
 
 		TodoyuCommentRights::restrictAddInTask($idTask);
 
-		return TodoyuCommentCommentRenderer::renderEdit($idTask, 0, $idCommentRespond);
+		return TodoyuCommentCommentRenderer::renderEdit($idTask, 0, $idCommentQuote);
 	}
 
 

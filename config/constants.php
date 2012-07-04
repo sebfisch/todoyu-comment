@@ -28,4 +28,7 @@
 	// Comment record types
 define('COMMENT_TYPE_COMMENT',	1);
 
+
+define('COMMENT_QUOTE_PREFIX', '&gt; ');
+
 ?>

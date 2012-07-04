@@ -77,15 +77,15 @@ class TodoyuCommentCommentRenderer {
 	 *
 	 * @param	Integer		$idTask
 	 * @param	Integer		$idComment
-	 * @param	Integer		$idCommentRespond
+	 * @param	Integer		$idCommentQuote
 	 * @param	Array		$formParams
 	 * @return	String
 	 */
-	public static function renderEdit($idTask, $idComment = 0, $idCommentRespond = 0, array $formParams = array()) {
-		$idTask				= intval($idTask);
-		$idComment			= intval($idComment);
-		$idCommentRespond	= intval($idCommentRespond);
-		$form				= TodoyuCommentCommentManager::getCommentForm($idComment, $idTask, array(), $formParams);
+	public static function renderEdit($idTask, $idComment = 0, $idCommentQuote = 0, array $formParams = array()) {
+		$idTask			= intval($idTask);
+		$idComment		= intval($idComment);
+		$idCommentQuote	= intval($idCommentQuote);
+		$form			= TodoyuCommentCommentManager::getCommentForm($idComment, $idTask, array(), $formParams);
 
 		if( $idComment === 0 ) {
 				// New comment
@@ -96,9 +96,9 @@ class TodoyuCommentCommentRenderer {
 				'feedback'	=> array($idFeedbackPerson)
 			);
 
-			if( $idCommentRespond !== 0 ) {
-				$commentRespond = TodoyuCommentCommentManager::getComment($idCommentRespond);
-				$data['comment']= $commentRespond->getCommentResponseText();
+			if( $idCommentQuote !== 0 ) {
+				$commentQuote = TodoyuCommentCommentManager::getComment($idCommentQuote);
+				$data['comment']= $commentQuote->getCommentQuotedText();
 			}
 		} else {
 				// Edit comment

@@ -51,12 +51,12 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 
 
 	/**
-	 * Get comment text for response
+	 * Get comment text for quoting
 	 * Text is prefixed with >
 	 *
 	 * @return	String
 	 */
-	public function getCommentResponseText() {
+	public function getCommentQuotedText() {
 		return '<p></p>' . TodoyuCommentCommentManager::getPrefixedResponseLines($this->getComment());
 	}
 
@@ -414,11 +414,12 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 			);
 		}
 
-		$actions['respond'] = array(
-			'id'		=> 'respond',
-			'onclick'	=> 'Todoyu.Ext.comment.Comment.addAsResponse(' . $this->getTaskID() . ', ' . $this->getID() . ')',
-			'class'		=> 'respond',
-			'label'		=> 'comment.ext.icon.respond',
+			// Quote comment
+		$actions['quote'] = array(
+			'id'		=> 'quote',
+			'onclick'	=> 'Todoyu.Ext.comment.Comment.quote(' . $this->getTaskID() . ', ' . $this->getID() . ')',
+			'class'		=> 'quote',
+			'label'		=> 'comment.ext.icon.quote',
 			'position'	=> 40
 		);
 

@@ -539,7 +539,7 @@ class TodoyuCommentCommentManager {
 	 * @param	String		$prefix
 	 * @return	String
 	 */
-	public static function getPrefixedResponseLines($commentHtml, $prefix = '&gt; ') {
+	public static function getPrefixedResponseLines($commentHtml, $prefix = COMMENT_QUOTE_PREFIX) {
 		$pattern	= '/(<p[^>]*?>)(.*?)(<\/p>)/is';
 		$replace	= '\1' . $prefix . '\2\3';
 

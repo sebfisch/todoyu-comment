@@ -182,15 +182,15 @@ menu, nav, section {
 					opacity: 1;
 				}
 			}
-
 			&.edit {
 				background:url(../../../../core/asset/img/icons.png) no-repeat 0 -746px;
 			}
-
 			&.remove {
 				background:url(../../../../core/asset/img/icons.png) no-repeat 0 -330px;
 			}
-
+			&.quote {
+				background:url(../img/icons.png) no-repeat 0 -538px;
+			}
 		}
 
 		a:hover {
