@@ -228,7 +228,6 @@ class TodoyuCommentFallback extends TodoyuBaseObject {
 
 			// Is public
 		if( !isset($commentData['is_public']) && $this->hasIsPublic() ) {
-			TodoyuDebug::printInFirebug('set public');
 			$commentData['is_public'] = 1;
 		}
 
