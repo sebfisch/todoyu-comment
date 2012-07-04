@@ -113,7 +113,7 @@ h1.extIconComment .title {
    ------------------- */
 /*
 
-TODO: make sure this goes into the core CSS ??
+TODO: make sure this first lines goe to the core CSS ??
 
 */
 
@@ -124,10 +124,13 @@ menu, nav, section {
 
 .tabContent .comment section {
 	margin:30px 0;
+
 }
 
 .tabContent .tab.comment {
 	padding: 0;
+	background:#f9f9f9 !important;
+
 
 	& .commentButtons {
 		padding: 5px;
@@ -149,7 +152,7 @@ menu, nav, section {
 		}
 
 		&.ownComment {
-			background-color: $colorCorporate00;
+
 		}
 	}
 
@@ -166,11 +169,8 @@ menu, nav, section {
 
     .actions {
 
-		position: absolute;
-		right: 65px;
-
 		a {
-			width:18px;
+			width:22px;
 
 			&.makePublic {
 				background:url(../../../../core/asset/img/icons.png) no-repeat 0 -1079px;
@@ -218,9 +218,13 @@ menu, nav, section {
 
 	.comment .personApproval {
 		display:block;
-		height:16px;
-		width:16px;
-		background:transparent url('../../../../core/asset/img/icons.png') no-repeat 0 -1258px;
+		height:20px;
+		width:20px;
+		background:#f9f9f9 url('../../../../core/asset/img/icons.png') no-repeat 0 -1258px;
+		position:absolute;
+		top:30px;
+		left:118px;
+		z-index:200;
     }
 
 	.comment-img {
@@ -247,6 +251,7 @@ menu, nav, section {
 
 	.comment-body {
 		overflow: hidden;
+		width:600px;
 	}
 
 
@@ -508,7 +513,7 @@ menu, nav, section {
 	content: "";
 	position: absolute;
 	top: 0;
-	left: 135px;
+	left: 125px;
 	z-index: 2;
 }
 

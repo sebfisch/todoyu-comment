@@ -3,7 +3,7 @@
 		<div class="comment-meta" id="task-comment-{$id}-properties">
 			<div class="comment-img">
 				{if $isUnapproved}
-					<a href="javascript:void(0)" style="position:absolute;top:55px;left:93px;" id="comment-{$id}-seenstatus" onclick="Todoyu.Ext.comment.Comment.setSeenStatus({$id}, {personid()})" class="personApproval hasicon"></a>
+					<a href="javascript:void(0)" id="comment-{$id}-seenstatus" onclick="Todoyu.Ext.comment.Comment.setSeenStatus({$id}, {personid()})" class="personApproval hasicon"></a>
 				{/if}
 				{personImage $person_create.id}
 			 </div>
@@ -52,9 +52,6 @@
 				{/if}
 
 
-
-
-
 				{if $publicFeedbackWarning}
 					<div class="publicFeedbackWarning">{$publicFeedbackWarning}</div>
 				{/if}
@@ -81,8 +78,7 @@
 					</div>
 				{/if}
 
-				<div class="action-bar">
-
+				<div class="action-bar" >
 					<div id="task-comment-{$id}-actions" class="actions">
 						{foreach $actions action}
 							<a href="{$action.href|default:"javascript:void(0)"}" {if $action.onclick}onclick="{$action.onclick}"{/if} class="icon {$action.class}" title="{Label $action.label}" id="comment-{$id}-action-{$action.id}">
