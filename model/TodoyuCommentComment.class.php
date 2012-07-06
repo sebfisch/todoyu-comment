@@ -107,6 +107,25 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 
 
 	/**
+	 * Get comment label
+	 *
+	 * @param	Boolean		$withTaskTitle
+	 * @param	Boolean		$fullTaskTitle
+	 * @return	String
+	 */
+	public function getLabel($withTaskTitle = true, $fullTaskTitle = false) {
+		$label	= 'C' . $this->getID();
+
+		if( $withTaskTitle ) {
+			$taskTitle	= $this->getTask()->getLabel($fullTaskTitle);
+			$label		= $label . ' (' . $taskTitle . ')';
+		}
+
+		return $label;
+	}
+
+
+	/**
 	 * Get persons being stored to have a feedback requested from to this comment
 	 *
 	 * @return	Array[]
@@ -130,6 +149,13 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 
 
 
+	/**
+	 * Get infos about involved persons
+	 * - Feedback
+	 * - Email
+	 *
+	 * @return	Array[]
+	 */
 	public function getInvolvedPersonInfos() {
 		$feedbackPersonsData	= $this->getFeedbackPersonsData();
 		$emailReceiversData		= $this->getEmailReceiversData();
