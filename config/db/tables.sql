@@ -10,7 +10,7 @@ CREATE TABLE `ext_comment_comment` (
 	`id_person_update` int(10) unsigned NOT NULL DEFAULT '0',
 	`deleted` tinyint(1) unsigned NOT NULL DEFAULT '0',
 	`id_task` mediumint(9) unsigned NOT NULL DEFAULT '0',
-	`comment` text NOT NULL,
+	`comment` mediumtext NOT NULL,
 	`is_public` tinyint(1) unsigned NOT NULL DEFAULT '0',
 	PRIMARY KEY (`id`),
 	KEY `task` (`id_task`)

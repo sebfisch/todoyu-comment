@@ -10,7 +10,7 @@ comment 1.3.0 - not released yet
 	* Changed: Split up comments getTemplateData() into normal foreign data and special details render data
 	* Changed: Rename TodoyuCommentFallback->apply() to applyFallbackData()
 	* Changed: Don't check for rights in fallback, check if field data is available/submitted
-	* Changed: Allow more HTML tags in comment. New <table><tr><td><th><div><tbody><thead><hr>
+	* Changed: Larger field type for comment (mediumtext)
 	* Added: TodoyuCommentComment->getComment() and ->getCommentResponseText()
 	* Bugfix: After comment save, comment id was passed as 'comment', but fetched as 'idComment'
 
