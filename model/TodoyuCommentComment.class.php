@@ -128,6 +128,7 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 	}
 
 
+
 	/**
 	 * Get persons being stored to have a feedback requested from to this comment
 	 *
