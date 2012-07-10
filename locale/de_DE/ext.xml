@@ -13,6 +13,7 @@
 	<label index="edit.sendasemail">Kommentar als Email versenden</label>
 	<label index="edit.autoSentEmailToTaskOwner">Als Email an Task-Eigner senden</label>
 	<label index="edit.sentEmailTo">Email senden an</label>
+	<label index="edit.assets"><!--TRANSLATE-->Attach assets</label>
 	<label index="group.employees">Mitarbeiter</label>
 	<label index="group.projectmembers">Projektbeteiligte</label>
 	<label index="group.taskmembers">An dieser Aufgabe beteiligte Personen</label>
@@ -70,8 +71,9 @@
 	<label index="fallback.id_role_email">An die Person mit dieser Projektrolle</label>
 	<label index="fallback.noneForProject">Keine Fallbacks für Kommentare in diesem Projekt</label>
 	<label index="extconf.globalFallback">Globaler Fallback</label>
+	<label index="edit.email_receivers">Email Empfänger</label>
 	<label index="assets.optgroup.project">Projekt Dateien</label>
 	<label index="assets.optgroup.task">Aufgaben Dateien</label>
 	<label index="assets.optgroup.comment">Kommentar Dateien</label>
-	<label index="assets.title">Dateien zu diesem Kommentar</label>
+	<label index="quote">Kommentar zitieren</label>
 </labels>

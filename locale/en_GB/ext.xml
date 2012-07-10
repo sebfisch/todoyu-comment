@@ -72,7 +72,6 @@
 	<label index="fallback.noneForProject">No fallbacks for comments in this project</label>
 	<label index="extconf.globalFallback">Global Fallback</label>
 	<label index="edit.email_receivers">Email Recipients</label>
-	<label index="edit.address_email_cc">CC To Address</label>
 	<label index="assets.optgroup.project">Project Assets</label>
 	<label index="assets.optgroup.task">Task Assets</label>
 	<label index="assets.optgroup.comment">Comment Assets</label>
