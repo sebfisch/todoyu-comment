@@ -450,10 +450,18 @@ menu, nav, section {
 		}
 	}
 
-
-
-
 }
+
+
+
+/* ------------------------
+	Comment in ext list
+   ------------------------ */
+.extlist tr.comment:before {
+	content:normal;
+}
+
+
 
 /* ------------------------
 	Comment form
