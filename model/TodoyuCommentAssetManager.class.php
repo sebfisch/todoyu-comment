@@ -195,7 +195,7 @@ class TodoyuCommentAssetManager {
 	 * @param	Integer		$idAsset
 	 * @return	Integer
 	 */
-	protected static function addAssetToComment($idComment, $idAsset) {
+	public static function addAssetToComment($idComment, $idAsset) {
 		$idComment	= intval($idComment);
 		$idAsset	= intval($idAsset);
 
