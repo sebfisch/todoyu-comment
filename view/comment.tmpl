@@ -5,7 +5,7 @@
 				{if $isUnapproved}
 					<a href="javascript:void(0)" id="comment-{$id}-seenstatus" onclick="Todoyu.Ext.comment.Comment.setSeenStatus({$id}, {personid()})" class="personApproval hasicon"></a>
 				{/if}
-				{personImage $person_create.id}
+				{personAvatar $person_create.id}
 			 </div>
 
 			<div class="clear">
