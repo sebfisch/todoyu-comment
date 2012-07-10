@@ -118,6 +118,9 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 
 		if( $withTaskTitle ) {
 			$taskTitle	= $this->getTask()->getLabel($fullTaskTitle);
+			if( $fullTaskTitle ) {
+				$taskTitle .= ', ' . $this->getTask()->getTaskNumber(true);
+			}
 			$label		= $label . ' (' . $taskTitle . ')';
 		}
 
