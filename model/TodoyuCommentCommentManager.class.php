@@ -540,10 +540,24 @@ class TodoyuCommentCommentManager {
 	 * @return	String
 	 */
 	public static function getPrefixedResponseLines($commentHtml, $prefix = COMMENT_QUOTE_PREFIX) {
+			// Quote paragraphs
 		$pattern	= '/(<p[^>]*?>)(.*?)(<\/p>)/is';
 		$replace	= '\1' . $prefix . '\2\3';
+		$commentHtml= preg_replace($pattern, $replace, $commentHtml);
 
-		return preg_replace($pattern, $replace, $commentHtml);
+			// Quote line breaks
+		$pattern	= '/<br[^>]*?>/is';
+		$replace	= '\0' . $prefix;
+		$commentHtml= preg_replace($pattern, $replace, $commentHtml);
+
+			// First line not a paragraph
+		if( substr($commentHtml, 0, 2) !== '<p' ) {
+			$commentHtml = $prefix . $commentHtml;
+		}
+
+		$commentHtml = str_replace('<pre>' , '<pre>' . $prefix, $commentHtml);
+
+		return $commentHtml;
 	}
 
 }

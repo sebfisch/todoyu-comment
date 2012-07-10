@@ -445,7 +445,7 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 			'id'		=> 'quote',
 			'onclick'	=> 'Todoyu.Ext.comment.Comment.quote(' . $this->getTaskID() . ', ' . $this->getID() . ')',
 			'class'		=> 'quote',
-			'label'		=> 'comment.ext.icon.quote',
+			'label'		=> 'comment.ext.quote',
 			'position'	=> 40
 		);
 
