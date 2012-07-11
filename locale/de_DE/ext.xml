@@ -76,4 +76,5 @@
 	<label index="assets.optgroup.task">Aufgaben Dateien</label>
 	<label index="assets.optgroup.comment">Kommentar Dateien</label>
 	<label index="quote">Kommentar zitieren</label>
+	<label index="mailReply">Antworten (zitieren mit Email Empfänger)</label>
 </labels>

@@ -455,7 +455,7 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 			// Mail reply
 		$actions['mailReply'] = array(
 			'id'		=> 'mailreply',
-			'label'		=> 'mailtoproject.ext.comment.mailReply',
+			'label'		=> 'comment.ext.mailReply',
 			'onclick'	=> 'Todoyu.Ext.comment.Comment.mailReply(' . $this->getTaskID() . ', ' . $this->getID() . ')',
 			'class'		=> 'mailReply',
 			'position'	=> 45

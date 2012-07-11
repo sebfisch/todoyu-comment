@@ -76,4 +76,5 @@
 	<label index="assets.optgroup.task">Task Assets</label>
 	<label index="assets.optgroup.comment">Comment Assets</label>
 	<label index="quote">Quote Comment</label>
+	<label index="mailReply">Reply to comment (quoted with email receiver)</label>
 </labels>
