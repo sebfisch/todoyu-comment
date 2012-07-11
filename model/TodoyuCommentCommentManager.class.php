@@ -56,14 +56,14 @@ class TodoyuCommentCommentManager {
 	 * @param	Integer		$idComment
 	 * @param	Integer		$idTask
 	 * @param	Array		$formData
-	 * @param	Array		$params
+	 * @param	Array		$formParams
 	 * @return	TodoyuForm
 	 */
-	public static function getCommentForm($idComment, $idTask, array $formData = array(), array $params = array()) {
+	public static function getCommentForm($idComment, $idTask, array $formData = array(), array $formParams = array()) {
 		$xmlPath		= 'ext/comment/config/form/comment.xml';
-		$params['task'] = $idTask;
+		$formParams['task'] = $idTask;
 
-		$form	= TodoyuFormManager::getForm($xmlPath, $idComment, $params, $formData);
+		$form	= TodoyuFormManager::getForm($xmlPath, $idComment, $formParams, $formData);
 
 		if( sizeof($formData) ) {
 			$form->setFormData($formData);
@@ -85,7 +85,13 @@ class TodoyuCommentCommentManager {
 	public static function getAddForm($idTask, $idCommentQuote, array $formParams = array()) {
 		$idTask			= intval($idTask);
 		$idCommentQuote	= intval($idCommentQuote);
-		$form			= TodoyuCommentCommentManager::getCommentForm(0, $idTask, array(), $formParams);
+		$formParams['task'] = $idTask;
+
+		if( $idCommentQuote ) {
+			$formParams['quote'] = $idCommentQuote;
+		}
+
+		$form	= self::getCommentForm(0, $idTask, array(), $formParams);
 
 		$idFeedbackPerson	= TodoyuCommentCommentManager::getOpenFeedbackRequestPersonID($idTask);
 		$data	= array(
@@ -100,9 +106,7 @@ class TodoyuCommentCommentManager {
 		}
 
 		$xmlPath= 'ext/comment/config/form/comment.xml';
-		$data	= TodoyuFormHook::callLoadData($xmlPath, $data, 0, array(
-			'task'	=> $idTask
-		));
+		$data	= TodoyuFormHook::callLoadData($xmlPath, $data, 0, $formParams);
 
 		$form->setFormData($data);
 		$form->setRecordID($idTask . '-0');

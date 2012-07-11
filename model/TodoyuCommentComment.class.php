@@ -453,7 +453,7 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 			'position'	=> 40
 		);
 
-		$actions	= TodoyuHookManager::callHookDataModifier('comment', 'comment.actions', $actions, array($this->getID(), $this));
+		$actions	= TodoyuHookManager::callHookDataModifier('comment', 'comment.actions', $actions, array($this->getID(), $this->getTaskID(), $this));
 		$actions	= TodoyuArray::sortByLabel($actions, 'position');
 
 		return $actions;
