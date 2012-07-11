@@ -73,7 +73,35 @@ class TodoyuCommentCommentRenderer {
 
 
 	/**
-	 * Render comment edit area (edit form) in the task tab
+	 * Render comment edit form
+	 *
+	 * @param	Integer		$idTask
+	 * @param	Integer		$idComment
+	 * @param	Array		$formParams
+	 * @return	String
+	 */
+	public static function renderEditForm($idTask, $idComment, array $formParams = array()) {
+		return self::renderForm($idTask, $idComment, 0, $formParams);
+	}
+
+
+
+	/**
+	 * Render comment add form
+	 *
+	 * @param	Integer		$idTask
+	 * @param	Integer		$idCommentQuote
+	 * @param	Array		$formParams
+	 * @return	String
+	 */
+	public static function renderAddForm($idTask, $idCommentQuote = 0, array $formParams = array()) {
+		return self::renderForm($idTask, 0, $idCommentQuote, $formParams);
+	}
+
+
+
+	/**
+	 * Render a comment form for edit or add
 	 *
 	 * @param	Integer		$idTask
 	 * @param	Integer		$idComment
@@ -81,41 +109,15 @@ class TodoyuCommentCommentRenderer {
 	 * @param	Array		$formParams
 	 * @return	String
 	 */
-	public static function renderEdit($idTask, $idComment = 0, $idCommentQuote = 0, array $formParams = array()) {
-		$idTask			= intval($idTask);
-		$idComment		= intval($idComment);
-		$idCommentQuote	= intval($idCommentQuote);
-		$form			= TodoyuCommentCommentManager::getCommentForm($idComment, $idTask, array(), $formParams);
+	protected static function renderForm($idTask, $idComment = 0, $idCommentQuote = 0, array $formParams = array()) {
+		$idComment	= intval($idComment);
 
 		if( $idComment === 0 ) {
-				// New comment
-			$idFeedbackPerson	= TodoyuCommentCommentManager::getOpenFeedbackRequestPersonID($idTask);
-			$data	= array(
-				'id'		=> 0,
-				'id_task'	=> $idTask,
-				'feedback'	=> array($idFeedbackPerson)
-			);
-
-			if( $idCommentQuote !== 0 ) {
-				$commentQuote = TodoyuCommentCommentManager::getComment($idCommentQuote);
-				$data['comment']= $commentQuote->getCommentQuotedText();
-			}
+			$form = TodoyuCommentCommentManager::getAddForm($idTask, $idCommentQuote, $formParams);
 		} else {
-				// Edit comment
-			$comment	= TodoyuCommentCommentManager::getComment($idComment);
-			$data		= $comment->getTemplateData(true);
-			$data['feedback'] = $comment->getFeedbackPersonsIDs();
+			$form = TodoyuCommentCommentManager::getEditForm($idTask, $idComment, $formParams);
 		}
 
-		$xmlPath= 'ext/comment/config/form/comment.xml';
-		$data	= TodoyuFormHook::callLoadData($xmlPath, $data, $idComment, array(
-			'task'	=> $idTask
-		));
-
-		$form->setFormData($data);
-		$form->setRecordID($idTask . '-' . $idComment);
-
-			// Render (edit-form wrapped inside the edit-template)
 		$tmpl	= 'ext/comment/view/edit.tmpl';
 		$data	= array(
 			'idTask'	=> $idTask,

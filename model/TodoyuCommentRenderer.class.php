@@ -54,21 +54,6 @@ class TodoyuCommentRenderer {
 
 
 	/**
-	 * Render comment edit area (edit form) in the task tab
-	 *
-	 * @param	Integer		$idTask
-	 * @param	Integer		$idComment
-	 * @param	Array		$formParams
-	 * @return	String
-	 * @deprecated
-	 */
-	public static function renderEdit($idTask, $idComment = 0, array $formParams = array()) {
-		return TodoyuCommentCommentRenderer::renderEdit($idTask, $idComment, 0, $formParams);
-	}
-
-
-
-	/**
 	 * Get tab label for portal feedback task: label and amount of feedbacks
 	 *
 	 * @param	Boolean		$count

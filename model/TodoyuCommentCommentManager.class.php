@@ -75,6 +75,76 @@ class TodoyuCommentCommentManager {
 
 
 	/**
+	 * Get form with data for comment add
+	 *
+	 * @param	Integer		$idTask
+	 * @param	Integer		$idCommentQuote
+	 * @param	Array		$formParams
+	 * @return	TodoyuForm
+	 */
+	public static function getAddForm($idTask, $idCommentQuote, array $formParams = array()) {
+		$idTask			= intval($idTask);
+		$idCommentQuote	= intval($idCommentQuote);
+		$form			= TodoyuCommentCommentManager::getCommentForm(0, $idTask, array(), $formParams);
+
+		$idFeedbackPerson	= TodoyuCommentCommentManager::getOpenFeedbackRequestPersonID($idTask);
+		$data	= array(
+			'id'		=> 0,
+			'id_task'	=> $idTask,
+			'feedback'	=> array($idFeedbackPerson)
+		);
+
+		if( $idCommentQuote !== 0 ) {
+			$commentQuote = TodoyuCommentCommentManager::getComment($idCommentQuote);
+			$data['comment']= $commentQuote->getCommentQuotedText();
+		}
+
+		$xmlPath= 'ext/comment/config/form/comment.xml';
+		$data	= TodoyuFormHook::callLoadData($xmlPath, $data, 0, array(
+			'task'	=> $idTask
+		));
+
+		$form->setFormData($data);
+		$form->setRecordID($idTask . '-0');
+
+		return $form;
+	}
+
+
+
+	/**
+	 * Get form with data for comment edit
+	 *
+	 * @param	Integer		$idTask
+	 * @param	Integer		$idComment
+	 * @param	Array		$formParams
+	 * @return	TodoyuForm
+	 */
+	public static function getEditForm($idTask, $idComment, array $formParams = array()) {
+		$idTask			= intval($idTask);
+		$idComment		= intval($idComment);
+		$form			= TodoyuCommentCommentManager::getCommentForm($idComment, $idTask, array(), $formParams);
+
+				// Edit comment
+		$comment	= TodoyuCommentCommentManager::getComment($idComment);
+		$data		= $comment->getTemplateData(true);
+		$data['feedback'] = $comment->getFeedbackPersonsIDs();
+
+
+		$xmlPath= 'ext/comment/config/form/comment.xml';
+		$data	= TodoyuFormHook::callLoadData($xmlPath, $data, $idComment, array(
+			'task'	=> $idTask
+		));
+
+		$form->setFormData($data);
+		$form->setRecordID($idTask . '-' . $idComment);
+
+		return $form;
+	}
+
+
+
+	/**
 	 * Get task ID the given comment belongs to
 	 *
 	 * @param	Integer		$idComment
