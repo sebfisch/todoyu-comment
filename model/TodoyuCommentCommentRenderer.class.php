@@ -81,7 +81,7 @@ class TodoyuCommentCommentRenderer {
 	 * @return	String
 	 */
 	public static function renderEditForm($idTask, $idComment, array $formParams = array()) {
-		return self::renderForm($idTask, $idComment, 0, $formParams);
+		return self::renderForm($idTask, $idComment, 0, 0, $formParams);
 	}
 
 
@@ -90,12 +90,13 @@ class TodoyuCommentCommentRenderer {
 	 * Render comment add form
 	 *
 	 * @param	Integer		$idTask
-	 * @param	Integer		$idCommentQuote
+	 * @param	Integer		$idCommentQuote				Quote comment
+	 * @param	Integer		$idCommentMailReply			Quote comment and reply to creator
 	 * @param	Array		$formParams
 	 * @return	String
 	 */
-	public static function renderAddForm($idTask, $idCommentQuote = 0, array $formParams = array()) {
-		return self::renderForm($idTask, 0, $idCommentQuote, $formParams);
+	public static function renderAddForm($idTask, $idCommentQuote = 0, $idCommentMailReply = 0, array $formParams = array()) {
+		return self::renderForm($idTask, 0, $idCommentQuote, $idCommentMailReply, $formParams);
 	}
 
 
@@ -106,16 +107,17 @@ class TodoyuCommentCommentRenderer {
 	 * @param	Integer		$idTask
 	 * @param	Integer		$idComment
 	 * @param	Integer		$idCommentQuote
+	 * @param	Integer		$idCommentMailReply
 	 * @param	Array		$formParams
 	 * @return	String
 	 */
-	protected static function renderForm($idTask, $idComment = 0, $idCommentQuote = 0, array $formParams = array()) {
+	protected static function renderForm($idTask, $idComment = 0, $idCommentQuote = 0, $idCommentMailReply = 0, array $formParams = array()) {
 		$idComment	= intval($idComment);
 
 		if( $idComment === 0 ) {
-			$form = TodoyuCommentCommentManager::getAddForm($idTask, $idCommentQuote, $formParams);
+			$form = TodoyuCommentCommentManager::getAddForm($idTask, $idCommentQuote, $idCommentMailReply, $formParams);
 		} else {
-			$form = TodoyuCommentCommentManager::getEditForm($idTask, $idComment, $formParams);
+			$form = TodoyuCommentCommentManager::getEditForm($idTask, $idComment, $idCommentMailReply, $formParams);
 		}
 
 		$tmpl	= 'ext/comment/view/edit.tmpl';

@@ -79,16 +79,21 @@ class TodoyuCommentCommentManager {
 	 *
 	 * @param	Integer		$idTask
 	 * @param	Integer		$idCommentQuote
+	 * @param	Integer		$idCommentMailReply
 	 * @param	Array		$formParams
 	 * @return	TodoyuForm
 	 */
-	public static function getAddForm($idTask, $idCommentQuote, array $formParams = array()) {
-		$idTask			= intval($idTask);
-		$idCommentQuote	= intval($idCommentQuote);
+	public static function getAddForm($idTask, $idCommentQuote, $idCommentMailReply, array $formParams = array()) {
+		$idTask				= intval($idTask);
+		$idCommentQuote		= intval($idCommentQuote);
+		$idCommentMailReply	= intval($idCommentMailReply);
 		$formParams['task'] = $idTask;
 
 		if( $idCommentQuote ) {
 			$formParams['quote'] = $idCommentQuote;
+		}
+		if( $idCommentMailReply ) {
+			$formParams['mailReply'] = $idCommentMailReply;
 		}
 
 		$form	= self::getCommentForm(0, $idTask, array(), $formParams);
@@ -100,9 +105,16 @@ class TodoyuCommentCommentManager {
 			'feedback'	=> array($idFeedbackPerson)
 		);
 
+			// Quote comment
 		if( $idCommentQuote !== 0 ) {
 			$commentQuote = TodoyuCommentCommentManager::getComment($idCommentQuote);
 			$data['comment']= $commentQuote->getCommentQuotedText();
+		}
+
+			// mail reply comment (quote + mail receiver)
+		if( $idCommentMailReply !== 0 ) {
+			$mailReplyComment = self::getComment($idCommentMailReply);
+			$data['email_receivers'][] = $mailReplyComment->getPersonCreate()->getMailReceiver()->getTuple();;
 		}
 
 		$xmlPath= 'ext/comment/config/form/comment.xml';

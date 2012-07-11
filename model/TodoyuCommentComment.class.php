@@ -452,6 +452,14 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 			'label'		=> 'comment.ext.quote',
 			'position'	=> 40
 		);
+			// Mail reply
+		$actions['mailReply'] = array(
+			'id'		=> 'mailreply',
+			'label'		=> 'mailtoproject.ext.comment.mailReply',
+			'onclick'	=> 'Todoyu.Ext.comment.Comment.mailReply(' . $this->getTaskID() . ', ' . $this->getID() . ')',
+			'class'		=> 'mailReply',
+			'position'	=> 45
+		);
 
 		$actions	= TodoyuHookManager::callHookDataModifier('comment', 'comment.actions', $actions, array($this->getID(), $this->getTaskID(), $this));
 		$actions	= TodoyuArray::sortByLabel($actions, 'position');

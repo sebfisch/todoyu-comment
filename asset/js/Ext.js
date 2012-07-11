@@ -150,8 +150,9 @@ Todoyu.Ext.comment = {
 	 * @param	{Number}	idTask
 	 * @param	{Number}	[idCommentQuote]		Use this comment as template
 	 */
-	add: function(idTask, idCommentQuote) {
-		idCommentQuote	= idCommentQuote || 0;
+	add: function(idTask, idCommentQuote, idCommentMailReply) {
+		idCommentQuote		= idCommentQuote || 0;
+		idCommentMailReply	= idCommentMailReply || 0;
 
 			// Clean up UI
 		this.removeForms(idTask);
@@ -160,12 +161,13 @@ Todoyu.Ext.comment = {
 		var url		= Todoyu.getUrl('comment', 'comment');
 		var options = {
 			parameters: {
-				action: 'add',
-				task:	idTask,
-				quote: 	idCommentQuote
+				action: 	'add',
+				task:		idTask,
+				quote: 		idCommentQuote,
+				mailReply:	idCommentMailReply
 			},
 			insertion:	'after',
-			onComplete:	this.onAdded.bind(this, idTask, idCommentQuote)
+			onComplete:	this.onAdded.bind(this, idTask, idCommentQuote, idCommentMailReply)
 		};
 		var target	= 'task-' + idTask + '-comment-commands-top';
 
@@ -180,9 +182,10 @@ Todoyu.Ext.comment = {
 	 * @method	onAdded
 	 * @param	{Number}			idTask
 	 * @param	{Number}			idCommentQuote
+	 * @param	{Number}			idCommentMailReply
 	 * @param	{Ajax.Response}		response
 	 */
-	onAdded: function(idTask, idCommentQuote, response) {
+	onAdded: function(idTask, idCommentQuote, idCommentMailReply, response) {
 		$('task-' + idTask + '-comment-commands-top').scrollToElement();
 	},
 

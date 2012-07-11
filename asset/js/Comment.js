@@ -230,7 +230,18 @@ Todoyu.Ext.comment.Comment = {
 	 */
 	quote: function(idTask, idComment) {
 		this.ext.add(idTask, idComment);
-	}
+	},
 
+
+
+	/**
+	 * Quote comment and add creator as mail receiver
+	 *
+	 * @param	{Number}	idTask
+	 * @param	{Number}	idComment
+	 */
+	mailReply: function(idTask, idComment) {
+		this.ext.add(idTask, idComment, idComment);
+	}
 
 };
