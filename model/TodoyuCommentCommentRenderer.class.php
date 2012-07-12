@@ -117,7 +117,7 @@ class TodoyuCommentCommentRenderer {
 		if( $idComment === 0 ) {
 			$form = TodoyuCommentCommentManager::getAddForm($idTask, $idCommentQuote, $idCommentMailReply, $formParams);
 		} else {
-			$form = TodoyuCommentCommentManager::getEditForm($idTask, $idComment, $idCommentMailReply, $formParams);
+			$form = TodoyuCommentCommentManager::getEditForm($idTask, $idComment, $formParams);
 		}
 
 		$tmpl	= 'ext/comment/view/edit.tmpl';
