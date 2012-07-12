@@ -34,13 +34,13 @@ Todoyu.Ext.comment.List = {
 	 * @param	{Boolean}	desc
 	 */
 	refresh: function(idTask, desc) {
-		desc	= !!desc;
+		desc	= desc !== false;
 		var url		= Todoyu.getUrl('comment', 'task');
 		var options	= {
 			parameters: {
 				action:	'list',
 				task:	idTask,
-				desc:	desc !== false ? 1 : 0
+				desc:	desc ? 1 : 0
 			},
 			onComplete: this.onRefreshed.bind(this, idTask, desc)
 		};
