@@ -36,9 +36,11 @@ h1.extIconComment .title {
    ------------------------ */
 #contextmenu {
 	.taskContextMenu.task-add-comment {
-		background-image:url(../img/icons.png);
-		background-repeat:no-repeat;
-		background-position:3px 3px;
+		background: {
+			image:url(../img/icons.png);
+			repeat:no-repeat;
+			position:3px 3px;
+		}
 	}
 }
 
@@ -119,7 +121,7 @@ TODO: make sure this first lines goe to the core CSS ??
 
 article, aside, figure, footer, header, hgroup,
 menu, nav, section {
-    display: block;
+	display: block;
 }
 
 .tabContent .comment section {
@@ -129,7 +131,7 @@ menu, nav, section {
 
 .tabContent .tab.comment {
 	padding: 0;
-	background:#f9f9f9 !important;
+	background:$colorNeutral00 !important;
 
 
 	& .commentButtons {
@@ -147,7 +149,7 @@ menu, nav, section {
 		& .commentBackground {
 			overflow: hidden;
 			padding: 2em 0 1em;
-			border-bottom: 1px solid #ddd;
+			border-bottom: 1px solid $colorNeutral02;
 			*zoom: 1;
 		}
 
@@ -157,17 +159,17 @@ menu, nav, section {
 	}
 
 	.publicFeedbackWarning {
-    			background-color:$colorNotice00;
-    			box-shadow:2px 2px 7px $colorNeutral06;
-    			border:1px solid $colorNeutral03;
-    			padding:7px;
-    			margin-left:5px;
-    			font-weight:bold;
-    			margin-bottom:5px;
-    }
+				background-color:$colorNotice00;
+				box-shadow:2px 2px 7px $colorNeutral06;
+				border:1px solid $colorNeutral03;
+				padding:7px;
+				margin-left:5px;
+				font-weight:bold;
+				margin-bottom:5px;
+	}
 
 
-    .actions {
+	.actions {
 
 		a {
 			width:22px;
@@ -199,15 +201,15 @@ menu, nav, section {
 		a:hover {
 			background-color:transparent;
 		}
-    }
+	}
 
 
 
 
 
 	 /* -----------------------------------------------------------
-         Person and meta information
-     ----------------------------------------------------------- */
+		Person and meta information
+	 ----------------------------------------------------------- */
 
 	.comment-meta {
 		width:160px;
@@ -223,12 +225,12 @@ menu, nav, section {
 		display:block;
 		height:20px;
 		width:20px;
-		background:#f9f9f9 url('../../../../core/asset/img/icons.png') no-repeat 0 -1258px;
+		background:$colorNeutral00 url('../../../../core/asset/img/icons.png') no-repeat 0 -1258px;
 		position:absolute;
 		top:30px;
 		left:118px;
 		z-index:200;
-    }
+	}
 
 	.comment-img {
 		border-radius: 5px;
@@ -249,8 +251,8 @@ menu, nav, section {
 	}
 
 	 /* -----------------------------------------------------------
-        Comment Text
-     ----------------------------------------------------------- */
+		Comment Text
+	 ----------------------------------------------------------- */
 
 	.comment-body {
 		overflow: hidden;
@@ -261,9 +263,9 @@ menu, nav, section {
 	.comment .text {
 
 		padding: 10px 5px 5px 12px;
-		border: 1px solid #e5e5e5;
+		border: 1px solid $colorNeutral01;
 		border-radius: 5px;
-		background: #fff;
+		background:$white;
 
 		ul {
 			list-style:disc outside;
@@ -283,8 +285,8 @@ menu, nav, section {
 	}
 
 	.comment.isPublic .text {
-        border:solid 1px $colorAlert01;
-     }
+		border:solid 1px $colorAlert01;
+	}
 
 	.comment .text p:last-child {
 		margin: 0;
@@ -299,7 +301,7 @@ menu, nav, section {
 		border-radius: 100px;
 		margin: 32px 0 0 -6px;
 		box-shadow: 0 1px 1px rgba(0,0,0,0.2), inset 0 1px 1px rgba(0,0,0,0.1);
-		background: #ccc;
+		background:$colorNeutral03;
 		z-index: 2;
 	}
 
@@ -314,8 +316,8 @@ menu, nav, section {
 		height: 9px;
 		border-width: 0 0 1px 1px;
 		border-style: solid;
-		border-color: #e5e5e5;
-		background: #fff;
+		border-color:$colorNeutral01;
+		background:$white;
 		-webkit-transform: rotate(45deg);
 		-moz-transform: rotate(45deg);
 		-ms-transform: rotate(45deg);
@@ -328,28 +330,27 @@ menu, nav, section {
 
 	.updateInfo,
 	.commentId		 {
-    	color:$colorNeutral06;
-    	text-align: right;
-
-    }
+		color:$colorNeutral06;
+		text-align: right;
+	}
 
 	.updateInfo,
 	.involvedPersons,
-    .additionalContent,
-    .action-bar,
-    .assets	 {
-    	padding:5px 0 ;
-    	border-bottom:1px solid #eeeeee;
-    	clear:both;
-    }
+	.additionalContent,
+	.action-bar,
+	.assets	 {
+		padding:5px 0 ;
+		border-bottom:1px solid #eeeeee;
+		clear:both;
+	}
 
-    .action-bar {
+	.action-bar {
 
-    }
+	}
 
-    span.commentId {
-    	padding:0 0 0 20px;
-    }
+	span.commentId {
+		padding:0 0 0 20px;
+	}
 
 	/* only last element should not have a border*/
 	div:nth-last-child(1) {
@@ -361,30 +362,30 @@ menu, nav, section {
 
 
 
-    /* -----------------------------------------------------------
-        Assets
+	/* -----------------------------------------------------------
+		Assets
 	 ----------------------------------------------------------- */
 	.assets {
-	    ul {
+		ul {
 			list-style: disc inside;
-        }
+		}
 		h6 {
 			margin:0 0 0 0;
 		}
-	    
+
 		a {
 			text-decoration: underline;
 			cursor: pointer;
 		}
 		a:hover {
-			background:#E2E2E2;
+			background:$colorNeutral02;
 		}
 
 	}
 
 
-    /* -----------------------------------------------------------
-        SLA attributes and information
+	/* -----------------------------------------------------------
+		SLA attributes and information
 	 ----------------------------------------------------------- */
 	.additionalContent {
 
@@ -394,7 +395,7 @@ menu, nav, section {
 				cursor:pointer;
 			}
 			span.label:hover{
-				background-color:#E2E2E2;
+				background-color:$colorNeutral02;
 			}
 
 
@@ -402,7 +403,7 @@ menu, nav, section {
 
 				ul {
 					padding:5px;
-					background:#E2E2E2;
+					background:$colorNeutral02;
 					border-radius: 5px;
 
 				}
@@ -530,10 +531,10 @@ menu, nav, section {
 
 /*vertical line */
 .commentList:before {
-	width: 3px;
-	top: -20px;
-	bottom: -20px;
-	background:#ccc;
+	width:3px;
+	top:-20px;
+	bottom:-20px;
+	background:$colorNeutral03;
 	z-index: 2;
 }
 
@@ -542,17 +543,14 @@ menu, nav, section {
    ----------------------------------------------------------- */
 .tabContent{
 	.tab.comment {
-		background:#f9f9f9;
+		background:$colorNeutral00;
 		margin:0;
 		border:0;
 		padding:0;
 
 		.tabBlock{
-			background:#f9f9f9;
+			background:$colorNeutral00;
 		}
 	}
-
-
-
 
  }
