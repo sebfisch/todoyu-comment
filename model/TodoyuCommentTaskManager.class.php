@@ -79,6 +79,34 @@ class TodoyuCommentTaskManager {
 		}
 	}
 
+
+
+	/**
+	 * Get last comment ID in task
+	 *
+	 * @param	Integer		$idTask
+	 * @return	Integer
+	 */
+	public static function getLastCommentID($idTask) {
+		$taskCommentIDs	= TodoyuCommentCommentManager::getTaskCommentIDs($idTask, true);
+
+		return intval($taskCommentIDs[0]);
+	}
+
+
+
+	/**
+	 * Get first comment ID
+	 *
+	 * @param	Integer		$idTask
+	 * @return	Integer
+	 */
+	public static function getFirstCommentID($idTask) {
+		$taskCommentIDs	= TodoyuCommentCommentManager::getTaskCommentIDs($idTask, false);
+
+		return intval($taskCommentIDs[0]);
+	}
+
 }
 
 ?>

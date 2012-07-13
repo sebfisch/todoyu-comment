@@ -88,9 +88,7 @@ class TodoyuCommentTask extends TodoyuProjectTask {
 	 * @return	Integer
 	 */
 	public function getFirstCommentID() {
-		$taskCommentIDs	= TodoyuCommentCommentManager::getTaskCommentIDs($this->getID(), false);
-
-		return intval($taskCommentIDs[0]);
+		return TodoyuCommentTaskManager::getFirstCommentID($this->getID());
 	}
 
 
@@ -101,9 +99,7 @@ class TodoyuCommentTask extends TodoyuProjectTask {
 	 * @return	Integer
 	 */
 	public function getLastCommentID() {
-		$taskCommentIDs	= TodoyuCommentCommentManager::getTaskCommentIDs($this->getID(), true);
-
-		return intval($taskCommentIDs[0]);
+		return TodoyuCommentTaskManager::getLastCommentID($this->getID());
 	}
 
 
