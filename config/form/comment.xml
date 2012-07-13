@@ -70,7 +70,7 @@
 					</source>
 				</field>
 
-				<field type="recordsEmailPerson" name="email_receivers">
+				<field type="recordsMailReceivers" name="email_receivers">
 					<label>comment.ext.edit.email_receivers</label>
 				</field>
 
