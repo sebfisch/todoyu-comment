@@ -9,7 +9,9 @@
 			 </div>
 
 			<div class="clear">
-				<p>{personLabel idPrefix="comment-personcreate" idRecord=$id idPerson=$person_create.id}</p>
+				<p class="personLabel">
+					{personLabel idPrefix="comment-personcreate" idRecord=$id idPerson=$person_create.id}
+				</p>
 				<p id="task-comment-{$id}-crdate" class="crdate">{dateFormat $date_create datetime}</p>
 			</div>
 		</div>
