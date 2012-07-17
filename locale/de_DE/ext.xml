@@ -13,7 +13,7 @@
 	<label index="edit.sendasemail">Kommentar als Email versenden</label>
 	<label index="edit.autoSentEmailToTaskOwner">Als Email an Task-Eigner senden</label>
 	<label index="edit.sentEmailTo">Email senden an</label>
-	<label index="edit.assets"><!--TRANSLATE-->Attach assets</label>
+	<label index="edit.assets">Anhänge anfügen</label>
 	<label index="group.employees">Mitarbeiter</label>
 	<label index="group.projectmembers">Projektbeteiligte</label>
 	<label index="group.taskmembers">An dieser Aufgabe beteiligte Personen</label>
