@@ -35,40 +35,22 @@ class TodoyuCommentMailer {
 	 */
 	public static function sendEmails($idComment, array $receiverTuples) {
 		$idComment		= intval($idComment);
-		$sendStatus		= array();
 		$mailReceivers	= TodoyuMailReceiverManager::getMailReceivers($receiverTuples);
+		$mail			= new TodoyuCommentMail($idComment, $mailReceivers);
 
-		foreach($mailReceivers as $receiverTuple => $mailReceiver) {
-			$isSent = self::sendMail($idComment, $mailReceiver);
-			if( $isSent ) {
-				TodoyuCommentMailManager::saveMailSent($idComment, $mailReceiver);
-			}
+		TodoyuHookManager::callHook('comment', 'comment.email.send', array($idComment, $mail, $mailReceivers));
 
-			$sendStatus[] = array(
-				'sendStatus'=> $isSent,
-				'receiver'	=> $mailReceiver
-			);
+			// Send mail
+		$isSent	= $mail->send();
+
+		if( $isSent ) {
+			TodoyuCommentMailManager::saveMailSent($idComment, $mailReceivers);
 		}
 
-		return $sendStatus;
-	}
-
-
-
-	/**
-	 * Send comment as mail
-	 *
-	 * @param		Integer							$idComment
-	 * @param		TodoyuMailReceiverInterface		$mailReceiver
-	 * @return		Boolean							$success
-	 */
-	public static function sendMail($idComment, TodoyuMailReceiverInterface $mailReceiver) {
-		$idComment	= intval($idComment);
-		$mail		= new TodoyuCommentMail($idComment, $mailReceiver);
-
-		TodoyuHookManager::callHook('comment', 'comment.email.send', array($idComment, $mail, $mailReceiver));
-
-		return $mail->send();
+		return array(
+			'sendStatus'=> $isSent,
+			'receivers'	=> $mailReceivers
+		);
 	}
 
 }

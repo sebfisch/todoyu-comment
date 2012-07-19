@@ -202,7 +202,7 @@ class TodoyuCommentCommentManager {
 		$result		= array(
 			'id'		=> $idComment,
 			'feedback'	=> array(),
-			'email'		=> array()
+			'email'		=> false
 		);
 
 		if( $idComment === 0 ) {

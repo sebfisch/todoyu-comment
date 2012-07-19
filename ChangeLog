@@ -2,11 +2,12 @@ todoyu comment extension changelog
 
 comment 1.3.0 - not released yet
 	* Bugfix: Avoid long names to overflow
-	* Bugfix: Changed image to contacts avatar
 	* Feature: Upload assets to comments
 	* Feature: Add additional content to comment text area with a hook: comment,comment.additionalContentItems
 	* Feature: Quote a comment. Use comment text as prefixed template
-	* Require: assets 1.3 and core 2.2.1
+	* Require: assets 1.3 and core 2.3.0
+	* Changed: Send same email to all receivers (all receivers are "to" and visible to each other)
+	* Changed: Image to contacts avatar
 	* Changed: Cleanup header values: idTask => task, idComment => comment
 	* Changed: Comment actions are now dynamic. Use hook comment.comment.actions
 	* Changed: Split up comments getTemplateData() into normal foreign data and special details render data
@@ -14,7 +15,6 @@ comment 1.3.0 - not released yet
 	* Changed: Don't check for rights in fallback, check if field data is available/submitted
 	* Changed: Larger field type for comment (mediumtext)
 	* Added: TodoyuCommentComment->getComment() and ->getCommentResponseText()
-	* Bugfix: After comment save, comment id was passed as 'comment', but fetched as 'idComment'
 
 comment 1.2 - 2012-05-03
 	* Feature: Save and show time and person of last update of comment

@@ -27,9 +27,9 @@
 class TodoyuCommentMail extends TodoyuMail {
 
 	/**
-	 * @var	TodoyuMailReceiverInterface		Email receiver
+	 * @var	TodoyuMailReceiverInterface[]		Email receiver
 	 */
-	protected $mailReceiver;
+	protected $mailReceivers;
 
 	/**
 	 * @var	TodoyuCommentComment	Comment to be send
@@ -41,14 +41,14 @@ class TodoyuCommentMail extends TodoyuMail {
 	 * Initialize comment mail
 	 *
 	 * @param	Integer							$idComment
-	 * @param	TodoyuMailReceiverInterface		$mailReceiver
+	 * @param	TodoyuMailReceiverInterface[]	$mailReceivers
 	 * @param	Array							$config
 	 */
-	public function __construct($idComment, TodoyuMailReceiverInterface $mailReceiver, array $config = array()) {
+	public function __construct($idComment, array $mailReceivers, array $config = array()) {
 		parent::__construct($config);
 
 		$this->comment			= TodoyuCommentCommentManager::getComment($idComment);
-		$this->mailReceiver		= $mailReceiver;
+		$this->mailReceivers	= $mailReceivers;
 
 		$this->init();
 	}
@@ -57,11 +57,16 @@ class TodoyuCommentMail extends TodoyuMail {
 
 	/**
 	 * Init mail
+	 *
 	 */
 	protected function init() {
 		$this->setMailSubject();
-		$this->addReceiver($this->mailReceiver);
 		$this->setHeadline('comment.ext.mail.newcomment');
+
+			// Add all receivers
+		foreach($this->mailReceivers as $mailReceiver) {
+			$this->addReceiver($mailReceiver);
+		}
 
 		$this->setHtmlContent($this->getContent(true));
 		$this->setTextContent($this->getContent(false));
@@ -82,13 +87,12 @@ class TodoyuCommentMail extends TodoyuMail {
 
 
 	/**
-	 * Get receiver
-	 * Only one person can receive a comment mail
+	 * Get receivers list
 	 *
-	 * @return	TodoyuMailReceiverInterface
+	 * @return	TodoyuMailReceiverInterface[]
 	 */
-	public function getReceiver() {
-		return $this->mailReceiver;
+	public function getReceivers() {
+		return $this->mailReceivers;
 	}
 
 
@@ -104,6 +108,11 @@ class TodoyuCommentMail extends TodoyuMail {
 	}
 
 
+
+	/**
+	 * Add all assets of the comment as attachments
+	 *
+	 */
 	protected function addCommentAssetsAsAttachments() {
 		$assets	= $this->comment->getAssets();
 
