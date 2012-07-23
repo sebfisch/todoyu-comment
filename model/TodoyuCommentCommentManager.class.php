@@ -589,7 +589,7 @@ class TodoyuCommentCommentManager {
 	 */
 	public static function linkCommentIDsInText($text) {
 		if( Todoyu::allowed('project', 'general:area') ) {
-			$pattern= '/(^|[^\w\.=]+)(c(\d+))([^\w\.]+|$)/';
+			$pattern= '/(^|[^\w\.=#]+)(c(\d+))([^\w\.]+|$)/';
 			$text	= preg_replace_callback($pattern, array('TodoyuCommentCommentManager', 'callbackLinkCommentsInText'), $text);
 		}
 
