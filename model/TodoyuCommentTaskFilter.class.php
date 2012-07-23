@@ -381,7 +381,8 @@ class TodoyuCommentTaskFilter extends TodoyuSearchFilterBase {
 				'ext_project_task LEFT JOIN ext_comment_comment ON ext_project_task.id = ext_comment_comment.id_task'
 			),
 			'removeTables' => array(
-				'ext_project_task'
+				'ext_project_task',
+				'ext_comment_comment'
 			),
 			'order'	=> array(
 				'commentLastAdded' . $sortDir,					// Last date added by MAX() in fields
