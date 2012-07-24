@@ -330,8 +330,8 @@ Todoyu.Ext.comment.Edit = {
 
 	/**
 	 *
-	 * @param	{Integer}		idComment
-	 * @param	{Integer}		idTask
+	 * @param	{Number}		idComment
+	 * @param	{Number}		idTask
 	 * @param	{String}		filename
 	 * @param	{String}		filekey
 	 */
@@ -345,10 +345,10 @@ Todoyu.Ext.comment.Edit = {
 
 
 	/**
-	 *
-	 * @param	{Integer}		idTask
+	 * @method	uploadFailed
+	 * @param	{Number}		idTask
 	 * @param	{String}		filename
-	 * @param	{Integer}		maxFileSize
+	 * @param	{Number}		maxFileSize
 	 */
 	uploadFailed: function(idTask, filename, maxFileSize) {
 		var info	= {
@@ -370,8 +370,8 @@ Todoyu.Ext.comment.Edit = {
 
 
 	/**
-	 *
-	 * @param	{Integer}		idComment
+	 * @method	refreshFileSelectorOptions
+	 * @param	{Number}		idComment
 	 */
 	refreshFileSelectorOptions: function(idComment, idTask) {
 		var idElement = 'comment-' + idTask + '-' + idComment + '-field-assets-search';
@@ -391,8 +391,9 @@ Todoyu.Ext.comment.Edit = {
 
 
 	/**
-	 * @param	{Integer}		idComment
-	 * @param	{Integer}		idTask
+	 * @method	addSelectorItem
+	 * @param	{Number}		idComment
+	 * @param	{Number}		idTask
 	 * @param	{String}		filename
 	 * @param	{String}		filekey
 	 */
@@ -403,9 +404,9 @@ Todoyu.Ext.comment.Edit = {
 
 
 	/**
-	 *
-	 * @param	{Integer}		idComment
-	 * @param	{Integer}		idTask
+	 * @method	clearTempUploads
+	 * @param	{Number}		idComment
+	 * @param	{Number}		idTask
 	 */
 	clearTempUploads: function(idComment, idTask) {
 		var url		= Todoyu.getUrl('comment', 'comment');
