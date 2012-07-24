@@ -18,16 +18,18 @@
 * This copyright notice MUST APPEAR in all copies of the script.
 *****************************************************************************/
 
-	// Substitute comment identifiers in text by hyperlinks
-TodoyuHookManager::registerHook('core', 'substituteLinkableElements', 'TodoyuCommentCommentManager::linkCommentIDsInText');
+if( Todoyu::allowed('comment', 'general:use') ) {
+		// Substitute comment identifiers in text by hyperlinks
+	TodoyuHookManager::registerHook('core', 'substituteLinkableElements', 'TodoyuCommentCommentManager::linkCommentIDsInText');
 
-//TodoyuHookManager::registerHook('project', 'renderTasks', 'TodoyuCommentCommentManager::onTasksRender');
+	//TodoyuHookManager::registerHook('project', 'renderTasks', 'TodoyuCommentCommentManager::onTasksRender');
 
-TodoyuFormHook::registerBuildForm('ext/project/config/form/project.xml', 'TodoyuCommentFallbackManager::hookAddFallbackField');
-TodoyuFormHook::registerLoadData('ext/project/config/form/project.xml', 'TodoyuCommentFallbackManager::hookSetProjectDefaultData');
+	TodoyuFormHook::registerBuildForm('ext/project/config/form/project.xml', 'TodoyuCommentFallbackManager::hookAddFallbackField');
+	TodoyuFormHook::registerLoadData('ext/project/config/form/project.xml', 'TodoyuCommentFallbackManager::hookSetProjectDefaultData');
 
 
-	// Callbacks for exteding filter widgets of other extensions
-TodoyuHookManager::registerHook('core', 'loadconfig.project.filters', 'TodoyuCommentManager::hookLoadProjectFilterConfig');
+		// Callbacks for exteding filter widgets of other extensions
+	TodoyuHookManager::registerHook('core', 'loadconfig.project.filters', 'TodoyuCommentManager::hookLoadProjectFilterConfig');
+}
 
 ?>

@@ -18,10 +18,6 @@
 * This copyright notice MUST APPEAR in all copies of the script.
 *****************************************************************************/
 
-if( Todoyu::allowed('comment', 'general:use') ) {
-	require_once( PATH_EXT_COMMENT . '/config/hooks.php' );
-}
-
 
 /* ------------------------------------------------
 	Configuration for 'feedback' tab in portal
