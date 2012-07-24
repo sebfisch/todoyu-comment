@@ -9,11 +9,13 @@
 </div>
 
 	{* List of comments *}
-<section class="commentList {if $desc}desc{else}asc{/if}" id="task-{$idTask}-comments">
-{foreach $comments commentHTML}
-	{$commentHTML}
-{/foreach}
-</section>
+{if sizeof($comments) > 0}
+	<section class="commentList {if $desc}desc{else}asc{/if}" id="task-{$idTask}-comments">
+	{foreach $comments commentHTML}
+		{$commentHTML}
+	{/foreach}
+	</section>
+{/if}
 
 	{* Commands at bottom *}
 <div class="tabBlock overflow commentButtons" id="task-{$idTask}-comment-commands-bottom">

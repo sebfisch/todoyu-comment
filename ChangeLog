@@ -1,6 +1,7 @@
 todoyu comment extension changelog
 
 comment 1.3.0 - not released yet
+	* Bugfix: Fixed layout bug on canceling first comment form
 	* Bugfix: Added # to not allowed sings for comment links
 	* Bugfix: Avoid long names to overflow
 	* Feature: Upload assets to comments
