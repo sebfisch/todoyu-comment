@@ -335,7 +335,7 @@ class TodoyuCommentTaskFilter extends TodoyuSearchFilterBase {
 	/**
 	 * Filter: Comment with feedback request from current person
 	 *
-	 * @param	String			$value
+	 * @param	Integer			$idPerson
 	 * @param	Boolean			$negate		(Has been seen / Hasn't been seen)
 	 * @return	Array|Boolean
 	 */
@@ -377,20 +377,20 @@ class TodoyuCommentTaskFilter extends TodoyuSearchFilterBase {
 		$sortDir = self::getSortDir($desc);
 
 		return array(
-			'tables' => array(
+			'tables'		=> array(
 				'ext_project_task LEFT JOIN ext_comment_comment ON ext_project_task.id = ext_comment_comment.id_task'
 			),
-			'removeTables' => array(
+			'removeTables'	=> array(
 				'ext_project_task',
 				'ext_comment_comment'
 			),
-			'order'	=> array(
+			'order'			=> array(
 				'commentLastAdded' . $sortDir,					// Last date added by MAX() in fields
 				'ISNULL(ext_comment_comment.id)' . $sortDir,	// No comments
 				'ext_project_task.id' . $sortDir				// Make sure sorting is consistent
 			),
-			'fields' => array(
-				'commentLastAdded' => 'MAX(ext_comment_comment.date_create) as commentLastAdded'
+			'fields'		=> array(
+				'commentLastAdded'	=> 'MAX(ext_comment_comment.date_create) as commentLastAdded'
 			)
 		);
 	}

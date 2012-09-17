@@ -152,7 +152,6 @@ class TodoyuCommentCommentRenderer {
 
 
 	/**
-	 * @static
 	 * @param	Integer		$error
 	 * @param	String		$fileName
 	 * @param	Integer		$idTask
@@ -190,6 +189,7 @@ class TodoyuCommentCommentRenderer {
 	 * @static
 	 * @param	Integer		$idComment
 	 * @param	Integer		$idTask
+	 * @return	String
 	 */
 	public static function renderFileSelector($idComment, $idTask) {
 		$form = TodoyuCommentCommentManager::getCommentForm($idComment, $idTask, array('id_task' => $idTask, 'id' => $idComment));

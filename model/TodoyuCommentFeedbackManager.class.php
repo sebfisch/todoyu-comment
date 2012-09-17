@@ -188,6 +188,7 @@ class TodoyuCommentFeedbackManager {
 					AND c.deleted			= 0
 					AND c.id_task			!= 0
 					AND t.id				= c.id_task
+					AND t.type				= ' . TASK_TYPE_TASK . '
 					AND t.deleted			= 0';
 
 		$group	= 'c.id';
