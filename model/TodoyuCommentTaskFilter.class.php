@@ -101,7 +101,7 @@ class TodoyuCommentTaskFilter extends TodoyuSearchFilterBase {
 		$where	= '		ext_comment_comment.deleted							= 0'
 				. '	AND ext_comment_mm_comment_feedback.is_seen				= ' . $seenStatus
 				. ' AND	ext_comment_mm_comment_feedback.id_person_feedback	= ' . $idPerson
-				. ' AND ext_project_task.id									= ext_comment_comment.id_task'
+//				. ' AND ext_project_task.id									= ext_comment_comment.id_task'
 				. ' AND ext_project_task.type 								= ' . TASK_TYPE_TASK;
 		$join	= array(
 			'ext_comment_comment.id_task				= ext_project_task.id',

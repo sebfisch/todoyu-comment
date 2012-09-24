@@ -198,6 +198,7 @@ class TodoyuCommentCommentManager {
 		$idTask		= intval($data['id_task']);
 		$task		= TodoyuCommentTaskManager::getTask($idTask);
 		$xmlPath	= 'ext/comment/config/form/comment.xml';
+		$isNew		= false;
 
 		$result		= array(
 			'id'		=> $idComment,
@@ -209,7 +210,8 @@ class TodoyuCommentCommentManager {
 			$idComment = self::addComment(array(
 				'id_task'	=> $idTask
 			));
-			$result['id'] = $idComment;
+			$result['id']	= $idComment;
+			$isNew			= true;
 		} else {
 			$data['id_person_update'] = TodoyuAuth::getPersonID();
 		}
@@ -256,19 +258,13 @@ class TodoyuCommentCommentManager {
 			// Clear record cache
 		self::removeFromCache($idComment);
 
-			// Call saved before email hook
-		TodoyuHookManager::callHook('comment', 'comment.save.beforeEmail', array($idComment));
-
-			// Clear record cache
-		self::removeFromCache($idComment);
+			// Call saved hook
+		TodoyuHookManager::callHook('comment', 'comment.save', array($idComment, $isNew));
 
 			// Send emails
 		if( sizeof($receiverTuples) ) {
 			$result['email'] = TodoyuCommentMailer::sendEmails($idComment, $receiverTuples);
 		}
-
-			// Call saved hook
-		TodoyuHookManager::callHook('comment', 'comment.save', array($idComment));
 
 		return $result;
 	}
