@@ -70,6 +70,8 @@
 	<label index="fallback.taskperson_email">To this task person</label>
 	<label index="fallback.id_role_email">To a person with this role</label>
 	<label index="fallback.noneForProject">No fallbacks for comments in this project</label>
+	<label index="feedback.set.seen">Mark comment as read.</label>
+	<label index="feedback.set.unseen">Mark comment (again) as not read.</label>
 	<label index="extconf.globalFallback">Global Fallback</label>
 	<label index="edit.email_receivers">Email Recipients</label>
 	<label index="assets.optgroup.project">Project Assets</label>

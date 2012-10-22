@@ -309,12 +309,13 @@ class TodoyuCommentFeedbackManager {
 
 
 	/**
-	 * Set a comment's feedback request as seen
+	 * Set "seen" status of given comment's feedback
 	 *
 	 * @param	Integer		$idComment
 	 * @param	Integer		$idPerson
+	 * @param	Boolean		$isSeen
 	 */
-	public static function setAsSeen($idComment, $idPerson = 0) {
+	public static function setSeenStatus($idComment, $idPerson = 0, $isSeen = true) {
 		$idComment	= intval($idComment);
 		$idPerson	= Todoyu::personid($idPerson);
 
@@ -323,12 +324,38 @@ class TodoyuCommentFeedbackManager {
 				. ' AND	id_person_feedback	= ' . $idPerson;
 		$data	= array(
 			'date_update'	=> NOW,
-			'is_seen'		=> 1
+			'is_seen'		=> $isSeen ? 1 : 0
 		);
 
 		Todoyu::db()->doUpdate($table, $where, $data);
+	}
+
+
+
+	/**
+	 * Set a comment's feedback request as seen
+	 *
+	 * @param	Integer		$idComment
+	 * @param	Integer		$idPerson
+	 */
+	public static function setAsSeen($idComment, $idPerson = 0) {
+		self::setSeenStatus($idComment, $idPerson, true);
 
 		TodoyuHookManager::callHook('comment', 'feedback.seen', array($idComment, $idPerson));
+	}
+
+
+
+	/**
+	 * Set a comment's feedback request as seen
+	 *
+	 * @param	Integer		$idComment
+	 * @param	Integer		$idPerson
+	 */
+	public static function setAsUnseen($idComment, $idPerson = 0) {
+		self::setSeenStatus($idComment, $idPerson, false);
+
+		TodoyuHookManager::callHook('comment', 'feedback.unseen', array($idComment, $idPerson));
 	}
 
 
@@ -398,7 +425,7 @@ class TodoyuCommentFeedbackManager {
 	 */
 	public static function isCommentUnseen($idComment) {
 		$idComment	= intval($idComment);
-		$idPerson		= Todoyu::personid();
+		$idPerson	= Todoyu::personid();
 
 		$field	= 'is_seen';
 		$table	= self::TABLE;

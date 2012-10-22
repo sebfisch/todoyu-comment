@@ -54,7 +54,7 @@ class TodoyuCommentTaskActionController extends TodoyuActionController {
 
 
 	/**
-	 * Get comment list for tasktab
+	 * Get comment list for task tab
 	 *
 	 * @param	Array		$params
 	 * @return	String
@@ -93,7 +93,7 @@ class TodoyuCommentTaskActionController extends TodoyuActionController {
 
 
 	/**
-	 * Mark an as feedback requested comment as seen
+	 * Mark a comment with feedback request as seen
 	 *
 	 * @param	Array		$params
 	 */
@@ -103,6 +103,25 @@ class TodoyuCommentTaskActionController extends TodoyuActionController {
 		TodoyuCommentRights::restrictSee($idComment);
 
 		TodoyuCommentFeedbackManager::setAsSeen($idComment);
+
+		$numOpenFeedbacks = TodoyuCommentFeedbackManager::getOpenFeedbackCount();
+
+		TodoyuHeader::sendTodoyuHeader('feedback', $numOpenFeedbacks);
+	}
+
+
+
+	/**
+	 * Mark a comment with feedback request as not seen
+	 *
+	 * @param	Array		$params
+	 */
+	public function unseenAction(array $params) {
+		$idComment	= intval($params['comment']);
+
+		TodoyuCommentRights::restrictSee($idComment);
+
+		TodoyuCommentFeedbackManager::setAsUnseen($idComment);
 
 		$numOpenFeedbacks = TodoyuCommentFeedbackManager::getOpenFeedbackCount();
 

@@ -38,6 +38,12 @@ Event Hooks
 	@param	Integer		$idPerson
 
 
+#comment.feedback.unseen
+	The feedback (comment) was marked as not seen
+	@param	Integer		$idComment
+	@param	Integer		$idPerson
+
+
 #comment.task.seen
 	The task was marked as seen (all comments/feedbacks are seen)
 	@param	Integer		$idTask

@@ -539,6 +539,8 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 	 * @param	Boolean		$loadRenderData
 	 */
 	protected function loadForeignData($loadRenderData = false) {
+		$idComment	= $this->getID();
+
 			// Basic foreign data
 		if( !$this->has('person_create') ) {
 			$this->data['person_create']	= $this->getPersonCreate()->getTemplateData(false);
@@ -549,7 +551,11 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 
 			// Extra data which is only required for detail rendering
 		if( $loadRenderData && !$this->has('isUnapproved') ) {
-			$this->data['isUnapproved']				= TodoyuCommentFeedbackManager::isCommentUnseen($this->getID());
+			$feedbackPersonsData= TodoyuCommentFeedbackManager::getFeedbackPersons($idComment);
+			$feedbackPersonIDs	= array_keys($feedbackPersonsData);
+			$this->data['isFeedbackPerson']			= in_array(Todoyu::personid(), $feedbackPersonIDs);
+			$this->data['isUnapproved']				= TodoyuCommentFeedbackManager::isCommentUnseen($idComment);
+
 			$this->data['canDelete']				= $this->canCurrentPersonDelete();
 			$this->data['canEdit']					= $this->canCurrentPersonEdit();
 			$this->data['canMakePublic']			= $this->canCurrentPersonMakePublic();

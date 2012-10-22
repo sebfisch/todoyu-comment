@@ -2,8 +2,8 @@
 	<div class="commentBackground">
 		<div class="comment-meta" id="task-comment-{$id}-properties">
 			<div class="comment-img">
-				{if $isUnapproved}
-					<a href="javascript:void(0)" id="comment-{$id}-seenstatus" onclick="Todoyu.Ext.comment.Comment.setSeenStatus({$id}, {personid()})" class="personApproval hasicon"></a>
+				{if $isFeedbackPerson}
+					<a class="personApproval hasicon {if $isUnapproved}{else}isseen{/if}" href="javascript:void(0)" id="comment-{$id}-seenstatus" onclick="Todoyu.Ext.comment.Comment.toggleSeen({$id}, {personid()})"></a>
 				{/if}
 				{personAvatar $person_create.id}
 			 </div>
