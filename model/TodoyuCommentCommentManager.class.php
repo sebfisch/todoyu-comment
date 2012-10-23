@@ -144,8 +144,6 @@ class TodoyuCommentCommentManager {
 				// Edit comment
 		$comment	= TodoyuCommentCommentManager::getComment($idComment);
 		$data		= $comment->getTemplateData(true);
-		$data['feedback'] = $comment->getFeedbackPersonsIDs();
-
 
 		$xmlPath= 'ext/comment/config/form/comment.xml';
 		$data	= TodoyuFormHook::callLoadData($xmlPath, $data, $idComment, array(

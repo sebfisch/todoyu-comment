@@ -547,6 +547,7 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 			$this->data['involvedPersons']	= $this->getInvolvedPersonInfos();
 			$this->data['locked']			= $this->isLocked();
 			$this->data['assets']			= $this->getAssetsIDs();
+			$this->data['feedback']			= $this->getFeedbackPersonsIDs();
 		}
 
 			// Extra data which is only required for detail rendering
