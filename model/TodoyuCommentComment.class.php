@@ -172,6 +172,8 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 				'feedback'		=> true,
 				'feedbackSeen'	=> $feedbackSeen,
 				'personID'		=> $feedbackPersonData['id'],
+				'fullname'		=> $feedbackPersonData['lastname'] . ' ' . $feedbackPersonData['firstname'],
+				'is_dummy'		=> $feedbackPersonData['is_dummy'],
 				'class'			=> $feedbackSeen ? 'commentperson-approved' : 'commentperson-unapproved',
 				'key'			=> $feedbackPersonData['id']
 			);

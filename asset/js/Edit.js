@@ -48,16 +48,17 @@ Todoyu.Ext.comment.Edit = {
 	 * @param	{Number}	idComment
 	 */
 	editComment: function(idTask, idComment) {
-		var url		= Todoyu.getUrl('comment', 'comment');
-		var options = {
+		var url, options, target;
+		url		= Todoyu.getUrl('comment', 'comment');
+		options = {
 			parameters: {
-				action: 	'edit',
+				action:		'edit',
 				task:		idTask,
 				comment:	idComment
 			},
 			onComplete:	this.onCommentEdit.bind(this, idTask, idComment)
 		};
-		var target	= 'task-comment-' + idComment + '-text';
+		target	= 'task-comment-' + idComment + '-text';
 
 		Todoyu.Ui.update(target, url, options);
 	},
@@ -88,9 +89,10 @@ Todoyu.Ext.comment.Edit = {
 	 * @param	{Number|String}	recordID
 	 */
 	onFormDisplay: function(idForm, name, recordID) {
-		var parts		= recordID.split('-');
-		var idComment	= parts[1];
-		var idTask		= parts[0];
+		var parts, idComment, idTask;
+		parts		= recordID.split('-');
+		idComment	= parts[1];
+		idTask		= parts[0];
 
 		this.showEmailReceiversOnCheckboxActive(idTask, idComment);
 
@@ -138,9 +140,10 @@ Todoyu.Ext.comment.Edit = {
 	 * @param	{Element}	checkbox
 	 */
 	onMailCheckboxToggle: function(checkbox) {
-		var parts		= checkbox.id.split('-');
-		var idTask		= parts[1];
-		var idComment	= parts[2];
+		var parts, idTask, idComment;
+		parts		= checkbox.id.split('-');
+		idTask		= parts[1];
+		idComment	= parts[2];
 
 		this.toggleEmailReceivers(idTask, idComment, checkbox.checked);
 	},
@@ -156,8 +159,9 @@ Todoyu.Ext.comment.Edit = {
 	 * @param	{Boolean}	show
 	 */
 	toggleEmailReceivers: function(idTask, idComment, show) {
-		var form	= $('comment-' + idTask + '-' + idComment + '-form');
-		var method	= show ? 'show' : 'hide';
+		var form, method;
+		form	= $('comment-' + idTask + '-' + idComment + '-form');
+		method	= show ? 'show' : 'hide';
 
 		if( form ) {
 			form.select('.mailToggle').invoke(method);
@@ -199,8 +203,9 @@ Todoyu.Ext.comment.Edit = {
 	 * @param	{Ajax.Response}		response
 	 */
 	onSaved: function(idTask, response) {
-		var idComment				= response.getTodoyuHeader('comment');
-		var notificationIdentifier	= 'comment.edit.saved';
+		var idComment, notificationIdentifier;
+		idComment				= response.getTodoyuHeader('comment');
+		notificationIdentifier	= 'comment.edit.saved';
 
 		if( response.hasTodoyuError() ) {
 			$('comment-' + idTask + '-' + idComment + '-form').replace(response.responseText);
@@ -247,8 +252,8 @@ Todoyu.Ext.comment.Edit = {
 	 * @param	{Array}		emailSendStatus
 	 */
 	notifyEmailSendStatus: function(emailSendStatus) {
-		var names;
-		var allOk = emailSendStatus.all(function(person){
+		var names, allOk;
+		allOk = emailSendStatus.all(function(person){
 			return person.status;
 		});
 
@@ -259,10 +264,11 @@ Todoyu.Ext.comment.Edit = {
 
 			Todoyu.notifyInfo('[LLL:comment.ext.js.sentEmailsTo]' + ' ' + names);
 		} else {
-			var ok = emailSendStatus.findAll(function(person){
+			var ok, fail;
+			ok = emailSendStatus.findAll(function(person){
 				return this.status;
 			});
-			var fail = emailSendStatus.findAll(function(person){
+			fail = emailSendStatus.findAll(function(person){
 				return !this.status;
 			});
 
@@ -351,14 +357,15 @@ Todoyu.Ext.comment.Edit = {
 	 * @param	{Number}		maxFileSize
 	 */
 	uploadFailed: function(idTask, filename, maxFileSize) {
-		var info	= {
+		var info, msg;
+		info	= {
 			filename:		filename,
 			maxFileSize:	maxFileSize,
 			id_task:		idTask
 		};
-		var msg		= '';
+		msg	= '';
 
-		if( error === 1 || error === 2 ) {
+		if( error === 1 || error === 2 ) {	//@todo	fix: error is not defined
 			msg	= '[LLL:core.file.upload.failed.maxFileSizeExceeded]';
 		} else {
 			msg	= '[LLL:core.file.upload.error.uploadfailed]';
@@ -372,13 +379,15 @@ Todoyu.Ext.comment.Edit = {
 	/**
 	 * @method	refreshFileSelectorOptions
 	 * @param	{Number}		idComment
+	 * @param	{Number}		idTask
 	 */
 	refreshFileSelectorOptions: function(idComment, idTask) {
-		var idElement = 'comment-' + idTask + '-' + idComment + '-field-assets-search';
-		var target		= $(idElement);
+		var idElement, target, url, options;
+		idElement = 'comment-' + idTask + '-' + idComment + '-field-assets-search';
+		target		= $(idElement);
 
-		var url		= Todoyu.getUrl('comment', 'comment');
-		var options	= {
+		url		= Todoyu.getUrl('comment', 'comment');
+		options	= {
 			parameters: {
 				action:		'refreshfileselector',
 				task:		idTask,
@@ -388,6 +397,7 @@ Todoyu.Ext.comment.Edit = {
 
 		Todoyu.Ui.update(target, url, options);
 	},
+
 
 
 	/**
@@ -409,8 +419,9 @@ Todoyu.Ext.comment.Edit = {
 	 * @param	{Number}		idTask
 	 */
 	clearTempUploads: function(idComment, idTask) {
-		var url		= Todoyu.getUrl('comment', 'comment');
-		var options	= {
+		var url, options;
+		url		= Todoyu.getUrl('comment', 'comment');
+		options	= {
 			parameters: {
 				action:		'cleartempuploads',
 				task:		idTask,

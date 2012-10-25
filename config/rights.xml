@@ -30,4 +30,8 @@
 		<right name="internal" />
 	</section>
 
+	<section name="overrideDummy" require="comment:seeAll">
+		<right name="acknowledgeFeedback" />
+	</section>
+
 </rights>

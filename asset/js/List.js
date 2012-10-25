@@ -35,8 +35,10 @@ Todoyu.Ext.comment.List = {
 	 */
 	refresh: function(idTask, desc) {
 		desc	= desc !== false;
-		var url		= Todoyu.getUrl('comment', 'task');
-		var options	= {
+
+		var url, options, target;
+		url		= Todoyu.getUrl('comment', 'task');
+		options	= {
 			parameters: {
 				action:	'list',
 				task:	idTask,
@@ -44,7 +46,7 @@ Todoyu.Ext.comment.List = {
 			},
 			onComplete: this.onRefreshed.bind(this, idTask, desc)
 		};
-		var target	= 'task-' + idTask + '-tabcontent-comment';
+		target	= 'task-' + idTask + '-tabcontent-comment';
 
 		Todoyu.Ui.update(target, url, options);
 	},
@@ -128,8 +130,9 @@ Todoyu.Ext.comment.List = {
 	 * @param	{Number}	idTask
 	 */
 	toggleAddButtons: function(idTask) {
-		var firstButton = $('task-' + idTask).select('button.addComment').first();
-		var action		= this.hasComments(idTask) ? 'show' : 'hide';
+		var firstButton, action;
+		firstButton = $('task-' + idTask).select('button.addComment').first();
+		action		= this.hasComments(idTask) ? 'show' : 'hide';
 
 		firstButton[action]();
 	},

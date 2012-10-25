@@ -314,6 +314,7 @@ class TodoyuCommentFeedbackManager {
 	 * @param	Integer		$idComment
 	 * @param	Integer		$idPerson
 	 * @param	Boolean		$isSeen
+	 * @return	Integer
 	 */
 	public static function setSeenStatus($idComment, $idPerson = 0, $isSeen = true) {
 		$idComment	= intval($idComment);
@@ -327,7 +328,7 @@ class TodoyuCommentFeedbackManager {
 			'is_seen'		=> $isSeen ? 1 : 0
 		);
 
-		Todoyu::db()->doUpdate($table, $where, $data);
+		return Todoyu::db()->doUpdate($table, $where, $data);
 	}
 
 
@@ -337,11 +338,15 @@ class TodoyuCommentFeedbackManager {
 	 *
 	 * @param	Integer		$idComment
 	 * @param	Integer		$idPerson
+	 * @param	Boolean		$isSeen
+	 * @return	Boolean
 	 */
-	public static function setAsSeen($idComment, $idPerson = 0) {
-		self::setSeenStatus($idComment, $idPerson, true);
+	public static function setAsSeen($idComment, $idPerson = 0, $isSeen = true) {
+		$success	= self::setSeenStatus($idComment, $idPerson, true) > 0;
 
-		TodoyuHookManager::callHook('comment', 'feedback.seen', array($idComment, $idPerson));
+		TodoyuHookManager::callHook('comment', 'feedback.changeseen', array($idComment, $idPerson));
+
+		return $success;
 	}
 
 
@@ -351,11 +356,10 @@ class TodoyuCommentFeedbackManager {
 	 *
 	 * @param	Integer		$idComment
 	 * @param	Integer		$idPerson
+	 * @return	Boolean
 	 */
 	public static function setAsUnseen($idComment, $idPerson = 0) {
-		self::setSeenStatus($idComment, $idPerson, false);
-
-		TodoyuHookManager::callHook('comment', 'feedback.unseen', array($idComment, $idPerson));
+		return self::setAsSeen($idComment, $idPerson, false);
 	}
 
 
@@ -401,6 +405,7 @@ class TodoyuCommentFeedbackManager {
 					p.email,
 					p.firstname,
 					p.lastname,
+					p.is_dummy,
 					f.is_seen';
 		$tables	= '	ext_contact_person				p,
 					ext_comment_mm_comment_feedback	f';

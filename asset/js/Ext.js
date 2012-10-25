@@ -131,8 +131,10 @@ Todoyu.Ext.comment = {
 	 * @return	{Boolean}
 	 */
 	checkSortingIsDesc: function( idTask ) {
-		var elementID	= 'task-' + idTask + '-comments';
-		var isDesc = false;
+		var elementID, isDesc;
+
+		elementID	= 'task-' + idTask + '-comments';
+		isDesc = false;
 
 		if( elementID ) {
 			isDesc	= $(elementID).hasClassName('desc');
@@ -149,6 +151,7 @@ Todoyu.Ext.comment = {
 	 * @method	add
 	 * @param	{Number}	idTask
 	 * @param	{Number}	[idCommentQuote]		Use this comment as template
+	 * @param	{Number}	[idCommentMailReply]
 	 */
 	add: function(idTask, idCommentQuote, idCommentMailReply) {
 		idCommentQuote		= idCommentQuote || 0;
@@ -158,18 +161,19 @@ Todoyu.Ext.comment = {
 		this.removeForms(idTask);
 
 			// Load new comment form
-		var url		= Todoyu.getUrl('comment', 'comment');
-		var options = {
+		var url, options, target;
+		url		= Todoyu.getUrl('comment', 'comment');
+		options = {
 			parameters: {
-				action: 	'add',
+				action:		'add',
 				task:		idTask,
-				quote: 		idCommentQuote,
+				quote:		idCommentQuote,
 				mailReply:	idCommentMailReply
 			},
 			insertion:	'after',
 			onComplete:	this.onAdded.bind(this, idTask, idCommentQuote, idCommentMailReply)
 		};
-		var target	= 'task-' + idTask + '-comment-commands-top';
+		target	= 'task-' + idTask + '-comment-commands-top';
 
 		Todoyu.Ui.update(target, url, options);
 	},

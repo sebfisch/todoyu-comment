@@ -41,8 +41,9 @@ Todoyu.Ext.comment.Comment = {
 	 * @param	{Number}	idComment
 	 */
 	togglePublic: function(idComment) {
-		var url		= Todoyu.getUrl('comment', 'task');
-		var options	= {
+		var url, options;
+		url		= Todoyu.getUrl('comment', 'task');
+		options	= {
 			parameters: {
 				action:		'togglepublic',
 				comment:	idComment
@@ -50,7 +51,7 @@ Todoyu.Ext.comment.Comment = {
 			onComplete: this.onToggledPublic.bind(this, idComment)
 		};
 
-		Todoyu.send(url , options);
+		Todoyu.send(url, options);
 	},
 
 
@@ -120,56 +121,58 @@ Todoyu.Ext.comment.Comment = {
 	toggleSeen: function(idComment, idPerson) {
 		var isSeen	= $('comment-' + idComment + '-seenstatus').hasClassName('isseen');
 
-		if( !isSeen ) {
-			this.setSeen(idComment, idPerson);
-		} else {
-			this.setUnseen(idComment, idPerson);
-		}
+		this.setSeen(idComment, idPerson, !isSeen);
 	},
 
 
-
 	/**
-	 * Set 'seen' status of given comment false
+	 * Toggle comment "seen" status instead of a dummy user whom the feedback was request from
 	 *
-	 * @method	setSeenStatus
+	 * @method	toggleDummySeen
 	 * @param	{Number}	idComment
-	 * @param	{Number}	idPerson
+	 * @param	{Number}	idDummyPerson
+	 * @param	{String}	dummyPersonName
 	 */
-	setUnseen: function(idComment, idPerson) {
-		var url		= Todoyu.getUrl('comment', 'task');
-		var options	= {
-			parameters: {
-				action:		'unseen',
-				comment:	idComment
-			},
-			onComplete: this.onUnseenSet.bind(this, idComment, idPerson)
-		};
+	toggleDummySeen: function(idComment, idDummyPerson, dummyPersonName) {
+		var isSeen, msg, info;
+		isSeen	= $('task-comment-' + idComment + '-involvedPerson-' + idDummyPerson).down('span.icon').hasClassName('approved');
+		msg		= '[LLL:comment.ext.overrideDummy.acknowledgeFeedback.toggle.confirm.' + (isSeen ? 'setUnseen' : 'setSeen') + ']';
+		info	= { dummyname: dummyPersonName };
 
-		Todoyu.send(url, options);
+		if( confirm(msg.interpolate(info)) ) {
+			var url, options;
+			url		= Todoyu.getUrl('comment', 'comment');
+			options	= {
+				parameters: {
+					action:			'seenbydummy',
+					comment:		idComment,
+					dummyperson:	idDummyPerson,
+					setseen:		isSeen ? 0 : 1
+				},
+				onComplete: this.onToggleDummySeen.bind(this, idComment, idDummyPerson)
+			};
+
+			Todoyu.send(url, options);
+		}
 	},
 
 
 
 	/**
-	 * Handler for setUnseenStatus
-	 *
-	 * @method	onSeenStatusSet
-	 * @param	{Number}			idComment
-	 * @param	{Number}			idPerson
-	 * @param	{Ajax.Response}		response
+	 * @method	onToggleDummySeen
+	 * @param	{Number}		idComment
+	 * @param	{Number}		idDummyPerson
+	 * @param	{Ajax.Response}	response
 	 */
-	onUnseenSet: function(idComment, idPerson, response) {
-			// Change star from grey to yellow (=seen)
-		$('comment-' + idComment + '-seenstatus').removeClassName('isseen');
-
-			// Update seen/unseen mark at person name
-		var person = $('task-comment-' + idComment + '-involvedPerson-' + idPerson);
-		if( person ) {
-			person.down('.feedback.icon').replaceClassName('approved', 'unapproved');
+	onToggleDummySeen: function(idComment, idDummyPerson, response) {
+		var starIconEl	= $('task-comment-' + idComment + '-involvedPerson-' + idDummyPerson).down('span.icon');
+			// Toggle yellow/grey star icon
+		if( response.getTodoyuHeader('setSeen') == 1 ) {
+			starIconEl.replaceClassName('unapproved', 'approved');
 		}
-
-		this.ext.updateFeedbackTab(response.getTodoyuHeader('feedback'));
+		if( response.getTodoyuHeader('setSeen') == 0 ) {
+			starIconEl.replaceClassName('approved', 'unapproved');
+		}
 	},
 
 
@@ -180,13 +183,16 @@ Todoyu.Ext.comment.Comment = {
 	 * @method	setSeenStatus
 	 * @param	{Number}	idComment
 	 * @param	{Number}	idPerson
+	 * @param	{Boolean}	setSeen
 	 */
-	setSeen: function(idComment, idPerson) {
-		var url		= Todoyu.getUrl('comment', 'task');
-		var options	= {
+	setSeen: function(idComment, idPerson, setSeen) {
+		var url, options;
+		url		= Todoyu.getUrl('comment', 'comment');
+		options	= {
 			parameters: {
 				action:		'seen',
-				comment:	idComment
+				comment:	idComment,
+				setseen:	setSeen ? 1 : 0
 			},
 			onComplete: this.onSeenSet.bind(this, idComment, idPerson)
 		};
@@ -197,7 +203,7 @@ Todoyu.Ext.comment.Comment = {
 
 
 	/**
-	 * Handler for setSeenStatus
+	 * Handler for setSeenStatus (setting comment seen and not seen)
 	 *
 	 * @method	onSeenStatusSet
 	 * @param	{Number}			idComment
@@ -205,13 +211,17 @@ Todoyu.Ext.comment.Comment = {
 	 * @param	{Ajax.Response}	response
 	 */
 	onSeenSet: function(idComment, idPerson, response) {
-			// Change star from yellow to grey (=seen)
-		$('comment-' + idComment + '-seenstatus').addClassName('isseen');
+		var personEl, commentSeenEl, isSeen;
+		personEl		= $('task-comment-' + idComment + '-involvedPerson-' + idPerson);
+		commentSeenEl	= $('comment-' + idComment + '-seenstatus');
+		isSeen			= commentSeenEl.hasClassName('isseen');
 
-			// Update seen/unseen mark at person name
-		var person = $('task-comment-' + idComment + '-involvedPerson-' + idPerson);
-		if( person ) {
-			person.down('.feedback.icon').replaceClassName('unapproved', 'approved');
+			// Change star grey/yellow
+		commentSeenEl[isSeen ? 'removeClassName':'addClassName']('isseen');
+
+				// Update seen/unseen mark at person name
+		if( personEl ) {
+			personEl.down('.feedback.icon').replaceClassName(isSeen ? 'approved':'unapproved', isSeen ? 'unapproved':'approved');
 		}
 
 		this.ext.updateFeedbackTab(response.getTodoyuHeader('feedback'));
@@ -253,8 +263,9 @@ Todoyu.Ext.comment.Comment = {
 	 * @param	{Ajax.Response}		response
 	 */
 	onRemoved: function(idComment, response){
-		var tabLabel	= response.getTodoyuHeader('tabLabel');
-		var idTask		= response.getTodoyuHeader('task');
+		var tabLabel, idTask;
+		tabLabel	= response.getTodoyuHeader('tabLabel');
+		idTask		= response.getTodoyuHeader('task');
 
 		this.ext.setTabLabel(idTask, tabLabel);
 

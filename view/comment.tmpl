@@ -1,4 +1,6 @@
-<article class="comment{if $person_create.id ==personid()} ownComment{/if}{if $is_public}{if isSeeAllCommentsAllowed()} isPublic{/if}{/if}" id="task-comment-{$id}">
+<article
+		class="comment{if $person_create.id ==personid()} ownComment{/if}{if $is_public}{if isSeeAllCommentsAllowed()} isPublic{/if}{/if}"
+		id="task-comment-{$id}" xmlns="http://www.w3.org/1999/html">
 	<div class="commentBackground">
 		<div class="comment-meta" id="task-comment-{$id}-properties">
 			<div class="comment-img">
@@ -31,7 +33,22 @@
 						{foreach $involvedPersons involvedPerson}
 							<span class="involvedPerson" id="task-comment-{$id}-involvedPerson-{$involvedPerson.key}">
 								{if $involvedPerson.feedback}
-									<span class="icon feedback {tif $involvedPerson.feedbackSeen ? 'approved' : 'unapproved'}"></span>
+									{if $involvedPerson.is_dummy==1 && allowed('comment', 'overrideDummy:acknowledgeFeedback')}
+										<a href="javascript:void(0)" onclick="Todoyu.Ext.comment.Comment.toggleDummySeen({$id}, {$involvedPerson.personID}, '{$involvedPerson.fullname}')">
+									{/if}
+									{if $involvedPerson.personID==personid()}
+										<a href="javascript:void(0)" onclick="Todoyu.Ext.comment.Comment.toggleSeen({$id}, {personid()})">
+									{/if}
+											<span class="icon feedback {tif $involvedPerson.feedbackSeen ? 'approved' : 'unapproved'}"></span>
+									{if $involvedPerson.is_dummy==1 && allowed('comment', 'overrideDummy:acknowledgeFeedback')}
+										</a>
+										{else}
+										{if $involvedPerson.personID==personid()}
+											</a>
+										{/if}
+									{/if}
+
+
 								{/if}
 								{if $involvedPerson.email}
 									<span class="icon email"></span>

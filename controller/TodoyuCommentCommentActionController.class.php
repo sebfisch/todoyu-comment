@@ -231,6 +231,64 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 		$uploader->clear();
 	}
 
+
+
+	/**
+	 * Mark a comment with feedback request as seen/not seen
+	 *
+	 * @param	Array		$params
+	 */
+	public function seenAction(array $params) {
+		$idComment	= intval($params['comment']);
+		$setSeen	= intval($params['setseen']);
+
+		TodoyuCommentRights::restrictSee($idComment);
+
+		if( $setSeen === 1 ) {
+			TodoyuCommentFeedbackManager::setAsSeen($idComment);
+		} else {
+			TodoyuCommentFeedbackManager::setAsUnseen($idComment);
+		}
+
+		$numOpenFeedbacks = TodoyuCommentFeedbackManager::getOpenFeedbackCount();
+
+		TodoyuHeader::sendTodoyuHeader('feedback', $numOpenFeedbacks);
+	}
+
+
+
+	/**
+	 * Mark a comment with feedback request as seen/not seen by dummy user
+	 *
+	 * @param	Array		$params
+	 */
+	public function seenbydummyAction(array $params) {
+		$idComment		= intval($params['comment']);
+		$setSeen		= intval($params['setseen']);
+		$idDummyPerson	= intval($params['dummyperson']);
+
+		TodoyuCommentRights::restrictSee($idComment);
+
+		if( !Todoyu::allowed('comment', 'overrideDummy:acknowledgeFeedback') ) {
+			TodoyuRightsManager::deny('comment', 'overrideDummy:acknowledgeFeedback');
+		}
+
+		if( !TodoyuContactPersonManager::getPerson($idDummyPerson)->isDummy() ) {
+			TodoyuLogger::logSecurity('Access denied: toggle feedback of other non-dummy person');
+			die('Access denied: toggle feedback of other non-dummy person');
+		}
+
+		if( $setSeen === 1 ) {
+			$success	= TodoyuCommentFeedbackManager::setAsSeen($idComment, $idDummyPerson);
+		} else {
+			$success	= TodoyuCommentFeedbackManager::setAsUnseen($idComment, $idDummyPerson);
+		}
+
+		if( $success ) {
+			TodoyuHeader::sendTodoyuHeader('setSeen', $setSeen ? 1 : 0);
+		}
+	}
+
 }
 
 ?>

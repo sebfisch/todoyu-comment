@@ -80,4 +80,6 @@
 	<label index="assets.title">Kommentar Dateien</label>
 	<label index="quote">Kommentar zitieren</label>
 	<label index="mailReply">Antworten (zitieren mit Email Empfänger)</label>
+	<label index="overrideDummy.acknowledgeFeedback.toggle.confirm.setSeen">Bitte bestätigen Sie den Kommentar als von #{dummyname} gelesen zu markieren.</label>
+	<label index="overrideDummy.acknowledgeFeedback.toggle.confirm.setUnseen">Bitte bestätigen Sie den Kommentar als von #{dummyname} nicht gelesen zu markieren.</label>
 </labels>

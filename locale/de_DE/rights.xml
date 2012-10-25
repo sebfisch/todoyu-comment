@@ -19,4 +19,6 @@
 	<label index="sendEmail.task">Personen in der Aufgabe</label>
 	<label index="sendEmail.project">Personen im Projekt</label>
 	<label index="sendEmail.internal">Personen der internen Firma</label>
+	<label index="overrideDummy">Kommentare von Dummy-Usern bearbeiten</label>
+	<label index="overrideDummy.acknowledgeFeedback">Feedback Kommentar als gelesen markieren</label>
 </labels>

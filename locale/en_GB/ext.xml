@@ -80,4 +80,6 @@
 	<label index="assets.title">Comment Assets</label>
 	<label index="quote">Quote Comment</label>
 	<label index="mailReply">Reply to comment (quoted with email receiver)</label>
+	<label index="overrideDummy.acknowledgeFeedback.toggle.confirm.setSeen">Please confirm marking the comment as acknowledged by #{dummyname}</label>
+	<label index="overrideDummy.acknowledgeFeedback.toggle.confirm.setUnseen">Please confirm marking the comment as not acknowledged by #{dummyname}</label>
 </labels>

@@ -90,44 +90,6 @@ class TodoyuCommentTaskActionController extends TodoyuActionController {
 		}
 	}
 
-
-
-	/**
-	 * Mark a comment with feedback request as seen
-	 *
-	 * @param	Array		$params
-	 */
-	public function seenAction(array $params) {
-		$idComment	= intval($params['comment']);
-
-		TodoyuCommentRights::restrictSee($idComment);
-
-		TodoyuCommentFeedbackManager::setAsSeen($idComment);
-
-		$numOpenFeedbacks = TodoyuCommentFeedbackManager::getOpenFeedbackCount();
-
-		TodoyuHeader::sendTodoyuHeader('feedback', $numOpenFeedbacks);
-	}
-
-
-
-	/**
-	 * Mark a comment with feedback request as not seen
-	 *
-	 * @param	Array		$params
-	 */
-	public function unseenAction(array $params) {
-		$idComment	= intval($params['comment']);
-
-		TodoyuCommentRights::restrictSee($idComment);
-
-		TodoyuCommentFeedbackManager::setAsUnseen($idComment);
-
-		$numOpenFeedbacks = TodoyuCommentFeedbackManager::getOpenFeedbackCount();
-
-		TodoyuHeader::sendTodoyuHeader('feedback', $numOpenFeedbacks);
-	}
-
 }
 
 ?>

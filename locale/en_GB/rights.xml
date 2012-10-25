@@ -19,4 +19,6 @@
 	<label index="sendEmail.task">Task Persons</label>
 	<label index="sendEmail.project">Project Persons</label>
 	<label index="sendEmail.internal">All internal persons</label>
+	<label index="overrideDummy">Act on comments of dummy user</label>
+	<label index="overrideDummy.acknowledgeFeedback">Mark feedback comment as read</label>
 </labels>
