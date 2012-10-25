@@ -132,10 +132,11 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 	/**
 	 * Get persons being stored to have a feedback requested from to this comment
 	 *
+	 * @param	Mixed	[$isSeen]
 	 * @return	Array[]
 	 */
-	public function getFeedbackPersonsData() {
-		return TodoyuCommentFeedbackManager::getFeedbackPersons($this->getID());
+	public function getFeedbackPersonsData($isSeen = null) {
+		return TodoyuCommentFeedbackManager::getFeedbackPersons($this->getID(), $isSeen);
 	}
 
 
@@ -143,10 +144,11 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 	/**
 	 * Get IDs of feedback persons
 	 *
+	 * @param	Mixed		[$isSeen]
 	 * @return	Integer[]
 	 */
-	public function getFeedbackPersonsIDs() {
-		$feedbackPersonsData	= $this->getFeedbackPersonsData();
+	public function getFeedbackPersonsIDs($isSeen = null) {
+		$feedbackPersonsData	= $this->getFeedbackPersonsData($isSeen);
 
 		return TodoyuArray::getColumn($feedbackPersonsData, 'id');
 	}
@@ -242,24 +244,29 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 //	}
 
 
-
 	/**
-	 * Check whether comment has open feedbacks from external persons
+	 * Check whether comment has open feedbacks from persons not employed by an internal company
 	 *
 	 * @return	Boolean
 	 */
 	public function hasOpenFeedbacksFromExternals() {
-		$fields	= '	c.id';
-		$tables	= '	ext_comment_mm_comment_feedback f,
-					ext_contact_mm_company_person mmcp,
-					ext_contact_company c';
-		$where	= '		f.id_comment		= ' . $this->getID()
-				. ' AND f.is_seen			= 0'
-				. ' AND f.id_person_feedback= mmcp.id_person'
-				. ' AND mmcp.id_company		= c.id'
-				. ' AND c.is_internal		= 0';
+		$personIDsFeedback	= $this->getFeedbackPersonsIDs(false);
 
-		return Todoyu::db()->hasResult($fields, $tables, $where, '', 1);
+			// Check all persons with open feedbacks to not (also) belong to an internal company
+		foreach( $personIDsFeedback as $idPerson ) {
+			$companies	= TodoyuContactPersonManager::getPerson($idPerson)->getCompanies();
+			$isInternal	= false;
+			foreach($companies as $company) {
+				if( $company->isInternal() ) {
+					$isInternal	= true;
+				}
+			}
+			if( $isInternal === false ) {
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 
@@ -388,7 +395,7 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 	 * @return	String|Boolean
 	 */
 	public function getPublicFeedbackWarning() {
-		$label			= false;
+		$label	= false;
 
 		if( TodoyuAuth::isInternal() ) {
 			if( $this->hasOpenFeedbacksFromExternals() ) {
@@ -558,7 +565,6 @@ class TodoyuCommentComment extends TodoyuBaseObject {
 			$feedbackPersonIDs	= array_keys($feedbackPersonsData);
 			$this->data['isFeedbackPerson']			= in_array(Todoyu::personid(), $feedbackPersonIDs);
 			$this->data['isUnapproved']				= TodoyuCommentFeedbackManager::isCommentUnseen($idComment);
-
 			$this->data['canDelete']				= $this->canCurrentPersonDelete();
 			$this->data['canEdit']					= $this->canCurrentPersonEdit();
 			$this->data['canMakePublic']			= $this->canCurrentPersonMakePublic();

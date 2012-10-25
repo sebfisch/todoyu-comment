@@ -395,9 +395,10 @@ class TodoyuCommentFeedbackManager {
 	 * Get persons whom feedback to given comment is requested from
 	 *
 	 * @param	Integer	$idComment
+	 * @param	Mixed	[$isSeen]
 	 * @return	Array[]
 	 */
-	public static function getFeedbackPersons($idComment) {
+	public static function getFeedbackPersons($idComment, $isSeen = null) {
 		$idComment	= intval($idComment);
 
 		$fields	= '	p.id,
@@ -409,9 +410,14 @@ class TodoyuCommentFeedbackManager {
 					f.is_seen';
 		$tables	= '	ext_contact_person				p,
 					ext_comment_mm_comment_feedback	f';
-		$where	= '		f.id_comment		= ' . $idComment .
-				  ' AND	f.id_person_feedback= p.id
+		$where	= '		f.id_comment		= ' . $idComment
+				. ' AND	f.id_person_feedback= p.id
 					AND	p.deleted			= 0';
+
+		if( !is_null($isSeen) ) {
+			$where .= ' AND f.is_seen = ' . ($isSeen ? 1 : 0);
+		}
+
 		$group	= '	p.id';
 		$order	= '	p.lastname,
 					p.firstname';
