@@ -389,35 +389,6 @@ menu, nav, section {
 	}
 
 
-	/* -----------------------------------------------------------
-		SLA attributes and information
-	 ----------------------------------------------------------- */
-	.additionalContent {
-
-		.slaUseCaseInfo{
-			span.label {
-				text-decoration:underline;
-				cursor:pointer;
-			}
-			span.label:hover{
-				background-color:$colorNeutral02;
-			}
-
-			.useCaseLogDetails {
-
-				ul {
-					padding:5px;
-					background:$colorNeutral02;
-					border-radius:5px;
-
-				}
-			}
-
-		}
-
-
-	}
-
 
 	/* -----------------------------------------------------------
 		Feedback and email receiver persons in comment header
