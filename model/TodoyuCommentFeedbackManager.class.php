@@ -342,7 +342,7 @@ class TodoyuCommentFeedbackManager {
 	 * @return	Boolean
 	 */
 	public static function setAsSeen($idComment, $idPerson = 0, $isSeen = true) {
-		$success	= self::setSeenStatus($idComment, $idPerson, true) > 0;
+		$success	= self::setSeenStatus($idComment, $idPerson, $isSeen) > 0;
 
 		TodoyuHookManager::callHook('comment', 'feedback.changeseen', array($idComment, $idPerson));
 
