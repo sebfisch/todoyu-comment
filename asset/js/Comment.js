@@ -125,6 +125,7 @@ Todoyu.Ext.comment.Comment = {
 	},
 
 
+
 	/**
 	 * Toggle comment "seen" status instead of a dummy user whom the feedback was request from
 	 *
@@ -275,8 +276,15 @@ Todoyu.Ext.comment.Comment = {
 			afterFinish: function(effect) {
 					// Remove element
 				effect.element.remove();
-					// Less than 2 comments => hide sorting buttons
+					// Less than 2 comments => hide sorting buttons,
 				this.ext.List.toggleSortingButtons(idTask);
+					// Was last comment of task? Cleanup
+				var amountComments	= $$('#task-' + idTask + '-tabcontent-comment .comment').length;
+				if( amountComments == 0 ) {
+					$('task-' + idTask + '-comments').remove();
+					$('task-' + idTask + '-comment-commands-bottom').remove();
+				}
+
 			}.bind(this)
 		});
 	},
