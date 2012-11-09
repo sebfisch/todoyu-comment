@@ -219,9 +219,9 @@ class TodoyuCommentTaskFilter extends TodoyuSearchFilterBase {
 			$condition = $negate ? ' NOT IN ' : ' IN ';
 
 			$where	= 'ext_project_task.id ' . $condition . '(
-						SELECT id_task
-						FROM ext_comment_comment
-						WHERE deleted = 0 AND id_person_create = ' . $idPerson
+						SELECT c.id_task
+						FROM ext_comment_comment as c
+						WHERE c.deleted = 0 AND c.id_person_create = ' . $idPerson
 					. ')';
 
 			$join	= array(
