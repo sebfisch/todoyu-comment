@@ -211,15 +211,23 @@ class TodoyuCommentTaskFilter extends TodoyuSearchFilterBase {
 		$idPerson	= intval($idPerson);
 
 		if( $idPerson !== 0 ) {
-			$tables	= array(
+			$tables = array(
 				'ext_project_task',
-				'ext_comment_comment'
+				'ext_comment_comment '
 			);
-			$where	= '		ext_comment_comment.deleted			= 0'
-					. '	AND	ext_comment_comment.id_person_create= ' . $idPerson;
+
+			$condition = $negate ? ' NOT IN ' : ' IN ';
+
+			$where	= 'ext_project_task.id ' . $condition . '(
+						SELECT id_task
+						FROM ext_comment_comment
+						WHERE deleted = 0 AND id_person_create = ' . $idPerson
+					. ')';
+
 			$join	= array(
 				'ext_comment_comment.id_task = ext_project_task.id'
 			);
+
 
 			$queryParts	= array(
 				'tables'=> $tables,
@@ -229,6 +237,9 @@ class TodoyuCommentTaskFilter extends TodoyuSearchFilterBase {
 		}
 
 		return $queryParts;
+
+
+
 	}
 
 
