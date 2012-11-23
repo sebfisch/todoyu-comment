@@ -310,9 +310,10 @@ menu, nav, section {
 		z-index:2;
 	}
 
-	.comment:hover:before {
-		background:orange;
-	}
+		//opera issue: this harmless line of code disasbles thead ctrl-click of select-multi
+	//.comment:hover:before {
+	//	//background:orange;
+	//}
 
 	.comment .text:before {
 		top:35px;

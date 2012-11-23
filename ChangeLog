@@ -1,6 +1,7 @@
 todoyu comment extension changelog
 
 comment 1.3.0 - not released yet
+	* Bugfix: Issue with multi-select in opera (css disabled ctrl-click)
 	* Bugfix: Fixed negation in comment filter
 	* Bugfix: TodoyuCommentComment->hasOpenFeedbacksFromExternals() did take persons with multiple employers as external only
 	* Bugfix: Portal feedback parent IDs did not exclude containers
