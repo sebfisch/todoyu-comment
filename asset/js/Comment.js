@@ -72,9 +72,7 @@ Todoyu.Ext.comment.Comment = {
 		if( response.hasTodoyuHeader('publicFeedbackWarning') ) {
 				// Add received warning
 			if( !hasPublicFeedbackWarning ) {
-				$('task-comment-' + idComment + '-text').insert(new Element('div', {
-					className:	'publicFeedbackWarning'
-				}).update(response.getTodoyuHeader('publicFeedbackWarning')));
+				this.insertPublicFeedbackWarning(idComment, response.getTodoyuHeader('publicFeedbackWarning'));
 			}
 		} else {
 				// Remove invalid warning
@@ -87,13 +85,40 @@ Todoyu.Ext.comment.Comment = {
 
 
 	/**
+	 *
+	 * @param	{String}		text
+	 */
+	insertPublicFeedbackWarning: function(idComment, text) {
+		var message = new Element('div', {
+			class:	'warningMessage'
+		});
+
+		var icon = new Element('span', {
+			class: 'icon'
+		});
+
+		var label = new Element('span', {
+			class: 'label'
+		}).update(text);
+
+		message.appendChild(icon);
+		message.appendChild(label);
+
+		$('task-comment-' + idComment + '-involved').down('.action-bar').insert({
+			before: message
+		});
+	},
+
+
+
+	/**
 	 * Get feedback warning element of comment if it exists
 	 *
 	 * @method	getCommentPublicFeedbackWarning
 	 * @param	{Number}	idComment
 	 */
 	getCommentPublicFeedbackWarning: function(idComment) {
-		return $('task-comment-' + idComment + '-text').down('.publicFeedbackWarning');
+		return $('task-comment-' + idComment + '-involved').down('.warningMessage');
 	},
 
 
