@@ -1,6 +1,7 @@
 todoyu comment extension changelog
 
 comment 1.3.0 - not released yet
+	* Bugfix: Fixed scrolling error with approval-icon 
 	* Changed: Adapted warning-message to new global style
 	* Bugfix: Issue with multi-select in opera (css disabled ctrl-click)
 	* Bugfix: Fixed negation in comment filter
