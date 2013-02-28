@@ -150,7 +150,7 @@ menu, nav, section {
 			overflow:hidden;
 			padding:2em 0 1em;
 			border-bottom:1px solid $colorNeutral02;
-			*zoom:1;
+			zoom:1;
 		}
 
 		&.ownComment {
