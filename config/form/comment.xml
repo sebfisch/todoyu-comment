@@ -55,7 +55,7 @@
 				</field>
 
 				<field type="button" name="upload">
-					<text>assets.ext.taskform.assets.button.upload</text>
+					<text>assets.form.assets.button.upload</text>
 					<class>buttonUploadAsset</class>
 					<hasIcon />
 					<noStorage />

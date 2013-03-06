@@ -1,6 +1,7 @@
 todoyu comment extension changelog
 
 comment 1.3.0 - not released yet
+	* Bugfix: Fixed asset upload button label
 	* Require: assets 1.3 and core 2.3.0
 	* Feature: New option + right to mark feedback requests of dummy users acknowledged
 	* Feature: Comments that request a feedback can be reverted into "unseen" status
