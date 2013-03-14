@@ -160,12 +160,14 @@ Todoyu.Ext.comment.Comment = {
 	 * @param	{String}	dummyPersonName
 	 */
 	toggleDummySeen: function(idComment, idDummyPerson, dummyPersonName) {
-		var isSeen, msg, info;
-		isSeen	= $('task-comment-' + idComment + '-involvedPerson-' + idDummyPerson).down('span.icon').hasClassName('approved');
-		msg		= '[LLL:comment.ext.overrideDummy.acknowledgeFeedback.toggle.confirm.' + (isSeen ? 'setUnseen' : 'setSeen') + ']';
-		info	= { dummyname: dummyPersonName };
+		var isSeen	= $('task-comment-' + idComment + '-involvedPerson-' + idDummyPerson).down('.icon').hasClassName('approved'),
+			msgTpl	= isSeen ? '[LLL:comment.ext.overrideDummy.acknowledgeFeedback.toggle.confirm.setUnseen]' : '[LLL:comment.ext.overrideDummy.acknowledgeFeedback.toggle.confirm.setSeen]',
+			msgData	= {
+				dummyname: dummyPersonName
+			},
+			message	= msgTpl.interpolate(msgData);
 
-		if( confirm(msg.interpolate(info)) ) {
+		if( confirm(message) ) {
 			var url, options;
 			url		= Todoyu.getUrl('comment', 'comment');
 			options	= {
