@@ -177,13 +177,13 @@ class TodoyuCommentCommentActionController extends TodoyuActionController {
 	public function uploadassetfileAction($params) {
 		$idComment	= intval($params['comment']['id']);
 		$idTask		= intval($params['comment']['id_task']);
+		$maxFileSize= intval(Todoyu::$CONFIG['EXT']['assets']['max_file_size']);
 
 		$file	= TodoyuRequest::getUploadFile('file', 'comment');
 		$error	= intval($file['error']);
 
 			// Check again for file limit
-		$maxFileSize	= intval(Todoyu::$CONFIG['EXT']['assets']['max_file_size']);
-		if( $file['size'] > $maxFileSize ) {
+		if( !$error && $file['size'] > $maxFileSize ) {
 			$error	= UPLOAD_ERR_FORM_SIZE;
 		}
 			// Check length of file name

@@ -152,6 +152,8 @@ class TodoyuCommentCommentRenderer {
 
 
 	/**
+	 *
+	 * @todo	Also check and display php.ini value here (or better in general for upload messages)
 	 * @param	Integer		$error
 	 * @param	String		$fileName
 	 * @param	Integer		$idTask

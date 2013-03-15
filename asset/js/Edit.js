@@ -353,10 +353,11 @@ Todoyu.Ext.comment.Edit = {
 	/**
 	 * @method	uploadFailed
 	 * @param	{Number}		idTask
+	 * @param	{Number}		errorCode
 	 * @param	{String}		filename
 	 * @param	{Number}		maxFileSize
 	 */
-	uploadFailed: function(idTask, filename, maxFileSize) {
+	uploadFailed: function(idTask, errorCode, filename, maxFileSize) {
 		var info, msg;
 		info	= {
 			filename:		filename,
@@ -365,10 +366,10 @@ Todoyu.Ext.comment.Edit = {
 		};
 		msg	= '';
 
-		if( error === 1 || error === 2 ) {	//@todo	fix: error is not defined
+		if( errorCode == 1 || errorCode == 2 ) { // File size specific problem
 			msg	= '[LLL:core.file.upload.failed.maxFileSizeExceeded]';
-		} else {
-			msg	= '[LLL:core.file.upload.error.uploadfailed]';
+		} else { // General error
+			msg	= '[LLL:core.file.upload.error.uploadfailed] (Code: ' + errorCode + ')';
 		}
 
 		Todoyu.notifyError(msg.interpolate(info), 'fileupload');
