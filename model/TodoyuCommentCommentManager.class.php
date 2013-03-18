@@ -248,7 +248,7 @@ class TodoyuCommentCommentManager {
 			// Add feedback requests
 		$result['feedback'] = TodoyuCommentFeedbackManager::saveFeedbackRequests($idComment, $personFeedbackIDs);
 
-		// save assets
+			// Save new uploaded assets
 		if( sizeof($assets) ) {
 			TodoyuCommentAssetManager::saveAssets($data['id'], $idComment, $idTask, $assets);
 		}
