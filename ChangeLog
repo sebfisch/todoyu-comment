@@ -28,8 +28,8 @@ comment 1.3.0 - not released yet
 	* Bugfix: Avoid long names to overflow
 	* Bugfix: Fixed scrolling error with approval-icon
 	* Bugfix: fixed icon of asset upload button
-    * Bugfix: Fixed asset upload button label
-    * Bugfix: Label in javascript was built dynamically and so ignored by the pre-parser
+	* Bugfix: Fixed asset upload button label
+	* Bugfix: Label in javascript was built dynamically and so ignored by the pre-parser
 
 comment 1.2 - 2012-05-03
 	* Feature: Save and show time and person of last update of comment

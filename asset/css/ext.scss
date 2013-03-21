@@ -257,11 +257,10 @@ menu, nav, section {
 
 
 	.comment .text {
-
-		padding:10px 5px 5px 12px;
-		border:1px solid $colorNeutral01;
-		border-radius:5px;
 		background:$white;
+		border-radius:5px;
+		border:1px solid $colorNeutral01;
+		padding:10px 5px 5px 12px;
 
 		ul {
 			list-style:disc outside;
@@ -290,13 +289,13 @@ menu, nav, section {
 
 	/* circle */
 	.comment:before {
-		width:9px;
-		height:9px;
-		border:3px solid #fff;
-		border-radius:100px;
-		margin:32px 0 0 -6px;
-		box-shadow:0 1px 1px rgba(0,0,0,0.2), inset 0 1px 1px rgba(0,0,0,0.1);
 		background:$colorNeutral03;
+		border-radius:100px;
+		border:3px solid #fff;
+		box-shadow:0 1px 1px rgba(0,0,0,0.2), inset 0 1px 1px rgba(0,0,0,0.1);
+		height:9px;
+		margin:32px 0 0 -6px;
+		width:9px;
 		z-index:2;
 	}
 
@@ -489,8 +488,8 @@ menu, nav, section {
 /*vertical line */
 .commentList:before {
 	width:3px;
-	top:-20px;
-	bottom:-20px;
+	top: -20px;
+	bottom: -20px;
 	background:$colorNeutral03;
 	z-index:2;
 }
