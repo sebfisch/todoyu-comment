@@ -124,18 +124,16 @@ menu, nav, section {
 	display:block;
 }
 
-.tabContent .comment section {
-	margin:30px 0;
-
-}
-
 .tabContent .tab.comment {
 	padding:0;
 	background:$colorNeutral00 !important;
 
-
 	& .commentButtons {
 		padding:5px;
+	}
+
+	section {
+		margin:30px 0;
 	}
 }
 
@@ -471,13 +469,13 @@ menu, nav, section {
    ----------------------------------------------------------- */
 
 .commentList,
-.comment {
+.commentList .comment {
 	position:relative;
 }
 
 .commentList:before,
-.comment:before,
-.comment .text:before {
+.commentList .comment:before,
+.commentList .comment .text:before {
 	content:"";
 	position:absolute;
 	top:0;
