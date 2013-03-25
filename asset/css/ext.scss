@@ -128,7 +128,7 @@ menu, nav, section {
 	padding:0;
 	background:$colorNeutral00 !important;
 
-	& .commentButtons {
+	.commentButtons {
 		padding:5px;
 	}
 
@@ -144,7 +144,7 @@ menu, nav, section {
 	.comment {
 		padding:0 4px;
 
-		& .commentBackground {
+		.commentBackground {
 			overflow:hidden;
 			padding:2em 0 1em;
 			border-bottom:1px solid $colorNeutral02;
