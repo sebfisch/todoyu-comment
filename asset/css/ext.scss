@@ -168,10 +168,10 @@ h1.extIconComment .title {
 		&.ownComment {}
 
 		&.isPublic .text {
-			border:solid 1px $colorAlert01;
+			border:solid 1px $colorAlert01 !important;
 
 			&:before {
-				border-color:$colorAlert01;
+				border-color:$colorAlert01 !important;
 			}
 		}
 
