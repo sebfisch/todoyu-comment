@@ -1,5 +1,8 @@
 todoyu comment extension changelog
 
+comment 1.3.1 - not released yet
+	* Added: Hook to add a task icon if any comment has an asset attached
+
 comment 1.3.0 - 2013-03-27
 	* Require: assets 1.3 and core 2.3.0
 	* Feature: New option + right to mark feedback requests of dummy users acknowledged

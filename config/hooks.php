@@ -30,6 +30,10 @@ if( Todoyu::allowed('comment', 'general:use') ) {
 
 		// Callbacks for exteding filter widgets of other extensions
 	TodoyuHookManager::registerHook('core', 'loadconfig.project.filters', 'TodoyuCommentManager::hookLoadProjectFilterConfig');
+
+	if( Todoyu::allowed('asset', 'general:use')) {
+		TodoyuHookManager::registerHook('project', 'taskIcons', 'TodoyuCommentAssetManager::hookAddTaskIcons');
+	}
 }
 
 ?>

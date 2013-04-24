@@ -250,6 +250,50 @@ class TodoyuCommentAssetManager {
 		Todoyu::db()->doDelete(self::TABLE, $where);
 	}
 
+
+
+	/**
+	 * Add asset icon to task if any comment of it has assets
+	 *
+	 * @param	Array		$icons
+	 * @param	Integer		$idTask
+	 * @return	Array
+	 */
+	public static function hookAddTaskIcons(array $icons, $idTask) {
+		$idTask	= intval($idTask);
+
+		if( self::commentOfTaskHasAssets($idTask) ) {
+			$icons['assets'] = array(
+				'id'		=> 'task-' . $idTask . '-assets',
+				'class'		=> 'assets',
+				'label'		=> 'assets.ext.task.icon',
+				'position'	=> 80
+			);
+		}
+
+		return $icons;
+	}
+
+
+
+	/**
+	 * Check if any comment of given task has an asset attached
+	 *
+	 * @param	Integer		$idTask
+	 */
+	protected static function commentOfTaskHasAssets($idTask) {
+		$idTask	= intval($idTask);
+
+		$commentIDs = TodoyuCommentCommentManager::getTaskCommentIDs($idTask);
+
+		foreach($commentIDs as $idComment) {
+			if( count(TodoyuAssetsAssetManager::getElementAssetIDs($idComment, ASSET_PARENTTYPE_COMMENT)) > 0) {
+				return true;
+			}
+		}
+
+		return false;
+	}
 }
 
 ?>
