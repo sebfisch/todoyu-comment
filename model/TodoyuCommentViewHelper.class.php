@@ -83,7 +83,6 @@ class TodoyuCommentViewHelper {
 		$idProject	= TodoyuProjectTaskManager::getProjectID($idTask);
 		$options	= array();
 
-
 			// Task persons
 		if( Todoyu::allowed('comment', 'requestFeedback:task') ) {
 			$groupLabelTask	= Todoyu::Label('comment.ext.group.taskmembers');

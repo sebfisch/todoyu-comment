@@ -237,9 +237,6 @@ class TodoyuCommentTaskFilter extends TodoyuSearchFilterBase {
 		}
 
 		return $queryParts;
-
-
-
 	}
 
 
