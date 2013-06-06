@@ -1,5 +1,5 @@
 <article
-		class="comment{if $person_create.id ==personid()} ownComment{/if}{if $is_public}{if isSeeAllCommentsAllowed()} isPublic{/if}{/if}"
+		class="comment {if $isFeedbackPerson}withFeedback{/if} {if $person_create.id ==personid()} ownComment{/if}{if $is_public}{if isSeeAllCommentsAllowed()} isPublic{/if}{/if}"
 		id="task-comment-{$id}" xmlns="http://www.w3.org/1999/html">
 	<div class="commentBackground">
 		<div class="comment-meta" id="task-comment-{$id}-properties">
@@ -8,7 +8,7 @@
 					<a class="personApproval hasicon {if $isUnapproved}{else}isseen{/if}" href="javascript:void(0)" id="comment-{$id}-seenstatus" onclick="Todoyu.Ext.comment.Comment.toggleSeen({$id}, {personid()})"></a>
 				{/if}
 				{personAvatar $person_create.id}
-			 </div>
+			</div>
 
 			<div class="clear">
 				<p class="personLabel">

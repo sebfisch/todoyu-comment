@@ -164,6 +164,10 @@ h1.extIconComment .title {
 			width:9px;
 			z-index:2;
 		}
+			/* no circle under the star */
+		&.withFeedback:before {
+			visibility:hidden;
+		}
 
 		&.ownComment {}
 
