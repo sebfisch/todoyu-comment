@@ -63,6 +63,7 @@ Todoyu.Ext.comment.List = {
 	 */
 	onRefreshed: function(idTask, desc, response) {
 		this.toggleAddButtons(idTask);
+		Todoyu.Ext.assets.QuickInfoAsset.install();
 	},
 
 
