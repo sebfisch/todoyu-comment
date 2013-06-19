@@ -125,6 +125,14 @@ h1.extIconComment .title {
 	padding:5px 0;
 	margin:30px 0;
 
+	.fElement {
+		&.typeRTE  {
+			.fField {
+				width: 400px;
+			}
+		}
+	}
+
 	/*vertical line */
 	&:before {
 		width:3px;
