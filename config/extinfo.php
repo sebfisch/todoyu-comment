@@ -35,7 +35,7 @@ Todoyu::$CONFIG['EXT']['comment']['info'] = array(
 	'constraints'	=> array(
 		'core'		=> '2.3.0',
 		'depends'	=> array(
-			'assets'	=> '1.3.0',
+			'assets'	=> '1.3.1',
 			'project'	=> '1.5.0'
 		)
 	),

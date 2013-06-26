@@ -94,8 +94,8 @@
 						<h6>{Label comment.ext.assets.title}</h6>
 						<ul>
 							{foreach $assetInfos asset}
-								<li>
-								<a class="asset" onclick="Todoyu.Ext.assets.downloadAsset({$asset.id})">{$asset.file_name}</a> <span class="filesize">({fileSize $asset.file_size})</span>
+								<li class="{if isAssetGDcompatibleImage($asset.id)}quickInfoAsset{/if}" id="asset-{$asset.id}-comment">
+								 <a class="asset" onclick="Todoyu.Ext.assets.downloadAsset({$asset.id})">{$asset.file_name}</a> <span class="filesize">({fileSize $asset.file_size})</span>
 								</li>
 							{/foreach}
 						</ul>

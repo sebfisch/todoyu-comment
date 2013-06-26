@@ -1,6 +1,7 @@
 todoyu comment extension changelog
 
 comment 1.3.1 - not released yet
+	* Added: Preview (Quickinfo) for comment - assets
 	* Added: Adaption to rte-input-field enlargement
 	* Added: Hook to add a task icon if any comment has an asset attached
 
