@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<labels>
+	<label index="extconf.legend.config">Konfigurasi Komentar</label>
+	<label index="fallback.legend.fallback">Kembali komentar</label>
+	<label index="fallback.legend.help">Bagaimana ini bekerja</label>
+	<label index="fallback.legend.general">Pengaturan umum</label>
+	<label index="fallback.legend.feedback">Permintaan tanggapan</label>
+	<label index="fallback.legend.email">Kirim Email</label>
+</labels>

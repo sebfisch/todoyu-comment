@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<labels>
+	<label index="unseenFeedback">(Setiap) Tak Terlihat Tanggapan Permintaan</label>
+	<label index="unseenFeedbackPerson">Orang tidak melihat permintaan umpan balik</label>
+	<label index="unseenFeedbackRoles">Tanggapan permintaan tak terlihat oleh peran</label>
+	<label index="commentFulltext">Komentar lengkap</label>
+	<label index="commentWrittenPerson">Komentar ditulis oleh orang</label>
+	<label index="commentWrittenRoles">Komentar ditulis oleh peran</label>
+	<label index="commentCreatedate">Tanggal pembuatan komentar</label>
+	<label index="sorting.commentLastAdd">Tanggal terakhir komentar</label>
+	<label index="sorting.commentLastAddPublic">Tanggal komentar publik lalu</label>
+	<label index="isSeen.negation.true">Orang melihat komentar</label>
+	<label index="isSeen.negation.false">Orang tidak melihat komentar</label>
+	<label index="project.commentMyFeedbackRequest">Saya meminta umpan balik, orang telah / belum melihat komentar</label>
+</labels>

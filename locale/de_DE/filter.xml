@@ -7,8 +7,8 @@
 	<label index="commentWrittenPerson">Kommentar geschrieben von Person</label>
 	<label index="commentWrittenRoles">Kommentar geschrieben von Rollen</label>
 	<label index="commentCreatedate">Kommentar Zeitpunkt</label>
-	<label index="sorting.commentLastAdd">Datum letzer Kommentar</label>
-	<label index="sorting.commentLastAddPublic">Datum letzer öffentlicher Kommentar</label>
+	<label index="sorting.commentLastAdd">Datum letzter Kommentar</label>
+	<label index="sorting.commentLastAddPublic">Datum letzter öffentlicher Kommentar</label>
 	<label index="isSeen.negation.true">Kommentar gesehen</label>
 	<label index="isSeen.negation.false">Kommentar nicht gesehen</label>
 	<label index="project.commentMyFeedbackRequest">Ich habe Feedback erbeten, Person hat Kommentar /nicht gesehen</label>

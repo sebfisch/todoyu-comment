@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<labels>
+	<label index="general">Pengaturan Umum</label>
+	<label index="general.use">Gunakan Fungsi Komentar</label>
+	<label index="general.requestFeedback">Permintaan Tanggapan</label>
+	<label index="general.sendEmail">Kirim komentar lewat Email</label>
+	<label index="comment">Komentar</label>
+	<label index="comment.seeAll">Lihat semua komentar (not public)</label>
+	<label index="comment.editOwn">Ubah Sendiri Komentar</label>
+	<label index="comment.editAll">Ubah Semua Komentar</label>
+	<label index="comment.deleteAll">Hapus Semua Komentar</label>
+	<label index="comment.deleteOwn">Hapus Sendiri Komentar</label>
+	<label index="comment.makePublic">Membuat Komentar Publik</label>
+	<label index="requestFeedback">Permintaan Tanggapan Dari:</label>
+	<label index="requestFeedback.task">Tugas Orang</label>
+	<label index="requestFeedback.project">Orang Proyek</label>
+	<label index="requestFeedback.internal">Semua orang dalam</label>
+	<label index="sendEmail">Kirim Email Pada:</label>
+	<label index="sendEmail.task">Tugas Orang</label>
+	<label index="sendEmail.project">Orang Proyek</label>
+	<label index="sendEmail.internal">Semua orang dalam</label>
+	<label index="overrideDummy">Bertindak pada komentar dari pengguna palsu</label>
+	<label index="overrideDummy.acknowledgeFeedback">Riwayat umpan balik komentar sudah dibaca</label>
+</labels>
